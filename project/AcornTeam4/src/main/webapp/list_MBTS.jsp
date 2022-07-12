@@ -3,7 +3,7 @@
 <%@page import="com.emp.dto.Employee"%>
 <%@page import="com.emp.service.EmployeeService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
