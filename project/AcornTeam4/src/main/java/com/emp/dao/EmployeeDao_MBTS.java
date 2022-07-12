@@ -16,6 +16,7 @@ public class EmployeeDao_MBTS
 
 	public List<Employee> getAllEmployee(SqlSession session)
 	{
+//		List<Employee> list = session.selectList("com.emp.EmployeeMapper.selectAll");
 		List<Employee> list = session.selectList("com.emp.EmployeeMapper.selectAll");
 		return list;
 	}

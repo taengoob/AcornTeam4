@@ -12,8 +12,7 @@
 </head>
 <body>
 	<%
-	EmployeeService_MBTS service = new EmployeeService_MBTS();
-	List<Employee> list = service.getAllEmployee();
+	List<Employee> list = (List<Employee>)request.getAttribute("list");
 	%>
 
 	<table border="1">
