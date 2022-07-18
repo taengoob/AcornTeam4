@@ -1,8 +1,6 @@
 package com.controller.emp;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;

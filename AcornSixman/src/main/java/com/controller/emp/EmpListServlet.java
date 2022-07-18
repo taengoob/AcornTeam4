@@ -1,8 +1,6 @@
 package com.controller.emp;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dao.EmpDAO;
 import com.dto.EmpDTO;
 import com.service.EmpService;
 
