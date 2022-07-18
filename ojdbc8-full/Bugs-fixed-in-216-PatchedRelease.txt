@@ -1,0 +1,16 @@
+New Feature in This Patch Release (21.6.0.0.1)
+---------------------------------------------------------------
+
+The release 21.6.0.0.1 is a patched version on top of 21.6. 
+
+OAUTH 2.0 authentication support specifically for Microsoft Azure Active Directory (AD) OAuth2 access tokens is added in this release. 
+
+JDBC Thin drivers v21.6.0.0.1 can access Oracle Autonomous Database on Shared Exadata Infrastructure (ADB-S) using Microsoft Azure Active Directory (AD) OAuth2 access tokens.  
+
+Customers who want to leverage centrally managed authentication by Microsoft Azure Active Directory (AD) can use this feature to connect to Autonomous Database Shared using OAuth2 access tokens. 
+
+Refer to Use Azure Active Directory (Azure AD) with Autonomous Database for more details. 
+(https://docs.oracle.com/en/cloud/paas/autonomous-database/adbsa/manage-users-azure-ad.html#GUID-562655CA-4D8B-41D2-9165-6515BC824E07)
+ 
+Note: Please note that there will not be any back-port requests supported on this release. This release is exclusively for making the OAuth2.0 Token authentication feature accessible.
+
