@@ -24,4 +24,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM DUAL
 	</select>
 	
+	<insert id="uploadImageFiles" parameterType="java.util.HashMap">
+		INSERT INTO PRODUCT_IMAGE
+		(
+			IMAGE_ID
+			,IMAGE_PRODUCT_ID
+			,IMAGE_DATA
+			,IMAGE_REG_DATE
+		)
+		VALUES
+		(
+			#{IMAGE_ID}
+			,#{PRODUCT_ID}
+			,#{IMAGE_DATA}
+			,CURRENT_DATE
+		)
+	</insert>
+	
+	<select id="selectImageByProductId" resultType="com.dto.ImageDTO" parameterType="String">
+		SELECT * FROM PRODUCT_IMAGE
+		WHERE 1=1
+			AND IMAGE_PRODUCT_ID = #{PRODUCT_ID}
+	</select>
+	
 </mapper>

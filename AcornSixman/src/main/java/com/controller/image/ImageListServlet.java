@@ -1,4 +1,4 @@
-package com.controller.emp;
+package com.controller.image;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,19 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dto.EmpDTO;
+import org.apache.ibatis.session.SqlSession;
+
+import com.dbconfig.MySqlSessionFactory;
+import com.dto.ImageDTO;
 
 /**
- * Servlet implementation class EmpOrderServlet
+ * Servlet implementation class ImageListServlet
  */
-@WebServlet("/emp/EmpOrderServlet")
-public class EmpOrderServlet extends HttpServlet {
+@WebServlet("/image/ImageListServlet")
+public class ImageListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmpOrderServlet() {
+    public ImageListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,18 +36,20 @@ public class EmpOrderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		String order = request.getParameter("order");
-		List<EmpDTO> list = (List<EmpDTO>)(getServletContext().getAttribute("list"));
+		String PRODUCT_ID = "tempProduct001";
+		List<ImageDTO> list = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			list = session.selectList("com.mapper.common.selectImageByProductId", PRODUCT_ID);
+		}
+		finally
+		{
+			session.close();
+		}
 		
-		if (order.equals("asc"))
-			list.sort((pre, next) -> pre.getSal() - next.getSal());
-		else
-			list.sort((pre, next) -> next.getSal() - pre.getSal());
-		
-		request.setAttribute("list", list);
-		request.setAttribute("order", order);
-		
-		RequestDispatcher dis = request.getRequestDispatcher("list.jsp");
+		request.setAttribute("Images", list);
+		RequestDispatcher dis = request.getRequestDispatcher("imageList.jsp");
 		dis.forward(request, response);
 	}
 

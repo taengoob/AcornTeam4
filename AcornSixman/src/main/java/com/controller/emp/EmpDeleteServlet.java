@@ -13,7 +13,7 @@ import com.service.EmpService;
 /**
  * Servlet implementation class EMPInsertServlet
  */
-@WebServlet("/EmpDeleteServlet")
+@WebServlet("/emp/EmpDeleteServlet")
 public class EmpDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

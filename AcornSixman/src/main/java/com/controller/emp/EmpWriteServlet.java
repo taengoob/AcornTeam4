@@ -14,7 +14,7 @@ import com.service.EmpService;
 /**
  * Servlet implementation class EMPInsertServlet
  */
-@WebServlet("/EmpWriteServlet")
+@WebServlet("/emp/EmpWriteServlet")
 public class EmpWriteServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

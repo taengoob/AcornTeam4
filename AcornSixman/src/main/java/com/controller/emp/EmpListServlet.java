@@ -16,7 +16,7 @@ import com.service.EmpService;
 /**
  * Servlet implementation class EmpListServlet
  */
-@WebServlet("/EmpListServlet")
+@WebServlet("/emp/EmpListServlet")
 public class EmpListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,7 +30,7 @@ public class EmpListServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		getServletContext().setAttribute("list", list);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("emp/list.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("list.jsp");
 		dis.forward(request, response);
 	}
 

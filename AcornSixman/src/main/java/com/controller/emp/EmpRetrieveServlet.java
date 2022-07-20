@@ -15,7 +15,7 @@ import com.service.EmpService;
 /**
  * Servlet implementation class EMPInsertServlet
  */
-@WebServlet("/EmpRetrieveServlet")
+@WebServlet("/emp/EmpRetrieveServlet")
 public class EmpRetrieveServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,7 +32,7 @@ public class EmpRetrieveServlet extends HttpServlet {
 			    request.setAttribute("dto", dto);
 
 
-		RequestDispatcher dis = request.getRequestDispatcher("emp/retrieve.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("retrieve.jsp");
 		dis.forward(request, response);
 	}//end doPost
 }//end class

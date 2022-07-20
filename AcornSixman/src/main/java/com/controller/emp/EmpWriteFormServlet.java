@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-@WebServlet("/EmpWriteFormServlet")
+@WebServlet("/emp/EmpWriteFormServlet")
 public class EmpWriteFormServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	     response.sendRedirect("emp/memberForm.jsp");
+	     response.sendRedirect("memberForm.jsp");
 	}//end doPost
 }//end class
