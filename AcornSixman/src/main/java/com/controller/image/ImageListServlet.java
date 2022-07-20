@@ -47,7 +47,6 @@ public class ImageListServlet extends HttpServlet {
 		{
 			session.close();
 		}
-		
 		request.setAttribute("Images", list);
 		RequestDispatcher dis = request.getRequestDispatcher("imageList.jsp");
 		dis.forward(request, response);
