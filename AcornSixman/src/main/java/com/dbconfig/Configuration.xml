@@ -23,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</environments>
 	<mappers>
 		<mapper resource="com/mapper/EmpMapper.xml" />
+		<mapper resource="com/mapper/CommonMapper.xml" />
 	</mappers>
 </configuration>
 

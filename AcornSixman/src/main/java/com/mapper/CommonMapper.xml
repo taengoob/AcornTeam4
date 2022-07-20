@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.common">
+
+	<select id="getNewProductId" resultType="String">
+		SELECT 'PD' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_PRODUCT.NEXTVAL, 5, '0') AS PRODUCT_ID
+		FROM DUAL
+	</select>
+	
+	<select id="getNewOrderId" resultType="String">
+		SELECT 'OD' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_ORDER.NEXTVAL, 5, '0') AS ORDER_ID
+		FROM DUAL
+	</select>
+	
+	<select id="getNewCouponId" resultType="String">
+		SELECT 'CP' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_COUPON.NEXTVAL, 5, '0') AS COUPON_ID
+		FROM DUAL
+	</select>
+	
+	<select id="getNewImageId" resultType="String">
+		SELECT 'IMG' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_IMAGE.NEXTVAL, 5, '0') AS IMAGE_ID
+		FROM DUAL
+	</select>
+	
+</mapper>
