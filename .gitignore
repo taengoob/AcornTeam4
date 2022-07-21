@@ -22,6 +22,10 @@ AcornSixman/[bB]uild/
 #*.tar.gz
 #*.rar
 
+# DB Connection Path
+*.properties
+
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-AcornSixman/src/main/java/com/dbconfig/jdbc.properties
+
