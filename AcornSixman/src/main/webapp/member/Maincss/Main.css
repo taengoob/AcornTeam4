@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Poor+Story:400');
+
+@media screen and (width: 600px) {
+	body::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+}
+
+body {
+	font-family: 'Poor Story';
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
+	background-image: url(../img/bg.jpg);
+	background-size: cover;
+}
+
+body::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, .7);
+}
+
+.login-form {
+	position: relative;
+	z-index: 2;
+	
+}
+
+.login-form h1 {
+	font-size: 32px;
+	color: #fff;
+	text-align: center;
+}
+
+.int-area:first-child {
+	margin-top: 0;
+}
+
+.int-area {
+	width: 400px;
+	position: relative;
+	margin-top: 20px;
+}
+
+.int-area input {
+	width: 100%;
+	padding: 20px 10px 10px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #999;
+	font-size: 18px;
+	color: #fff;
+	outline: none;
+}
+
+.int-area label {
+	position: absolute;
+	left: 10px;
+	top: 0;
+	font-size: 18px;
+	color: #999;
+	transition: all .5s ease;
+}
+
+.int-area input:focus+label, .int-area input:valid+label {
+	top: 0;
+	font-size: 13px;
+	color: #166cea;
+}
+
+.btn-area {
+	margin-top: 30px;
+}
+
+.btn-area button {
+	width: 100%;
+	height: 50px;
+	background: #166cea;
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 25px;
+}
+
+.caption {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.caption a {
+	font-size: 15px;
+	color: #999;
+	text-decoration: none;
+	margin-top: 20px;
+}
+
+.kakao /* .facebook, */
+	/* .naver */ {
+	width: 100%;
+	line-height: 40px;
+	display: block;
+	margin: 0 auto;
+	font-size: 18px;
+	margin-top: 3%;
+	background-color: #fee500;
+	color: #000;
+	font-weight: bold;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+}
+
+.kakao-img {
+	width: 6%;
+	position: absolute;
+	left: 3%;
+	top: 30%;
+}
