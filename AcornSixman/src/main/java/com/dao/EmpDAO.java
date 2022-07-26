@@ -13,6 +13,9 @@ public class EmpDAO {
 		List<EmpDTO> list =  session.selectList("com.mapper.emp.selectAll" , map);
 		//searchName : hiredate, dname
 		//searchValue : 1981, k
+		
+		
+		
 		return list;
 	}
 	
