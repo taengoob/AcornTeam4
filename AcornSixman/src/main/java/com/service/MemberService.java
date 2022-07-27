@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.dbconfig.MySqlSessionFactory;
+import com.loginconfig.MySqlSessionFactory;
 import com.dao.MemberDAO;
 import com.dto.MemberDTO;
 

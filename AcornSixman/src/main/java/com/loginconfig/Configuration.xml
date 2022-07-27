@@ -4,10 +4,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-   <properties resource="com/dbconfig/jdbc.properties" />
+   <properties resource="com/loginconfig/jdbc.properties" />
    
    <typeAliases>
-    <typeAlias type="com.dto.EmpDTO" alias="EmpDTO"/>
+    <typeAlias type="com.dto.MemberDTO" alias="MemberDTO"/>
    </typeAliases>
    
 	<environments default="development">
@@ -22,8 +22,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/mapper/EmpMapper.xml" />
-		<mapper resource="com/mapper/CommonMapper.xml" />
+		<mapper resource="com/mapper/MemberMapper.xml" />
 	</mappers>
 </configuration>
 
