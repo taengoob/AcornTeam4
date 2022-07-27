@@ -97,7 +97,7 @@ padding: 6px;
 				<span class="xi-checkbox-blank"></span> 주소
 			</p>
 			<input type="text" name="post" id="sample4_postcode"
-				placeholder="우편번호"> <input type="button"
+				placeholder="우편번호"> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button"
 				onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="idCheck2"
 				name="idCheck2"> <br> <input type="text" name="addr1"
 				id="sample4_roadAddress" placeholder="도로명주소"> <input

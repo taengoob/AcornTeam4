@@ -16,7 +16,7 @@
 			document.getElementById("testButton").onclick = onTestButtonCliked;
 			
 			//서브밋 예제
-			//document.getElementById("imageForm").onsubmit = onTestButtonCliked;
+			document.getElementById("imageForm").onsubmit = onTestButtonCliked;
 		}
 	
 		//회원가입시 패스워드 암호화 해서 서버에 넘기는 예제
