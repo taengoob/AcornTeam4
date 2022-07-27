@@ -36,7 +36,7 @@ ul li {
 	border: 1px solid #eaeaea;
 	text-align: center;
 	overflow: hidden;
-	height: 440px;
+	height: 300px;
 	margin-top: 3%;
 }
 

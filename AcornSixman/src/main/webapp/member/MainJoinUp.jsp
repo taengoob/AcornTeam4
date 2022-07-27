@@ -18,10 +18,15 @@
 <title>로그인</title>
 
 <script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-
+	
 </script>
+<style type="text/css">
+#idCheck2{
+padding: 6px;
+}
+</style>
 </head>
 <body>
 	<p class="high"></p>
@@ -69,8 +74,8 @@
 				<span class="xi-checkbox-blank"></span> 이메일
 			</p>
 			<input type="text" name="email01" id="email01"
-				placeholder="이메일을 입력하세요">&nbsp;&nbsp; @
-				<input type="text" name="email02" id="email02"> <select id="sel">
+				placeholder="이메일을 입력하세요">&nbsp;&nbsp; @ <input type="text"
+				name="email02" id="email02"> <select id="sel">
 				<option value="self" selected="selected">직접입력</option>
 				<option value="naver.com">naver.com</option>
 				<option value="hanmail.net">hanmail.net</option>
@@ -92,8 +97,9 @@
 				<span class="xi-checkbox-blank"></span> 주소
 			</p>
 			<input type="text" name="post" id="sample4_postcode"
-				placeholder="우편번호"> <input type="button" 
-				onclick="sample4_execDaumPostcode()" value="우편번호 찾기" > <br> <input type="text" name="addr1"
+				placeholder="우편번호"> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button"
+				onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="idCheck2"
+				name="idCheck2"> <br> <input type="text" name="addr1"
 				id="sample4_roadAddress" placeholder="도로명주소"> <input
 				type="text" name="addr2" id="sample4_jibunAddress"
 				placeholder="지번주소"> <span id="guide" style="color: #999">
@@ -110,7 +116,6 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-
 		$(document).ready(
 				function() {
 					$("#consumer").click(function() {
@@ -183,34 +188,34 @@
 							})//비어있는 부분이 있는지 확인
 
 				})
-	/* 	 	function change(n) {
-				// 선택하는거 아이디 ("selectemail") 출력부분 아이디("email02")
-				var selectemail = document.getElementById("sel");
-				var email02 = document.getElementById("email02");
-				if (n == "self") {
-					email02.value = "";
-					email02.disabled = false;
-				} else {
-					email02.value = n;
-					email02.disabled = true;
-				}
+		/* 	 	function change(n) {
+					// 선택하는거 아이디 ("selectemail") 출력부분 아이디("email02")
+					var selectemail = document.getElementById("sel");
+					var email02 = document.getElementById("email02");
+					if (n == "self") {
+						email02.value = "";
+						email02.disabled = false;
+					} else {
+						email02.value = n;
+						email02.disabled = true;
+					}
 
-			}   */
+				}   */
 
-			$("#sel").change(function() {
-				var sel = $(this).val();
-				if (sel == "self") {
-					$("#email02").val("");
-					$("#email02").attr("readonly", false);
-					
-				}else {
-					$("#email02").val(sel);
-					$("#email02").attr("readonly", true);
-					console.log($("#email02").val());
-				}
+		$("#sel").change(function() {
+			var sel = $(this).val();
+			if (sel == "self") {
+				$("#email02").val("");
+				$("#email02").attr("readonly", false);
 
-			}); 
-			
+			} else {
+				$("#email02").val(sel);
+				$("#email02").attr("readonly", true);
+				console.log($("#email02").val());
+			}
+
+		});
+
 		function checkNumber(event) {
 			var phoneNum = document.getElementById("phoneNumber").value;
 			if (event.key >= 0 && event.key <= 9 || event.keyCode == 8) {

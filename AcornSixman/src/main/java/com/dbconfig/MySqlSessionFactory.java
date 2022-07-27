@@ -13,6 +13,11 @@ public class MySqlSessionFactory {
 	static {
 		String resource = "com/dbconfig/Configuration.xml";
 		InputStream inputStream=null;
+		
+		
+		
+		
+		
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
 		} catch (IOException e) {
