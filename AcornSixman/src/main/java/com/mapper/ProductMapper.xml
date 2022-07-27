@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.product">
+
+	<insert id="registration" parameterType="ProductDTO">
+		insert into product_detail values (#{product_Id}, #{product_Name}, #{product_Price},
+										 #{product_Delivery}, #{product_Model}, #{product_Maker}, 
+										 #{product_Madein}, #{product_stock}, #{product_Seller},
+										 #{product_Regdate}, #{product_Preview})
+	</insert>
+	
+	<select id="selectlist" resultType="ProductDTO">
+		select product_Id, product_Name, product_Price, product_Maker
+		from product_detail 
+	</select>
+
+	
+</mapper>
