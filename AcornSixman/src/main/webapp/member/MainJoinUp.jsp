@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" type="text/css" href="Maincss/MainJoinUp.css">
-
+ -->
 
 
 <title>로그인</title>
@@ -36,7 +36,7 @@ padding: 6px;
 	<p class="gibon-item2">
 		<span class="xi-checkbox-blank"></span> 표시는 반드시 입력하셔야 하는 항목입니다.
 	</p>
-	<form action="../MemberAddServlet" method="post" id="mainform">
+	<form action="MemberAddServlet" method="post" id="mainform">
 		<section class="id-container">
 			<p class="form-item">
 				<span class="xi-checkbox-blank"></span> 아이디
@@ -108,7 +108,7 @@ padding: 6px;
 		<span class="addr-bottom-line"></span>
 
 		<div class="finish">
-			<a href="../FirstJoinUpPage.html" id="cancle">취소</a> <input
+			<a href="../FirstJoinUpPage.jsp" id="cancle">취소</a> <input
 				type="submit" id="finishuser" value="회원가입">
 		</div>
 	</form>
@@ -188,19 +188,6 @@ padding: 6px;
 							})//비어있는 부분이 있는지 확인
 
 				})
-		/* 	 	function change(n) {
-					// 선택하는거 아이디 ("selectemail") 출력부분 아이디("email02")
-					var selectemail = document.getElementById("sel");
-					var email02 = document.getElementById("email02");
-					if (n == "self") {
-						email02.value = "";
-						email02.disabled = false;
-					} else {
-						email02.value = n;
-						email02.disabled = true;
-					}
-
-				}   */
 
 		$("#sel").change(function() {
 			var sel = $(this).val();
@@ -229,7 +216,7 @@ padding: 6px;
 		$("#idCheck").on("click", function(event) {
 			$.ajax({
 				type : "GET",
-				url : "../MemberIdCheckServlet",
+				url : "MemberIdCheckServlet",
 				dataType : "text",//응답 데이터 타입
 				data : { //서버에 넘겨줄 데이터 
 					userid : $("#id").val()
@@ -353,8 +340,6 @@ padding: 6px;
 			//return false;
 		}
 
-
-		
 	</script>
 
 </body>

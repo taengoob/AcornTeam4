@@ -26,7 +26,7 @@
 		<input type="password" placeholder="비밀번호" id="password-input">
 		<p class="p-login">로그인</p>
 		<div class="iph">
-			<a href="member/FirstJoinUpPage.jsp" class="heiwon">회원가입</a> <a href="#"
+			<a href="../MainJoinUpServlet" class="heiwon">회원가입</a> <a href="#"
 				class="id">아이디 찾기</a> <a class="ll">|</a> <a href="#"
 				class="password">비밀번호 찾기</a>
 		</div>
