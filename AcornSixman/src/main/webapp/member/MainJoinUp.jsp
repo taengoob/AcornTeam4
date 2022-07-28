@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" type="text/css" href="Maincss/MainJoinUp.css">
-
+ -->
 
 
 <title>로그인</title>
@@ -36,7 +36,7 @@ padding: 6px;
 	<p class="gibon-item2">
 		<span class="xi-checkbox-blank"></span> 표시는 반드시 입력하셔야 하는 항목입니다.
 	</p>
-	<form action="../MemberAddServlet" method="get">
+	<form action="MemberAddServlet" method="post" id="mainform">
 		<section class="id-container">
 			<p class="form-item">
 				<span class="xi-checkbox-blank"></span> 아이디
@@ -97,7 +97,7 @@ padding: 6px;
 				<span class="xi-checkbox-blank"></span> 주소
 			</p>
 			<input type="text" name="post" id="sample4_postcode"
-				placeholder="우편번호"> &nbsp;&nbsp;&nbsp;&nbsp;<input type="button"
+				placeholder="우편번호"> <input type="button"
 				onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="idCheck2"
 				name="idCheck2"> <br> <input type="text" name="addr1"
 				id="sample4_roadAddress" placeholder="도로명주소"> <input
@@ -108,7 +108,7 @@ padding: 6px;
 		<span class="addr-bottom-line"></span>
 
 		<div class="finish">
-			<a href="../FirstJoinUpPage.html" id="cancle">취소</a> <input
+			<a href="../FirstJoinUpPage.jsp" id="cancle">취소</a> <input
 				type="submit" id="finishuser" value="회원가입">
 		</div>
 	</form>
@@ -188,19 +188,6 @@ padding: 6px;
 							})//비어있는 부분이 있는지 확인
 
 				})
-		/* 	 	function change(n) {
-					// 선택하는거 아이디 ("selectemail") 출력부분 아이디("email02")
-					var selectemail = document.getElementById("sel");
-					var email02 = document.getElementById("email02");
-					if (n == "self") {
-						email02.value = "";
-						email02.disabled = false;
-					} else {
-						email02.value = n;
-						email02.disabled = true;
-					}
-
-				}   */
 
 		$("#sel").change(function() {
 			var sel = $(this).val();
@@ -229,7 +216,7 @@ padding: 6px;
 		$("#idCheck").on("click", function(event) {
 			$.ajax({
 				type : "GET",
-				url : "../MemberIdCheckServlet",
+				url : "MemberIdCheckServlet",
 				dataType : "text",//응답 데이터 타입
 				data : { //서버에 넘겨줄 데이터 
 					userid : $("#id").val()
@@ -318,6 +305,41 @@ padding: 6px;
 						}
 					}).open();
 		}
+	</script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+	<script type="text/javascript">
+	
+		window.onload = function() {
+			//테스트 버튼
+			//document.getElementById("testButton").onclick = onTestButtonCliked;
+			
+			//서브밋 예제
+			document.getElementById("mainform").onsubmit = onTestButtonCliked;
+		}
+	
+		//회원가입시 패스워드 암호화 해서 서버에 넘기는 예제
+		//db에는 암호화 된 패스워드를 insert
+		function onTestButtonCliked() {
+			//입력값
+			const target = document.getElementById("passwd");
+			console.log("target.value :", target.value);
+			
+			//암호화 시킨값
+			const encryptedVal = sha256(target.value);
+			console.log("encrypted");
+			
+			//input에 데이터 넣기
+			target.value = encryptedVal;
+			console.log("target.value :", target.value);
+			console.log("encryptedVal :", encryptedVal);
+			
+			//action으로 submit
+			//return ture;
+			
+			//submit 중지
+			//return false;
+		}
+
 	</script>
 
 </body>

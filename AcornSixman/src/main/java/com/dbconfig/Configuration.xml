@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
    
    <typeAliases>
     <typeAlias type="com.dto.EmpDTO" alias="EmpDTO"/>
-     <typeAlias type="com.dto.MemberDTO" alias="MemberDTO"/>
+    <typeAlias type="com.dto.MemberDTO" alias="MemberDTO"/>
    </typeAliases>
    
 	<environments default="development">

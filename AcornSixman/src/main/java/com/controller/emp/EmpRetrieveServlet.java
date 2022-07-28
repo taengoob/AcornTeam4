@@ -21,7 +21,7 @@ public class EmpRetrieveServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		
+		//용희 실험 ㅋㅋㅋ
 		String empno = request.getParameter("empno");
 
 		EmpDTO dto = null;
