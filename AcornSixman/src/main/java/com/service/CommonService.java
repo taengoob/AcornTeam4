@@ -87,6 +87,21 @@ public class CommonService
 		}
 		return result;
 	}
+	
+	public List<CategoryDTO> getGuitarCategoriesExceptAll()
+	{
+		List<CategoryDTO> result = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			result = dao.getGuitarCategoriesExceptAll(session);
+		}
+		finally
+		{
+			session.close();
+		}
+		return result;
+	}
 
 	public String getNewCartId()
 	{

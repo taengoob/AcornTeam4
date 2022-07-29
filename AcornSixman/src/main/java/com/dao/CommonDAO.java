@@ -22,7 +22,12 @@ public class CommonDAO
 	{
 		return session.selectOne("com.mapper.common.getNewCouponId");
 	}
-	
+
+	public String getNewCartId(SqlSession session)
+	{
+		return session.selectOne("com.mapper.common.getNewCartId");
+	}
+
 	public String getNewImageId(SqlSession session)
 	{
 		return session.selectOne("com.mapper.common.getNewImageId");
@@ -33,8 +38,8 @@ public class CommonDAO
 		return session.selectList("com.mapper.common.selectCategories");
 	}
 
-	public String getNewCartId(SqlSession session)
+	public List<CategoryDTO> getGuitarCategoriesExceptAll(SqlSession session)
 	{
-		return session.selectOne("com.mapper.common.getNewCartId");
+		return session.selectList("com.mapper.common.selectCategoriesExceptAll");
 	}
 }

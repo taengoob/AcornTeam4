@@ -60,6 +60,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY CATEGORY_SEQ
 	</select>
 	
+	<select id="selectCategoriesExceptAll" resultType="com.dto.CategoryDTO">
+		SELECT CATEGORY_ID 		AS categoryId
+			  ,CATEGORY_NAME	AS categoryName
+			  ,CATEGORY_DESC	AS categoryDesc
+		FROM PRODUCT_GUITAR_CATEGORY
+		WHERE 1=1
+			AND CATEGORY_ID != 'All'
+		ORDER BY CATEGORY_SEQ
+	</select>
+	
 	<insert id="insertProduct" parameterType="java.util.HashMap">
 		INSERT INTO PRODUCT_DETAIL
 		(
@@ -156,9 +166,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<if test='searchStr != null and searchStr != ""'>
 			AND
 			(
-				LOWER(PRODUCT_NAME) LIKE '%' || LOWER(#{searchStr}) || '%'
-			 OR LOWER(PRODUCT_MODEL) LIKE '%' || LOWER(#{searchStr}) || '%'
-			 OR LOWER(PRODUCT_MAKER) LIKE '%' || LOWER(#{searchStr}) || '%'
+					LOWER(PRODUCT_NAME) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(PRODUCT_MODEL) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(PRODUCT_MAKER) LIKE '%' || LOWER(#{searchStr}) || '%'
 			)
  		</if>
 	</select>

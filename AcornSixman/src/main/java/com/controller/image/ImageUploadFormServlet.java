@@ -35,7 +35,7 @@ public class ImageUploadFormServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		CommonService service = new CommonService();
-		List<CategoryDTO> categories = service.getGuitarCategories();
+		List<CategoryDTO> categories = service.getGuitarCategoriesExceptAll();
 		request.setAttribute("categories", categories);
 		RequestDispatcher dis = request.getRequestDispatcher("ImageUploadFrom.jsp");
 		dis.forward(request, response);
