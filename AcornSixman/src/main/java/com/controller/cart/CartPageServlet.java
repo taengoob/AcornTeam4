@@ -1,4 +1,4 @@
-package com.controller.product;
+package com.controller.cart;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dto.CartDTO;
-import com.service.ProductService;
+import com.service.CartService;
 
 @WebServlet("/CartPageServlet")
 public class CartPageServlet extends HttpServlet {
@@ -21,18 +21,17 @@ public class CartPageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String userid = (String) session.getAttribute("userid");
-		String userid2 = "DGLee";
+		String userid2 = "DGLee";//회원전용 처리 해야함
 		
-		System.out.println("list 보낸다");
 		
-		ProductService service = new ProductService();
+		CartService service = new CartService();
 		List<CartDTO> list = service.cartList(userid2);
 		
 		request.setAttribute("list", list);
 		System.out.println(list);
 		
 		
-		RequestDispatcher dis = request.getRequestDispatcher("cartpage_black.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("cartpage.jsp");
 		dis.forward(request, response);
 	}
 

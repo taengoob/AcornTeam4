@@ -1,4 +1,4 @@
-package com.controller.product;
+package com.controller.cart;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class OrderServlet
- */
-@WebServlet("/OrderServlet")
-public class OrderServlet extends HttpServlet {
+@WebServlet("/CartDeleteServlet")
+public class CartDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		response.sendRedirect("Main.html");
-		
 		
 	}
 

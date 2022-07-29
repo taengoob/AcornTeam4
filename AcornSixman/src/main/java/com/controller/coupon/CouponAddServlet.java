@@ -21,7 +21,7 @@ public class CouponAddServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String userid = (String) session.getAttribute("userid");
-		/* 회원전용처리 
+		/* 회원전용처리 필요함
 		 * if(userid==null) { response.sendRedirect("main"); }
 		 */
 		

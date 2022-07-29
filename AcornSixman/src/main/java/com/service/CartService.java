@@ -5,38 +5,14 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.dao.ProductDAO;
+import com.dao.CartDAO;
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.CartDTO;
-import com.dto.ProductDTO;
 
-public class ProductService {
+public class CartService {
 	
-	ProductDAO dao = new ProductDAO();
-
-	public int registration(ProductDTO pdto) {
-		SqlSession session = MySqlSessionFactory.getSession();
-		int n = 0;
-		System.out.println("productService 실행중");
-		try {
-			n = dao.registration(session, pdto);
-			session.commit();
-		}finally {
-			session.close();
-		}
-		return n;
-	}
-
-	public List<ProductDTO> selectlist() {
-		SqlSession session = MySqlSessionFactory.getSession();
-		List<ProductDTO> list = null;
-		try {
-			list = dao.selectlist(session);
-		}finally {
-			session.close();
-		}
-		return list;
-	}
+	CartDAO dao = new CartDAO();
+	
 
 	public CartDTO searchCart(String product_Id) {
 		SqlSession session = MySqlSessionFactory.getSession();
@@ -88,5 +64,6 @@ public class ProductService {
 		}
 		return list;
 	}
+	
 	
 }

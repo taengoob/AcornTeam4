@@ -59,6 +59,7 @@
   		background-color: white; /* #f4f4f4; */
  		margin: auto;
 	}
+	
 	.listtable{
 		border: 1px solid #bcbcbc;
 		width: 800px;
@@ -168,30 +169,38 @@
 		</div>
 	</div>
 </div>
+
+
+
 <hr style="background-color: #f4f4f4;">
+
+
 <div style="width: 800px; height: 40px; margin: auto;">
 	<div align="left" style="width: 600px; float: left;"><input type="checkbox">&nbsp;전체선택</div>
 	<div align="right"><button>x 전체 삭제</button>&nbsp;&nbsp;<button>x 선택 삭제</button></div>
 </div>
 </div>
 <div class="boxtop"></div>
+
+
+
+
 <div class="tabaleboxout">
 <div class="tablebox">
 <table border="1" class="listtable">
 	<tr>
 		<td class="tabletop" colspan="13"></td>
 	</tr>
-	<%for(int i=0; i<list.size();i++){
+	
+<%	for(int i=0; i<list.size();i++){
 		CartDTO cdto = list.get(i);
 		String Product_name = cdto.getProduct_name();
 		int Product_price = cdto.getProduct_price();
 		String Product_model = cdto.getProduct_model();
 		int Cart_Count = cdto.getCart_Count();
 		int Product_delivery_price = cdto.getProduct_delivery_price();
-		
-	
-	
-	%>
+%>
+
 	<tr class="basketlist">
 		<td colspan="2">
 			<div class="selectbox"><input type="checkbox" checked="checked" class="price" value="<%=Product_price %>"></div>
@@ -221,6 +230,8 @@
 </table>
 </div>
 </div>
+
+
 <div class="boxbot"></div>
 <div class="bottom">
 <div class="totalpriceTop"></div>

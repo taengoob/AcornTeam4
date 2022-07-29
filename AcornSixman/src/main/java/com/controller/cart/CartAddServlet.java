@@ -1,4 +1,4 @@
-package com.controller.product;
+package com.controller.cart;
 
 import java.io.IOException;
 import java.net.http.HttpRequest;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dto.CartDTO;
-import com.service.ProductService;
+import com.service.CartService;
 
 /**
  * Servlet implementation class CartAddServlet
@@ -25,7 +25,7 @@ public class CartAddServlet extends HttpServlet {
 		String product_Id = request.getParameter("product_Id");
 		System.out.println(product_Id);
 		
-		ProductService service = new ProductService();
+		CartService service = new CartService();
 		CartDTO cdto = service.searchCart(product_Id);
 		
 		HttpSession session = request.getSession();
