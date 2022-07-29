@@ -7,6 +7,10 @@
 <head>
 <title>Roulette page</title>
 <style type="text/css">
+	body { 
+		margin:0; 
+		padding:0; 
+	} 
 	.box{
 		width: 600px;
 		height: 720px;
