@@ -57,6 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  ,CATEGORY_NAME	AS categoryName
 			  ,CATEGORY_DESC	AS categoryDesc
 		FROM PRODUCT_GUITAR_CATEGORY
+		ORDER BY CATEGORY_SEQ
 	</select>
 	
 	<insert id="insertProduct" parameterType="java.util.HashMap">
@@ -130,6 +131,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM PRODUCT_DETAIL
 		WHERE 1=1
 			AND PRODUCT_ID = #{productId}
+	</select>
+	
+	<select id="selectProductByOption" resultType="com.dto.ProductDTO_Temp" parameterType="java.util.HashMap">
+		SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL
+		WHERE 1=1
+		<if test='category != null and category != "" and category != "All"'>
+			AND PRODUCT_CATEGORY = #{category}
+ 		</if>
+ 		<if test='searchStr != null and searchStr != ""'>
+			AND
+			(
+				LOWER(PRODUCT_NAME) LIKE '%' || LOWER(#{searchStr}) || '%'
+			 OR LOWER(PRODUCT_MODEL) LIKE '%' || LOWER(#{searchStr}) || '%'
+			 OR LOWER(PRODUCT_MAKER) LIKE '%' || LOWER(#{searchStr}) || '%'
+			)
+ 		</if>
 	</select>
 	
 </mapper>

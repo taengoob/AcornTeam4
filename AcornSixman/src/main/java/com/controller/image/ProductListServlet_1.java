@@ -1,6 +1,7 @@
 package com.controller.image;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -36,11 +37,21 @@ public class ProductListServlet_1 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
+		
+		String category = request.getParameter("category");
+		String searchStr = request.getParameter("searchStr");
+		
+		HashMap<String, String> searchOption = new HashMap<String, String>();
+		searchOption.put("category", category);
+		searchOption.put("searchStr", searchStr);
+		
 		List<ProductDTO_Temp> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try
 		{
-			list = session.selectList("com.mapper.common.selectProductAll");
+			//list = session.selectList("com.mapper.common.selectProductAll");
+			list = session.selectList("com.mapper.common.selectProductByOption", searchOption);
 		}
 		finally
 		{

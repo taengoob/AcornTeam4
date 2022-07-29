@@ -15,12 +15,20 @@
 	
 	
 	<body>
-		
 		<table width="100%" cellspacing="0" cellpadding="0">
 			<tr>
 				<td>
 					<table align="center" width="710" cellspacing="0" cellpadding="0" border="0">
 						<tr><td><a href="ImageUploadFormServlet">등록</a></td></tr>
+						<tr>
+							<td colspan="10">
+								<form action="ProductListServlet_1">
+									카테코리<input type="text" name="category">
+									검색<input type="text" name="searchStr">
+									<input type="submit" value="검색">
+								</form>
+							</td>
+						</tr>
 						<tr>
 							<td height="5"></td>
 						</tr>

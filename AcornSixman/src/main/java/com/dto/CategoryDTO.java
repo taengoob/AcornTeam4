@@ -5,6 +5,7 @@ public class CategoryDTO
 	private String categoryId;
 	private String categoryName;
 	private String categoryDesc;
+	private int categorySeq;
 	
 	public String getCategoryId()
 	{
@@ -29,6 +30,14 @@ public class CategoryDTO
 	public void setCategoryDesc(String categoryDesc)
 	{
 		this.categoryDesc = categoryDesc;
+	}
+	public int getCategorySeq()
+	{
+		return categorySeq;
+	}
+	public void setCategorySeq(int categorySeq)
+	{
+		this.categorySeq = categorySeq;
 	}
 	
 	public CategoryDTO()
