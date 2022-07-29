@@ -131,6 +131,7 @@
 	      break;
 	    default:
 	      alert("꽝! 다음기회에");
+	      location.href = "event.jsp"
 	  }
 	};
 

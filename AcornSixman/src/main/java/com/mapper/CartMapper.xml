@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.cart">
+
+	<select id="searchCart" parameterType="String" resultType="CartDTO">
+		select * from user_cart where cart_productid = #{product_Id}
+	</select>
+	
+	<insert id="cartCreate" parameterType="HashMap">
+		insert into user_cart values (#{cart_userId}, #{cart_productId}, #{cart_Count})
+	</insert>
+	
+	<update id="cartAdd" parameterType="HashMap">
+		update user_cart set cart_count = cart_count+${cart_Count}
+		where cart_userid = #{cart_userId}
+		and cart_productId = #{cart_productId}
+	</update>
+	
+	<select id="cartList" parameterType="String" resultType="CartDTO">
+		select cart_userid, cart_productid, cart_count, product_name, 
+			   product_price, product_delivery_price, product_model, product_maker
+		from user_cart 
+		join product_detail on (cart_productid = product_id)
+		where cart_userid = #{userid2}
+	</select>
+	
+</mapper>
