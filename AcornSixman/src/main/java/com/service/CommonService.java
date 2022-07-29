@@ -1,9 +1,13 @@
 package com.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.dao.CommonDAO;
 import com.dbconfig.MySqlSessionFactory;
+import com.dto.CategoryDTO;
 
 public class CommonService
 {
@@ -61,6 +65,36 @@ public class CommonService
 		try
 		{
 			result = dao.getNewImageId(session);
+		}
+		finally
+		{
+			session.close();
+		}
+		return result;
+	}
+	
+	public List<CategoryDTO> getGuitarCategories()
+	{
+		List<CategoryDTO> result = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			result = dao.getGuitarCategories(session);
+		}
+		finally
+		{
+			session.close();
+		}
+		return result;
+	}
+
+	public String getNewCartId()
+	{
+		String result = "";
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			result = dao.getNewCartId(session);
 		}
 		finally
 		{

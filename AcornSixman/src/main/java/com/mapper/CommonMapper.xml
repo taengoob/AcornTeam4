@@ -24,6 +24,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM DUAL
 	</select>
 	
+	<select id="getNewCartId" resultType="String">
+		SELECT 'CT' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_CART.NEXTVAL, 5, '0') AS CART_ID
+		FROM DUAL
+	</select>
+	
 	<insert id="uploadImageFiles" parameterType="java.util.HashMap">
 		INSERT INTO PRODUCT_IMAGE
 		(
@@ -46,5 +51,67 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 1=1
 			AND IMAGE_PRODUCT_ID = #{PRODUCT_ID}
 	</select>
+	
+	<select id="selectCategories" resultType="com.dto.CategoryDTO">
+		SELECT CATEGORY_ID 		AS categoryId
+			  ,CATEGORY_NAME	AS categoryName
+			  ,CATEGORY_DESC	AS categoryDesc
+		FROM PRODUCT_GUITAR_CATEGORY
+	</select>
+	
+	<insert id="insertProduct" parameterType="java.util.HashMap">
+		INSERT INTO PRODUCT_DETAIL
+		(
+			PRODUCT_ID
+			,PRODUCT_NAME
+			,PRODUCT_PRICE
+			,PRODUCT_DELIVERY_PRICE
+			,PRODUCT_MODEL
+			,PRODUCT_MAKER
+			,PRODUCT_MADEIN
+			,PRODUCT_STOCK
+			,PRODUCT_SELLER
+			,PRODUCT_REG_DATE
+			,PRODUCT_PREVIEW
+			,PRODUCT_CONTENT
+			,PRODUCT_CATEGORY
+		)
+		VALUES
+		(
+			#{productId}
+			,#{productName}
+			,#{productPrice}
+			,#{deliveryPrice}
+			,#{productModel}
+			,#{productMaker}
+			,#{productMadein}
+			,#{productStock}
+			,#{productSeller}
+			,CURRENT_DATE
+			,#{previewImage}
+			,#{productContent}
+			,#{productCategory}
+		)
+	</insert>
+	
+	<select id="selectProductAll" resultType="com.dto.ProductDTO_Temp" parameterType="String">
+		SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL
+	</select>
+	
+	
 	
 </mapper>

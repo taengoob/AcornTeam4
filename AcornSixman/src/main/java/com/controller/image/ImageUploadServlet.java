@@ -1,8 +1,11 @@
 package com.controller.image;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -44,14 +47,31 @@ public class ImageUploadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		String productId = "tempProduct001";
-		Collection<Part> parts = request.getParts();
-		for (Part part : parts)
+		request.setCharacterEncoding("utf-8");
+		
+		String productId = IDGenerator.getNewProductId();
+		
+		HashMap<String, Object> productData = getProductData(productId, request);
+		
+		List<byte[]> images = getImageDataList(request.getParts());
+		
+		byte[] preview = (images != null && images.size() > 0) ? images.get(0) : null;
+		productData.put("previewImage", preview);
+		
+		//product 부터 insert 해야함
+		insertProduct(productData);
+		
+		//product insert 후에 image insert
+		if (images != null && images.size() > 0)
+			insertImages(productId, images);
+		
+		response.sendRedirect("ImageListServlet");
+	}
+	
+	private void insertImages(String productId, List<byte[]> images)
+	{
+		for (byte[] data : images)
 		{
-			if(!part.getName().equals("f")) continue; //f로 들어온 Part가 아니면 스킵
-			if(part.getSubmittedFileName().equals("")) continue; //업로드 된 파일 이름이 없으면 스킵
-			
-			byte[] data = part.getInputStream().readAllBytes();
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("IMAGE_ID", IDGenerator.getNewImageId());
 			map.put("PRODUCT_ID", productId);
@@ -68,8 +88,73 @@ public class ImageUploadServlet extends HttpServlet {
 				session.close();
 			}
 		}
+	}
+
+	private void insertProduct(HashMap<String, Object> productData)
+	{
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			session.insert("com.mapper.common.insertProduct", productData);
+			session.commit();
+		}
+		finally
+		{
+			session.close();
+		}
+	}
+
+	private HashMap<String, Object> getProductData(String productId, HttpServletRequest request)
+	{
+		HashMap<String, Object> productData = new HashMap<String, Object>();
+		productData.put("productId", productId);
 		
-		response.sendRedirect("ImageListServlet");
+		Enumeration<String> params = request.getParameterNames();
+		while (params.hasMoreElements())
+		{
+			String key = params.nextElement();
+			String val = request.getParameter(key);
+			System.out.println(key + " : " + val);
+			productData.put(key, val);
+		}
+		return productData;
+	}
+
+	private List<byte[]> getImageDataList(Collection<Part> parts)
+	{
+		List<byte[]> images = new ArrayList<byte[]>();
+		byte[] previewData = null;
+		
+		try
+		{
+			for (Part part : parts)
+			{
+				String partName = part.getName();
+				if (partName.equals("previewImage"))
+				{
+					//프리뷰 이미지 처리
+					System.out.println(partName);
+					previewData = part.getInputStream().readAllBytes();
+				}
+				else if (partName.equals("productImages"))
+				{
+					//나머지 이미지 처리
+					System.out.println(partName);
+					byte[] image = part.getInputStream().readAllBytes();
+					if (image != null)
+						images.add(image);
+				}
+			}
+			
+			if (previewData != null)
+				images.add(0, previewData);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return images;
 	}
 
 	/**
