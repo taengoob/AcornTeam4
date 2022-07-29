@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.common.IDGenerator;
 import com.dao.CartDAO;
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.CartDTO;
@@ -12,41 +13,46 @@ import com.dto.CartDTO;
 public class CartService {
 	
 	CartDAO dao = new CartDAO();
-	
 
-	public CartDTO searchCart(String product_Id) {
+	public int cartSearch(String userid2, String productId) {
 		SqlSession session = MySqlSessionFactory.getSession();
-		CartDTO cdto = null;
+		int n = 0;
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userid2", userid2);
+		map.put("productId", productId);
 		try {
-			cdto = dao.searchCart(session, product_Id);
+			n = dao.cartSearch(session, map);
 		}finally {
 			session.close();
 		}
-		return cdto;
+		return n;
 	}
 
-	public void cartCreate(String userid2, String product_Id, int count) {
+	public void cartAdd(String userid2, String productId, int cartCount) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("cart_userId", userid2);
-		map.put("cart_productId", product_Id);
-		map.put("cart_Count", count);
+		map.put("cartId", IDGenerator.getNewCartId());
+		map.put("userid2", userid2);
+		map.put("productId", productId);
+		map.put("cartCount", cartCount);
+		System.out.println(map);
 		try {
-			dao.CartCreate(session, map);
+			dao.cartAdd(session, map);
 			session.commit();
 		}finally {
 			session.close();
 		}
 	}
 
-	public void cartAdd(String userid2, String product_Id, int count) {
+	public void cartUpdate(String userid2, String productId, int cartCount) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("cart_userId", userid2);
-		map.put("cart_productId", product_Id);
-		map.put("cart_Count", count);
+		map.put("userid2", userid2);
+		map.put("productId", productId);
+		map.put("cartCount", cartCount);
+		System.out.println(map);
 		try {
-			dao.CartAdd(session, map);
+			dao.cartUpdate(session, map);
 			session.commit();
 		}finally {
 			session.close();
@@ -57,12 +63,27 @@ public class CartService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		List<CartDTO> list = null;
 		try {
-			System.out.println("service 리스트 받는중");
 			list = dao.cartList(session, userid2);
 		}finally {
 			session.close();
 		}
 		return list;
+	}
+
+	public void cartUpdate2(String userid2, String productId, int cartCount) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userid2", userid2);
+		map.put("productId", productId);
+		map.put("cartCount", cartCount);
+		System.out.println(map);
+		try {
+			dao.cartUpdate2(session, map);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		
 	}
 	
 	

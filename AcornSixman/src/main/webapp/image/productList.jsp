@@ -19,7 +19,11 @@
 			<tr>
 				<td>
 					<table align="center" width="710" cellspacing="0" cellpadding="0" border="0">
-						<tr><td><a href="ImageUploadFormServlet">등록</a></td></tr>
+						<tr>
+							<td>
+								<a href="ImageUploadFormServlet">등록</a>&nbsp;
+								<a href="../CartListServlet">장바구니</a>
+						</td></tr>
 						<tr>
 							<td colspan="10">
 								<form action="ProductListServlet_1">

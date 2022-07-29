@@ -1,103 +1,150 @@
 package com.dto;
 
+import java.util.Arrays;
+
+import org.apache.tomcat.util.codec.binary.Base64;
+
 public class CartDTO {
 	
-	private String cart_userId;
-	private String cart_productId;
-	private int cart_Count;
-	private String product_name;
-	private int product_price;
-	private int product_delivery_price;
-	private String product_model;
-	private String product_maker;
+	private String cartId;
+	private String cartuserId;
+	private int cartCount;
+	private String productId;
+	private String productName;
+	private int productPrice;
+	private int productDeliveryPrice;
+	private String productModel;
+	private String productMaker;
+	private byte[] productPreview;
+	private String previewUrl;
+	private String productCategory;
 	
-	public CartDTO() {}
-
-	public CartDTO(String cart_userId, String cart_productId, int cart_Count, String product_name, int product_price,
-			int product_delivery_price, String product_model, String product_maker) {
+	public CartDTO() {
 		super();
-		this.cart_userId = cart_userId;
-		this.cart_productId = cart_productId;
-		this.cart_Count = cart_Count;
-		this.product_name = product_name;
-		this.product_price = product_price;
-		this.product_delivery_price = product_delivery_price;
-		this.product_model = product_model;
-		this.product_maker = product_maker;
+		// TODO Auto-generated constructor stub
 	}
 
-	public String getCart_userId() {
-		return cart_userId;
+	public CartDTO(String cartId, String cartuserId, int cartCount, String productId, String productName,
+			int productPrice, int productDeliveryPrice, String productModel, String productMaker, byte[] productPreview,
+			String previewUrl, String productCategory) {
+		super();
+		this.cartId = cartId;
+		this.cartuserId = cartuserId;
+		this.cartCount = cartCount;
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productDeliveryPrice = productDeliveryPrice;
+		this.productModel = productModel;
+		this.productMaker = productMaker;
+		this.productPreview = productPreview;
+		this.previewUrl = previewUrl;
+		this.productCategory = productCategory;
 	}
 
-	public void setCart_userId(String cart_userId) {
-		this.cart_userId = cart_userId;
+	public String getCartId() {
+		return cartId;
 	}
 
-	public String getCart_productId() {
-		return cart_productId;
+	public void setCartId(String cartId) {
+		this.cartId = cartId;
 	}
 
-	public void setCart_productId(String cart_productId) {
-		this.cart_productId = cart_productId;
+	public String getCartuserId() {
+		return cartuserId;
 	}
 
-	public int getCart_Count() {
-		return cart_Count;
+	public void setCartuserId(String cartuserId) {
+		this.cartuserId = cartuserId;
 	}
 
-	public void setCart_Count(int cart_Count) {
-		this.cart_Count = cart_Count;
+	public int getCartCount() {
+		return cartCount;
 	}
 
-	public String getProduct_name() {
-		return product_name;
+	public void setCartCount(int cartCount) {
+		this.cartCount = cartCount;
 	}
 
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+	public String getProductId() {
+		return productId;
 	}
 
-	public int getProduct_price() {
-		return product_price;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
-	public void setProduct_price(int product_price) {
-		this.product_price = product_price;
+	public String getProductName() {
+		return productName;
 	}
 
-	public int getProduct_delivery_price() {
-		return product_delivery_price;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public void setProduct_delivery_price(int product_delivery_price) {
-		this.product_delivery_price = product_delivery_price;
+	public int getProductPrice() {
+		return productPrice;
 	}
 
-	public String getProduct_model() {
-		return product_model;
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
 	}
 
-	public void setProduct_model(String product_model) {
-		this.product_model = product_model;
+	public int getProductDeliveryPrice() {
+		return productDeliveryPrice;
 	}
 
-	public String getProduct_maker() {
-		return product_maker;
+	public void setProductDeliveryPrice(int productDeliveryPrice) {
+		this.productDeliveryPrice = productDeliveryPrice;
 	}
 
-	public void setProduct_maker(String product_maker) {
-		this.product_maker = product_maker;
+	public String getProductModel() {
+		return productModel;
 	}
+
+	public void setProductModel(String productModel) {
+		this.productModel = productModel;
+	}
+
+	public String getProductMaker() {
+		return productMaker;
+	}
+
+	public void setProductMaker(String productMaker) {
+		this.productMaker = productMaker;
+	}
+
+	public byte[] getProductPreview() {
+		return productPreview;
+	}
+
+	public void setProductPreview(byte[] productPreview) {
+		this.productPreview = productPreview;
+		this.previewUrl = "data:image/jpg;base64," + Base64.encodeBase64String(productPreview);
+	}
+
+	public String getPreviewUrl() {
+		return previewUrl;
+	}
+
+	public String getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+
 
 	@Override
 	public String toString() {
-		return "CartDTO [cart_userId=" + cart_userId + ", cart_productId=" + cart_productId + ", cart_Count="
-				+ cart_Count + ", product_name=" + product_name + ", product_price=" + product_price
-				+ ", product_delivery_price=" + product_delivery_price + ", product_model=" + product_model
-				+ ", product_maker=" + product_maker + "]";
+		return "CartDTO [cartId=" + cartId + ", cartuserId=" + cartuserId + ", cartCount=" + cartCount + ", productId="
+				+ productId + ", productName=" + productName + ", productPrice=" + productPrice
+				+ ", productDeliveryPrice=" + productDeliveryPrice + ", productModel=" + productModel
+				+ ", productMaker=" + productMaker + ", productPreview=" + Arrays.toString(productPreview)
+				+ ", previewUrl=" + previewUrl + ", productCategory=" + productCategory + "]";
 	}
+
 	
-	
-	
+
 }

@@ -1,11 +1,15 @@
 <%@page import="com.dto.ProductDTO_Temp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
 	</head>
 	
 	<%
@@ -18,8 +22,8 @@
 	%>
 	
 	<body>
-		<form name="goodRetrieveForm" method="GET" action="#">
-			<input type="hidden" name="gImage" value="outer2">
+		<form name="goodRetrieveForm" id="goodRetrieveForm" method="GET" action="../CartAddServlet">
+			<input type="hidden" name="productId" value="<%=productId%>">
 			<input type="hidden" name="gCode" value="O2">
 			<input type="hidden" name="gName" value="히든 버튼 베이직 울코트">
 			<input type="hidden" name="gPrice" value="52800">
@@ -98,7 +102,7 @@
 							<tr>
 								<td class="td_title">주문수량</td>
 								<td style="padding-left: 30px">
-									<input type="number" Name="gAmount" value="1" id="gAmount" style="text-align: right; height: 18px">
+									<input type="number" Name="cartCount" value="1" id="cartCount" style="text-align: right; height: 18px">
 								</td>
 							</tr>
 						</table>
@@ -109,7 +113,7 @@
 			<br>
 			<button onclick="reqCheck('order')">구매</button>
 			&nbsp;&nbsp;
-			<button onclick="reqCheck('cart')">장바구니</button>
+			<button onclick="reqCheck('cart')">장바구니에 넣기</button>
 		</form>		
 	</body>
 </html>

@@ -11,4 +11,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{coupon_name}, 'true')
 	</insert>
 	
+	<select id="couponList" parameterType="String" resultType="CouponDTO">
+		
+		select
+			coupon_id as couponId,
+			coupon_user_id as couponuserId,
+			coupon_gen_date as couponGendate,
+			coupon_use_date as couponUsedate,
+			coupon_dis_per as couponDisper,
+			coupon_name as couponName,
+			coupon_is_usable as couponIsusable
+		from coupon_detail
+		where coupon_user_id = #{userid2}
+		order by coupon_dis_per desc
+	</select>
+	
 </mapper>

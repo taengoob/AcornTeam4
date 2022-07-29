@@ -30,20 +30,20 @@ public class CouponAddServlet extends HttpServlet {
 		CouponDTO cdto = new CouponDTO();
 		if(coupon.equals("1")) {
 			mesg = "30%_할인쿠폰";
-			cdto.setCoupon_name(mesg);
-			cdto.setCoupon_disper(0.3);
+			cdto.setCouponName(mesg);
+			cdto.setCouponDisper(0.3);
 		}else if(coupon.equals("3")) {
 			mesg = "20%_할인쿠폰";
-			cdto.setCoupon_name(mesg);
-			cdto.setCoupon_disper(0.2);
+			cdto.setCouponName(mesg);
+			cdto.setCouponDisper(0.2);
 		}else if(coupon.equals("5")){
 			mesg = "10%_할인쿠폰";
-			cdto.setCoupon_name(mesg);
-			cdto.setCoupon_disper(0.1);
+			cdto.setCouponName(mesg);
+			cdto.setCouponDisper(0.1);
 		}
-		cdto.setCoupon_id(IDGenerator.getNewCouponId());
+		cdto.setCouponId(IDGenerator.getNewCouponId());
 		String userid2 = "DGLee"; //원래는 세션에서 받아온 userid 를 set
-		cdto.setCoupon_userid(userid2);
+		cdto.setCouponuserId(userid2);
 		System.out.println(cdto);
 		
 		CouponService service = new CouponService();

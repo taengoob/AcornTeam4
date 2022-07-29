@@ -9,22 +9,28 @@ import com.dto.CartDTO;
 
 public class CartDAO {
 
-	public CartDTO searchCart(SqlSession session, String product_Id) {
-		CartDTO cdto = session.selectOne("com.mapper.cart.searchCart", product_Id);
-		return cdto;
+	public int cartSearch(SqlSession session, HashMap<String, String> map) {
+		int n = session.selectOne("com.mapper.cart.cartSearch", map);
+		return n;
 	}
 
-	public void CartCreate(SqlSession session, HashMap<String, Object> map) {
-		session.insert("com.mapper.cart.cartCreate",map);
+	public void cartAdd(SqlSession session, HashMap<String, Object> map) {
+		int n = session.insert("com.mapper.cart.cartAdd", map);
+		System.out.println("새로 추가된 카트 갯수 : "+n);
 	}
 
-	public void CartAdd(SqlSession session, HashMap<String, Object> map) {
-		session.update("com.mapper.cart.cartAdd",map);
+	public void cartUpdate(SqlSession session, HashMap<String, Object> map) {
+		int n = session.update("com.mapper.cart.cartUpdate", map);
+		System.out.println("수정된 카트 갯수 : "+n);
 	}
 
 	public List<CartDTO> cartList(SqlSession session, String userid2) {
 		List<CartDTO> list = session.selectList("com.mapper.cart.cartList", userid2);
-		System.out.println("dao 리스트 받음");
 		return list;
+	}
+
+	public void cartUpdate2(SqlSession session, HashMap<String, Object> map) {
+		int n = session.update("com.mapper.cart.cartUpdate2", map);
+		System.out.println("수정된 카트 갯수 : "+n);
 	}
 }
