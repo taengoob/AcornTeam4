@@ -10,11 +10,6 @@ public class IDGenerator
 		return service.getNewProductId();
 	}
 	
-	
-	
-	
-	
-	
 	public static String getNewOrderId()
 	{
 		CommonService service = new CommonService();
@@ -31,5 +26,11 @@ public class IDGenerator
 	{
 		CommonService service = new CommonService();
 		return service.getNewImageId();
+	}
+	
+	public static String getNewCartId()
+	{
+		CommonService service = new CommonService();
+		return service.getNewCartId();
 	}
 }
