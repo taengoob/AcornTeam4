@@ -151,7 +151,7 @@ rotate
 				실속있는 서비스로 찾아뵙겠습니다.
 			</p>
 			<span class="span-line"></span> <a href="#" class="home">홈으로</a> <a
-				href="Login.jsp" class="login">로그인</a>
+				href="../LoginUIservlet" class="login">로그인</a>
 		</div>
 	</div>
 <%

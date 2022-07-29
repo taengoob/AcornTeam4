@@ -17,14 +17,10 @@
 
 <title>로그인</title>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-	
-</script>
+
 <style type="text/css">
-#idCheck2{
-padding: 6px;
+#idCheck2 {
+	padding: 6px;
 }
 </style>
 </head>
@@ -306,40 +302,39 @@ padding: 6px;
 					}).open();
 		}
 	</script>
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 	<script type="text/javascript">
-	
 		window.onload = function() {
 			//테스트 버튼
 			//document.getElementById("testButton").onclick = onTestButtonCliked;
-			
+
 			//서브밋 예제
 			document.getElementById("mainform").onsubmit = onTestButtonCliked;
 		}
-	
+
 		//회원가입시 패스워드 암호화 해서 서버에 넘기는 예제
 		//db에는 암호화 된 패스워드를 insert
 		function onTestButtonCliked() {
 			//입력값
 			const target = document.getElementById("passwd");
 			console.log("target.value :", target.value);
-			
+
 			//암호화 시킨값
 			const encryptedVal = sha256(target.value);
 			console.log("encrypted");
-			
+
 			//input에 데이터 넣기
 			target.value = encryptedVal;
 			console.log("target.value :", target.value);
 			console.log("encryptedVal :", encryptedVal);
-			
+
 			//action으로 submit
-			//return ture;
-			
+			return ture;
+
 			//submit 중지
 			//return false;
 		}
-
 	</script>
 
 </body>

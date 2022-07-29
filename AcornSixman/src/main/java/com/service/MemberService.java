@@ -1,12 +1,14 @@
 package com.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.dbconfig.MySqlSessionFactory;
 import com.dao.MemberDAO;
 import com.dto.MemberDTO;
+
 
 public class MemberService {
 	private MemberDAO dao;
@@ -49,6 +51,7 @@ public class MemberService {
 		MemberDTO dto = null;
 		try {
 			dto = dao.Login(session, map);
+			System.out.println("서비스 디티오 " + dto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

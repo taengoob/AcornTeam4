@@ -2,6 +2,8 @@ package com.controller.member;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,27 +37,26 @@ public class loginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		String userid = request.getParameter("text-input");
-		String passwd = request.getParameter("password-input");
+		request.setCharacterEncoding("utf-8");
+		String userid = request.getParameter("userid");
+		String passwd = request.getParameter("passwd");
 		HashMap<String, String> map = new HashMap<>();
 		MemberService service = new MemberService();
-		map.put("userid", userid);
-		map.put("passwd", passwd);
+		map.put("accountId", userid);
+		map.put("accountPasswd", passwd);
 		MemberDTO dto = service.Login(map);
-		System.out.println(dto);
-		System.out.println(map);
+
 		System.out.println(map);
 		System.out.println(dto);
 
 		if (dto != null) {
-			response.sendRedirect("login/member/MyPage.jsp");
+			response.sendRedirect("Mainservlet");
 			HttpSession session = request.getSession();
 			session.setAttribute("login", dto);
 			session.setMaxInactiveInterval(60 * 60);
 			System.out.println("로그인 성공");
 		} else {
-			response.sendRedirect("LoginUIServlet");
+			response.sendRedirect("LoginUIservlet");
 			System.out.println("로그인 실패");
 		}
 

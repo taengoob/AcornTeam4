@@ -3,14 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<properties resource="com/dbconfig/jdbc.properties" />
+	<settings>
+	<!-- DB언더바 때문에 추가 -김봉근- -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.dto.EmpDTO" alias="EmpDTO" />
+		<typeAlias type="com.dto.MemberDTO" alias="MemberDTO" />
+		<typeAlias type="com.dto.CouponDTO" alias="CouponDTO" />
+	</typeAliases>
 
-   <properties resource="com/dbconfig/jdbc.properties" />
-   
-   <typeAliases>
-    <typeAlias type="com.dto.EmpDTO" alias="EmpDTO"/>
-    <typeAlias type="com.dto.MemberDTO" alias="MemberDTO"/>
-   </typeAliases>
-   
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -26,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/mapper/EmpMapper.xml" />
 		<mapper resource="com/mapper/CommonMapper.xml" />
 		<mapper resource="com/mapper/MemberMapper.xml" />
+		<mapper resource="com/mapper/CouponMapper.xml" />
 	</mappers>
 </configuration>
 

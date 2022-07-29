@@ -34,27 +34,27 @@ public class MemberAddServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		System.out.println("add서블릿 호출됨");
-		String userid = request.getParameter("id");
-		String passwd = request.getParameter("passwd");
-		String username = request.getParameter("name");
-		String post = request.getParameter("post");
-		String addr1 = request.getParameter("addr1");
-		String addr2 = request.getParameter("addr2");
-		String phone = request.getParameter("phoneNumber");
-		String email01 = request.getParameter("email01");
-		String email02 = request.getParameter("email02");
-		String seller_YN = request.getParameter("seller_YN");
 
-		MemberDTO dto = new MemberDTO(userid, passwd, username, post, addr1, addr2, phone, email01, email02, seller_YN);
+		String accountId = request.getParameter("id");
+		String accountPasswd = request.getParameter("passwd");
+		String accountName = request.getParameter("name");
+		String accountAddressNumber = request.getParameter("post");
+		String accountAddressLoad = request.getParameter("addr1");
+		String accountPhone = request.getParameter("phoneNumber");
+		String accountEmailId = request.getParameter("email01");
+		String accountEmailDomain = request.getParameter("email02");
+		String accountIsSeller = request.getParameter("seller_YN");
+
+		MemberDTO dto = new MemberDTO(accountId, accountPasswd, accountName, accountAddressNumber, accountAddressLoad,
+				accountPhone, accountEmailId, accountEmailDomain, accountIsSeller);
 		System.out.println(dto);
 
 		MemberService service = new MemberService();
 		int list = service.memberAdd(dto);
-
+		System.out.println(list);
 		if (list == 1) {
-
 			HttpSession session = request.getSession();
-			session.setAttribute("mesg", userid);
+			session.setAttribute("mesg", accountId);
 			session.setMaxInactiveInterval(60 * 30);
 			response.sendRedirect("member/finish.jsp");
 		} else {

@@ -14,8 +14,15 @@
 		ACCOUNT_IS_SELLER,
 		ACCOUNT_JOIN_DATE)
 		values
-		(#{userid},#{passwd},#{username},#{post}
-		,#{addr1},#{phone},#{email01},#{email02},#{seller_YN},sysdate)
+		(#{accountId},
+		#{accountPasswd},
+		#{accountName},
+		#{accountAddressNumber},
+		#{accountAddressLoad},
+		#{accountPhone},
+		#{accountEmailId},
+		#{accountEmailDomain},
+		#{accountIsSeller},sysdate)
 	</insert>
 	<select id="idCheck" parameterType="string" resultType="int">
 		select
@@ -27,6 +34,9 @@
 		parameterType="hashmap">
 		select *
 		from user_account
-		where ACCOUNT_ID = #{userid} and ACCOUNT_PASSWD = #{passwd}
+		where ACCOUNT_ID = #{accountId}
+		and ACCOUNT_PASSWD =
+		#{accountPasswd}
 	</select>
+	
 </mapper>

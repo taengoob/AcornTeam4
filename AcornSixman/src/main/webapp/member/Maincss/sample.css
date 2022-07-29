@@ -13,7 +13,7 @@ ul li {
 	list-style: none;
 }
 
-#text-input {
+#userid {
 	padding-left: 5px;
 	width: 17%;
 	margin-top: 3%;
@@ -22,7 +22,7 @@ ul li {
 	outline: none;
 }
 
-#password-input {
+#passwd {
 	padding-left: 5px;
 	width: 17%;
 	margin-top: 5px;
