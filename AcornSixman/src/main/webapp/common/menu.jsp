@@ -11,7 +11,7 @@ if (dto != null) {
 
 <a class="top-menu" href="logoutServlet">로그아웃</a>
 <a class="top-menu" href="MyPageServlet">마이페이지</a>
-<a class="top-menu" href="#">장바구니</a>
+<a class="top-menu" href="CartListServlet">장바구니</a>
 <%
 } else {
 %>
