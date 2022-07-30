@@ -64,7 +64,7 @@
 		float: left;
 		text-align: center;
 		position: relative;
-  		top: 18px;
+  		top: 32px;
   		left: 10px;
 	}
  		
@@ -81,7 +81,7 @@
 	}
 	.totalpriceBox0{
 		margin: auto;
-		width: 800px;
+		width: 810px;
 		height: 100px;
 	}
 	.totalpriceBox0>div{
@@ -97,7 +97,7 @@
 		height: 50px;
 	}
 	.totalpriceBox3{
-		width: 150px;
+		width: 160px;
 		height: 100px;
 	}
 	.totalpriceBox4{
@@ -121,7 +121,7 @@
 		font-weight: bold;
 		text-align: center;
 		margin-top: 30px;
-		margin-left: 20px;
+		margin-left: 30px;
 	}
 	.totalpriceCell4{
 		font-size: 22px;

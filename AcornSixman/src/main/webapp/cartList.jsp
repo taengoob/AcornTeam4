@@ -6,6 +6,14 @@
 <meta charset="UTF-8">
 <title>장바구니 페이지</title>
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
+<style type="text/css">
+	
+	body {
+   	 	margin: 0;
+    	padding: 0;
+	}
+
+</style>
 </head>
 <body>
 <div class="menu-item">
