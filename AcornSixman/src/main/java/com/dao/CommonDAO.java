@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -41,5 +42,10 @@ public class CommonDAO
 	public List<CategoryDTO> getGuitarCategoriesExceptAll(SqlSession session)
 	{
 		return session.selectList("com.mapper.common.selectCategoriesExceptAll");
+	}
+
+	public int insertImage(SqlSession session, HashMap<String, Object> map)
+	{
+		return session.insert("com.mapper.common.uploadImageFile", map);
 	}
 }

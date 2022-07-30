@@ -15,6 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.ProductDTO_Temp;
+import com.service.ProductService;
 
 /**
  * Servlet implementation class ProductListServlet
@@ -46,17 +47,9 @@ public class ProductListServlet_1 extends HttpServlet {
 		searchOption.put("category", category);
 		searchOption.put("searchStr", searchStr);
 		
-		List<ProductDTO_Temp> list = null;
-		SqlSession session = MySqlSessionFactory.getSession();
-		try
-		{
-			//list = session.selectList("com.mapper.common.selectProductAll");
-			list = session.selectList("com.mapper.common.selectProductByOption", searchOption);
-		}
-		finally
-		{
-			session.close();
-		}
+		ProductService service = new ProductService();
+		List<ProductDTO_Temp> list = service.getProductByOption(searchOption);
+		
 		request.setAttribute("products", list);
 		RequestDispatcher dis = request.getRequestDispatcher("productList.jsp");
 		dis.forward(request, response);

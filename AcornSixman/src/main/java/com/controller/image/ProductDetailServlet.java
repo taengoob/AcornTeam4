@@ -1,6 +1,7 @@
 package com.controller.image;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 
 import com.dbconfig.MySqlSessionFactory;
+import com.dto.ImageDTO;
 import com.dto.ProductDTO_Temp;
+import com.service.ProductService;
 
 /**
  * Servlet implementation class ProductDetailServlet
@@ -35,18 +38,16 @@ public class ProductDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
 		String productId = request.getParameter("productId");
-		ProductDTO_Temp product = null;
-		SqlSession session = MySqlSessionFactory.getSession();
-		try
-		{
-			product = session.selectOne("com.mapper.common.selectProductByProductId", productId);
-		}
-		finally
-		{
-			session.close();
-		}
+		
+		ProductService service = new ProductService();
+		ProductDTO_Temp product = service.getProductByProductId(productId);
+		List<ImageDTO> images = service.getProductImagesByProductId(productId);
+		
 		request.setAttribute("product", product);
+		request.setAttribute("images", images);
+		
 		RequestDispatcher dis = request.getRequestDispatcher("productDetail.jsp");
 		dis.forward(request, response);
 	}

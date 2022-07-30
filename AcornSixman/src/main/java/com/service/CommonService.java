@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -110,6 +111,22 @@ public class CommonService
 		try
 		{
 			result = dao.getNewCartId(session);
+		}
+		finally
+		{
+			session.close();
+		}
+		return result;
+	}
+
+	public int insertImage(HashMap<String, Object> map)
+	{
+		int result = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			result = dao.insertImage(session, map);
+			session.commit();
 		}
 		finally
 		{

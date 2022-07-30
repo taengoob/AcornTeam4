@@ -19,6 +19,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.common.IDGenerator;
 import com.dbconfig.MySqlSessionFactory;
+import com.service.CommonService;
+import com.service.ProductService;
 
 /**
  * Servlet implementation class ImageUploadServlet
@@ -70,6 +72,7 @@ public class ImageUploadServlet extends HttpServlet {
 	
 	private void insertImages(String productId, List<byte[]> images)
 	{
+		CommonService service = new CommonService();
 		for (byte[] data : images)
 		{
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -77,31 +80,14 @@ public class ImageUploadServlet extends HttpServlet {
 			map.put("PRODUCT_ID", productId);
 			map.put("IMAGE_DATA", data);
 			
-			SqlSession session = MySqlSessionFactory.getSession();
-			try
-			{
-				session.insert("com.mapper.common.uploadImageFiles", map);
-				session.commit();
-			}
-			finally
-			{
-				session.close();
-			}
+			int result = service.insertImage(map);
 		}
 	}
 
 	private void insertProduct(HashMap<String, Object> productData)
 	{
-		SqlSession session = MySqlSessionFactory.getSession();
-		try
-		{
-			session.insert("com.mapper.common.insertProduct", productData);
-			session.commit();
-		}
-		finally
-		{
-			session.close();
-		}
+		ProductService service = new ProductService();
+		service.insertProduct(productData);
 	}
 
 	private HashMap<String, Object> getProductData(String productId, HttpServletRequest request)
