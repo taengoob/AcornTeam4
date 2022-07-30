@@ -31,7 +31,7 @@
  		margin: auto;
  	}
  	.listtable{
-		border: 1px solid #bcbcbc;
+		border-top: 1px solid #bcbcbc;
 		width: 1100px;
 		table-layout: fixed;
 		margin: auto;
@@ -43,7 +43,9 @@
 	
 	}
 	.listtable tr,td{
-		border-color: #f4f4f4;
+		border-bottom: 1px solid #bcbcbc;
+	    border-left: 1px solid #bcbcbc;
+	    padding: 10px;
 	}
 	.tabletop{
 		height: 50px;
@@ -67,25 +69,68 @@
 	}
  		
  		
- 	/* 아래부터는 bot  */	
+ 	/* 아래부터는 bot  */
  	
  	.bottom{
 		width: 100%;
-		height: 200px;
+		height: 150px;
 	}	
-	.totalprice{
-		text-align: center;
-		margin: auto;
-		background-color: white;
-		width: 600px;
-		height: 100px;
-	}
-	.totalpriceTop{
-		margin: auto;
-		background-color: white;
-		width: 600px;
+ 	.totalpriceTop{
+		width: 100%;
 		height: 30px;
 	}
+	.totalpriceBox0{
+		margin: auto;
+		width: 800px;
+		height: 100px;
+	}
+	.totalpriceBox0>div{
+		float: left;
+	}
+	.totalpriceBox1{
+		width: 140px;
+		height: 100px;
+	}
+	.totalpriceBox2{
+		width: 20px;
+		margin-top: 30px;
+		height: 50px;
+	}
+	.totalpriceBox3{
+		width: 150px;
+		height: 100px;
+	}
+	.totalpriceBox4{
+		width: 170px;
+		height: 100px;
+	}
+	.totalpriceCell1{
+		font-size: 11px;
+		font-weight: bold;
+		text-align: center;
+		margin-top: 15px;
+	}
+	.totalpriceCell2{
+		font-size: 15px;
+		font-weight: bold;
+		text-align: center;
+		margin-top: 20px;
+	}
+	.totalpriceCell3{
+		font-size: 22px;
+		font-weight: bold;
+		text-align: center;
+		margin-top: 30px;
+		margin-left: 20px;
+	}
+	.totalpriceCell4{
+		font-size: 22px;
+		font-weight: bold;
+		text-align: center;
+		margin-top: 30px;
+	}
+	
+	/* 아래부터는 결제버튼  */	
 	.goPaybox{
 		text-align: center;
 	}
@@ -101,6 +146,8 @@
         display:block;
         border: 0;
         outline: 0;
+        font-size: 20px;
+        font-weight: bold;
 	}
 	.tptable {
 		width: 700px;
@@ -214,7 +261,8 @@
 			<input type="number" class="cartCount" style="width:90px; text-align: right;" value="<%=cartCount%>" 
 			data-xxx="<%=productId%>" data-yyy="<%=productPrice %>"><br>
 			쿠폰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<select style="width:98px; height:20px; font-size:7px;">
+			<select style="width:98px; height:20px; font-size:7px; text-align: right">
+				<option selected="selected">없음</option>
 			<%for(int j=0; j<couponList.size();j++){
 				CouponDTO cpdto = couponList.get(j);
 				String couponid = cpdto.getCouponId();
@@ -239,27 +287,43 @@
 </div>
 </div>
 <div class="boxbot"></div>
-<div class="bottom">
+
 <div class="totalpriceTop"></div>
-<div class="totalprice">
-<table class="tptable">
-	<tr>
-		<td colspan="2">총 선택상품금액</td>
-		<td colspan="2">총 배송비</td>
-		<td colspan="2">할인예상금액</td>
-		<td rowspan="2"></td>
-		<td rowspan="2" colspan="2" class="totalpricetd">총 주문금액</td>
-		<td rowspan="2" colspan="2" class="totalpricetd"><span id="totalSumPrice">0</span>원</td>
-	</tr>
-	<tr class="totalpricetr">
-		<td colspan="2"><span id="totalPrice">0</span>원</td>
-		<td colspan="2"><span id="totalDelPrice">50000</span>원</td>
-		<td colspan="2">0원</td>
-	</tr>
-</table>
+<div class="totalpriceBox0">
+	<div class="totalpriceBox1">
+		<div class="totalpriceCell1">총 선택상품금액</div>
+		<div class="totalpriceCell2"><span id="totalPrice"></span>원</div>
+	</div>
+	<div class="totalpriceBox2">
+		<img src="cart/plus.png" width="20px;" height="20px;">
+	</div>
+	<div class="totalpriceBox1">
+		<div class="totalpriceCell1">총 배송비</div>
+		<div class="totalpriceCell2"><span id="totalDelPrice">50000</span>원</div>
+	</div>
+	<div class="totalpriceBox2">
+		<img src="cart/plus.png" width="20px;" height="20px;">
+	</div>
+	<div class="totalpriceBox1">
+		<div class="totalpriceCell1">할인예상금액</div>
+		<div class="totalpriceCell2"><span>0</span>원</div>
+	</div>
+	<div class="totalpriceBox2">
+		<img src="cart/equal.png" width="20px;" height="20px;">
+	</div>
+	<div class="totalpriceBox3">
+		<div class="totalpriceCell3">총 주문금액</div>
+	</div>
+	<div class="totalpriceBox4">
+		<div class="totalpriceCell4">
+			<span id="totalSumPrice"></span>원
+		</div>
+	</div>
 </div>
+<div class="bottom">
+
 <div class="goPaybox">
-<button class="goPay" id="goPay" onclick="xxx()">총 1건 주문하기</button>
+<button class="goPay" id="goPay" onclick="xxx()">총 <span>1</span>건 주문하기</button>
 </div>
 </div>
 <script type="text/javascript">

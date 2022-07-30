@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dto.CartDTO;
+import com.dto.CategoryDTO;
 import com.dto.CouponDTO;
 import com.service.CartService;
+import com.service.CommonService;
 import com.service.CouponService;
 
 @WebServlet("/CartListServlet")
@@ -22,6 +24,10 @@ public class CartListServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		CommonService cservice = new CommonService();
+		List<CategoryDTO> dto = cservice.getGuitarCategories();
+		session.setAttribute("Guitar", dto);
+		
 		String userid = (String) session.getAttribute("userid");
 		String userid2 = "DGLee";//임시아이디 사용
 		
