@@ -6,9 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
-<style type="text/css">
-
-</style>
 </head>
 <body>
 	<div class="menu-item">

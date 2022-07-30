@@ -75,4 +75,19 @@ public class ProductService
 		}
 		return result;
 	}
+
+	public List<ProductDTO_Temp> goodsRetrieve(String category) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		List<ProductDTO_Temp> list = null;
+		try
+		{
+			list = dao.goodsRetrieve(session, category);
+			System.out.println("service>>>"+list);
+		}
+		finally
+		{
+			session.close();
+		}
+		return list;
+	}
 }

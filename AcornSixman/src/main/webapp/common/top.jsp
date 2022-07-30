@@ -12,9 +12,9 @@ List<CategoryDTO> list = (List<CategoryDTO>) session.getAttribute("Guitar");
 for (int i = 0; i < list.size(); i++) {
 	CategoryDTO dto = list.get(i);
 	String id = dto.getCategoryId();
-	String Category = dto.getCategoryName();
+	String category = dto.getCategoryName();
 %>
-<a class="top" href="#?<%=Category%>"><%=id%></a>
+<a class="top" href="categoryListServlet?category=<%=id%>"><%=id%></a>
 <%
 }
 %>

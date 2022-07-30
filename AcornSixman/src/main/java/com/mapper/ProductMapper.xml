@@ -112,5 +112,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
  		</if>
 	</select>
-	
+	<select id="goodsRetrieve" resultType="com.dto.ProductDTO_Temp" parameterType="string">
+	SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL WHERE PRODUCT_CATEGORY =#{category}
+	</select>
 </mapper>

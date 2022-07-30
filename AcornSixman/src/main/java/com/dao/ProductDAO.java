@@ -19,7 +19,7 @@ public class ProductDAO
 
 	public ProductDTO_Temp getProductByProductId(SqlSession session, String productId)
 	{
-		return session.selectOne("com.mapper.product.selectProductByProductId", productId);
+		return session.selectOne("com.mapper.product.getProductByProductId", productId);
 	}
 
 	public List<ImageDTO> getProductImagesByProductId(SqlSession session, String productId)
@@ -30,6 +30,12 @@ public class ProductDAO
 	public int insertProduct(SqlSession session, HashMap<String, Object> productData)
 	{
 		return session.insert("com.mapper.product.insertProduct", productData);
+	}
+
+	public List<ProductDTO_Temp> goodsRetrieve(SqlSession session, String category) {
+		List<ProductDTO_Temp> list = null;
+		list = session.selectList("com.mapper.product.goodsRetrieve",category);
+		return list;
 	}
 	
 }

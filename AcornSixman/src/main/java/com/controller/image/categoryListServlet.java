@@ -1,6 +1,7 @@
-package com.controller.main;
+package com.controller.image;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,22 +10,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.dto.CategoryDTO;
-import com.service.CommonService;
+import com.dto.ProductDTO_Temp;
+import com.service.ProductService;
 
 /**
- * Servlet implementation class Mainservlet
+ * Servlet implementation class categoryListServlet
  */
-@WebServlet("/Mainservlet")
-public class Mainservlet extends HttpServlet {
+@WebServlet("/categoryListServlet")
+public class categoryListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Mainservlet() {
+    public categoryListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +33,25 @@ public class Mainservlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		CommonService service = new CommonService();
-		List<CategoryDTO> dto = service.getGuitarCategories();
-		session.setAttribute("Guitar", dto);
-		RequestDispatcher rd = request.getRequestDispatcher("Main.jsp");
-		rd.forward(request, response);
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		String category = request.getParameter("category");
+		String searchStr = request.getParameter("searchStr");
+		
+		ProductService service = new ProductService();
+		
+		HashMap<String, String> searchOption = new HashMap<String, String>();
+		searchOption.put("category", category);
+		searchOption.put("searchStr", searchStr);
+		
+		
+		List<ProductDTO_Temp> list = service.getProductByOption(searchOption);
+		
+		
+		
+		request.setAttribute("list", list);
+		RequestDispatcher dis = request.getRequestDispatcher("categoryList.jsp");
+		dis.forward(request, response);
 	}
 
 	/**
