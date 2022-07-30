@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
-
 	<section class="high-section">
 		<div class="order-strong-span-mom">
 			<strong class="order-strong">주문내역</strong>&nbsp; <span
@@ -46,7 +43,7 @@
 			</p>
 			<span class="line">I</span>
 			<p class="start">
-				구매확정 &nbsp;<span class="number-color2">20</span>
+				구매확정 &nbsp;<span class="number-color2">0</span>
 			</p>
 		</div>
 

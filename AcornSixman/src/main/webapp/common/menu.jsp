@@ -9,14 +9,14 @@ if (dto != null) {
 %>
 <%=username%>님 환영합니다.
 
-<a href="logoutServlet">로그아웃</a>
-<a href="MyPageServlet">mypage</a>
-<a href="#">장바구니</a>
+<a class="top" href="logoutServlet">로그아웃</a>
+<a class="top" href="MyPageServlet">mypage</a>
+<a class="top" href="#">장바구니</a>
 <%
 } else {
 %>
-<a href="LoginUIservlet">로그인</a>
-<a href="MainJoinUpServlet">회원가입</a>
+<a class="top" href="LoginUIservlet">로그인</a>
+<a class="top" href="MainJoinUpServlet">회원가입</a>
 <%
 }
 %>
