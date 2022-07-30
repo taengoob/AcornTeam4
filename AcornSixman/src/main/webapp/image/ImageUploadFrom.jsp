@@ -108,7 +108,7 @@
 			</tr>
 			<tr>
 				<th>미리보기 사진</th>
-				<td colspan="3"><input type="file" name="previewImage" id="preViewImage"></td>
+				<td colspan="3"><input type="file" name="previewImage" ></td>
 			</tr>
 			<tr>
 				<th>제품사진</th>

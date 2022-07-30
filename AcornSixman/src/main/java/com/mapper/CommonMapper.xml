@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM DUAL
 	</select>
 	
-	<insert id="uploadImageFiles" parameterType="java.util.HashMap">
+	<insert id="uploadImageFile" parameterType="java.util.HashMap">
 		INSERT INTO PRODUCT_IMAGE
 		(
 			IMAGE_ID
@@ -45,12 +45,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,CURRENT_DATE
 		)
 	</insert>
-	
-	<select id="selectImageByProductId" resultType="com.dto.ImageDTO" parameterType="String">
-		SELECT * FROM PRODUCT_IMAGE
-		WHERE 1=1
-			AND IMAGE_PRODUCT_ID = #{PRODUCT_ID}
-	</select>
 	
 	<select id="selectCategories" resultType="com.dto.CategoryDTO">
 		SELECT CATEGORY_ID 		AS categoryId
@@ -68,6 +62,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 1=1
 			AND CATEGORY_ID != 'All'
 		ORDER BY CATEGORY_SEQ
+	</select>
+	
+	<select id="selectImagesByProductId" resultType="com.dto.ImageDTO" parameterType="String">
+		SELECT * FROM PRODUCT_IMAGE
+		WHERE 1=1
+			AND IMAGE_PRODUCT_ID = #{PRODUCT_ID}
 	</select>
 	
 	<insert id="insertProduct" parameterType="java.util.HashMap">
