@@ -125,6 +125,9 @@ public class ImageUploadServlet extends HttpServlet {
 				else if (partName.equals("productImages"))
 				{
 					//나머지 이미지 처리
+					if (images.size() == 5)
+						break;
+					
 					System.out.println(partName);
 					byte[] image = part.getInputStream().readAllBytes();
 					if (image != null)

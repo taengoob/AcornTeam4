@@ -1,4 +1,4 @@
-package com.controller.image;
+package com.controller.product;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,28 +11,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.dbconfig.MySqlSessionFactory;
 import com.dto.ProductDTO_Temp;
 import com.service.ProductService;
 
 /**
  * Servlet implementation class ProductListServlet
  */
-@WebServlet("/image/ProductListServlet_1")
-public class ProductListServlet_1 extends HttpServlet {
+@WebServlet("/ProductListServlet")
+public class ProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductListServlet_1() {
+    public ProductListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -52,7 +48,7 @@ public class ProductListServlet_1 extends HttpServlet {
 		List<ProductDTO_Temp> list = service.selectProductByOption(searchOption);
 		
 		request.setAttribute("products", list);
-		RequestDispatcher dis = request.getRequestDispatcher("productList.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("product/productList.jsp");
 		dis.forward(request, response);
 	}
 

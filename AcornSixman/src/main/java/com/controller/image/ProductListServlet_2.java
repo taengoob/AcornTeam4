@@ -46,7 +46,7 @@ public class ProductListServlet_2 extends HttpServlet {
 		String newpage = "";
 		ProductService service = new ProductService();
 		List<ProductDTO_Temp> list = null;
-		list = service.getProductByOption(searchOption);
+		list = service.selectProductByOption(searchOption);
 		newpage = "../productList.jsp";
 		
 		request.setAttribute("products", list);

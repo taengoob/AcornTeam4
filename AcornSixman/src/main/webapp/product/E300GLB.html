@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    
+   window.onload= function() {
+	var imgs= document.getElementsByTagName("img");//img  태그 선택 
+	for (var i = 0; i < imgs.length-1; i++) {
+		var img= imgs[3];//img 태그 한개 꺼내기 
+		img.onmouseover= function () {//태그에 이벤트 핸들러 달아 주기 
+			console.log(imgs[1].src= this.src);
+		} 
+	}
+}
+
+</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/view.css">
+</head>
+<style>
+
+</style>
+
+<body>
+    <div class="wrap clearfix">
+        <header>
+            <div class="header-top">
+                <a href="../elec.html"><div class="logo"><img src="../image/logo.PNG" alt="logo"></div></a>
+            </div>
+            <nav class="clearfix">
+                <div class="navbar">
+                    <div class="navlayout clearfix">
+                        <div class="categoryAll">
+                            <div class="button"><a href="#"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="menubar">
+                            <ul class="top-menu clearfix">
+                                <li><a href="../guitar.html">기타</a></li>
+                                <li><a href="../elec.html">일렉트릭 기타</a></li>
+                                <li><a href="../cajon.html">카혼</a></li>
+                                <li><a href="../kalimba.html">칼림바</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section>
+            <div class="content">
+                <div class="content_layout clearfix">
+                    <div class="item_photo">
+                        <div class="photo_big">
+                            <img src="../image/elec/E300GLB_F.PNG" id="view" alt="photo">
+                        </div>
+                        <div class="photo_list">
+                            <ul class="clearfix">
+                                <li class="photo_list_sm"> <img src="../image/elec/E300GLB_F.PNG" id="x" alt="photo"></li>
+                                <li class="photo_list_sm"> <img src="../image/elec/E300GLB_B.PNG" id="y" alt="photo"></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item_info">
+                        <div class="info_box">
+                            <div class="info_title">
+                                <h3><strong>헥스 기타/E300 G/LB/일렉 기타</strong></h3>
+                            </div>
+                            <div class="item_detail_list">
+                                <dl class="item_price">
+                                    <dt>판매가</dt>
+                                    <dd>
+                                        <strong><strong>310,250</strong></strong>원
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>구매제한</dt>
+                                    <dd>
+                                        옵션당
+                                        최소 1개
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>배송비</dt>
+                                    <dd>
+                                        0원 / 주문시결제(선결제)
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>상품코드</dt>
+                                    <dd>1000000128</dd>
+                                </dl>
+                                <dl>
+                                    <dt>모델명</dt>
+                                    <dd>F200 M</dd>
+                                </dl>
+                                <dl>
+                                    <dt>브랜드</dt>
+                                    <dd>헥스 hex</dd>
+                                </dl>
+                                <dl>
+                                    <dt>제조사</dt>
+                                    <dd>헥스</dd>
+                                </dl>
+                                <dl>
+                                    <dt>원산지</dt>
+                                    <dd>인도네시아</dd>
+                                </dl>
+                                <dl>
+                                    <dt>상품재고</dt>
+                                    <dd>1개</dd>
+                                </dl>
+
+
+
+
+
+                            </div>
+
+                            <table class="item_select">
+                                <tr>
+                                    <td class="item_name">
+                                        <strong>헥스 STING F200 M 리퍼 기타</strong>
+                                    </td>
+                                    <td class="clearfix select_box">
+                                        <span class="button_box">
+                                            <span class="goods-qty">
+                                                <input type="text" value="1" class="num">
+                                                <span>
+                                                    <button class="up goods_cnt" value="up^\^0">증가</button>
+                                                    <button class="down goods_cnt" value="down^\^0">감소</button>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td>194,000원</td>
+                                </tr>
+                            </table>
+                            <div class="item_pay item_pay_sm clearfix">
+                                <dl class="clearfix">
+                                    <dt>총 상품금액</dt>
+                                    <dd>
+                                        194,000원
+                                    </dd>
+                                </dl>
+
+                            </div>
+                            <div class="item_pay item_total">
+                                <dl class="clearfix">
+                                    <dt>총 합계금액</dt>
+                                    <dd>
+                                        194,000원
+                                    </dd>
+                                </dl>
+
+                            </div>
+                            <div class="btn_choice_box">
+                                <div>
+                                    <!-- N:재입고 알림이 있을 때는 restock 클래스를 div에 같이 넣어주세요 -->
+                                    <button id="cartBtn" type="button" class="btn_add_cart">장바구니</button>
+                                    <button id="wishBtn" type="button" class="btn_add_wish">찜하기</button>
+                                    <button type="button" class="btn_add_order">바로 구매</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer>
+
+        </footer>
+    </div>
+</body>
+
+</html>

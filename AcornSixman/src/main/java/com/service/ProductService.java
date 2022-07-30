@@ -15,13 +15,13 @@ public class ProductService
 {
 	ProductDAO dao = new ProductDAO();
 
-	public List<ProductDTO_Temp> getProductByOption(HashMap<String, String> searchOption)
+	public List<ProductDTO_Temp> selectProductByOption(HashMap<String, String> searchOption)
 	{
 		List<ProductDTO_Temp> list = null;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try
 		{
-			list = dao.getProductByOption(session, searchOption);
+			list = dao.selectProductByOption(session, searchOption);
 		}
 		finally
 		{
@@ -36,7 +36,7 @@ public class ProductService
 		SqlSession session = MySqlSessionFactory.getSession();
 		try
 		{
-			product = dao.getProductByProductId(session, productId);
+			product = dao.selectProductByProductId(session, productId);
 		}
 		finally
 		{
@@ -51,7 +51,7 @@ public class ProductService
 		SqlSession session = MySqlSessionFactory.getSession();
 		try
 		{
-			list = dao.getProductImagesByProductId(session, productId);
+			list = dao.selectImagesByProductId(session, productId);
 		}
 		finally
 		{

@@ -1,4 +1,4 @@
-package com.controller.image;
+package com.controller.product;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +20,7 @@ import com.service.ProductService;
 /**
  * Servlet implementation class ProductDetailServlet
  */
-@WebServlet("/image/ProductDetailServlet")
+@WebServlet("/ProductDetailServlet")
 public class ProductDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,7 +48,7 @@ public class ProductDetailServlet extends HttpServlet {
 		request.setAttribute("product", product);
 		request.setAttribute("images", images);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("productDetail.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("product/productDetail.jsp");
 		dis.forward(request, response);
 	}
 

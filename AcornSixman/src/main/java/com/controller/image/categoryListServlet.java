@@ -45,7 +45,7 @@ public class categoryListServlet extends HttpServlet {
 		searchOption.put("searchStr", searchStr);
 		
 		
-		List<ProductDTO_Temp> list = service.getProductByOption(searchOption);
+		List<ProductDTO_Temp> list = service.selectProductByOption(searchOption);
 		
 		
 		

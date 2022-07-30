@@ -12,17 +12,17 @@ import com.dto.ProductDTO_Temp;
 public class ProductDAO
 {
 
-	public List<ProductDTO_Temp> getProductByOption(SqlSession session, HashMap<String, String> searchOption)
+	public List<ProductDTO_Temp> selectProductByOption(SqlSession session, HashMap<String, String> searchOption)
 	{
 		return session.selectList("com.mapper.product.selectProductByOption", searchOption);
 	}
 
-	public ProductDTO_Temp getProductByProductId(SqlSession session, String productId)
+	public ProductDTO_Temp selectProductByProductId(SqlSession session, String productId)
 	{
-		return session.selectOne("com.mapper.product.getProductByProductId", productId);
+		return session.selectOne("com.mapper.product.selectProductByProductId", productId);
 	}
 
-	public List<ImageDTO> getProductImagesByProductId(SqlSession session, String productId)
+	public List<ImageDTO> selectImagesByProductId(SqlSession session, String productId)
 	{
 		return session.selectList("com.mapper.product.selectImagesByProductId", productId);
 	}
