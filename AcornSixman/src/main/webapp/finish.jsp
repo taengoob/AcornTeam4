@@ -9,6 +9,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
 <title>index</title>
 <style>
 * {
@@ -43,7 +44,7 @@ ul li {
 .main-write {
 	margin-top: 15%;
 	border-bottom: 4px solid #000;
-	width: 17.27%;
+	width: 18.27%;
 	padding-bottom: 18px;
 }
 
@@ -71,25 +72,46 @@ keyframes login { 0%{
 100
 
 
+
+
+
+
 %
 {
 transform
 
 
+
+
+
+
 :
 
 
+
+
+
+
 rotate
+
+
+
+
 (
+
+
+
+
 
 
 360deg
 
-
 )
+
+
+
+
 ;
-
-
 }
 }
 .write1 {
@@ -138,6 +160,13 @@ rotate
 </head>
 
 <body>
+
+	<div class="menu-item">
+		<!-- 메뉴는 이거랑 css 같이 다니게 복붙해주세요 -김봉근- -->
+		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
+		<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
+	</div>
+	<div class="wide"></div>
 	<div class="main-container">
 		<h1 class="main-write">회원가입</h1>
 		<span class="high-line"></span>
@@ -151,23 +180,22 @@ rotate
 				실속있는 서비스로 찾아뵙겠습니다.
 			</p>
 			<span class="span-line"></span> <a href="#" class="home">홈으로</a> <a
-				href="../LoginUIservlet" class="login">로그인</a>
+				href="LoginUIservlet" class="login">로그인</a>
 		</div>
 	</div>
-<%
-String mesg = (String) session.getAttribute("mesg");
-if (mesg != null) {
-%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
+	<%
+	String mesg = (String) session.getAttribute("mesg");
+	if (mesg != null) {
+	%>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
 	$("#name").text(
-"<%=mesg%>"
-	);
-</script>
-<%
-session.removeAttribute("mesg");
-}
-%>
+"<%=mesg%>");
+	</script>
+	<%
+	session.removeAttribute("mesg");
+	}
+	%>
 </body>
 </html>

@@ -10,6 +10,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 <link href="member/Maincss/FirstJoinUp.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
 
 
 <title>회원가입</title>
@@ -18,6 +19,11 @@
 
 
 <body>
+	<div class="menu-item"> <!-- 메뉴는 이거랑 css 같이 다니게 복붙해주세요 -김봉근- -->
+	<jsp:include page="common/top.jsp" flush="true"></jsp:include>
+	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
+	</div>
+	<div class="wide"></div>
 	<div class="main-container">
 		<a href="MainJoinUp.jsp" class="main-link-item">쇼핑몰 회원가입</a>
 		<p class="main-line"></p>

@@ -56,7 +56,7 @@ public class MemberAddServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("mesg", accountId);
 			session.setMaxInactiveInterval(60 * 30);
-			response.sendRedirect("member/finish.jsp");
+			response.sendRedirect("finish.jsp");
 		} else {
 			System.out.println("에러 페이지로");
 		}

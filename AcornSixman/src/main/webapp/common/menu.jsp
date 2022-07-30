@@ -7,7 +7,7 @@ MemberDTO dto = (MemberDTO) session.getAttribute("login");
 if (dto != null) {
 	String username = dto.getAccountName();
 %>
-<%=username%>님 환영합니다.
+<a class="top-menu" ><%=username%>님 환영합니다.</a>
 
 <a class="top-menu" href="logoutServlet">로그아웃</a>
 <a class="top-menu" href="MyPageServlet">마이페이지</a>
