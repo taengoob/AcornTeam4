@@ -38,6 +38,8 @@
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	</div>
 	<div class="wide"></div>
+	
+	
 	<jsp:include page="member/Login.jsp" flush="true"></jsp:include>
 </body>
 </html>

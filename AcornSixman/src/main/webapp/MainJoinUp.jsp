@@ -20,6 +20,7 @@
 	<jsp:include page="common/top.jsp" flush="true"></jsp:include>
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	</div>
+	<div class="wide"></div>
 <jsp:include page="member/MainJoinUp.jsp" flush="true"></jsp:include>
 <!-- 추가로 인클루드 할것들 // top , menu 페이지 -->
 </body>

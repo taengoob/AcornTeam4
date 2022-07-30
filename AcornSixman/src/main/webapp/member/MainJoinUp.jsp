@@ -25,7 +25,7 @@
 </style>
 </head>
 <body>
-	<p class="high"></p>
+	
 
 
 	<h1 class="gibon-item1">기본정보</h1>
