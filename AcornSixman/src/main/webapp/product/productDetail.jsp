@@ -169,8 +169,9 @@
 	                            <div class="btn_choice_box">
 	                                <div>
 	                                    <!-- N:재입고 알림이 있을 때는 restock 클래스를 div에 같이 넣어주세요 -->
-	                                    <button id="cartBtn" type="button" class="btn_add_cart">장바구니</button>
-	                                    <button type="button" class="btn_add_order">바로 구매</button>
+<!-- 	                                    <button id="wishAddBtn" class="btn_add_wish">찜하기</button> -->
+	                                    <button id="cartAddBtn" class="btn_add_cart">장바구니</button>
+	                                    <button id="orderAddBtn" class="btn_add_order">바로구매</button>
 	                                </div>
 	                            </div>
 	                        </div>

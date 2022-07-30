@@ -300,7 +300,7 @@ nav {
 
 .btn_add_cart,
 .btn_add_wish {
-    width: 29%;
+    width: 48%;
     height: 42px;
     margin: 10px 2px 0 0;
     padding: 0;
@@ -316,7 +316,7 @@ nav {
 }
 
 .btn_add_order {
-    width: 38%;
+    width: 48%;
     height: 42px;
     margin: 0;
     padding: 0;
