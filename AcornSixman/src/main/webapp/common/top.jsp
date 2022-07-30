@@ -1,28 +1,15 @@
+<%@page import="com.dto.CategoryDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-a {
-	margin-right: 20px;
-	color: black;
-	text-decoration: none;
-}
 
-.menu-item {
-	text-align: right;
+<%
+List<CategoryDTO> list = (List<CategoryDTO>) session.getAttribute("Guitar");
+
+for (int i = 0; i < list.size(); i++) {
+	CategoryDTO dto = list.get(i);
+%>
+<a class="top" href="#"><%=dto.getCategoryId()%></a>
+<%
 }
-</style>
-</head>
-<body>
-	<a class="top" href="#">All</a>
-	<a class="top" href="#">Classic</a>
-	<a class="top" href="#">Elec</a>
-	<a class="top" href="#">Bass</a>
-	<a class="top" href="#">Acoustic</a>
-	<a class="top" href="#">Ukulele</a>
-</body>
-</html>
+%>

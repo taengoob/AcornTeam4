@@ -38,7 +38,6 @@ h1 {
 </head>
 <body>
 	<div class="menu-item">
-		<h1>메인 화면 입니다</h1>
 		<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
 		<br>
 		<jsp:include page="common/top.jsp" flush="true"></jsp:include><br>
