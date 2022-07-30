@@ -9,9 +9,9 @@ if (dto != null) {
 %>
 <%=username%>님 환영합니다.
 
-<a class="top" href="logoutServlet">로그아웃</a>
-<a class="top" href="MyPageServlet">mypage</a>
-<a class="top" href="#">장바구니</a>
+<a class="top-menu" href="logoutServlet">로그아웃</a>
+<a class="top-menu" href="MyPageServlet">마이페이지</a>
+<a class="top-menu" href="#">장바구니</a>
 <%
 } else {
 %>

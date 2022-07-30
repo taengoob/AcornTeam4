@@ -7,22 +7,10 @@
 <title>Insert title here</title>
 <style type="text/css">
 .menu-item {
-	text-align: right;
-	background-image: url(member/img/logo.png);
-	 background-size: 300px 100px;
-	 background-repeat: no-repeat;
-	 background-position: center;
-
-	
-	
-	
+	text-align: center;
 }
-h1 {
-	text-align: left;
-}
-
 .top {
-	margin-right: 20px;
+	margin-right: 60px;
 	color: black;
 	text-decoration: none;
 	position: relative;
@@ -33,15 +21,26 @@ h1 {
 	border-bottom: 3px solid gray;
 	color: gray;
 }
+.top-menu {
+	margin-right: 10px;
+	color: black;
+	text-decoration: none;
+	position: relative;
+}
+
+.top-menu:hover {
+	text-decoration: underline width: 100%;
+	border-bottom: 3px solid gray;
+	color: gray;
+}
 
 </style>
 </head>
 <body>
 	<div class="menu-item">
+		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
 		<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
-		<br>
-		<jsp:include page="common/top.jsp" flush="true"></jsp:include><br>
-
+	
 		<hr>
 	</div>
 </body>

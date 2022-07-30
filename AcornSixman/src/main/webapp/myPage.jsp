@@ -13,22 +13,41 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="member/Maincss/MyPage.css">
 <style type="text/css">
-a {
-	margin-right: 20px;
+.menu-item {
+	text-align: center;
+}
+.top {
+	margin-right: 60px;
 	color: black;
 	text-decoration: none;
+	position: relative;
 }
 
-.menu-item {
-	text-align: right;
+.top:hover {
+	text-decoration: underline width: 100%;
+	border-bottom: 3px solid gray;
+	color: gray;
+}
+.top-menu {
+	margin-right: 10px;
+	color: black;
+	text-decoration: none;
+	position: relative;
+}
+
+.top-menu:hover {
+	text-decoration: underline width: 100%;
+	border-bottom: 3px solid gray;
+	color: gray;
 }
 </style>
 </head>
 
 
 <body>
-	<h1>마이페이지 입니다</h1>
+
 	<div class="menu-item"> <!-- 메뉴는 이거랑 css 같이 다니게 복붙해주세요 -김봉근- -->
+	<jsp:include page="common/top.jsp" flush="true"></jsp:include>
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	</div>
 	<jsp:include page="member/MyPage.jsp" flush="true"></jsp:include>
