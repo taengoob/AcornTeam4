@@ -152,6 +152,20 @@ nav {
     color: #000;
 }
 
+.info_content {
+    min-height: 30px;
+    border-bottom: 1px solid #eaeaea;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.info_content h4 {
+    width: 100%;
+    font-size: 18px;
+    font-weight: normal;
+    color: #000;
+}
+
 .item_detail_list {
     border-bottom: 1px solid #eaeaea;
 }

@@ -67,7 +67,7 @@ public class ImageUploadServlet extends HttpServlet {
 		if (images != null && images.size() > 0)
 			insertImages(productId, images);
 		
-		response.sendRedirect("ImageListServlet");
+		response.sendRedirect("ImageUploadFormServlet");
 	}
 	
 	private void insertImages(String productId, List<byte[]> images)
@@ -125,7 +125,7 @@ public class ImageUploadServlet extends HttpServlet {
 				else if (partName.equals("productImages"))
 				{
 					//나머지 이미지 처리
-					if (images.size() == 5)
+					if (images.size() == 4)
 						break;
 					
 					System.out.println(partName);

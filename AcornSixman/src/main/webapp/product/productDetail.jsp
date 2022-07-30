@@ -21,6 +21,7 @@
 	String productId = product.getProductId();
 	String productName = product.getProductName();
 	String productModel = product.getProductModel();
+	String productContent = product.getProductContent();
 	String maker = product.getProductMaker();
 	String madeIn = product.getProductMadein();
 	
@@ -92,6 +93,9 @@
 	                            <div class="info_title">
 	                                <h3><strong><%= productName %></strong></h3>
 	                            </div>
+	                            <div class="info_content">
+	                                <h4><strong><%= productContent %></strong></h4>
+	                            </div>
 	                            <div class="item_detail_list">
 	                                <dl class="item_price">
 	                                    <dt>판매가</dt>
@@ -112,10 +116,6 @@
 	                                <dl>
 	                                    <dt>모델명</dt>
 	                                    <dd><%= productModel %></dd>
-	                                </dl>
-	                                <dl>
-	                                    <dt>브랜드</dt>
-	                                    <dd><%= maker %></dd>
 	                                </dl>
 	                                <dl>
 	                                    <dt>제조사</dt>
