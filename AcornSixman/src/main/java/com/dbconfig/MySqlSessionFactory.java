@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MySqlSessionFactory {
 	private static SqlSessionFactory sqlSessionFactory = null;
 	static {
-		String resource = "com/config/Configuration.xml";
+		String resource = "com/dbconfig/Configuration.xml";
 		InputStream inputStream=null;
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
