@@ -1,3 +1,4 @@
+<%@page import="com.dto.MemberDTO"%>
 <%@page import="com.dto.ImageDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.dto.ProductDTO_Temp"%>
@@ -14,6 +15,8 @@
 	</head>
 	
 	<%
+	MemberDTO userInfo = (MemberDTO)session.getAttribute("login");
+	
 	List<ImageDTO> images = (List<ImageDTO>)request.getAttribute("images");
 	
 	ProductDTO_Temp product = (ProductDTO_Temp)request.getAttribute("product");
@@ -24,27 +27,35 @@
 	String productContent = product.getProductContent();
 	String maker = product.getProductMaker();
 	String madeIn = product.getProductMadein();
+	String sellerId = product.getProductSeller();
 	
 	int productPrice = product.getProductPrice();
 	int deliveryPrice = product.getProductDeliveryPrice();
 	int stock = product.getProductStock();
 	
-	String test = images.get(1).getImage_url();
 	%>
 	
 	<script type="text/javascript">
 		window.onload = function() {
+// 			제품 수량 변경시 가격 반영 이벤트
 			document.getElementById("productQty").onchange = onQtyChanged;
+			
+// 			작은 이미지 클릭 이벤트
 			const images = document.getElementsByClassName('img_sm');
 			for (var i = 0; i < images.length; i++) {
 				images[i].onclick = onImageClicked;
 			}
+			
+			document.getElementById("orderAddBtn").onclick = onorderAddBtnClicked;
+			
 		}
 		
+		let qty;
 		function onQtyChanged() {
-			const qty = this.value;
+			qty = this.value;
 			const price = <%= productPrice %> * qty;
 			const totalPrice = price + <%= deliveryPrice %>;
+// 			console.log("totalPrice :", totalPrice);
 			document.getElementById("productPrice").innerHTML = price;
 			document.getElementById("orderPrice").innerHTML = totalPrice;
 		}
@@ -59,6 +70,24 @@
 				images[i].style.opacity = images[i] === this ? "1" : "0.3";
 			}
 			
+		}
+		
+		function onorderAddBtnClicked() {
+			const productId = <%= productId %>;
+			const userId = <%= userInfo.getAccountId() %>;
+			const sellerId = <%= sellerId %>;
+			const productPrice = <%= productPrice %>;
+			const deleveryPrice = <%= deliveryPrice %>
+			const totalPrice = (productPrice * qty) + deleveryPrice;
+			const url = "AddOrderFormServlet?"
+					+ "productId=" + productId
+					+ "&&userId=" + userId
+					+ "&&sellerId=" + sellerId
+					+ "&&productPrice=" + productPrice
+					+ "&&deleveryPrice=" + deleveryPrice
+					+ "&&totalPrice=" + totalPrice;
+			console.log(url);
+			//document.location(url);
 		}
 			
 			//view의 src 변경
@@ -168,8 +197,6 @@
 	                            </div>
 	                            <div class="btn_choice_box">
 	                                <div>
-	                                    <!-- N:재입고 알림이 있을 때는 restock 클래스를 div에 같이 넣어주세요 -->
-<!-- 	                                    <button id="wishAddBtn" class="btn_add_wish">찜하기</button> -->
 	                                    <button id="cartAddBtn" class="btn_add_cart">장바구니</button>
 	                                    <button id="orderAddBtn" class="btn_add_order">바로구매</button>
 	                                </div>
