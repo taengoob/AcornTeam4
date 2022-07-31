@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
     <%List<CategoryDTO> list = (List<CategoryDTO>) session.getAttribute("Guitar"); %>
 <form action="ProductListServlet">
-	카테고리
+	<img alt="" src="image/category.png" width="20px" height="20px"></img>
 	<select name="category">
 	<%for (int i = 0; i < list.size(); i++) {
 		CategoryDTO dto = list.get(i);%>
@@ -12,5 +12,6 @@
 		<%} %>
 	</select>
 		검색<input type="text" name="searchStr">
-		<input type="submit" value="검색">
+			<a href="#button"><button><img src="image/search.png"
+			alt="검색" width="20px" height="20px"></button></a>
 </form>
