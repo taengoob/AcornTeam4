@@ -14,7 +14,7 @@
 		
 	</div><div class="wide"></div>
 	<hr>
-	<jsp:include page="image/productList2.jsp" flush="true"></jsp:include><br>
+	<jsp:include page="product/productList.jsp" flush="true"></jsp:include><br>
 	<hr>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	<hr>
