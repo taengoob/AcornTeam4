@@ -25,7 +25,7 @@
 		//db에는 암호화 된 패스워드를 insert
 		function onTestButtonCliked() {
 			//입력값
-			const target = document.getElementById("targetText");
+			const target = document.getElementById("productName");
 			console.log("target.value :", target.value);
 			
 			//암호화 시킨값
@@ -33,7 +33,7 @@
 			console.log("encrypted");
 			
 			//input에 데이터 넣기
-			target.value = encryptedVal;
+			//target.value = encryptedVal;
 			console.log("target.value :", target.value);
 			console.log("encryptedVal :", encryptedVal);
 			
@@ -121,12 +121,12 @@
 			</tr>
 			<tr>
 				<th>판매자</th>
-				<td colspan="3"><input type="text" name="productSeller" value="" id="productSeller"></td>
+				<td colspan="3"><input type="text" name="productSeller" value="taengoov" id="productSeller"></td>
 			</tr>
 		</table>
 		<div>
 			<input type="submit" value="제품등록">
-			<input type="hidden" value="암호화테스트" id="testButton" >
+			<input type="button" value="암호화테스트" id="testButton" >
 		    <a href="">취소</a>
 		</div>
 	</form>

@@ -15,7 +15,7 @@
 	</head>
 	
 	<%
-	List<ProductDTO_Temp> list = (List<ProductDTO_Temp>)request.getAttribute("products");
+	List<ProductDTO_Temp> list = (List<ProductDTO_Temp>)request.getAttribute("list");
 	String category = (String)request.getAttribute("category");
 	String firstImage = list.get(0).getPreviewUrl();
 	%>

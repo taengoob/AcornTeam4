@@ -14,7 +14,7 @@
 		
 	</div><div class="wide"></div>
 	<hr>
-	<jsp:include page="common/categoryList.jsp"></jsp:include>
+	<jsp:include page="product/productList.jsp"></jsp:include>
 	
 	<hr>
 	<jsp:include page="common/bot.jsp"></jsp:include>
