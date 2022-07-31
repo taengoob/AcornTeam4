@@ -85,6 +85,18 @@ public class CartService {
 		}
 		
 	}
+
+	public int cartDelete(String cartId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int n = 0;
+		try {
+			n = dao.cartDelete(session, cartId);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return n;
+	}
 	
 	
 }

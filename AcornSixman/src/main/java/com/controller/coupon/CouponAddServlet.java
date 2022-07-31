@@ -44,7 +44,6 @@ public class CouponAddServlet extends HttpServlet {
 		cdto.setCouponId(IDGenerator.getNewCouponId());
 		String userid2 = "DGLee"; //원래는 세션에서 받아온 userid 를 set
 		cdto.setCouponuserId(userid2);
-		System.out.println(cdto);
 		
 		CouponService service = new CouponService();
 		service.couponAdd(cdto);

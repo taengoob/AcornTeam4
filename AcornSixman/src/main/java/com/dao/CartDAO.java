@@ -33,4 +33,9 @@ public class CartDAO {
 		int n = session.update("com.mapper.cart.cartUpdate2", map);
 		System.out.println("수정된 카트 갯수 : "+n);
 	}
+
+	public int cartDelete(SqlSession session, String cartId) {
+		int n = session.update("com.mapper.cart.cartDelete", cartId);
+		return n;
+	}
 }

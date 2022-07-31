@@ -191,11 +191,28 @@
 </style>
 <script type="text/javascript">
 	
+	
+	
 	$(document).ready(function() {
-		$(".cartCount").on("click", function() {
-			var productPrice = $(this).attr("data-yyy");
-			var productId = $(this).attr("data-xxx");
-			var cartCount = $(this).val();
+		$(".cartCount").on("click", amountLimit);
+		$(".cartCount").on("click", amountReflection);
+		$(".chkProduct").on("click", chkReflection);
+	})
+	
+	function amountLimit() {
+		if($(this).val()<1){
+			$(this).val(1);
+			alert("수량을 더이상 감소시킬수 없습니다.")
+		}
+	}
+	
+	function amountReflection() {//
+		var productId = $(this).attr("data-xxx");
+		var productPrice = 0;
+		var cartCount = $(this).val();
+		if($("#chk"+productId).is(":checked")){//체크박스에 체크가 된 경우에만 비동기처리로 수량 및 가격이 계산됨
+			productPrice = $("#chk"+productId).val();
+			console.log(productPrice+"체크된 항목의 가격 출력");
 			$.ajax({
 				type: "get",
 				url: "CartUpdateServlet",
@@ -207,9 +224,11 @@
 				success: function(data, status, xhr) {
 					var sum = productPrice * cartCount
 					$("#sum"+productId).text(sum);
+					$("#chk"+productId).attr("data-zzz", sum);
 					var total = 0;
-					$.each($(".sumPrice"), function(i, ele) {
-						total+=parseInt(ele.innerText);
+					var chkedProduct = $("input:checkbox[name=chkProduct]:checked");
+					$.each(chkedProduct, function(i, ele) {
+						total += parseInt($(ele).attr("data-zzz"));
 						console.log(total);
 					})
 					$("#totalPrice").text(total);
@@ -219,9 +238,33 @@
 				error: function(xhr, status, error) {
 					console.log("ajax 비동기처리 실패 : "+error);
 				}
+			})//end ajax
+		}else{
+			$(this).val(1);
+			$("#sum"+productId).text($("#chk"+productId).val());
+			alert("체크가 안된 품목은 수량설정이 불가능합니다");
+		}
+	}
+	
+	function chkReflection() {//체크된 품목만 총합 가격에 반영. 체크해제시 총합 가격에 반영 x
+			console.log("체크됨");
+			var total = 0;
+			var totalDel = 0;
+			var chkCount = 0;
+			var chkedProduct = $("input:checkbox[name=chkProduct]:checked");
+			$.each(chkedProduct, function(i, ele) {
+				total += parseInt($(ele).attr("data-zzz"));
+				totalDel += parseInt($(ele).attr("data-vvv"));
+				console.log(total);
+				chkCount++;
 			})
-		})
-	})
+			$("#totalPrice").text(total);
+			$("#totalDelPrice").text(totalDel);
+			total+=parseInt($("#totalDelPrice").text());
+			$("#totalSumPrice").text(total);
+			$("#chkCount").text(chkCount);
+			//$(this).attr("checked", true);
+	}
 	
 </script>
 <div class="boxtop"></div>
@@ -249,12 +292,15 @@
 
 	<tr class="basketlist">
 		<td colspan="2">
-			<div class="selectbox"><input type="checkbox" checked="checked" class="price" value="<%=productPrice %>"></div>
+			<div class="selectbox">
+				<input type="checkbox" checked="checked" class="chkProduct" name="chkProduct" data-zzz="<%=cartCount*productPrice%>" data-www="<%=cartId %>"
+				id="chk<%=productId %>" value="<%=productPrice %>" data-vvv="<%=productDeliveryPrice%>">
+			</div>
 			<div><img src="<%=previewUrl %>" width="78px" height="78px"></div>
 		</td>
 		<td colspan="4">
-			<div style="text-align: left;"><%=productName%></div>
-			<div style="text-align: left;"><%=productModel%>/<%=productMaker %>/<%=productCategory %></div>
+			<div style="text-align: left; font-size: 15px; font-weight: bold;"><%=productName%></div>
+			<div style="text-align: left; color: grey; font-weight: bold; margin-top: 5px;"><%=productModel%>/<%=productMaker %>/<%=productCategory %></div>
 		</td>
 		<td colspan="3">
 			수량&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -262,7 +308,7 @@
 			data-xxx="<%=productId%>" data-yyy="<%=productPrice %>"><br>
 			쿠폰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<select style="width:98px; height:20px; font-size:7px; text-align: right">
-				<option selected="selected">없음</option>
+				<option selected="selected" value="0">없음</option>
 			<%for(int j=0; j<couponList.size();j++){
 				CouponDTO cpdto = couponList.get(j);
 				String couponid = cpdto.getCouponId();
@@ -277,7 +323,7 @@
 			<span >상품금액</span><br>
 			<span class="sumPrice" id="sum<%=productId%>"><%=productPrice*cartCount %></span>
 		원</td>
-		<td colspan="2"><span >배송비<br><%=productDeliveryPrice %></span>원</td>
+		<td colspan="2">배송비<br><span class="delPrice"><%=productDeliveryPrice %></span>원</td>
 	</tr>
 	<%} %>
 	<tr>
@@ -323,7 +369,7 @@
 <div class="bottom">
 
 <div class="goPaybox">
-<button class="goPay" id="goPay" onclick="xxx()">총 <span>1</span>건 주문하기</button>
+<button class="goPay" id="goPay" onclick="xxx()">총 <span id="chkCount"></span>건 주문하기</button>
 </div>
 </div>
 <script type="text/javascript">
@@ -333,17 +379,43 @@
 	}
 
 	window.onload = function() {
+		chkCount();
+		totalPrice();
+		totatDelPrice();
+	}
+	
+	function chkCount() {
+		var chkProduct = document.getElementsByClassName("chkProduct");
+		var chkCount = 0;
+		for (var i = 0; i < chkProduct.length; i++) {
+			if(chkProduct[i].checked){
+				chkCount++;
+				document.getElementById("chkCount").innerText=chkCount;
+			}
+		}
+	}
+	
+	function totalPrice() {
 		var prices = document.getElementsByClassName("sumPrice");
 		var total = 0;
 		for (var i = 0; i < prices.length; i++) {
 			var price = prices[i];
-			console.log(price.innerText);
 			total += parseInt(price.innerText);
 		}
 		document.getElementById("totalPrice").innerText=total;
 		total += parseInt(document.getElementById("totalDelPrice").innerText);
 		document.getElementById("totalSumPrice").innerText=total;
 		//document.getElementById("totalPrice").innerText=total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원"; */
+	}
+	
+	function totatDelPrice() {
+		var delPrices = document.getElementsByClassName("delPrice");
+		var total = 0;
+		for (var i = 0; i < delPrices.length; i++) {
+			var delPrice = delPrices[i];
+			total += parseInt(delPrice.innerText);
+			document.getElementById("totalDelPrice").innerText=total;
+		}
 	}
 	
 </script>
