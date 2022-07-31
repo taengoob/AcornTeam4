@@ -14,7 +14,7 @@ for (int i = 0; i < list.size(); i++) {
 	String id = dto.getCategoryId();
 	String category = dto.getCategoryName();
 %>
-<a class="top" href="categoryListServlet?category=<%=id%>"><%=id%></a>
+<a class="top" href="ProductListServlet?category=<%=id%>"><%=id%></a>
 <%
 }
 %>

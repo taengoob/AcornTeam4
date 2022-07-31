@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%List<CategoryDTO> list = (List<CategoryDTO>) session.getAttribute("Guitar"); %>
-<form action="categoryListServlet">
+<form action="ProductListServlet">
 	카테고리
 	<select name="category">
 	<%for (int i = 0; i < list.size(); i++) {
