@@ -40,6 +40,7 @@ public class CartListServlet extends HttpServlet {
 		request.setAttribute("couponList", couponList);
 		System.out.println(couponList);
 	
+		
 		RequestDispatcher dis = request.getRequestDispatcher("cartList.jsp");
 		dis.forward(request, response);
 	}

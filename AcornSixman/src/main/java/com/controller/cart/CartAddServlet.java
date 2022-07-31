@@ -28,6 +28,7 @@ public class CartAddServlet extends HttpServlet {
 		String productId = request.getParameter("productId");
 		int cartCount = Integer.parseInt(request.getParameter("cartCount"));
 		
+		
 		CartService service = new CartService();
 		int n = service.cartSearch(userid2, productId);
 		if(n==0) {

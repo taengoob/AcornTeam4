@@ -49,4 +49,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from user_cart
 		where cart_id=#{cartId}
 	</delete>
+	
 </mapper>

@@ -30,6 +30,7 @@ public class CartUpdateServlet extends HttpServlet {
 		CartService service = new CartService();
 		service.cartUpdate2(userid2, productId, cartCount);
 		
+		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print("비동기처리 성공");

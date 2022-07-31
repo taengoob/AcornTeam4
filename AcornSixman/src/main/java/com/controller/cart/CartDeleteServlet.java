@@ -29,6 +29,7 @@ public class CartDeleteServlet extends HttpServlet {
 			cartId = chkedCartId[i];
 			n = service.cartDelete(cartId);
 		}
+		
 		response.sendRedirect("CartListServlet");
 	}
 
