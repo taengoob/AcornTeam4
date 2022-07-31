@@ -49,7 +49,11 @@ public class ProductDetailServlet extends HttpServlet {
 		
 		request.setAttribute("product", product);
 		request.setAttribute("images", images);
+
+//		메인용 경로
+//		RequestDispatcher dis = request.getRequestDispatcher("productDetail.jsp");
 		
+//		테스트용 경로
 		RequestDispatcher dis = request.getRequestDispatcher("product/productDetail.jsp");
 		dis.forward(request, response);
 	}

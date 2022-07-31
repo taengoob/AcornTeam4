@@ -49,7 +49,11 @@ public class ProductListServlet extends HttpServlet {
 		List<ProductDTO_Temp> list = service.selectProductByOption(searchOption);
 		
 		request.setAttribute("list", list);
+		
+//		메인용 경로
 		RequestDispatcher dis = request.getRequestDispatcher("productList.jsp");
+		
+//		테스트용 경로
 //		RequestDispatcher dis = request.getRequestDispatcher("product/productList.jsp");
 		dis.forward(request, response);
 	}
