@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>사용자정의데이터</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function () {
+				
+				//data-[데이터 이름] 으로 정의
+				//data-cartid => cartid 가 데이터 이름
+				//데이터는 element의 dataset안에 있음 => dataset.cartid
+				const dataset = document.getElementById("btn").dataset;
+				console.log(dataset);
+				
+				//data-cartid => cartid 가 데이터 이름
+				//데이터는 element의 dataset안에 있음 => dataset.cartid
+				const cartid = dataset.cartid;
+				console.log(cartid);
+				
+				//data- 를 제외하고 '-' 뒤는 대문자로 변경되어 저장됨
+				//data-product-id => productId 가 데이터 이름
+				const productId = dataset.productId;
+				console.log(productId);
+				
+				//data- 를 제외하고 '-' 뒤는 대문자로 변경되어 저장됨
+				//ex) data-abc-qwer-zxcv 라고 하면 => dataset.abcQwerZxcv로 사용
+			};
+		</script>
+
+		<button id="btn" data-cartid="cartid_1234" data-product-id="product_12">
+			테스트
+		</button>
+	</body>
+</html>
