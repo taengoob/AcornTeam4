@@ -11,7 +11,6 @@
 		<title>Insert title here</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     	<link rel="stylesheet" href="product/productview.css">
-		
 	</head>
 	
 	<%
@@ -46,18 +45,19 @@
 				images[i].onclick = onImageClicked;
 			}
 			
-			document.getElementById("orderAddBtn").onclick = onorderAddBtnClicked;
+			document.getElementById("orderAddBtn").onclick = onOrderAddBtnClicked;
 			
 		}
 		
-		let qty;
+		let qty = 1;
 		function onQtyChanged() {
 			qty = this.value;
 			const price = <%= productPrice %> * qty;
 			const totalPrice = price + <%= deliveryPrice %>;
 // 			console.log("totalPrice :", totalPrice);
 			document.getElementById("productPrice").innerHTML = price;
-			document.getElementById("orderPrice").innerHTML = totalPrice;
+			document.getElementById("orderPrice").innerHTML = totalPrice + "원";
+			document.getElementById("hiddenTotalPrice").value = totalPrice;
 		}
 		
 		function onImageClicked() {
@@ -72,22 +72,40 @@
 			
 		}
 		
-		function onorderAddBtnClicked() {
-			const productId = <%= productId %>;
-			const userId = <%= userInfo.getAccountId() %>;
-			const sellerId = <%= sellerId %>;
-			const productPrice = <%= productPrice %>;
-			const deleveryPrice = <%= deliveryPrice %>
-			const totalPrice = (productPrice * qty) + deleveryPrice;
-			const url = "AddOrderFormServlet?"
-					+ "productId=" + productId
-					+ "&&userId=" + userId
-					+ "&&sellerId=" + sellerId
-					+ "&&productPrice=" + productPrice
-					+ "&&deleveryPrice=" + deleveryPrice
-					+ "&&totalPrice=" + totalPrice;
-			console.log(url);
-			//document.location(url);
+		function onOrderAddBtnClicked() {
+			
+			const tempUserId = "<%= userInfo == null ? null : userInfo.getAccountId() %>";
+			
+			const productId = "<%= productId %>";
+			const userId = tempUserId === "null" ? null : tempUserId;
+			const sellerId = "<%= sellerId %>";
+			const productPrice = parseInt(<%= productPrice %>);
+			const deliveryPrice = parseInt(<%= deliveryPrice %>);
+			const totalPrice = parseInt((productPrice * qty) + deliveryPrice);
+			
+			const order = {
+				productId : productId
+				,userId : userId
+				,sellerId : sellerId
+				,productPrice : productPrice
+				,amount : parseInt(qty)
+				,deliveryPrice : deliveryPrice
+				,totalPrice : totalPrice
+			}
+			
+			const orderList = [];
+			orderList.push(order);
+			
+			const orderListJsonStr = JSON.stringify(orderList);
+			
+			document.getElementById("hiddenInput").value = orderListJsonStr;
+			const btnForm = document.getElementById("btnForm");
+			btnForm.action = "AddOrderFormServlet";
+			btnForm.submit();
+			
+// 			console.log(orderList);
+// 			console.log(JSON.stringify(order));
+// 			console.log(JSON.stringify(orderList));
 		}
 			
 			//view의 src 변경
@@ -197,8 +215,12 @@
 	                            </div>
 	                            <div class="btn_choice_box">
 	                                <div>
-	                                    <button id="cartAddBtn" class="btn_add_cart">장바구니</button>
-	                                    <button id="orderAddBtn" class="btn_add_order">바로구매</button>
+	                                	<form id="btnForm" action="#" method="get">
+	                                		<input id="hiddenTotalPrice" name="totalPrice" value="<%= productPrice + deliveryPrice %>" type="hidden">
+	                                		<input id="hiddenInput" name="jsonStr" value="" type="hidden">
+		                                	<input id="cartAddBtn" type="button" class="btn_add_cart" value="장바구니">
+		                                    <input id="orderAddBtn" type="button" class="btn_add_order" value="바로구매">
+	                                	</form>
 	                                </div>
 	                            </div>
 	                        </div>

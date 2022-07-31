@@ -1,7 +1,6 @@
-package com.controller.product;
+package com.controller.order;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,20 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dto.ProductDTO_Temp;
-import com.service.ProductService;
+import com.dto.MemberDTO;
+import com.dto.OrderDTO;
+import com.service.OrderService;
 
 /**
- * Servlet implementation class ProductListServlet
+ * Servlet implementation class OrderListServlet
  */
-@WebServlet("/ProductListServlet")
-public class ProductListServlet extends HttpServlet {
+@WebServlet("/OrderListServlet")
+public class OrderListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductListServlet() {
+    public OrderListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,19 +38,21 @@ public class ProductListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		String category = request.getParameter("category");
-		String searchStr = request.getParameter("searchStr");
+		String userId = "taengoov";
 		
-		HashMap<String, String> searchOption = new HashMap<String, String>();
-		searchOption.put("category", category);
-		searchOption.put("searchStr", searchStr);
+		Object obj = request.getSession().getAttribute("login");
+		if (obj != null)
+		{
+			MemberDTO user = (MemberDTO)obj;
+			userId = user.getAccountId();
+		}
 		
-		ProductService service = new ProductService();
-		List<ProductDTO_Temp> list = service.selectProductByOption(searchOption);
+		OrderService service = new OrderService();
+		List<OrderDTO> orderList = service.selectOrderByUserId(userId);
 		
-		request.setAttribute("list", list);
-		RequestDispatcher dis = request.getRequestDispatcher("productList.jsp");
-//		RequestDispatcher dis = request.getRequestDispatcher("product/productList.jsp");
+		request.setAttribute("orderList", orderList);
+//		RequestDispatcher dis = request.getRequestDispatcher("orderList.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("order/orderList.jsp");
 		dis.forward(request, response);
 	}
 
