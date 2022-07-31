@@ -16,6 +16,19 @@ public class MemberService {
 	public MemberService() {
 		dao = new MemberDAO();
 	}
+	public int update(MemberDTO dto2) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int dto = 0;
+		try {
+			dto = dao.update(session, dto2);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return dto;
+	}
 
 	public int memberAdd(MemberDTO dto) {
 		SqlSession session = MySqlSessionFactory.getSession();

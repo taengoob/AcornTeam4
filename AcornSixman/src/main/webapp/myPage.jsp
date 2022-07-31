@@ -13,6 +13,13 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="member/Maincss/MyPage.css">
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
+<style type="text/css">
+.update{
+	color: blue;
+	font-size: 30px;
+	font-weight: bold;	
+}
+</style>
 </head>
 
 

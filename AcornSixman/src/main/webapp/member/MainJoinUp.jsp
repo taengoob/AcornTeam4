@@ -25,9 +25,6 @@
 </style>
 </head>
 <body>
-	
-
-
 	<h1 class="gibon-item1">기본정보</h1>
 	<p class="gibon-item2">
 		<span class="xi-checkbox-blank"></span> 표시는 반드시 입력하셔야 하는 항목입니다.
@@ -93,7 +90,7 @@
 				<span class="xi-checkbox-blank"></span> 주소
 			</p>
 			<input type="text" name="post" id="sample4_postcode"
-				placeholder="우편번호"> <input type="button"
+				placeholder="우편번호">&nbsp;&nbsp; <input type="button"
 				onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="idCheck2"
 				name="idCheck2"> <br> <input type="text" name="addr1"
 				id="sample4_roadAddress" placeholder="도로명주소"> <input

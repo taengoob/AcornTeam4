@@ -9,7 +9,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<link href="member/Maincss/FirstJoinUp.css" rel="stylesheet" type="text/css" />
+<link href="member/Maincss/FirstJoinUp.css" rel="stylesheet"
+	type="text/css" />
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
 
 
@@ -19,22 +20,24 @@
 
 
 <body>
-	<div class="menu-item"> <!-- 메뉴는 이거랑 css 같이 다니게 복붙해주세요 -김봉근- -->
-	<jsp:include page="common/top.jsp" flush="true"></jsp:include>
-	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
+	<div class="menu-item">
+		<!-- 메뉴는 이거랑 css 같이 다니게 복붙해주세요 -김봉근- -->
+		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
+		<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	</div>
 	<div class="wide"></div>
 	<div class="main-container">
 		<a href="MainJoinUp.jsp" class="main-link-item">쇼핑몰 회원가입</a>
 		<p class="main-line"></p>
 		<p class="naver-login">
-			<span class="naver-box"><img src="member/img/nav.png" alt="네이버"
-				class="naver-img"></span><span class="naver-item">네이버 아이디 회원가입</span>
+			<span class="naver-box"><img src="member/img/nav.png"
+				alt="네이버" class="naver-img"></span><span class="naver-item">네이버
+				아이디 회원가입</span>
 		</p>
 		<p class="kakao-login">
-			<span class="kakao-box"> <img src="member/img/kka.png" alt="카카오"
-				class="kakao-img"></span><span class="kakao-item" id="kakao">카카오
-				아이디 회원가입</span>
+			<span class="kakao-box"> <img src="member/img/kka.png"
+				alt="카카오" class="kakao-img"></span><span class="kakao-item"
+				id="kakao">카카오 아이디 회원가입</span>
 		</p>
 		<p class="last-write">
 			SNS계정을 연동하여 빠르고 쉽고 안전하게 회원가입 할 수 있습니다.<br> 이 과정에서 고객님의 데이터는 철저하게
@@ -45,7 +48,7 @@
 	<p class="finally">
 		이미 회원이세요? <a href="Login.jsp" class="finally-login">로그인</a>
 	</p>
-<!-- 	<script
+	<!-- 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"
 		type="text/javascript">

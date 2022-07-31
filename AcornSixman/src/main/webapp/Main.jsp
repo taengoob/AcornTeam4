@@ -14,6 +14,20 @@ $(function () {
 });
 </script>
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
+
+<%
+request.setCharacterEncoding("utf-8");
+String mesg = (String) session.getAttribute("memberupdate");
+if (mesg != null) {
+%>
+<script type="text/javascript">
+		alert("<%=mesg%>");
+</script>
+<%
+session.removeAttribute("mesg");
+}
+%>
+
 </head>
 <body>
 	<div class="menu-item">

@@ -17,7 +17,6 @@ public class MemberDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public MemberDTO(String accountId, String accountPasswd, String accountName, String accountAddressNumber,
 			String accountAddressLoad, String accountPhone, String accountEmailId, String accountEmailDomain,
 			String accountIsSeller) {
@@ -33,7 +32,6 @@ public class MemberDTO {
 		this.accountAddressLoad = accountAddressLoad;
 		this.accountEmailDomain = accountEmailDomain;
 	}
-
 
 	public String getAccountId() {
 		return accountId;

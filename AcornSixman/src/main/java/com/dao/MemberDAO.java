@@ -22,7 +22,9 @@ public class MemberDAO {
 	public int idCheck(SqlSession session, String id) {
 		return session.selectOne("idCheck", id);
 	}
-
+	public int update(SqlSession session, MemberDTO dto2) {
+		return session.update("MemberMapper.update", dto2);
+	}
 
 
 }

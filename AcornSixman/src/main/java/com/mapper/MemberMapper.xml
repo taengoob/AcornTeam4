@@ -38,5 +38,15 @@
 		and ACCOUNT_PASSWD =
 		#{accountPasswd}
 	</select>
-	
+	<update id="update" parameterType="MemberDTO">
+	update user_account set 
+		ACCOUNT_PASSWD = #{accountPasswd},
+		ACCOUNT_NAME = #{accountName},
+		ACCOUNT_ADDRESS_NUMBER = #{accountAddressNumber},
+		ACCOUNT_ADDRESS_LOAD = #{accountAddressLoad},
+		ACCOUNT_PHONE =	#{accountPhone},
+		ACCOUNT_EMAIL_ID = #{accountEmailId},
+		ACCOUNT_EMAIL_DOMAIN = #{accountEmailDomain}
+	where ACCOUNT_ID =  #{accountId}
+	</update>
 </mapper>

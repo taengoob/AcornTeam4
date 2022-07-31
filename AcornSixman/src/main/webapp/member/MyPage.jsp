@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 	<section class="high-section">
 		<div class="order-strong-span-mom">
+		<a href="memberUpdate.jsp" class="update">*회원정보수정 페이지로 이동*</a><br>
 			<strong class="order-strong">주문내역</strong>&nbsp; <span
 				class="order-span">(최근 6개월,배송상품 기준)</span>
 		</div>
