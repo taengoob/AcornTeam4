@@ -35,11 +35,11 @@ session.removeAttribute("mesg");
 		<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 		
 	</div><div class="wide"></div>
-	<hr>
 	<jsp:include page="common/search.jsp"></jsp:include>
 	<hr>
 	<jsp:include page="common/banner.jsp"></jsp:include>
 	<hr>
+	<jsp:include page="coupon/bannertest.html"></jsp:include>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	<hr>
 	<jsp:include page="common/mesg.jsp"></jsp:include>

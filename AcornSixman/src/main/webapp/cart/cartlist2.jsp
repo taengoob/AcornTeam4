@@ -346,14 +346,14 @@
 	</div>
 	<div class="totalpriceBox1">
 		<div class="totalpriceCell1">총 배송비</div>
-		<div class="totalpriceCell2"><span id="totalDelPrice">50000</span>원</div>
+		<div class="totalpriceCell2"><span id="totalDelPrice">0</span>원</div>
 	</div>
 	<div class="totalpriceBox2">
 		<img src="cart/plus.png" width="20px;" height="20px;">
 	</div>
 	<div class="totalpriceBox1">
 		<div class="totalpriceCell1">할인예상금액</div>
-		<div class="totalpriceCell2"><span>0</span>원</div>
+		<div class="totalpriceCell2"><span id="totalDisperPrice">0</span>원</div>
 	</div>
 	<div class="totalpriceBox2">
 		<img src="cart/equal.png" width="20px;" height="20px;">
@@ -363,7 +363,7 @@
 	</div>
 	<div class="totalpriceBox4">
 		<div class="totalpriceCell4">
-			<span id="totalSumPrice"></span>원
+			<span id="totalSumPrice">0</span>원
 		</div>
 	</div>
 </div>
