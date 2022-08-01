@@ -2,21 +2,24 @@
 <%@page import="com.dto.OrderDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <!--     	<link rel="stylesheet" href="orderFrom.css"> -->
-    	<link rel="stylesheet" href="order/orderFrom.css">
-	</head>
-	
-	<%
+<!-- <link rel="stylesheet" href="order/orderFrom.css"> -->
+</head>
+
+<%
 	MemberDTO userInfo = (MemberDTO)session.getAttribute("login");
 	
 // 	List<OrderDTO> orderList = (List<OrderDTO>)request.getAttribute("orderList");
@@ -30,9 +33,9 @@
 	String jsonStr = request.getParameter("jsonStr");
 	int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
 	%>
-	
-	<body>
-		<script type="text/javascript">
+
+<body>
+	<script type="text/javascript">
 		
 			window.onload = function() {
 				const form = document.getElementById("orderForm");
@@ -74,57 +77,57 @@
 			}
 			
 		</script>
-	
-		<h1 class="gibon-item1">배송정보</h1>
-		<p class="gibon-item2">
-			<span class="xi-checkbox-blank"></span> 표시는 반드시 입력하셔야 하는 항목입니다.
-		</p>
-		<br>
-		<form action="AddOrderServlet" method="get" id="orderForm">
-			<input id="hiddenInput" name="jsonStr" value="" type="hidden">
-			<section class="password-container">
-				<p class="form-item">결제금액</p>
-				<p style="margin-top: 1%; margin-left: 1%; width: 15%; display: inline-block;"><%= totalPrice %>원</p>
-			</section>
-			<section class="name-container">
-				<p class="form-item">
-					<span class="xi-checkbox-blank"></span> 받는사람
-				</p>
-				<input type="text" id="name" name="name">
-			</section>
-			<section class="call-number-container">
-				<p class="number-item1">
-					<span class="xi-checkbox-blank"></span> 휴대폰번호
-				</p>
-				<input type="text" placeholder="- 없이 입력하세요." data-pattern="gdNum"
-					id="phoneNumber" name="phoneNumber" onkeyup="checkNumber(event)">
-			</section>
-			<section class="addr-container">
-				<p class="number-item3">
-					<span class="xi-checkbox-blank"></span> 주소
-				</p>
-				<input type="text" name="post" id="sample4_postcode" placeholder="우편번호">&nbsp;&nbsp;
-				<input type="button" style="padding: 6px;"
-					onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="idCheck2"
-					name="idCheck2">
-				<br>
-				<input type="text" name="addr1"
-					id="sample4_roadAddress" placeholder="도로명주소">
-				<input type="text" name="addr2" id="sample4_jibunAddress"
-					placeholder="지번주소">
-				<span id="guide" style="color: #999"></span>
-			</section>
-			<span class="addr-bottom-line"></span>
-	
-			<div class="finish">
-				<a href="" id="cancle">취소</a>
-				<input type="submit" id="finishuser" value="주문결제">
-			</div>
-		</form>
-		<p class="row"></p>
-	
-		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<script> <!-- 주소 팝업 -->
+
+	<h1 class="gibon-item1">배송정보</h1>
+	<p class="gibon-item2">
+		<span class="xi-checkbox-blank"></span> 표시는 반드시 입력하셔야 하는 항목입니다.
+	</p>
+	<br>
+	<form action="AddOrderServlet" method="get" id="orderForm">
+		<input id="hiddenInput" name="jsonStr" value="" type="hidden">
+		<section class="password-container">
+			<p class="form-item">결제금액</p>
+			<p
+				style="margin-top: 1%; margin-left: 1%; width: 15%; display: inline-block;"><%= totalPrice %>원
+			</p>
+		</section>
+		<section class="name-container">
+			<p class="form-item">
+				<span class="xi-checkbox-blank"></span> 받는사람
+			</p>
+			<input type="text" id="name" name="name">
+		</section>
+		<section class="call-number-container">
+			<p class="number-item1">
+				<span class="xi-checkbox-blank"></span> 휴대폰번호
+			</p>
+			<input type="text" placeholder="- 없이 입력하세요." data-pattern="gdNum"
+				id="phoneNumber" name="phoneNumber" onkeyup="checkNumber(event)">
+		</section>
+		<section class="addr-container">
+			<p class="number-item3">
+				<span class="xi-checkbox-blank"></span> 주소
+			</p>
+			<input type="text" name="post" id="sample4_postcode"
+				placeholder="우편번호">&nbsp;&nbsp; <input type="button"
+				style="padding: 6px;" onclick="sample4_execDaumPostcode()"
+				value="우편번호 찾기" id="idCheck2" name="idCheck2"> <br> <input
+				type="text" name="addr1" id="sample4_roadAddress"
+				placeholder="도로명주소"> <input type="text" name="addr2"
+				id="sample4_jibunAddress" placeholder="지번주소"> <span
+				id="guide" style="color: #999"></span>
+		</section>
+		<span class="addr-bottom-line"></span>
+
+		<div class="finish">
+			<a href="" id="cancle">취소</a> <input type="submit" id="finishuser"
+				value="주문결제">
+		</div>
+	</form>
+	<p class="row"></p>
+
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script> <!-- 주소 팝업 -->
 			//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 			function sample4_execDaumPostcode() {
 				new daum.Postcode(
@@ -183,6 +186,6 @@
 						}).open();
 			}
 		</script>
-	</body>
+</body>
 
 </html>
