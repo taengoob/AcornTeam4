@@ -12,7 +12,16 @@
 <link href="member/Maincss/FirstJoinUp.css" rel="stylesheet"
 	type="text/css" />
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
+<style type="text/css">
+.main-container {
+	margin: 0 auto;
+	width: 35%;
+	border: 1px solid #eaeaea;
+	height: 400px;
+	margin-top: 3.5%;
+} /* css 파일 적용안돼서 임시로 해놓은거 나중에 삭제 예정 */
 
+</style>
 
 <title>회원가입</title>
 

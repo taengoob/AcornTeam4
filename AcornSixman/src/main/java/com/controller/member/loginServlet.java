@@ -53,6 +53,7 @@ public class loginServlet extends HttpServlet {
 			response.sendRedirect("Mainservlet");
 			HttpSession session = request.getSession();
 			session.setAttribute("login", dto);
+			System.out.println("써쁠릿 >>>>"+dto.getAccountIsSeller());
 			session.setMaxInactiveInterval(60 * 60);
 			System.out.println("로그인 성공");
 		} else {

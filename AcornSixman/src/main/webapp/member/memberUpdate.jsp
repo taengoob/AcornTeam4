@@ -71,9 +71,9 @@ MemberDTO dto = (MemberDTO) session.getAttribute("login");
 				placeholder="우편번호" value="<%=dto.getAccountAddressNumber()%>">&nbsp;&nbsp; <input type="button"
 				onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="idCheck2"
 				name="idCheck2"> <br> <input type="text" name="addr1"
-				id="sample4_roadAddress" placeholder="도로명주소"><input
+				id="sample4_roadAddress" placeholder="도로명주소" value="<%=dto.getAccountAddressLoad()%>"><input
 				type="text" name="addr2" id="sample4_jibunAddress"
-				placeholder="지번주소">
+				placeholder="지번주소" value="<%=dto.getAccountAddressLoad()%>">
 				 <span id="guide" style="color: #999">
 			</span>
 		</section>
