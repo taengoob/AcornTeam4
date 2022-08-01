@@ -53,13 +53,14 @@
 							<div style="text-align: left;"><%= name %></div>
 							<div style="text-align: left;"><%= model %>/<%= maker %>/<%= category %></div>
 						</td>
+						
 						<td colspan="3">
-							<span>주문상태</span><br>
-							<span class="sumPrice"><%= displayStatus %></span>
-						</td>
-						<td colspan="2">
 							<span>결제(예정)금액</span><br>
 							<span class="sumPrice"><%= payment %></span>원
+						</td>
+						<td colspan="2">
+							<span>주문상태</span><br>
+							<span class="sumPrice"><%= displayStatus %></span>
 						</td>
 						<td colspan="2">
 							<form id="btnForm" action="#" method="post">
