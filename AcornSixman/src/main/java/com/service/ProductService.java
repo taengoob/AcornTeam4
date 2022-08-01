@@ -90,4 +90,19 @@ public class ProductService
 		}
 		return list;
 	}
+
+	public List<ProductDTO_Temp> selectProductBySellerId(String sellerId)
+	{
+		SqlSession session = MySqlSessionFactory.getSession();
+		List<ProductDTO_Temp> list = null;
+		try
+		{
+			list = dao.selectProductBySellerId(session, sellerId);
+		}
+		finally
+		{
+			session.close();
+		}
+		return list;
+	}
 }

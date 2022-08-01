@@ -37,5 +37,10 @@ public class ProductDAO
 		list = session.selectList("com.mapper.product.goodsRetrieve",category);
 		return list;
 	}
+
+	public List<ProductDTO_Temp> selectProductBySellerId(SqlSession session, String sellerId)
+	{
+		return session.selectList("com.mapper.product.selectProductBySellerId", sellerId);
+	}
 	
 }
