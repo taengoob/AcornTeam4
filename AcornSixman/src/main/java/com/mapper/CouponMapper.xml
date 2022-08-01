@@ -7,10 +7,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="couponAdd" parameterType="CouponDTO">
 		insert into coupon_detail (coupon_id, coupon_user_id, coupon_dis_per,
 								   coupon_name, coupon_is_usable)
-		values (#{coupon_id}, #{coupon_userid}, #{coupon_disper}, 
-				#{coupon_name}, 'true')
+		values (#{couponId}, #{couponuserId}, #{couponDisper}, 
+				#{couponName}, 'true')
 	</insert>
-	
+
 	<select id="couponList" parameterType="String" resultType="CouponDTO">
 		
 		select

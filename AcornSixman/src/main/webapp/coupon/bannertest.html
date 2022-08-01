@@ -1,19 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+<style type="text/css">
+	#bannerBox1{
+		width: 1200px;
+		height: 300px;
+		margin: auto;
+		margin-bottom: -110px;
+	}
+	div{
+		font-weight: bold;
+	}
+	#d{
+		height: 250px;
+		float: left;
+	}
+	#e{
+		float: right;
+	}	
+	#c{
+		width: 1200px;
+		height: 10px;
+	}
+	#f{
+		width: 1200px;
+		height: 20px;
+	}
+</style>
 <script type="text/javascript">
 
 	function xxx() {
 		var popupX = (window.screen.width/2)-(593/2);
  		var popupY = (window.screen.height/2)-(703/2);
-		window.open("event.jsp","","width=593px height=703px, left="+popupX+", top="+popupY);
+		window.open("coupon/event.jsp","","width=593px height=703px, left="+popupX+", top="+popupY);
 	}
 
 </script>
-</head>
-<body>
-<img alt="" src="eventpagebanner.png" width="500px" height="200px" onclick="xxx()">
-</body>
-</html> 
+<div id="f"></div>
+<div id="bannerBox1">
+<div id="c">
+	-현재 진행중인 이벤트-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	-신규 상품-
+</div><br>
+<div id="d"></div>
+<img alt="" src="coupon/eventpagebanner.png" width="500px" height="200px" onclick="xxx()">
+<div id="e">
+<img alt="" src="coupon/banne2.jpg" width="500px" height="200px" onclick="xxx()">
+</div>
+</div>

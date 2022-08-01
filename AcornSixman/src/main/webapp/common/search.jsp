@@ -3,8 +3,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%List<CategoryDTO> list = (List<CategoryDTO>) session.getAttribute("Guitar"); %>
+<style type="text/css">
+
+	#searchbox1{
+		width: 1100px;
+		height: 40px;
+		margin: auto;
+	}
+	#searchbox2{
+		width: 1100px;
+		height: 40px;
+		margin: auto;
+		margin-top: 20px;
+	}
+
+</style>
+<div id="searchbox1">
+<div id="searchbox2">
 <form action="ProductListServlet">
-	<img alt="" src="image/category.png" width="20px" height="20px"></img>
+	카테고리
 	<select name="category">
 	<%for (int i = 0; i < list.size(); i++) {
 		CategoryDTO dto = list.get(i);%>
@@ -12,6 +29,7 @@
 		<%} %>
 	</select>
 		검색<input type="text" name="searchStr">
-			<a href="#button"><button><img src="image/search.png"
-			alt="검색" width="20px" height="20px"></button></a>
+		<input type="submit" value="검색">
 </form>
+</div>
+</div>
