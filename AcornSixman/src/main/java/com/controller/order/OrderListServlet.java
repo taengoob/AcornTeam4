@@ -52,10 +52,10 @@ public class OrderListServlet extends HttpServlet {
 		
 		request.setAttribute("orderList", orderList);
 //		메인용 경로
-//		RequestDispatcher dis = request.getRequestDispatcher("orderList.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("myPage.jsp");
 		
 //		테스트용 경로
-		RequestDispatcher dis = request.getRequestDispatcher("order/orderList.jsp");
+//		RequestDispatcher dis = request.getRequestDispatcher("order/orderList.jsp");
 		dis.forward(request, response);
 	}
 

@@ -1,6 +1,8 @@
 package com.controller.member;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +37,7 @@ public class MyPageServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		if (dto != null) {
-			response.sendRedirect("myPage.jsp");
+			response.sendRedirect("OrderListServlet");
 		}else {
 		response.sendRedirect("LoginUIservlet");
 		}

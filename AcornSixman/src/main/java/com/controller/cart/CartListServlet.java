@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.dto.CartDTO;
 import com.dto.CategoryDTO;
 import com.dto.CouponDTO;
+import com.dto.MemberDTO;
 import com.service.CartService;
 import com.service.CommonService;
 import com.service.CouponService;
@@ -28,15 +29,21 @@ public class CartListServlet extends HttpServlet {
 		List<CategoryDTO> dto = cservice.getGuitarCategories();
 		session.setAttribute("Guitar", dto);
 		
-		String userid = (String) session.getAttribute("userid");
-		String userid2 = "DGLee";//임시아이디 사용
+		String userId = "DGLee";
+		
+		Object obj = request.getSession().getAttribute("login");
+		if (obj != null)
+		{
+			MemberDTO user = (MemberDTO)obj;
+			userId = user.getAccountId();
+		}
 		
 		CartService service = new CartService();
-		List<CartDTO> cartList = service.cartList(userid2);
+		List<CartDTO> cartList = service.cartList(userId);
 		request.setAttribute("cartList", cartList);
 		
 		CouponService service2 = new CouponService();
-		List<CouponDTO> couponList = service2.couponList(userid2);
+		List<CouponDTO> couponList = service2.couponList(userId);
 		request.setAttribute("couponList", couponList);
 		System.out.println(couponList);
 	

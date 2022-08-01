@@ -13,6 +13,7 @@
 		<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 		
 	</div><div class="wide"></div>
+	<jsp:include page="common/search.jsp"></jsp:include>
 	<hr>
 	<jsp:include page="product/productList.jsp" flush="true"></jsp:include><br>
 	<hr>

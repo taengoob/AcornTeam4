@@ -55,10 +55,10 @@ public class AddOrderFormServlet extends HttpServlet {
 //		}
 //		
 //		메인연결용 경로
-//		RequestDispatcher dis = request.getRequestDispatcher("addOrderFrom.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("addOrderFrom.jsp");
 		
 //		테스트용 경로
-		RequestDispatcher dis = request.getRequestDispatcher("order/addOrderFrom.jsp");
+//		RequestDispatcher dis = request.getRequestDispatcher("order/addOrderFrom.jsp");
 		dis.forward(request, response);
 		
 //		JSONArray jsonArray = null;
