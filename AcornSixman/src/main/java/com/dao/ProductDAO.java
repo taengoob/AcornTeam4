@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.dto.CartDTO;
 import com.dto.ImageDTO;
 import com.dto.ProductDTO_Temp;
 
@@ -41,6 +40,20 @@ public class ProductDAO
 	public List<ProductDTO_Temp> selectProductBySellerId(SqlSession session, String sellerId)
 	{
 		return session.selectList("com.mapper.product.selectProductBySellerId", sellerId);
+	}
+	public List<ProductDTO_Temp> select(SqlSession session) {
+		List<ProductDTO_Temp> list =  session.selectList("com.mapper.product.selectProductAll");
+		return list;
+	}
+	public int delete(SqlSession session, String ProductId) {
+		
+		int n = session.delete("com.mapper.product.deleteByProductid", ProductId);
+		return n;
+	}
+public int deleteAll(SqlSession session, List<String> list) {
+		
+		int n = session.delete("com.mapper.product.deleteByAllProdId", list);
+		return n;
 	}
 	
 }

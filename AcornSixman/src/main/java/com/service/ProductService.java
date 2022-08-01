@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.dao.CommonDAO;
 import com.dao.ProductDAO;
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.ImageDTO;
@@ -105,4 +104,44 @@ public class ProductService
 		}
 		return list;
 	}
+	public List<ProductDTO_Temp> select() {
+		ProductDAO dao = new   ProductDAO();
+		 SqlSession session = MySqlSessionFactory.getSession();
+		 List<ProductDTO_Temp> list = null; 
+		 try {
+	      list = dao.select(session);
+	    	  
+//	      }catch(Exception e) {
+//	    	  e.printStackTrace();
+	      }finally {
+			session.close();
+	      }
+	      return list;
+		}//end select
+	public int delete(String ProductId) {
+		 SqlSession session = MySqlSessionFactory.getSession();
+		int n = 0;
+		 try {
+	      n = dao.delete(session,ProductId);
+	    	 session.commit();
+//	      }catch(Exception e) {
+//	    	  e.printStackTrace();
+	      }finally {
+			session.close();
+	      }
+	      return n;
+		}//end select
+	public int deleteAll(List<String> list) {
+		 SqlSession session = MySqlSessionFactory.getSession();
+		int n = 0;
+		 try {
+	      n = dao.deleteAll(session,list);
+	    	 session.commit();
+//	      }catch(Exception e) {
+//	    	  e.printStackTrace();
+	      }finally {
+			session.close();
+	      }
+	      return n;
+		}//end select
 }

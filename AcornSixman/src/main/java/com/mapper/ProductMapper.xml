@@ -154,5 +154,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 1=1
 			AND PRODUCT_SELLER = #{sellerId}
 	</select>
+	<delete id="deleteByProductid" parameterType="string">
+	 delete 
+	 from PRODUCT_DETAIL
+	 where PRODUCT_ID = #{PRODUCT_ID}
+	</delete>
+	     <delete id="deleteByAllProdId" parameterType="arraylist">
+    delete from PRODUCT_DETAIL 
+    where PRODUCT_ID IN
+    <foreach item="item"  collection="list" open="("
+    separator="," close=")">
+    #{item}    
+      </foreach>
+  </delete>
 	
 </mapper>
