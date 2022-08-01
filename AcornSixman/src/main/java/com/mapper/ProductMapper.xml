@@ -98,8 +98,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,PRODUCT_PREVIEW        AS productPreview
 			,PRODUCT_CONTENT        AS productContent
 			,PRODUCT_CATEGORY       AS productCategory
-		FROM PRODUCT_DETAIL
+		FROM PRODUCT_DETAIL A
+			,PRODUCT_GUITAR_CATEGORY B
 		WHERE 1=1
+			AND A.PRODUCT_CATEGORY = B.CATEGORY_ID
 		<if test='category != null and category != "" and category != "All"'>
 			AND PRODUCT_CATEGORY = #{category}
  		</if>
@@ -109,6 +111,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					LOWER(PRODUCT_NAME) LIKE '%' || LOWER(#{searchStr}) || '%'
 				 OR LOWER(PRODUCT_MODEL) LIKE '%' || LOWER(#{searchStr}) || '%'
 				 OR LOWER(PRODUCT_MAKER) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(PRODUCT_CONTENT) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(B.CATEGORY_NAME) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(B.CATEGORY_DESC) LIKE '%' || LOWER(#{searchStr}) || '%'
 			)
  		</if>
 	</select>
