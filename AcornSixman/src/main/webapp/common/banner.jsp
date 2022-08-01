@@ -22,6 +22,18 @@ setInterval(function xxx() {
 			$("#banner").attr("src",imgArray[0]);
 		}
 	},5000);
+	$("#span1").mouseover(function () {
+		$("#banner").attr("src",imgArray[0]);
+	})
+	$("#span2").mouseover(function () {
+		$("#banner").attr("src",imgArray[1]);
+	})
+	$("#span3").mouseover(function () {
+		$("#banner").attr("src",imgArray[2]);
+	})
+	$("#span4").mouseover(function () {
+		$("#banner").attr("src",imgArray[3]);
+	})
 })
 </script>
 <style type="text/css">
@@ -41,10 +53,24 @@ setInterval(function xxx() {
 		width: 100%;
 		height: 20px;
 	}
+	#box5{
+		margin: auto;
+		width: 100%;
+		height: 20px;
+	}
+	#pre{
+		margin: auto;
+		width: 100%;
+		height: 20px;
+	}
 
 </style>
 <div id="box3"></div>
 <div id="box2">    
 <img src="image/banner1.png" name="banner" width="1200px;" height="420px;" id="banner"> </img>
+</div>
+
+<div id="box5">
+<pre id="pre">                                                                              <span id="span1">●</span>             <span id="span2">●</span>             <span id="span3">●</span>             <span id="span4">●</span>                   </pre>
 </div>
 <div id="box4"></div>

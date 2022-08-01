@@ -28,7 +28,7 @@
 		<option <%if(dto.getCategoryId()=="all"){%> selected="selected"<%}%>><%=dto.getCategoryId() %></option>
 		<%} %>
 	</select>
-		검색<input type="text" name="searchStr">
+		검색<input type="text" name="searchStr" placeholder="기타를 검색해보세요!">
 		<input type="submit" value="검색">
 </form>
 </div>
