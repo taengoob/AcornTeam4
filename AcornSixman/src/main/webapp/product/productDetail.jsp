@@ -46,6 +46,7 @@
 			}
 			
 			document.getElementById("orderAddBtn").onclick = onOrderAddBtnClicked;
+			document.getElementById("cartAddBtn").onclick = onCartAddBtnClicked;
 			
 		}
 		
@@ -106,6 +107,16 @@
 // 			console.log(orderList);
 // 			console.log(JSON.stringify(order));
 // 			console.log(JSON.stringify(orderList));
+		}
+		
+		function onCartAddBtnClicked() {
+			
+			const productId = "<%= productId %>";
+			const url = "CartAddServlet?"
+						+"productId=" + productId
+						+"&&cartCount=" + qty;
+			console.log(url);
+			location.href = url;
 		}
 			
 			//view의 src 변경
