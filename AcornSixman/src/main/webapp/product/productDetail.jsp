@@ -122,7 +122,7 @@
 			//view의 src 변경
 	</script>
 	
-	<body style="width: 70%; margin: 0 auto;">
+	<body style="width: 100%; margin: 0 auto;">
 	    <div class="wrap clearfix">
 	        <section>
 	            <div class="content">
