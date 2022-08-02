@@ -21,6 +21,7 @@ public class ProductDTO_Temp
 	private String productContent;
 	private String productCategory;
 	private String previewUrl;
+	private int orderAmount;
 	
 	public String getProductId()
 	{
@@ -130,6 +131,14 @@ public class ProductDTO_Temp
 	public String getPreviewUrl()
 	{
 		return previewUrl;
+	}
+	public int getOrderAmount()
+	{
+		return orderAmount;
+	}
+	public void setOrderAmount(int orderAmount)
+	{
+		this.orderAmount = orderAmount;
 	}
 	
 	public ProductDTO_Temp()
