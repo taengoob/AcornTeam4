@@ -67,6 +67,6 @@
 			<p class="order-two-write-item3">상품금액/수량</p>
 			<p class="order-two-write-item4">주문상태</p>
 			<p class="order-two-write-item5">확인/리뷰</p>
-			<jsp:include page="../order/orderList.jsp"></jsp:include>
+			
 		</div>
 	</section>

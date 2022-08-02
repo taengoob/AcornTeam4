@@ -10,6 +10,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 <link href="Maincss/sample.css" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=East+Sea+Dokdo:400" rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"
 	text="text/javascript"></script>
 <title>로그인</title>
@@ -20,7 +21,7 @@
 <body>
 	<p class="main-img"></p>
 	<form action="loginServlet" method="post" id="mainform">
-		<p class="main-name">식스맨 악기#</p>
+		<p class="main-name">식스맨 기타판매#</p>
 		<input type="text" placeholder="아이디" id="userid" name="userid"><br>
 		<input type="password" placeholder="비밀번호" id="passwd" name="passwd"><br>
 		<input class="p-login" type="submit" id="submit" value="로그인">

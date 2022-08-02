@@ -9,9 +9,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!--     	<link rel="stylesheet" href="orderList.css"> -->
-    	<link rel="stylesheet" href="order/orderList.css">
 	</head>
 	
 	<%
@@ -54,11 +51,11 @@
 							<div style="text-align: left;"><%= model %>/<%= maker %>/<%= category %></div>
 						</td>
 						
-						<td colspan="3">
+						<td colspan="2">
 							<span>결제(예정)금액</span><br>
 							<span class="sumPrice"><%= payment %></span>원
 						</td>
-						<td colspan="2">
+						<td colspan="3">
 							<span>주문상태</span><br>
 							<span class="sumPrice"><%= displayStatus %></span>
 						</td>

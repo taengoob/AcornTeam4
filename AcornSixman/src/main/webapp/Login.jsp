@@ -12,6 +12,7 @@
 <link href="member/Maincss/sample.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
 <style type="text/css">
+<link href="https://fonts.googleapis.com/css?family=East+Sea+Dokdo:400" rel="stylesheet">
 #userid {
 	padding-left: 5px;
 	width: 17%;
@@ -38,8 +39,7 @@
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	</div>
 	<div class="wide"></div>
-	
-	
 	<jsp:include page="member/Login.jsp" flush="true"></jsp:include>
+	<jsp:include page="common/bot.jsp"></jsp:include>
 </body>
 </html>
