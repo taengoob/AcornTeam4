@@ -23,6 +23,7 @@ public class CouponAddServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userId = "dg38";
 
+		
 		Object obj = request.getSession().getAttribute("login");
 		if (obj != null)
 		{
