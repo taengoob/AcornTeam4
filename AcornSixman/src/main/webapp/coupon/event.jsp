@@ -1,17 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-<html>
-<meta charset="UTF-8" />
-<head>
-<title>Roulette page</title>
+<%
+   String couponMesg = (String)request.getAttribute("couponMesg");
+  if(couponMesg!=null){
+%>    
+   <script>
+     alert('로그인이 필요합니다.');
+     window.close();
+   </script>
+<%
+  }
+%>    
 <style type="text/css">
 	body { 
 		margin:0; 
 		padding:0; 
 	} 
-	.box{
+	.box11{
 		width: 600px;
 		height: 720px;
 		background-size: 100%;
@@ -74,14 +79,14 @@
 	}
 </style>
 <script type="text/javascript">
-
+	
 </script>
-</head>
-<body>
-<div class="box">
+<div class="box11">
 <div id="app"></div>
 </div>
 <script type="text/javascript">
+
+	
 		
 	var rolLength = 6;
 	var setNum;
@@ -91,7 +96,7 @@
 	const rRandom = () => {
 	  var min = Math.ceil(0);
 	  var max = Math.floor(rolLength - 1);
-	  return Math.floor(Math.random() * (max - min)) + min;
+	  return Math.floor(Math.random() * (max - min+1)) + min;
 	};
 
 	const rRotate = () => {
@@ -165,9 +170,5 @@
 	    <button class="rouletter-btn" id="start">start</button>
 	</div>
 	`;
-
 	
 	</script>
-</body>
-
-</html>

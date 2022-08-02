@@ -24,13 +24,39 @@
 		width: 1200px;
 		height: 20px;
 	}
+	#bannerA{
+		box-shadow: 5px 5px 5px black;
+		transition-duration: 0.3s;
+	}
+	#bannerA:active{
+		box-shadow: none;
+		margin-left: 5px;
+		margin-bottom: 5px;
+	}
+	#bannerB{
+		box-shadow: 5px 5px 5px black;
+		transition-duration: 0.3s;
+	}
+	#bannerABox{
+		position : relative;
+		width: 500px;
+		height: 200px;
+	}
+	#bannerABox>div{
+		width: 10px;
+		height: 5px;
+		background-color: red;
+		position: absolute;
+		top: 50px;
+		left: 50px;
+	}
 </style>
 <script type="text/javascript">
 
 	function xxx() {
-		var popupX = (window.screen.width/2)-(593/2);
- 		var popupY = (window.screen.height/2)-(703/2);
-		window.open("coupon/event.jsp","","width=593px height=703px, left="+popupX+", top="+popupY);
+		var popupX = (window.screen.width/2)-(500/2);
+ 		var popupY = (window.screen.height/2)-(603/2);
+		window.open("coupon/event.jsp","","width=532px height=630px, left="+popupX+", top="+popupY);
 	}
 
 </script>
@@ -45,8 +71,8 @@
 	-신규 상품-
 </div><br>
 <div id="d"></div>
-<img alt="" src="coupon/eventpagebanner.png" width="500px" height="200px" onclick="xxx()">
+<img id="bannerA" alt="" src="coupon/eventpagebanner.png" width="500px" height="200px" onclick="xxx()">
 <div id="e">
-<img alt="" src="coupon/banne2.jpg" width="500px" height="200px" onclick="xxx()">
+<img id="bannerB" alt="" src="coupon/banne2.jpg" width="500px" height="200px" onclick="xxx()">
 </div>
 </div>

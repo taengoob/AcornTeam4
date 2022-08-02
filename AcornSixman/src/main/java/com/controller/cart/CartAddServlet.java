@@ -24,7 +24,7 @@ public class CartAddServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		String userId = "DGLee";
+		String userId = "";
 		
 		Object obj = request.getSession().getAttribute("login");
 		if (obj != null)
@@ -32,7 +32,6 @@ public class CartAddServlet extends HttpServlet {
 			MemberDTO user = (MemberDTO)obj;
 			userId = user.getAccountId();
 		}
-		
 		String productId = request.getParameter("productId");
 		int cartCount = Integer.parseInt(request.getParameter("cartCount"));
 		

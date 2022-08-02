@@ -38,9 +38,9 @@
 			total += parseInt($(ele).attr("data-zzz"));
 			console.log(total);
 		})
-		$("#totalPrice").text(total);
-		total+=parseInt($("#totalDelPrice").text());
-		$("#totalSumPrice").text(total);
+		$("#totalPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		total+=parseInt($("#totalDelPrice").text().replace(/,/g, ''));
+		$("#totalSumPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	}
 	
 	function deleteSelect() {

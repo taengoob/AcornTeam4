@@ -4,11 +4,13 @@
 <%@page import="com.dto.CouponDTO" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.text.DecimalFormat" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%
 	
 	List<CartDTO> cartList = (List<CartDTO>)request.getAttribute("cartList");
 	List<CouponDTO> couponList = (List<CouponDTO>)request.getAttribute("couponList");
+	DecimalFormat decFormat = new DecimalFormat("###,###");
 %>
 <style type="text/css">
 	.boxtop{
@@ -223,7 +225,7 @@
 				dataType: "text",
 				success: function(data, status, xhr) {
 					var sum = productPrice * cartCount
-					$("#sum"+productId).text(sum);
+					$("#sum"+productId).text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$("#chk"+productId).attr("data-zzz", sum);
 					var total = 0;
 					var chkedProduct = $("input:checkbox[name=chkProduct]:checked");
@@ -231,9 +233,9 @@
 						total += parseInt($(ele).attr("data-zzz"));
 						console.log(total);
 					})
-					$("#totalPrice").text(total);
+					$("#totalPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					total+=parseInt($("#totalDelPrice").text());
-					$("#totalSumPrice").text(total);
+					$("#totalSumPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				},
 				error: function(xhr, status, error) {
 					console.log("ajax 비동기처리 실패 : "+error);
@@ -258,10 +260,10 @@
 				console.log(total);
 				chkCount++;
 			})
-			$("#totalPrice").text(total);
-			$("#totalDelPrice").text(totalDel);
-			total+=parseInt($("#totalDelPrice").text());
-			$("#totalSumPrice").text(total);
+			$("#totalPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+			$("#totalDelPrice").text(totalDel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+			total+=totalDel;
+			$("#totalSumPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 			$("#chkCount").text(chkCount);
 			//$(this).attr("checked", true);
 	}
@@ -322,9 +324,9 @@
 		</td>
 		<td colspan="2">
 			<span >상품금액</span><br>
-			<span class="sumPrice" id="sum<%=productId%>"><%=productPrice*cartCount %></span>
-		원</td>
-		<td colspan="2">배송비<br><span class="delPrice"><%=productDeliveryPrice %></span>원</td>
+			<span class="sumPrice" id="sum<%=productId%>"><%=decFormat.format(productPrice*cartCount) %>
+			</span>원</td>
+		<td colspan="2">배송비<br><span class="delPrice"><%=decFormat.format(productDeliveryPrice) %></span>원</td>
 	</tr>
 	<%} %>
 	<tr>
@@ -381,8 +383,8 @@
 
 	window.onload = function() {
 		chkCount();
-		totalPrice();
 		totatDelPrice();
+		totalPrice();
 	}
 	
 	function chkCount() {
@@ -401,11 +403,11 @@
 		var total = 0;
 		for (var i = 0; i < prices.length; i++) {
 			var price = prices[i];
-			total += parseInt(price.innerText);
+			total += parseInt(price.innerText.replace(/,/g, ''));
 		}
-		document.getElementById("totalPrice").innerText=total;
+		document.getElementById("totalPrice").innerText=total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		total += parseInt(document.getElementById("totalDelPrice").innerText);
-		document.getElementById("totalSumPrice").innerText=total;
+		document.getElementById("totalSumPrice").innerText=total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		//document.getElementById("totalPrice").innerText=total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원"; */
 	}
 	
@@ -414,8 +416,8 @@
 		var total = 0;
 		for (var i = 0; i < delPrices.length; i++) {
 			var delPrice = delPrices[i];
-			total += parseInt(delPrice.innerText);
-			document.getElementById("totalDelPrice").innerText=total;
+			total += parseInt(delPrice.innerText.replace(/,/g, ''));
+			document.getElementById("totalDelPrice").innerText=total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 	}
 	
