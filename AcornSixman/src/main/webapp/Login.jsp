@@ -12,7 +12,7 @@
 <link href="member/Maincss/sample.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
 <style type="text/css">
-<link href="https://fonts.googleapis.com/css?family=East+Sea+Dokdo:400" rel="stylesheet">
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 #userid {
 	padding-left: 5px;
 	width: 17%;
