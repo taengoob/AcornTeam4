@@ -17,7 +17,7 @@ if (dto.getAccountIsSeller().equals("False")) {
 <%
 } else {
 %>
-<a class="top-menu" href="image/ImageUploadFormServlet">제품등록</a>
+<a class="top-menu" href="UploadedListServlet">판매자메뉴</a>
 <%
 }
 } else {

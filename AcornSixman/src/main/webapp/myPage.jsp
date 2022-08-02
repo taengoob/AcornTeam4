@@ -30,6 +30,8 @@
 	<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	</div>
 	<div class="wide"></div>
-	<jsp:include page="member/MyPage.jsp" flush="true"></jsp:include>
+	<jsp:include page="member/MyPage.jsp" flush="true"></jsp:include><br><br><br><br><br><br>
+	<jsp:include page="common/bot.jsp"></jsp:include>
+	
 </body>
 </html>

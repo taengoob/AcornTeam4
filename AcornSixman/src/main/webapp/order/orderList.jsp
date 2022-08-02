@@ -74,7 +74,7 @@
 				%>
 				
 					<tr>
-						<td class="tablebot" colspan="13"></td>
+						<td class="tablebot" colspan="15"></td>
 					</tr>
 				</table>
 			</div>

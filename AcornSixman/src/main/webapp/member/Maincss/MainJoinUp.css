@@ -246,6 +246,13 @@ form {
     color:#fff;
 }
 
+
+#idCheck{
+	padding: 6px;
+}
+#idCheck2{
+	padding: 6px;
+}
 #finishuser {
 	display: inline-block;
     border:1px solid rgb(0, 150, 7);
@@ -259,12 +266,6 @@ form {
     font-size:16px;
     margin-left:0.5%;
     transition:.5s;      
-}
-#idCheck{
-	padding: 6px;
-}
-#idCheck2{
-	padding: 6px;
 }
 #finishuser:hover{
     background-color: rgb(0, 150, 7);

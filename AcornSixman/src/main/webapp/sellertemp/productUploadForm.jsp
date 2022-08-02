@@ -7,6 +7,48 @@
 <head>
 <meta charset="UTF-8">
 <title>제품등록</title>
+<style type="text/css">
+#imageForm{
+margin-left : 30%; 
+}
+#submit{
+margin-left: 486px;
+}
+#cancle {
+	display:inline-block;
+    border:1px solid black;
+    width:7%;
+    text-align:center;
+    padding:15px;
+    color:black;
+    font-weight:bold;
+    margin-top:3%;
+    margin-right:0.5%;
+    transition:.5s;
+}
+#cancle:hover{
+    background-color: rgb(0, 150, 7);
+    color:#fff;
+}
+#submit {
+	display: inline-block;
+    border: 1px solid black;
+    width: 16%;
+    text-align: center;
+    padding: 15px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #fff;
+    font-size: 16px;
+    margin-left: 335px;
+    transition: .5s;
+}
+#submit:hover{
+    background-color: rgb(0, 150, 7);
+    color:#fff;
+}
+</style>
 </head>
 <body>
 	<%
@@ -66,8 +108,8 @@
 			</tr>
 		</table>
 		<div>
-			<input type="submit" value="제품등록">
-		    <a href="UploadedListServlet">취소</a>
+		    <a href="UploadedListServlet" id="cancle">취소</a>
+		    <input type="submit" id="submit" value="제품등록">
 		</div>
 	</form>
 </body>
