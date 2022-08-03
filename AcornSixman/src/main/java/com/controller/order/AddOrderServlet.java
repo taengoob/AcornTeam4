@@ -18,8 +18,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.common.IDGenerator;
+import com.dto.MemberDTO;
 import com.dto.OrderDTO;
+import com.dto.ProductDTO_Temp;
 import com.service.OrderService;
+import com.service.ProductService;
 
 /**
  * Servlet implementation class AddOrderServlet
@@ -39,59 +42,91 @@ public class AddOrderServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
+//		const order = {
+//		cartId : ""
+//		,productId : productId
+//		,amount : parseInt(qty)
+//	}
+	
+//	input : 위와 같은 형식 객체들이 담긴 리스트의 json 포맷
+//	=> key - value pair 가 2개인 객체의 리스트
+		
+		String userId = "";
+		Object dto = request.getSession().getAttribute("login");
+		if (dto != null)
+		{
+			MemberDTO user = (MemberDTO)dto;
+			userId = user.getAccountId();
+		}
+		
 		String recvName = request.getParameter("name");
 		String recvAddrRoad = request.getParameter("addr1");
 		String recvAddrNumber = request.getParameter("addr2");
 		String phoneNumber = request.getParameter("phoneNumber");
-		
+		String payMethodDesc = request.getParameter("payMethodDesc");
 		String jsonStr = request.getParameter("jsonStr");
+		
+		System.out.println(jsonStr);
 		JSONArray jsonArray = null;
 		JSONParser parser = new JSONParser();
 		try
 		{
 			jsonArray = (JSONArray)parser.parse(jsonStr);
-			OrderService service = new OrderService();
+			OrderService orderService = new OrderService();
+			ProductService prodService = new ProductService();
+			List<ProductDTO_Temp> orderInfoList = new ArrayList<ProductDTO_Temp>(); 
 			for (Object obj : jsonArray)
 			{
 				JSONObject json = (JSONObject)obj;
 				if (json != null)
 				{
+					String cartId = (String)json.get("cartId");
 					String productId = (String)json.get("productId");
-					String userId = (String)json.get("userId");
-					String sellerId = (String)json.get("sellerId");
-					int productPrice = Integer.parseInt(json.get("productPrice").toString());
 					int amount = Integer.parseInt(json.get("amount").toString());
-					int deliveryPrice = Integer.parseInt(json.get("deliveryPrice").toString());
-					int totalPrice = Integer.parseInt(json.get("totalPrice").toString());
+					ProductDTO_Temp product = prodService.getProductByProductId(productId);
+					product.setOrderAmount(amount);
+					
+					int pPrice = product.getProductPrice();
+					int pDelivery = product.getProductDeliveryPrice();
+					int payment = (pPrice * amount) + pDelivery;
+					String sellerId = product.getProductSeller();
 					
 					OrderDTO order = new OrderDTO();
 					order.setOrderId(IDGenerator.getNewOrderId());
 					order.setOrderProductId(productId);
 					order.setOrderUserId(userId);
 					order.setOrderSellerId(sellerId);
-//					ORDER_STATUS
-//					ORDER_REG_DATE
-//					ORDER_UPDATE_DATE
 					order.setOrderRecvPhone(phoneNumber);
 					order.setOrderAmount(amount);
 					order.setOrderRecvAddressNumber(recvAddrNumber);
-					order.setOrderPaymentPrice(totalPrice);
+					order.setOrderPaymentPrice(payment);
 					order.setOrderRecvAddressRoad(recvAddrRoad);
-					order.setOrderProdPrice(productPrice);
-					order.setOrderDeliveryPrice(deliveryPrice);
+					order.setOrderProdPrice(pPrice);
+					order.setOrderDeliveryPrice(pDelivery);
 					order.setOrderRecvName(recvName);
+					order.setOrderPayMethod(orderService.selectPayMethodIdByDesc(payMethodDesc));
 					
-					service.insertOrder(order);
+					int result = orderService.insertOrder(order, cartId);
+					if (result > 0)
+						orderInfoList.add(product);
 				}
 			}
 			
-			response.sendRedirect("OrderListServlet");
+			request.setAttribute("orderInfoList", orderInfoList);
+			
+//			메인용 경로
+			RequestDispatcher dis = request.getRequestDispatcher("orderDone.jsp");
+			
+//			테스트용 경로
+//			RequestDispatcher dis = request.getRequestDispatcher("order/orderDone.jsp");
+			
+			dis.forward(request, response);
 		}
 		catch (Exception e)
 		{

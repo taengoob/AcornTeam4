@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
+import com.dbconfig.MySqlSessionFactory;
+import com.dto.MemberDTO;
 import com.dto.ProductDTO_Temp;
 import com.service.ProductService;
 
@@ -54,7 +58,19 @@ public class ProductListServlet extends HttpServlet {
 		RequestDispatcher dis = request.getRequestDispatcher("productList.jsp");
 		
 //		테스트용 경로
+//		SqlSession session = MySqlSessionFactory.getSession();
+//		MemberDTO dto = null;
+//		try {
+//			dto = session.selectOne("MemberMapper.testLogin");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			session.close();
+//		}
+//		request.getSession().setAttribute("login", dto);
 //		RequestDispatcher dis = request.getRequestDispatcher("product/productList.jsp");
+//		테스트용 경로
+		
 		dis.forward(request, response);
 	}
 

@@ -19,6 +19,10 @@ import org.json.simple.parser.ParseException;
 
 import com.common.IDGenerator;
 import com.dto.OrderDTO;
+import com.dto.PayMethodDTO;
+import com.dto.ProductDTO_Temp;
+import com.service.OrderService;
+import com.service.ProductService;
 
 /**
  * Servlet implementation class AddOrderFormServlet
@@ -38,13 +42,73 @@ public class AddOrderFormServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-//		
+		
+//		const order = {
+//			cartId : ""
+//			,productId : productId
+//			,amount : parseInt(qty)
+//		}
+		
+//		input : 위와 같은 형식 객체들이 담긴 리스트의 json 포맷
+//		=> key - value pair 가 2개인 객체의 리스트
+		
+		String jsonStr = request.getParameter("jsonStr");
+		
+		JSONArray jsonArray = null;
+		JSONParser parser = new JSONParser();
+		try
+		{
+			jsonArray = (JSONArray)parser.parse(jsonStr);
+			List<ProductDTO_Temp> orderInfoList = new ArrayList<ProductDTO_Temp>();
+			for (Object obj : jsonArray)
+			{
+				JSONObject json = (JSONObject)obj;
+				if (json != null)
+				{
+					int amount = Integer.parseInt(json.get("amount").toString());
+					String productId = (String)json.get("productId");
+					
+					ProductService service = new ProductService();
+					ProductDTO_Temp product = service.getProductByProductId(productId);
+					product.setOrderAmount(amount);
+					
+					orderInfoList.add(product);
+				}
+			}
+			//셋 어트리뷰트
+			
+			request.setAttribute("orderInfoList", orderInfoList);
+		}
+		catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			response.getWriter().append(e.toString());
+		}
+		
+		OrderService service = new OrderService();
+		List<PayMethodDTO> payMethodList = service.selectPayMethodList();
+		request.setAttribute("payMethodList", payMethodList);
+		
+//		메인연결용 경로
+		RequestDispatcher dis = request.getRequestDispatcher("addOrderFrom.jsp");
+		
+//		테스트용 경로
+//		RequestDispatcher dis = request.getRequestDispatcher("/order/addOrderForm.jsp");
+		dis.forward(request, response);		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 //		Enumeration<String> params = request.getParameterNames();
 //		while (params.hasMoreElements())
 //		{
@@ -53,58 +117,6 @@ public class AddOrderFormServlet extends HttpServlet {
 //			System.out.println(key + " : " + val);
 //			request.setAttribute(key, val);
 //		}
-//		
-//		메인연결용 경로
-		RequestDispatcher dis = request.getRequestDispatcher("addOrderFrom.jsp");
-		
-//		테스트용 경로
-//		RequestDispatcher dis = request.getRequestDispatcher("order/addOrderFrom.jsp");
-		dis.forward(request, response);
-		
-//		JSONArray jsonArray = null;
-//		JSONParser parser = new JSONParser();
-//		try
-//		{
-//			jsonArray = (JSONArray)parser.parse(jsonStr);
-//			List<OrderDTO> orderList = new ArrayList<OrderDTO>();
-//			for (Object obj : jsonArray)
-//			{
-//				JSONObject json = (JSONObject)obj;
-//				if (json != null)
-//				{
-//					String productId = (String)json.get("productId");
-//					String userId = (String)json.get("userId");
-//					String sellerId = (String)json.get("sellerId");
-//					int productPrice = Integer.parseInt(json.get("productPrice").toString());
-//					int amount = Integer.parseInt(json.get("amount").toString());
-//					int deliveryPrice = Integer.parseInt(json.get("deliveryPrice").toString());
-//					int totalPrice = Integer.parseInt(json.get("totalPrice").toString());
-//					
-//					OrderDTO order = new OrderDTO();
-//					order.setOrderProductId(productId);
-//					order.setOrderUserId(userId);
-//					order.setOrderSellerId(sellerId);
-//					order.setOrderProdPrice(productPrice);
-//					order.setOrderAmount(amount);
-//					order.setOrderDeliveryPrice(deliveryPrice);
-//					order.setOrderPaymentPrice(totalPrice);
-//					orderList.add(order);
-//				}
-//			}
-//		}
-//		catch (Exception e)
-//		{
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			response.getWriter().append(e.toString());
-//		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

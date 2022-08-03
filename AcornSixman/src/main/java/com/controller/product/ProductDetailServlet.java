@@ -54,7 +54,7 @@ public class ProductDetailServlet extends HttpServlet {
 		RequestDispatcher dis = request.getRequestDispatcher("productDetail.jsp");
 		
 //		테스트용 경로
-//		RequestDispatcher dis = request.getRequestDispatcher("product/productDetail.jsp");
+//		RequestDispatcher dis = request.getRequestDispatcher("product/productDetail2.jsp");
 		dis.forward(request, response);
 	}
 

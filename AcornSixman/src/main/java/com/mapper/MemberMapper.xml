@@ -49,4 +49,9 @@
 		ACCOUNT_EMAIL_DOMAIN = #{accountEmailDomain}
 	where ACCOUNT_ID =  #{accountId}
 	</update>
+	<select id="testLogin" resultType="MemberDTO">
+		select *
+		from user_account
+		where ACCOUNT_ID = 'taengoov'
+	</select>
 </mapper>

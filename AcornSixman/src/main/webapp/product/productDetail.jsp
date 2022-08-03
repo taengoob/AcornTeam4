@@ -75,27 +75,24 @@
 		
 		function onOrderAddBtnClicked() {
 			
-			const tempUserId = "<%= userInfo == null ? null : userInfo.getAccountId() %>";
-			
 			const productId = "<%= productId %>";
-			const userId = tempUserId === "null" ? null : tempUserId;
-			const sellerId = "<%= sellerId %>";
-			const productPrice = parseInt(<%= productPrice %>);
-			const deliveryPrice = parseInt(<%= deliveryPrice %>);
-			const totalPrice = parseInt((productPrice * qty) + deliveryPrice);
-			
 			const order = {
-				productId : productId
-				,userId : userId
-				,sellerId : sellerId
-				,productPrice : productPrice
+				cartId : ""
+				,productId : productId
 				,amount : parseInt(qty)
-				,deliveryPrice : deliveryPrice
-				,totalPrice : totalPrice
 			}
 			
 			const orderList = [];
 			orderList.push(order);
+			
+// 			//테스트 코드
+// 			const testOrder = {
+// 				cartId : "detail"
+// 				,productId : "PD22072912101400005"
+// 				,amount : 2
+// 			}
+// 			orderList.push(testOrder);
+// 			//테스트 코드
 			
 			const orderListJsonStr = JSON.stringify(orderList);
 			

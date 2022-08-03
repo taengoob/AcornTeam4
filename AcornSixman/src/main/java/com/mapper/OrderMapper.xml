@@ -22,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,ORDER_PROD_PRICE
 			,ORDER_DELIVERY_PRICE
 			,ORDER_RECV_NAME
+			,ORDER_PAY_METHOD
 		)
 		VALUES
 		(
@@ -40,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,#{orderProdPrice}
 			,#{orderDeliveryPrice}
 			,#{orderRecvName}
+			,#{orderPayMethod}
 		)
 	</insert>
 	
@@ -60,6 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,ORDER_PROD_PRICE          AS orderProdPrice
 			,ORDER_DELIVERY_PRICE      AS orderDeliveryPrice
 			,ORDER_RECV_NAME           AS orderRecvName
+			,ORDER_PAY_METHOD			AS orderPayMethod
 			,B.ORDER_STATUS_DESC		AS displayStatus
 		FROM ORDER_DETAIL A
 			,ORDER_STATUS_CODE B
@@ -67,6 +70,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			AND ORDER_USER_ID = #{uesrId}
 			AND A.ORDER_STATUS = B.ORDER_STATUS_ID
 		ORDER BY ORDER_ID
+	</select>
+	
+	<select id="selectPayMethodList" resultType="com.dto.PayMethodDTO">
+		SELECT
+			PAY_METHOD_ID		AS payMethodId
+			,PAY_METHOD_NAME    AS payMethodName
+			,PAY_METHOD_DESC    AS payMethodDesc
+			,PAY_METHOD_SEQ     AS payMethodSeq
+		FROM ORDER_PAY_METHOD_CODE
+		ORDER BY PAY_METHOD_SEQ
+	</select>
+	
+	<select id="selectPayMethodIdByDesc" resultType="String" parameterType="String">
+		SELECT
+			PAY_METHOD_ID		AS payMethodId
+		FROM ORDER_PAY_METHOD_CODE
+		WHERE PAY_METHOD_DESC = #{payMethodDesc}
+		
 	</select>
 	
 </mapper>

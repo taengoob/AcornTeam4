@@ -22,6 +22,8 @@ public class OrderDTO
 	private int orderDeliveryPrice;
 	private String orderRecvName;
 	private String displayStatus;
+	private String orderPayMethod;
+	private String orderPayMethodDesc;
 	
 	private ProductDTO_Temp product;
 	
@@ -154,7 +156,6 @@ public class OrderDTO
 	{
 		this.product = product;
 	}
-	
 	public String getDisplayStatus()
 	{
 		return displayStatus;
@@ -162,6 +163,22 @@ public class OrderDTO
 	public void setDisplayStatus(String displayStatus)
 	{
 		this.displayStatus = displayStatus;
+	}
+	public String getOrderPayMethod()
+	{
+		return orderPayMethod;
+	}
+	public void setOrderPayMethod(String orderPayMethod)
+	{
+		this.orderPayMethod = orderPayMethod;
+	}
+	public String getOrderPayMethodDesc()
+	{
+		return orderPayMethodDesc;
+	}
+	public void setOrderPayMethodDesc(String orderPayMethodDesc)
+	{
+		this.orderPayMethodDesc = orderPayMethodDesc;
 	}
 	
 	public OrderDTO()
@@ -173,7 +190,8 @@ public class OrderDTO
 	public OrderDTO(String orderId, String orderProductId, String orderUserId, String orderSellerId, String orderStatus,
 			Date orderRegDate, Date orderUpdateDate, String orderRecvPhone, int orderAmount,
 			String orderRecvAddressNumber, int orderPaymentPrice, String orderRecvAddressRoad, int orderProdPrice,
-			int orderDeliveryPrice, String orderRecvName, String displayStatus)
+			int orderDeliveryPrice, String orderRecvName, String displayStatus, String orderPayMethod,
+			String orderPayMethodDesc)
 	{
 		super();
 		this.orderId = orderId;
@@ -192,6 +210,8 @@ public class OrderDTO
 		this.orderDeliveryPrice = orderDeliveryPrice;
 		this.orderRecvName = orderRecvName;
 		this.displayStatus = displayStatus;
+		this.orderPayMethod = orderPayMethod;
+		this.orderPayMethodDesc = orderPayMethodDesc;
 	}
 	
 	@Override
@@ -203,6 +223,7 @@ public class OrderDTO
 				+ orderAmount + ", orderRecvAddressNumber=" + orderRecvAddressNumber + ", orderPaymentPrice="
 				+ orderPaymentPrice + ", orderRecvAddressRoad=" + orderRecvAddressRoad + ", orderProdPrice="
 				+ orderProdPrice + ", orderDeliveryPrice=" + orderDeliveryPrice + ", orderRecvName=" + orderRecvName
+				+ ", displayStatus=" + displayStatus + ", orderPayMethod=" + orderPayMethod
 				+ "]";
 	}
 }

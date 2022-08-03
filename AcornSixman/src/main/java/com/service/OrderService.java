@@ -9,6 +9,7 @@ import com.dao.OrderDAO;
 import com.dao.ProductDAO;
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.OrderDTO;
+import com.dto.PayMethodDTO;
 import com.dto.ProductDTO_Temp;
 
 public class OrderService
@@ -38,19 +39,56 @@ public class OrderService
 		return orderList;
 	}
 	
-	public int insertOrder(OrderDTO order)
+	public int insertOrder(OrderDTO order, String cartId)
 	{
 		int result = 0;
 		SqlSession session = MySqlSessionFactory.getSession();
 		try
 		{
 			result = dao.insertOrder(session, order);
+			dao.deleteCart(session, cartId);
 			session.commit();
+		}
+		catch (Exception e)
+		{
+			session.rollback();
+			result = 0;
+			e.printStackTrace();
 		}
 		finally
 		{
 			session.close();
 		}
 		return result;
+	}
+
+	public List<PayMethodDTO> selectPayMethodList()
+	{
+		List<PayMethodDTO> payMethodList = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			payMethodList = dao.selectPayMethodList(session);
+		}
+		finally
+		{
+			session.close();
+		}
+		return payMethodList;
+	}
+	
+	public String selectPayMethodIdByDesc(String payMethodDesc)
+	{
+		String payMethodList = "";
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			payMethodList = dao.selectPayMethodIdByDesc(session, payMethodDesc);
+		}
+		finally
+		{
+			session.close();
+		}
+		return payMethodList;
 	}
 }
