@@ -6,11 +6,6 @@
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-$("#searchimg")click(function () {
-	console.log("aaa");
-});
-	});
 </script>
     
 <style type="text/css">
