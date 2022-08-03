@@ -59,7 +59,7 @@
 			<p class="order-one-write-item4-1"></p>
 			<p class="order-one-write-item5-1"></p>
 		</div>
-		<strong class="order-two">최근 주문 정보</strong> <span
+		<strong class="order-two" id="order-two">최근 주문 정보</strong> <span
 			class="order-two-item">최근 30일 내에 주문하신 내역입니다.</span>
 		<div class="order-two-write">
 			<p class="order-two-write-item1">날짜/주문번호</p>

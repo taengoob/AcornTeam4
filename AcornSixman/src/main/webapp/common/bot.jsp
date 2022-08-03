@@ -131,10 +131,9 @@
 		</div>
 		<div id="botTable3">
 			<div class="botTable1font0">즐겨찾는메뉴</div>
-			<div class="botTable1font4">마이페이지</div>
-			<div class="botTable1font4">장바구니</div>
-			<div class="botTable1font4">주문조회</div>
-			<div class="botTable1font4">장바구니</div>
+			<div class="botTable1font4"><a href="OrderListServlet">마이페이지</a></div>
+			<div class="botTable1font4"><a href="CartListServlet">장바구니</a></div>
+			<div class="botTable1font4"><a href="OrderListServlet#order-two">주문조회</a></div>
 		</div>
 		<div id="bot1boxbot"></div>
 	</div>
