@@ -33,14 +33,23 @@
 		}
 		console.log("전체체크 버튼");
 		var total = 0;
+		var totalDel = 0;
+		var totalDis = 0;
+		var chkCount = 0;
 		var chkedProduct = $("input:checkbox[name=chkProduct]:checked");
 		$.each(chkedProduct, function(i, ele) {
 			total += parseInt($(ele).attr("data-zzz"));
+			totalDel += parseInt($(ele).attr("data-vvv"));
+			totalDis += parseInt($(ele).attr("data-DisPrice"));
 			console.log(total);
+			chkCount++;
 		})
 		$("#totalPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-		total+=parseInt($("#totalDelPrice").text().replace(/,/g, ''));
+		$("#totalDelPrice").text(totalDel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		$("#totalDisperPrice").text(totalDis.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		total+=totalDel - totalDis;
 		$("#totalSumPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		$("#chkCount").text(chkCount);
 	}
 	
 	function deleteSelect() {

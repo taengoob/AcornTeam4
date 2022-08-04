@@ -14,11 +14,11 @@ public class CartService {
 	
 	CartDAO dao = new CartDAO();
 
-	public int cartSearch(String userid2, String productId) {
+	public int cartSearch(String userId, String productId) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int n = 0;
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("userid2", userid2);
+		map.put("userId", userId);
 		map.put("productId", productId);
 		try {
 			n = dao.cartSearch(session, map);
@@ -28,11 +28,11 @@ public class CartService {
 		return n;
 	}
 
-	public void cartAdd(String userid2, String productId, int cartCount) {
+	public void cartAdd(String userId, String productId, int cartCount) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("cartId", IDGenerator.getNewCartId());
-		map.put("userid2", userid2);
+		map.put("userId", userId);
 		map.put("productId", productId);
 		map.put("cartCount", cartCount);
 		System.out.println(map);
@@ -44,10 +44,10 @@ public class CartService {
 		}
 	}
 
-	public void cartUpdate(String userid2, String productId, int cartCount) {
+	public void cartUpdate(String userId, String productId, int cartCount) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("userid2", userid2);
+		map.put("userId", userId);
 		map.put("productId", productId);
 		map.put("cartCount", cartCount);
 		System.out.println(map);
@@ -70,10 +70,10 @@ public class CartService {
 		return list;
 	}
 
-	public void cartUpdate2(String userid2, String productId, int cartCount) {
+	public void cartUpdate2(String userId, String productId, int cartCount) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("userid2", userid2);
+		map.put("userId", userId);
 		map.put("productId", productId);
 		map.put("cartCount", cartCount);
 		System.out.println(map);

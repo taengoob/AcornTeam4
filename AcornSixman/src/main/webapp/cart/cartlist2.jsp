@@ -196,9 +196,12 @@
 	
 	
 	$(document).ready(function() {
-		$(".cartCount").on("click", amountLimit);
-		$(".cartCount").on("click", amountReflection);
+		$(".cartCount").on("change", amountLimit);
+		$(".cartCount").on("change", amountReflection);
 		$(".chkProduct").on("click", chkReflection);
+		$(".cpnSelect").on("change", cpnLimit);
+		$(".cpnSelect").on("change", cpnReflection);
+		$("#goOrderbtn").on("click", goOrder);
 	})
 	
 	function amountLimit() {
@@ -210,6 +213,7 @@
 	
 	function amountReflection() {//
 		var productId = $(this).attr("data-xxx");
+		var cpnDisper = $("#cpnSelect"+productId).val()
 		var productPrice = 0;
 		var cartCount = $(this).val();
 		if($("#chk"+productId).is(":checked")){//체크박스에 체크가 된 경우에만 비동기처리로 수량 및 가격이 계산됨
@@ -228,13 +232,16 @@
 					$("#sum"+productId).text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					$("#chk"+productId).attr("data-zzz", sum);
 					var total = 0;
+					var totalDis = 0;
 					var chkedProduct = $("input:checkbox[name=chkProduct]:checked");
 					$.each(chkedProduct, function(i, ele) {
 						total += parseInt($(ele).attr("data-zzz"));
+						totalDis += parseInt($(ele).attr("data-DisPrice"));
 						console.log(total);
 					})
 					$("#totalPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-					total+=parseInt($("#totalDelPrice").text());
+					$("#totalDisperPrice").text(totalDis.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+					total+=parseInt($("#totalDelPrice").text()) - totalDis;
 					$("#totalSumPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				},
 				error: function(xhr, status, error) {
@@ -252,22 +259,83 @@
 			console.log("체크됨");
 			var total = 0;
 			var totalDel = 0;
+			var totalDis = 0;
 			var chkCount = 0;
 			var chkedProduct = $("input:checkbox[name=chkProduct]:checked");
 			$.each(chkedProduct, function(i, ele) {
 				total += parseInt($(ele).attr("data-zzz"));
 				totalDel += parseInt($(ele).attr("data-vvv"));
+				totalDis += parseInt($(ele).attr("data-DisPrice"));
 				console.log(total);
 				chkCount++;
 			})
 			$("#totalPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 			$("#totalDelPrice").text(totalDel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-			total+=totalDel;
+			$("#totalDisperPrice").text(totalDis.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+			total+=totalDel - totalDis;
 			$("#totalSumPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 			$("#chkCount").text(chkCount);
 			//$(this).attr("checked", true);
 	}
 	
+	function cpnLimit() {
+		var productId = $(this).attr("data-productId");
+		console.log(productId);
+		if($("#chk"+productId).is(":checked")==false){
+			$(this).val(0);
+			alert("체크가 안된 품목은 쿠폰 적용이 불가능합니다");
+		}
+		if($("#amt"+productId).val()>1){
+			$(this).val(0);
+			alert("쿠폰은 1개의 상품에만 적용할수 있습니다.");
+		}
+	}
+	
+	function cpnReflection() {
+		var productId = $(this).attr("data-productId");
+		var cpnDisper = $(this).val();
+		var DisPrice = parseInt($("#chk"+productId).attr("data-zzz"))*cpnDisper;
+		$("#chk"+productId).attr("data-DisPrice", DisPrice);
+		var total = 0;
+		var totalDel = 0;
+		var totalDis = 0;
+		var chkCount = 0;
+		var chkedProduct = $("input:checkbox[name=chkProduct]:checked");
+		$.each(chkedProduct, function(i, ele) {
+			total += parseInt($(ele).attr("data-zzz"));
+			totalDel += parseInt($(ele).attr("data-vvv"));
+			totalDis += parseInt($(ele).attr("data-DisPrice"));
+			console.log(total);
+			chkCount++;
+		})
+		$("#totalPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		$("#totalDelPrice").text(totalDel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		$("#totalDisperPrice").text(totalDis.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		total+=totalDel - totalDis;
+		$("#totalSumPrice").text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		$("#chkCount").text(chkCount);
+	}
+
+	function goOrder() {
+		var cartList = new Array();
+		var chkedProduct = $("input:checkbox[name=chkProduct]:checked");
+		$.each(chkedProduct, function(i, ele) {
+			var productId = $(ele).attr("data-productId");
+			var cartCount = $("#amt"+productId).val();
+			var data = new Object();
+			data.cartId = "";
+			data.productId = productId;
+			data.amount = parseInt(cartCount);
+			cartList.push(data);
+		})
+		var jsonStr = JSON.stringify(cartList)
+		console.log("주문 보내기전 출력"+jsonStr);
+		
+		document.getElementById("hiddenInput").value = jsonStr;
+		var btnForm = document.getElementById("btnForm");
+		btnForm.action = "AddOrderFormServlet";
+		btnForm.submit();
+	}
 	
 </script>
 <div class="boxtop"></div>
@@ -297,7 +365,7 @@
 		<td colspan="2">
 			<div class="selectbox">
 				<input type="checkbox" checked="checked" class="chkProduct" name="chkProduct" data-zzz="<%=cartCount*productPrice%>" data-www="<%=cartId %>"
-				id="chk<%=productId %>" value="<%=productPrice %>" data-vvv="<%=productDeliveryPrice%>">
+				id="chk<%=productId %>" value="<%=productPrice %>" data-vvv="<%=productDeliveryPrice%>" data-DisPrice=0 data-productId="<%=productId%>">
 			</div>
 			<div><img src="<%=previewUrl %>" width="78px" height="78px"></div>
 		</td>
@@ -307,10 +375,10 @@
 		</td>
 		<td colspan="3">
 			수량&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="number" class="cartCount" style="width:90px; text-align: right;" value="<%=cartCount%>" 
+			<input type="number" id="amt<%=productId %>" class="cartCount" style="width:90px; text-align: right;" value="<%=cartCount%>" 
 			data-xxx="<%=productId%>" data-yyy="<%=productPrice %>"><br>
 			쿠폰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<select style="width:98px; height:20px; font-size:7px; text-align: right">
+			<select class="cpnSelect" id="cpnSelect<%=productId%>" data-productId="<%=productId%>" style="width:98px; height:20px; font-size:7px; text-align: right">
 				<option selected="selected" value="0">없음</option>
 			<%for(int j=0; j<couponList.size();j++){
 				CouponDTO cpdto = couponList.get(j);
@@ -372,14 +440,13 @@
 <div class="bottom">
 
 <div class="goPaybox">
-<button class="goPay" id="goPay" onclick="xxx()">총 <span id="chkCount"></span>건 주문하기</button>
+<form id="btnForm" method="get">
+<input type="hidden" id="hiddenInput" name="jsonStr">
+<button class="goPay" id="goOrderbtn">총 <span id="chkCount"></span>건 주문하기</button>
+</form>
 </div>
 </div>
 <script type="text/javascript">
-
-	function xxx() {
-		location.href="OrderServlet"
-	}
 
 	window.onload = function() {
 		chkCount();
@@ -406,7 +473,7 @@
 			total += parseInt(price.innerText.replace(/,/g, ''));
 		}
 		document.getElementById("totalPrice").innerText=total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		total += parseInt(document.getElementById("totalDelPrice").innerText);
+		total += parseInt(document.getElementById("totalDelPrice").innerText.replace(/,/g, ''));
 		document.getElementById("totalSumPrice").innerText=total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		//document.getElementById("totalPrice").innerText=total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+"원"; */
 	}

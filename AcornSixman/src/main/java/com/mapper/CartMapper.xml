@@ -6,24 +6,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="cartSearch" parameterType="hashmap" resultType="int">
 		select count(*) from user_cart
-		where cart_userid=#{userid2}
+		where cart_userid=#{userId}
 		and cart_productid=#{productId}
 	</select>
 	
 	<insert id="cartAdd" parameterType="hashmap">
 		insert into user_cart (cart_userid, cart_productid, cart_count, cart_id)
-		values (#{userid2}, #{productId}, #{cartCount}, #{cartId})
+		values (#{userId}, #{productId}, #{cartCount}, #{cartId})
 	</insert>
 	
 	<update id="cartUpdate"  parameterType="hashmap">
 		update user_cart set cart_count=cart_count+#{cartCount}
-		where cart_userid=#{userid2}
+		where cart_userid=#{userId}
 		and cart_productid=#{productId}
 	</update>
 	
 	<update id="cartUpdate2"  parameterType="hashmap">
 		update user_cart set cart_count=#{cartCount}
-		where cart_userid=#{userid2}
+		where cart_userid=#{userId}
 		and cart_productid=#{productId}
 	</update>
 	
@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			product_category as productCategory
 		from user_cart 
 		join product_detail on (cart_productid = product_id)
-		where cart_userid = #{userid2}
+		where cart_userid = #{userId}
 	</select>
 	
 	<delete id="cartDelete" parameterType="String">

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dto.MemberDTO;
 import com.service.CartService;
 
 @WebServlet("/CartUpdateServlet")
@@ -19,17 +20,23 @@ public class CartUpdateServlet extends HttpServlet {
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String userid = (String) session.getAttribute("userid");
-		String userid2 = "DGLee"; //임시로 아이디 부여
+		String userId = "dg38";
+
+		Object obj = request.getSession().getAttribute("login");
+		if (obj != null)
+		{
+			MemberDTO user = (MemberDTO)obj;
+			userId = user.getAccountId();
+		}else {
+			response.sendRedirect("LoginUIservlet");
+		}
 		
 		String productId = request.getParameter("productId");
 		int cartCount = Integer.parseInt(request.getParameter("cartCount"));
 		
-		System.out.println(productId + cartCount);
-		
+	
 		CartService service = new CartService();
-		service.cartUpdate2(userid2, productId, cartCount);
-		
+		service.cartUpdate2(userId, productId, cartCount);
 		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
