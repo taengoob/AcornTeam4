@@ -122,12 +122,12 @@
 			<div class="botTable1font2">서울특별시 강남구 테헤란로 124길 삼원타워 5층</div>
 		</div>
 		<div id="botTable2">
-			<div class="botTable1font0">공지사항</div>
+			<div class="botTable1font0">게시판</div>
+			<div class="botTable1font4"><a href="NoticeServlet">공지사항</a></div>
 			<div class="botTable1font4">이벤트</div>
-			<div class="botTable1font4">상품문의</div>
 			<div class="botTable1font4">포토리뷰</div>
+			<div class="botTable1font4">상품 1:1문의</div>
 			<div class="botTable1font4">자주하는질문</div>
-			<div class="botTable1font4">1:1문의</div>
 		</div>
 		<div id="botTable3">
 			<div class="botTable1font0">즐겨찾는메뉴</div>

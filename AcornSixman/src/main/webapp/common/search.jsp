@@ -58,8 +58,7 @@
 		<%} %>
 	</select>
 		검색 <input type="text" name="searchStr" placeholder="기타를 검색해보세요!" id="search">
-		<button id="searchbutton" hidden=""></button>
-		<img alt="" src="image/search.png" id="searchimg">
+		<button id="searchbutton"><img alt="" src="image/search.png" id="searchimg"></button>
 </form>
 </div>
 </div>
