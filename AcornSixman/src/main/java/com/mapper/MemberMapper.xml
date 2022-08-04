@@ -39,19 +39,31 @@
 		#{accountPasswd}
 	</select>
 	<update id="update" parameterType="MemberDTO">
-	update user_account set 
+		update user_account set
 		ACCOUNT_PASSWD = #{accountPasswd},
 		ACCOUNT_NAME = #{accountName},
 		ACCOUNT_ADDRESS_NUMBER = #{accountAddressNumber},
-		ACCOUNT_ADDRESS_LOAD = #{accountAddressLoad},
-		ACCOUNT_PHONE =	#{accountPhone},
+		ACCOUNT_ADDRESS_LOAD
+		= #{accountAddressLoad},
+		ACCOUNT_PHONE = #{accountPhone},
 		ACCOUNT_EMAIL_ID = #{accountEmailId},
-		ACCOUNT_EMAIL_DOMAIN = #{accountEmailDomain}
-	where ACCOUNT_ID =  #{accountId}
+		ACCOUNT_EMAIL_DOMAIN =
+		#{accountEmailDomain}
+		where ACCOUNT_ID = #{accountId}
 	</update>
 	<select id="testLogin" resultType="MemberDTO">
 		select *
 		from user_account
 		where ACCOUNT_ID = 'taengoov'
+	</select>
+	<select id="findid" parameterType="hashmap"
+		resultType="MemberDTO">
+		select
+		ACCOUNT_ID
+		from user_account
+		where ACCOUNT_NAME =
+		#{accountName} and ACCOUNT_EMAIL_ID = #{accountEmailId} and
+		ACCOUNT_EMAIL_DOMAIN =
+		#{accountEmailDomain}
 	</select>
 </mapper>

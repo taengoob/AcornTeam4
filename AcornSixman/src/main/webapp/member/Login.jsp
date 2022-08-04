@@ -9,18 +9,21 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<link href="Maincss/sample.css" rel="stylesheet" type="text/css" />
-<link href="https://fonts.googleapis.com/css?family=East+Sea+Dokdo:400" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=East+Sea+Dokdo:400"
+	rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.min.js"
 	text="text/javascript"></script>
 <title>로그인</title>
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-.main-name{
-font-family: 'Lobster', cursive;
-color: black;
+@import
+	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.main-name {
+	font-family: 'Lobster', cursive;
+	color: black;
 }
 </style>
+
 </head>
 
 
@@ -32,9 +35,9 @@ color: black;
 		<input type="password" placeholder="비밀번호" id="passwd" name="passwd"><br>
 		<input class="p-login" type="submit" id="submit" value="로그인">
 		<div class="iph">
-			<a href="MainJoinUpServlet" class="heiwon">회원가입</a> <a href="#"
-				class="id">아이디 찾기</a> <a class="ll">|</a> <a href="#"
-				class="password">비밀번호 찾기</a>
+			<a href="MainJoinUpServlet" class="heiwon">회원가입</a> <a
+				href="findid.jsp" class="id" id="find-id">아이디 찾기</a> <a class="ll">|</a>
+			<a href="#" class="password" id="find-pw">비밀번호 찾기</a>
 		</div>
 		<a href="#" class="kakao">카카오 로그인 <img src="member/img/kka.png"
 			alt="카카오" class="kakao-img">
@@ -45,16 +48,16 @@ color: black;
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
+		var childwin;
 		$("#submit").click(function() {
-			if ($("#text-input").val().length == 0) {
+			if ($("#userid").val().length == 0) {
 				alert("아이디 필수")
 				event.preventDefault()
-			} else if ($("#password-input").val().length == 0) {
+			} else if ($("#passwd").val().length == 0) {
 				alert("비밀번호 필수")
 				event.preventDefault()
 			}
 		})
-		
 	</script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
@@ -90,7 +93,24 @@ color: black;
 			//return false;
 		}
 	</script>
-
+<%
+request.setCharacterEncoding("utf-8");
+String mesg1 = (String) session.getAttribute("userid");
+if (mesg1 != null) {
+%>
+<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+	console.log($("#userid").val());
+	$("#userid").val("<%=mesg1%>");
+	console.log($("#userid").val());
+};
+</script>
+<%
+session.removeAttribute("userid");
+}
+%>
 
 </body>
 </html>

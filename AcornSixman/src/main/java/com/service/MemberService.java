@@ -72,5 +72,17 @@ public class MemberService {
 		}
 		return dto;
 	}
+	public MemberDTO findid(HashMap<String, String> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO list = null;
+		try {
+			list = dao.findid(session, map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 
 }

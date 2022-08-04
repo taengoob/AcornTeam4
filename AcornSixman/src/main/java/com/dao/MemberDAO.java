@@ -26,5 +26,9 @@ public class MemberDAO {
 		return session.update("MemberMapper.update", dto2);
 	}
 
+	public MemberDTO findid(SqlSession session, HashMap<String, String> map) {
+		return session.selectOne("MemberMapper.findid", map);
+	}
+
 
 }
