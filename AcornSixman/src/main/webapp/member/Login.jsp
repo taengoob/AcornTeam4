@@ -4,6 +4,11 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -22,6 +27,21 @@
 	font-family: 'Lobster', cursive;
 	color: black;
 }
+
+form {
+	text-align: center;
+	margin-top: 5%;
+}
+
+.btn-primary {
+	font-size: 14px;
+	width: 17%;
+	line-height: 40px;
+	margin-top: 1.5%;
+}
+a{
+text-decoration: none;
+}
 </style>
 
 </head>
@@ -33,7 +53,7 @@
 		<p class="main-name">The 식스맨#</p>
 		<input type="text" placeholder="아이디" id="userid" name="userid"><br>
 		<input type="password" placeholder="비밀번호" id="passwd" name="passwd"><br>
-		<input class="p-login" type="submit" id="submit" value="로그인">
+		<button class="btn btn-primary" type="submit" id="submit">로그인</button>
 		<div class="iph">
 			<a href="MainJoinUpServlet" class="heiwon">회원가입</a> <a
 				href="findid.jsp" class="id" id="find-id">아이디 찾기</a> <a class="ll">|</a>
@@ -93,24 +113,24 @@
 			//return false;
 		}
 	</script>
-<%
-request.setCharacterEncoding("utf-8");
-String mesg1 = (String) session.getAttribute("userid");
-if (mesg1 != null) {
-%>
-<script
+	<%
+	request.setCharacterEncoding("utf-8");
+	String mesg1 = (String) session.getAttribute("userid");
+	if (mesg1 != null) {
+	%>
+	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
+	<script type="text/javascript">
 window.onload = function() {
 	console.log($("#userid").val());
 	$("#userid").val("<%=mesg1%>");
-	console.log($("#userid").val());
-};
-</script>
-<%
-session.removeAttribute("userid");
-}
-%>
+			console.log($("#userid").val());
+		};
+	</script>
+	<%
+	session.removeAttribute("userid");
+	}
+	%>
 
 </body>
 </html>

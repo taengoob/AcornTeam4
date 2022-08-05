@@ -4,7 +4,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -20,13 +26,13 @@
 }
 
 a {
+color:white;
 	text-decoration: none;
 }
 
 ul li {
 	list-style: none;
 }
-
 
 .main-container {
 	margin: 0 auto;
@@ -38,14 +44,14 @@ ul li {
 	border: 1px solid #eaeaea;
 	text-align: left;
 	overflow: hidden;
-	height: 300px;
+	height: 380px;
 	margin-top: 3%;
 }
 
 .main-write {
 	margin-top: 15%;
 	border-bottom: 4px solid #000;
-	width: 22.27%;
+	width: 30%;
 	padding-bottom: 18px;
 }
 
@@ -65,18 +71,15 @@ ul li {
 	animation: login 2s 1 forwards;
 }
 
-/* .btn-form {
-    float: right;
-    width: 158px;
-    height: 91px;
-    margin: 15px 0 0 0;
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: bold;
-    border: 1px solid #3e3d3c;
-    background: #3e3d3c;
-    cursor: pointer;
-} */
+.badge bg-success:hover {
+	color: white;
+}
+.email-result, .name-result{
+font-size: 8px;
+color: blue;
+}
+
+
 </style>
 
 </head>
@@ -89,14 +92,24 @@ ul li {
 		<div class="main-box">
 			<form action="FindUseridServlet" method="post" id="mainform">
 				<div class="main-id">회원아이디 찾기</div>
-				<br> <input type="radio" name="findid" id="email"
-					checked="checked">이메일 <input type="radio" name="findid"
-					id="phone">휴대폰번호*수정예정* <br>
+				<br>
+				<div class="form-check form-check-inline" >
+					<input class="form-check-input" type="radio"
+						id="inlineCheckbox1" value="option1" name="findid1" checked="checked"> <label
+						class="form-check-label" for="inlineCheckbox1" >이메일주소</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio"
+						id="inlineCheckbox2" value="option2" name="findid1"> <label
+						class="form-check-label" for="inlineCheckbox1">휴대폰번호*미완*</label>
+				</div>
 				<div class="login-input">
-					<input type="text" id="name" name="name" placeholder="이름"><br>
+					<input type="text" id="name" name="name" placeholder="이름">&nbsp;&nbsp;  
+					<span class="name-result"></span>
+				<br><br>
 					<input type="text" name="email01" id="email01"
-						placeholder="이메일을 입력하세요">&nbsp;&nbsp; @ <input type="text"
-						name="email02" id="email02"> <select id="sel">
+						placeholder="이메일을 입력하세요">&nbsp;&nbsp; @ &nbsp;&nbsp;<input type="text"
+						name="email02" id="email02">&nbsp;&nbsp; <select id="sel">
 						<option value="self" selected="selected"
 							style="display: inline-block;">직접입력</option>
 						<option value="naver.com">naver.com</option>
@@ -104,17 +117,23 @@ ul li {
 						<option value="daum.net">daum.net</option>
 						<option value="nate.com">nate.com</option>
 						<option value="gmail.com">gmail.com</option>
-					</select>
+					</select><br>
+					<span class="email-result"></span>
 				</div>
-				<button type="submit" class="btn-form">아이디 찾기</button>
-				<br> <span class="span-line"></span> <a href="#" class="home">홈으로</a>
-				<a href="LoginUIservlet" class="login">로그인</a>
+				<br>
+				
+				<button type="submit" class="btn btn-outline-primary" id="submit">아이디 찾기</button>
+				<br><br> <span class="span-line"></span> <a href="#" class="btn btn-outline-success">홈으로</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUIservlet" class="btn btn-outline-success">로그인</a>
 			</form>
 		</div>
 	</div>
 
 
-
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -131,7 +150,22 @@ ul li {
 			}
 
 		});
+		$("#submit").click(function () {
+			var name = $("#name").val();
+			var email = $("#email01").val();
+			var email2 = $("#email02").val();
+			if (name.length == 0) {
+				event.preventDefault();
+				$(".name-result").text("이름 부분이 비어있습니다.");
+				$(".email-result").text("");
+			} else if (email.length == 0 ||email2.length == 0 ) {
+				event.preventDefault();
+				$(".name-result").text("");
+				$(".email-result").text("이메일 부분이 비어있습니다.");
+			} 
+		})
 	</script>
+
 
 </body>
 </html>
