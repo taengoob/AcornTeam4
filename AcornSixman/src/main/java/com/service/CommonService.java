@@ -134,4 +134,19 @@ public class CommonService
 		}
 		return result;
 	}
+
+	public String getNewBoardContentId()
+	{
+		String result = "";
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			result = dao.getNewBoardContentId(session);
+		}
+		finally
+		{
+			session.close();
+		}
+		return result;
+	}
 }

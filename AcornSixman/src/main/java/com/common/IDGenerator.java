@@ -33,4 +33,10 @@ public class IDGenerator
 		CommonService service = new CommonService();
 		return service.getNewCartId();
 	}
+	
+	public static String getNewBoardContentId()
+	{
+		CommonService service = new CommonService();
+		return service.getNewBoardContentId();
+	}
 }

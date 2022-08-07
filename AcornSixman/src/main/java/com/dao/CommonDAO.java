@@ -48,4 +48,9 @@ public class CommonDAO
 	{
 		return session.insert("com.mapper.common.uploadImageFile", map);
 	}
+
+	public String getNewBoardContentId(SqlSession session)
+	{
+		return session.selectOne("com.mapper.common.getNewBoardContentId");
+	}
 }
