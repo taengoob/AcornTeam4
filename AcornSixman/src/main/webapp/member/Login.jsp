@@ -39,8 +39,10 @@ form {
 	line-height: 40px;
 	margin-top: 1.5%;
 }
-a{
-text-decoration: none;
+
+a {
+	color: grey;
+	text-decoration: none;
 }
 </style>
 
@@ -56,8 +58,9 @@ text-decoration: none;
 		<button class="btn btn-primary" type="submit" id="submit">로그인</button>
 		<div class="iph">
 			<a href="MainJoinUpServlet" class="heiwon">회원가입</a> <a
-				href="findid.jsp" class="id" id="find-id">아이디 찾기</a> <a class="ll">|</a>
-			<a href="#" class="password" id="find-pw">비밀번호 찾기</a>
+				href="FirstFindID.jsp" class="id" id="find-id">아이디 찾기</a> <a
+				class="ll">|</a> <a href="#" class="password" id="find-pw">비밀번호
+				찾기</a>
 		</div>
 		<a href="#" class="kakao">카카오 로그인 <img src="member/img/kka.png"
 			alt="카카오" class="kakao-img">
@@ -123,7 +126,8 @@ text-decoration: none;
 	<script type="text/javascript">
 window.onload = function() {
 	console.log($("#userid").val());
-	$("#userid").val("<%=mesg1%>");
+	$("#userid").val("<%=mesg1%>
+		");
 			console.log($("#userid").val());
 		};
 	</script>

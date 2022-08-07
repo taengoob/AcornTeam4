@@ -84,5 +84,17 @@ public class MemberService {
 		}
 		return list;
 	}
+	public MemberDTO findidforphone(HashMap<String, String> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO list = null;
+		try {
+			list = dao.findidforphone(session, map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 
 }

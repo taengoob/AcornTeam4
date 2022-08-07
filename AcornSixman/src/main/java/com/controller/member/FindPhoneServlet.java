@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.dto.MemberDTO;
 import com.service.MemberService;
@@ -16,14 +17,14 @@ import com.service.MemberService;
 /**
  * Servlet implementation class FindUser
  */
-@WebServlet("/FindUseridServlet")
-public class FindUseridServlet extends HttpServlet {
+@WebServlet("/FindPhoneServlet")
+public class FindPhoneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public FindUseridServlet() {
+	public FindPhoneServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,15 +37,15 @@ public class FindUseridServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String accountName = request.getParameter("name");
-		String accountEmailId = request.getParameter("email01");
-		String accountEmailDomain = request.getParameter("email02");
+		String accountPhone = request.getParameter("phoneNumber");
+
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("accountName", accountName);
-		map.put("accountEmailId", accountEmailId);
-		map.put("accountEmailDomain", accountEmailDomain);
+		map.put("accountPhone", accountPhone);
+
 		System.out.println(map);
 		MemberService service = new MemberService();
-		MemberDTO dto = service.findid(map);// 중복 count
+		MemberDTO dto = service.findidforphone(map);// 중복 count
 		HttpSession session = request.getSession();
 		String id= "";
 		String name = "";

@@ -26,7 +26,7 @@
 }
 
 a {
-	color : grey;
+	color: grey;
 	text-decoration: none;
 }
 
@@ -74,18 +74,20 @@ ul li {
 .badge bg-success:hover {
 	color: white;
 }
-.email-result, .name-result{
-font-size: 12px;
-color: blue;
-}
-#submit{
-margin-left: 3.5%;
-}
-.menu-link{
-text-align: right;
-margin-right: 5.5%;
+
+.phone-result, .name-result {
+	font-size: 12px;
+	color: blue;
 }
 
+#submit {
+	margin-left: 3.5%;
+}
+
+.menu-link {
+	text-align: right;
+	margin-right: 5.5%;
+}
 </style>
 
 </head>
@@ -96,31 +98,33 @@ margin-right: 5.5%;
 		<h1 class="main-write">아이디찾기</h1>
 		<span class="high-line"></span>
 		<div class="main-box">
-			<form action="FindUseridServlet" method="post" id="mainform">
-				
+			<form action="FindPhoneServlet" method="post" id="mainform">
 				<br>
 				<div class="login-input">
-					<input type="text" id="name" name="name" placeholder="이름">&nbsp;&nbsp;  
-					<span class="name-result"></span>
-				<br><br>
-					<input type="text" name="email01" id="email01"
-						placeholder="이메일을 입력하세요">&nbsp;&nbsp; @ &nbsp;&nbsp;<input type="text"
-						name="email02" id="email02">&nbsp;&nbsp; <select id="sel">
-						<option value="self" selected="selected"
-							style="display: inline-block;">직접입력</option>
-						<option value="naver.com">naver.com</option>
-						<option value="hanmail.net">hanmail.net</option>
-						<option value="daum.net">daum.net</option>
-						<option value="nate.com">nate.com</option>
-						<option value="gmail.com">gmail.com</option>
-					</select><br>
-					<span class="email-result"></span>
+					<input type="text" id="name" name="name" placeholder="이름">&nbsp;&nbsp;
+					<span class="name-result"></span> <br>
+					<br>
+					<section class="call-number-container">
+						<p class="number-item1">
+							<span class="xi-checkbox-blank"></span> 휴대폰번호
+						</p>
+						<input type="text" placeholder="- 없이 입력하세요." data-pattern="gdNum"
+							id="phoneNumber" name="phoneNumber" onkeyup="checkNumber(event)">
+
+					</section>
+					<span class="phone-result"></span>
 				</div>
 				<br>
-				
-				<button type="submit" class="btn btn-outline-primary" id="submit">아이디 찾기</button>
-				<br><br> <span class="span-line"></span><div class="menu-link"> <a href="Mainservlet" class="btn btn-outline-success">홈으로</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUIservlet" class="btn btn-outline-success">로그인</a></div>
+
+				<button type="submit" class="btn btn-outline-primary" id="submit">아이디
+					찾기</button>
+				<br>
+				<br> <span class="span-line"></span>
+				<div class="menu-link">
+					<a href="Mainservlet" class="btn btn-outline-success">홈으로</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUIservlet"
+						class="btn btn-outline-success">로그인</a>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -133,33 +137,29 @@ margin-right: 5.5%;
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		$("#sel").change(function() {
-			var sel = $(this).val();
-			if (sel == "self") {
-				$("#email02").val("");
-				$("#email02").attr("readonly", false);
-
-			} else {
-				$("#email02").val(sel);
-				$("#email02").attr("readonly", true);
-				console.log($("#email02").val());
-			}
-
-		});
-		$("#submit").click(function () {
+		$("#submit").click(function() {
 			var name = $("#name").val();
-			var email = $("#email01").val();
-			var email2 = $("#email02").val();
+			var phone = $("#phoneNumber").val();
 			if (name.length == 0) {
 				event.preventDefault();
 				$(".name-result").text("이름 부분이 비어있습니다.");
-				$(".email-result").text("");
-			} else if (email.length == 0 ||email2.length == 0 ) {
+				$(".phone-result").text("");
+			} else if (phone.length == 0) {
 				event.preventDefault();
 				$(".name-result").text("");
-				$(".email-result").text("이메일 부분이 비어있습니다.");
-			} 
+				$(".phone-result").text("휴대폰 번호 부분이 비어있습니다.");
+			}
 		})
+		function checkNumber(event) {
+			var phoneNum = document.getElementById("phoneNumber").value;
+			if (event.key >= 0 && event.key <= 9 || event.keyCode == 8) {
+				return true;
+			} else {
+				alert("숫자만 입력해야 합니다.");
+				phoneNumber.value = null;
+				return false;
+			}
+		}
 	</script>
 
 
