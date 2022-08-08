@@ -39,6 +39,26 @@ public class OrderService
 		return orderList;
 	}
 	
+	public OrderDTO selectOrderByOrderId(String orderId)
+	{
+		OrderDTO order = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			order = dao.selectOrderByOrderId(session, orderId);
+		}
+		finally
+		{
+			session.close();
+		}
+		
+		ProductService service = new ProductService();
+		ProductDTO_Temp product = service.getProductByProductId(order.getOrderProductId());
+		order.setProduct(product);
+		
+		return order;
+	}
+	
 	public int insertOrder(OrderDTO order, String cartId)
 	{
 		int result = 0;

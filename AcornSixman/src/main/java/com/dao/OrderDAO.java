@@ -35,4 +35,9 @@ public class OrderDAO
 	{
 		return session.selectOne("com.mapper.order.selectPayMethodIdByDesc", payMethodDesc);
 	}
+
+	public OrderDTO selectOrderByOrderId(SqlSession session, String orderId)
+	{
+		return session.selectOne("com.mapper.order.selectOrderByOrderId", orderId);
+	}
 }

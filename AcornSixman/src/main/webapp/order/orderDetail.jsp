@@ -1,34 +1,32 @@
-<%@page import="com.dto.PayMethodDTO"%>
-<%@page import="java.util.List"%>
 <%@page import="com.dto.ProductDTO_Temp"%>
 <%@page import="com.dto.MemberDTO"%>
+<%@page import="com.dto.OrderDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-//	로그인 되어 있는 유저 정보
-	MemberDTO userInfo = (MemberDTO)session.getAttribute("login");
-	String userName = userInfo.getAccountName();
-	String addrN = userInfo.getAccountAddressNumber();
-	String addrR = userInfo.getAccountAddressLoad();
-	String phone = userInfo.getAccountPhone();
 
-// 	주문 대상 제품 정보
-	List<ProductDTO_Temp> orderInfoList = (List<ProductDTO_Temp>)request.getAttribute("orderInfoList");
+MemberDTO userInfo = (MemberDTO)session.getAttribute("login");
+String userName = userInfo.getAccountName();
+String addrN = userInfo.getAccountAddressNumber();
+String addrR = userInfo.getAccountAddressLoad();
+String phone = userInfo.getAccountPhone();
 
-	String recvName = request.getParameter("name");
-	String recvAddrRoad = request.getParameter("addr1");
-	String recvAddrNumber = request.getParameter("addr2");
-	String recvPhone = request.getParameter("phoneNumber");
-	String payMethod = request.getParameter("payMethodDesc");
-	
-//	오더 정보 List의 json 포맷
 
-//		const order = {
-//			cartId : ""
-//			,productId : productId
-//			,amount : parseInt(qty)
-//		}
-// 	위와 같은 형식의 객체 정보임
+OrderDTO order = (OrderDTO)request.getAttribute("order");
+String recvName = order.getOrderRecvName();
+String recvAddrRoad = order.getOrderRecvAddressRoad();
+String recvAddrNumber = order.getOrderRecvAddressNumber();
+String recvPhone = order.getOrderRecvPhone();
+String payMethod = order.getOrderPayMethodDesc();
+
+ProductDTO_Temp product = order.getProduct();
+String image = product.getPreviewUrl();
+String pName = product.getProductName();
+String pContent = product.getProductContent();
+int pPrice = order.getOrderProdPrice();
+int pAmount = order.getOrderAmount();
+int pDelivery = order.getOrderDeliveryPrice();
+int payment = order.getOrderPaymentPrice();
 %>
 
 <script>
@@ -40,7 +38,7 @@
 	<table width="80%" cellspacing="0" cellpadding="0">
 		<tr><td height="30"></tr>
 
-		<tr><td><h3><b>주문완료</b></h3></td></tr>
+		<tr><td><h3><b>주문상세</b></h3></td></tr>
 
 <!-- 		<tr><td height="15"></tr> -->
 
@@ -65,20 +63,6 @@
 					</tr>
 
 					<tr>
-					<%
-					int priceSum = 0;
-					for(ProductDTO_Temp orderInfo : orderInfoList)
-					{
-						String image = orderInfo.getPreviewUrl();
-						String pName = orderInfo.getProductName();
-						String pContent = orderInfo.getProductContent();
-						int pPrice = orderInfo.getProductPrice();
-						int pAmount = orderInfo.getOrderAmount();
-						int pDelivery = orderInfo.getProductDeliveryPrice();
-						int payment = (pPrice * pAmount) + pDelivery;
-						priceSum += payment;
-					%>
-					
 						<td class="td_default" colspan="1" >
 							
 							<img src="<%= image %>" border="0" width="80" />
@@ -103,16 +87,13 @@
 							<%= payment %>
 						</td>
 					</tr>
-					<%
-					}
-					%>
 					<tr>
 						<td colspan="10"><hr size="1" color="CCCCCC"></td>
 					</tr>
 					
 					<tr>
 						<td class="td_default" colspan="7" align="right">총 결제 금액 :</td>
-						<td class="td_default" colspan="8" align='right'><%= priceSum %>원</td>
+						<td class="td_default" colspan="8" align='right'><%= payment %>원</td>
 					</tr>
 				</table>
 			</td>
@@ -179,7 +160,8 @@
 				</table>							
 			</td>
 		</tr>
-<!--  고객 정보 끝-->
+		
+		<!--  고객 정보 끝-->
 		
 <!--  배송지 정보 시작-->
 		<tr><td height="30"></td></tr>
@@ -264,8 +246,7 @@
 	
 		<tr>
 			<td class="td_default" align="center">
-				<a href="MyPageServlet"><button >마이페이지로</button></a>
-				<a href="CartListServlet"><button >장바구니로</button></a>
+				<button onclick="history.back()">뒤로가기</button>
 			</td>
 		</tr>
 	</table>

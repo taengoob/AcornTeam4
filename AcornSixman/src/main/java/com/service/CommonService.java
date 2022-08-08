@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.dao.CommonDAO;
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.CategoryDTO;
+import com.dto.MemberDTO;
 
 public class CommonService
 {
@@ -142,6 +143,21 @@ public class CommonService
 		try
 		{
 			result = dao.getNewBoardContentId(session);
+		}
+		finally
+		{
+			session.close();
+		}
+		return result;
+	}
+	
+	public MemberDTO testLogin()
+	{
+		MemberDTO result = null;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			result = dao.testLogin(session);
 		}
 		finally
 		{
