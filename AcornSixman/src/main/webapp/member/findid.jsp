@@ -112,8 +112,9 @@ ul li {
 					</div>
 					&nbsp;&nbsp; <span class="name-result"></span> <br> <br>
 					<input type="text" class="form-control" name="email01" id="email01"
-						placeholder="이메일을 입력하세요" style="width: 30%; display: inline;">&nbsp;&nbsp;
-					@ &nbsp;&nbsp;<input type="text" name="email02" id="email02"
+						placeholder="이메일을 입력하세요" style="width: 30%; display: inline;">
+						 <span class="input-group-text" style="width: 6%; display: inline;">@</span>
+					<input type="text" name="email02" id="email02"
 						class="form-control" style="width: 30%; display: inline;">&nbsp;&nbsp;
 					<select id="sel" class="form-select"
 						aria-label="Default select example"

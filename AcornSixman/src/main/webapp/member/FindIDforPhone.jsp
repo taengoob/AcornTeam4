@@ -101,15 +101,17 @@ ul li {
 			<form action="FindPhoneServlet" method="post" id="mainform">
 				<br>
 				<div class="login-input">
-					<input type="text" class="form-control" style="width: 40%;" id="name" name="name" placeholder="이름">&nbsp;&nbsp;
-					<span class="name-result"></span>
-				
+					<input type="text" class="form-control" style="width: 40%;"
+						id="name" name="name" placeholder="이름">&nbsp;&nbsp; <span
+						class="name-result"></span>
+
 					<section class="call-number-container">
 						<p class="number-item1">
 							<span class="xi-checkbox-blank"></span> 휴대폰번호
 						</p>
-						<input type="text" placeholder="- 없이 입력하세요." data-pattern="gdNum" style="width: 40%;"
-			class="form-control" id="phoneNumber" name="phoneNumber" onkeyup="checkNumber(event)">
+						<input type="text" placeholder="- 없이 입력하세요." data-pattern="gdNum"
+							style="width: 40%;" class="form-control" id="phoneNumber"
+							name="phoneNumber" onkeyup="checkNumber(event)">
 
 					</section>
 					<span class="phone-result"></span>
@@ -118,8 +120,7 @@ ul li {
 
 				<button type="submit" class="btn btn-outline-primary" id="submit">아이디
 					찾기</button>
-				<br>
-				<br> <span class="span-line"></span>
+				<br> <br> <span class="span-line"></span>
 				<div class="menu-link">
 					<a href="Mainservlet" class="btn btn-outline-success">홈으로</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUIservlet"
@@ -152,7 +153,8 @@ ul li {
 		})
 		function checkNumber(event) {
 			var phoneNum = document.getElementById("phoneNumber").value;
-			if (event.key >= 0 && event.key <= 9 || event.keyCode == 8) {
+			if (event.key >= 0 && event.key <= 9 || event.keyCode == 8
+					|| event.keyCode == 9 || event.keyCode == 13) {
 				return true;
 			} else {
 				alert("숫자만 입력해야 합니다.");
