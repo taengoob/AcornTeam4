@@ -133,8 +133,7 @@ margin-left: 41.5%;
 	<script type="text/javascript">
 window.onload = function() {
 	console.log($("#userid").val());
-	$("#userid").val("<%=mesg1%>
-		");
+	$("#userid").val("<%=mesg1%>");
 			console.log($("#userid").val());
 		};
 	</script>

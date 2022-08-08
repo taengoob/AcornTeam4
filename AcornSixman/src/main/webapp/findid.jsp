@@ -69,10 +69,6 @@ if (mesg1 == null) {
     <%=mesg%>님의 아이디는 <%=mesg1%> 입니다.
   </div>
 </div>
-	<%-- 	<script type="text/javascript">
-	alert("<%=mesg%>님의 아이디는 <%=mesg1%>
-		입니다.");
-	</script> --%>
 </head>
 <body>
 	<div class="menu-item">
