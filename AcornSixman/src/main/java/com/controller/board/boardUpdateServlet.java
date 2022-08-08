@@ -1,4 +1,4 @@
-package com.controller.notice;
+package com.controller.board;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class NoticeUpdateServlet
  */
-@WebServlet("/NoticeUpdateServlet")
-public class NoticeUpdateServlet extends HttpServlet {
+@WebServlet("/boardUpdateServlet")
+public class boardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateServlet() {
+    public boardUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

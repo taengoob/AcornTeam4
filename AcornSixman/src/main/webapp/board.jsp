@@ -19,7 +19,7 @@
 	</div><div class="wide"></div>
 	<h1 id="noticetitle">공지사항 게시판</h1>
 <hr>
-<jsp:include page="notice/NoticeContent.jsp" flush="true"></jsp:include>
+<jsp:include page="board/board.jsp" flush="true"></jsp:include>
 <hr>
 <jsp:include page="common/bot.jsp" flush="true"></jsp:include>
 <hr>

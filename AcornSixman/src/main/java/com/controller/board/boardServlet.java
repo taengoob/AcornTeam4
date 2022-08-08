@@ -1,4 +1,4 @@
-package com.controller.notice;
+package com.controller.board;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -13,14 +13,14 @@ import com.dto.MemberDTO;
 /**
  * Servlet implementation class NoticeServlet
  */
-@WebServlet("/NoticeServlet")
-public class NoticeServlet extends HttpServlet {
+@WebServlet("/boardServlet")
+public class boardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeServlet() {
+    public boardServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,7 @@ public class NoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("notice.jsp");
+		response.sendRedirect("board.jsp");
 		
 	}
 
