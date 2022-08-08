@@ -106,6 +106,9 @@
 		color: grey;
 		margin-top: 30px;
 	}
+	a{
+	color: grey;
+	}
 </style>
 <div id="bot0"></div>
 <div id="bot1">
