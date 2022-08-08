@@ -19,8 +19,8 @@
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
 <title>Insert title here</title>
 <style type="text/css">
-a{
-color: grey;
+.alert-success {
+	
 }
 
 .login-input {
@@ -46,7 +46,7 @@ if (mesg1 == null) {
 		<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	</div>
 	<div class="wide"></div>
-	<jsp:include page="member/findid.jsp" flush="true"></jsp:include>
+	<jsp:include page="member/FindIDforPhone.jsp" flush="true"></jsp:include>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	<%
 	} else if (mesg1 != null) {

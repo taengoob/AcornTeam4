@@ -30,6 +30,7 @@
 	line-height: 40px;
 	outline: none;
 }
+
 </style>
 <title>Insert title here</title>
 </head>

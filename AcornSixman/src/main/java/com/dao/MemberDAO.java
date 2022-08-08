@@ -30,5 +30,9 @@ public class MemberDAO {
 		return session.selectOne("MemberMapper.findid", map);
 	}
 
+	public MemberDTO findidforphone(SqlSession session, HashMap<String, String> map) {
+		return session.selectOne("MemberMapper.findidforphone", map);
+	}
+
 
 }

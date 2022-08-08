@@ -66,4 +66,13 @@
 		ACCOUNT_EMAIL_DOMAIN =
 		#{accountEmailDomain}
 	</select>
+	<select id="findidforphone" parameterType="hashmap"
+		resultType="MemberDTO">
+		select
+		ACCOUNT_ID
+		from user_account
+		where ACCOUNT_NAME =
+		#{accountName} and
+		ACCOUNT_PHONE = #{accountPhone}
+	</select>
 </mapper>
