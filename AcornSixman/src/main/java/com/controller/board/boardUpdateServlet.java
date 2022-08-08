@@ -1,4 +1,4 @@
-package com.controller.notice;
+package com.controller.board;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class NoticeContentServlet
+ * Servlet implementation class NoticeUpdateServlet
  */
-@WebServlet("/NoticeContentServlet")
-public class NoticeContentServlet extends HttpServlet {
+@WebServlet("/boardUpdateServlet")
+public class boardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeContentServlet() {
+    public boardUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,8 @@ public class NoticeContentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("NoticeContent.jsp");
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
