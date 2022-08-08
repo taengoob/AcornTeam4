@@ -44,6 +44,9 @@ a {
 	color: grey;
 	text-decoration: none;
 }
+.input-style{
+margin-left: 41.5%;
+}
 </style>
 
 </head>
@@ -53,8 +56,12 @@ a {
 	<p class="main-img"></p>
 	<form action="loginServlet" method="post" id="mainform">
 		<p class="main-name">The 식스맨#</p>
-		<input type="text" placeholder="아이디" id="userid" name="userid"><br>
-		<input type="password" placeholder="비밀번호" id="passwd" name="passwd"><br>
+		<div class="input-style">
+			<input type="text" placeholder="아이디" id="userid" name="userid"
+				class="form-control" style="width: 29%"> <input
+				type="password" placeholder="비밀번호" id="passwd" name="passwd"
+				class="form-control" style="width: 29%">
+		</div>
 		<button class="btn btn-primary" type="submit" id="submit">로그인</button>
 		<div class="iph">
 			<a href="MainJoinUpServlet" class="heiwon">회원가입</a> <a

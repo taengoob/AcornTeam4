@@ -26,7 +26,7 @@
 }
 
 a {
-	color : grey;
+	color: grey;
 	text-decoration: none;
 }
 
@@ -74,18 +74,24 @@ ul li {
 .badge bg-success:hover {
 	color: white;
 }
-.email-result, .name-result{
-font-size: 12px;
-color: blue;
-}
-#submit{
-margin-left: 3.5%;
-}
-.menu-link{
-text-align: right;
-margin-right: 5.5%;
+
+.email-result, .name-result {
+	font-size: 12px;
+	color: blue;
 }
 
+#submit {
+	margin-left: 3.5%;
+}
+
+.menu-link {
+	text-align: right;
+	margin-right: 5.5%;
+}
+
+.form-control {
+	width: 50%;
+}
 </style>
 
 </head>
@@ -97,15 +103,21 @@ margin-right: 5.5%;
 		<span class="high-line"></span>
 		<div class="main-box">
 			<form action="FindUseridServlet" method="post" id="mainform">
-				
+
 				<br>
 				<div class="login-input">
-					<input type="text" id="name" name="name" placeholder="이름">&nbsp;&nbsp;  
-					<span class="name-result"></span>
-				<br><br>
-					<input type="text" name="email01" id="email01"
-						placeholder="이메일을 입력하세요">&nbsp;&nbsp; @ &nbsp;&nbsp;<input type="text"
-						name="email02" id="email02">&nbsp;&nbsp; <select id="sel">
+					<div class="mb-3">
+						<input type="text" class="form-control" id="name" name="name"
+							placeholder="이름">
+					</div>
+					&nbsp;&nbsp; <span class="name-result"></span> <br> <br>
+					<input type="text" class="form-control" name="email01" id="email01"
+						placeholder="이메일을 입력하세요" style="width: 30%; display: inline;">&nbsp;&nbsp;
+					@ &nbsp;&nbsp;<input type="text" name="email02" id="email02"
+						class="form-control" style="width: 30%; display: inline;">&nbsp;&nbsp;
+					<select id="sel" class="form-select"
+						aria-label="Default select example"
+						style="width: 22%; display: inline; cursor: pointer;">
 						<option value="self" selected="selected"
 							style="display: inline-block;">직접입력</option>
 						<option value="naver.com">naver.com</option>
@@ -113,14 +125,18 @@ margin-right: 5.5%;
 						<option value="daum.net">daum.net</option>
 						<option value="nate.com">nate.com</option>
 						<option value="gmail.com">gmail.com</option>
-					</select><br>
-					<span class="email-result"></span>
+					</select><br> <span class="email-result"></span>
 				</div>
 				<br>
-				
-				<button type="submit" class="btn btn-outline-primary" id="submit">아이디 찾기</button>
-				<br><br> <span class="span-line"></span><div class="menu-link"> <a href="Mainservlet" class="btn btn-outline-success">홈으로</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUIservlet" class="btn btn-outline-success">로그인</a></div>
+
+				<button type="submit" class="btn btn-outline-primary" id="submit">아이디
+					찾기</button>
+				<br> <br> <span class="span-line"></span>
+				<div class="menu-link">
+					<a href="Mainservlet" class="btn btn-outline-success">홈으로</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUIservlet"
+						class="btn btn-outline-success">로그인</a>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -146,7 +162,7 @@ margin-right: 5.5%;
 			}
 
 		});
-		$("#submit").click(function () {
+		$("#submit").click(function() {
 			var name = $("#name").val();
 			var email = $("#email01").val();
 			var email2 = $("#email02").val();
@@ -154,11 +170,11 @@ margin-right: 5.5%;
 				event.preventDefault();
 				$(".name-result").text("이름 부분이 비어있습니다.");
 				$(".email-result").text("");
-			} else if (email.length == 0 ||email2.length == 0 ) {
+			} else if (email.length == 0 || email2.length == 0) {
 				event.preventDefault();
 				$(".name-result").text("");
 				$(".email-result").text("이메일 부분이 비어있습니다.");
-			} 
+			}
 		})
 	</script>
 

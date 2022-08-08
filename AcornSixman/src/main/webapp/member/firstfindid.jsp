@@ -44,7 +44,7 @@ ul li {
 	border: 1px solid #eaeaea;
 	text-align: left;
 	overflow: hidden;
-	height: 250px;
+	height: 200px;
 	margin-top: 3%;
 }
 

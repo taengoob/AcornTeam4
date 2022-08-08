@@ -101,15 +101,15 @@ ul li {
 			<form action="FindPhoneServlet" method="post" id="mainform">
 				<br>
 				<div class="login-input">
-					<input type="text" id="name" name="name" placeholder="이름">&nbsp;&nbsp;
-					<span class="name-result"></span> <br>
-					<br>
+					<input type="text" class="form-control" style="width: 40%;" id="name" name="name" placeholder="이름">&nbsp;&nbsp;
+					<span class="name-result"></span>
+				
 					<section class="call-number-container">
 						<p class="number-item1">
 							<span class="xi-checkbox-blank"></span> 휴대폰번호
 						</p>
-						<input type="text" placeholder="- 없이 입력하세요." data-pattern="gdNum"
-							id="phoneNumber" name="phoneNumber" onkeyup="checkNumber(event)">
+						<input type="text" placeholder="- 없이 입력하세요." data-pattern="gdNum" style="width: 40%;"
+			class="form-control" id="phoneNumber" name="phoneNumber" onkeyup="checkNumber(event)">
 
 					</section>
 					<span class="phone-result"></span>
