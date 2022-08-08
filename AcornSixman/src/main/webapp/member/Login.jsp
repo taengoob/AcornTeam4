@@ -44,8 +44,9 @@ a {
 	color: grey;
 	text-decoration: none;
 }
-.input-style{
-margin-left: 41.5%;
+
+.input-style {
+	margin-left: 41.5%;
 }
 </style>
 
@@ -75,6 +76,7 @@ margin-left: 41.5%;
 			alt="네이버" class="naver-img">
 		</a>
 	</form>
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -89,16 +91,31 @@ margin-left: 41.5%;
 			}
 		})
 	</script>
+	<%
+	request.setCharacterEncoding("utf-8");
+	String mesg1 = (String) session.getAttribute("userid");
+	%>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 	<script type="text/javascript">
 		window.onload = function() {
+
 			//테스트 버튼
 			//document.getElementById("testButton").onclick = onTestButtonCliked;
 
 			//서브밋 예제
 			document.getElementById("mainform").onsubmit = onTestButtonCliked;
-		}
+			<%if (mesg1 != null) {%>
+			console.log($("#userid").val());
+			$("#userid").val("<%=mesg1%>");
+			console.log($("#userid").val());
+			<%
+	session.removeAttribute("userid");
+			};
+			%>
+		};
 
 		//회원가입시 패스워드 암호화 해서 서버에 넘기는 예제
 		//db에는 암호화 된 패스워드를 insert
@@ -123,25 +140,9 @@ margin-left: 41.5%;
 			//return false;
 		}
 	</script>
-	<%
-	request.setCharacterEncoding("utf-8");
-	String mesg1 = (String) session.getAttribute("userid");
-	if (mesg1 != null) {
-	%>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript">
-window.onload = function() {
-	console.log($("#userid").val());
-	$("#userid").val("<%=mesg1%>
-		");
-			console.log($("#userid").val());
-		};
-	</script>
-	<%
-	session.removeAttribute("userid");
-	}
-	%>
+
+
+
 
 </body>
 </html>
