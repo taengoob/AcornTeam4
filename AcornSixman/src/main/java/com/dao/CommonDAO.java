@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.dto.CategoryDTO;
+import com.dto.MemberDTO;
 
 public class CommonDAO
 {
@@ -52,5 +53,10 @@ public class CommonDAO
 	public String getNewBoardContentId(SqlSession session)
 	{
 		return session.selectOne("com.mapper.common.getNewBoardContentId");
+	}
+
+	public MemberDTO testLogin(SqlSession session)
+	{
+		return session.selectOne("com.mapper.common.testLogin");
 	}
 }

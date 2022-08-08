@@ -44,10 +44,18 @@
 						</td>
 						<td colspan="2">
 							<div class="selectbox"></div>
-							<div><img src="<%= image %>" width="78px" height="78px"></div>
+							<div>
+								<a href="OrderDetailServlet?orderId=<%= orderId %>">
+									<img src="<%= image %>" width="78px" height="78px">
+								</a>
+							</div>
 						</td>
 						<td colspan="4">
-							<div style="text-align: left;"><%= name %></div>
+							<div style="text-align: left;">
+								<a href="OrderDetailServlet?orderId=<%= orderId %>">
+									<%= name %>
+								</a>
+							</div>
 							<div style="text-align: left;"><%= model %>/<%= maker %>/<%= category %></div>
 						</td>
 						

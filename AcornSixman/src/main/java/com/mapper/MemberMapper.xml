@@ -51,11 +51,6 @@
 		#{accountEmailDomain}
 		where ACCOUNT_ID = #{accountId}
 	</update>
-	<select id="testLogin" resultType="MemberDTO">
-		select *
-		from user_account
-		where ACCOUNT_ID = 'taengoov'
-	</select>
 	<select id="findid" parameterType="hashmap"
 		resultType="MemberDTO">
 		select
