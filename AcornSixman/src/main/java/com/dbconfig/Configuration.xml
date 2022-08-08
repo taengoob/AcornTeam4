@@ -13,6 +13,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.dto.MemberDTO" alias="MemberDTO" />
 		<typeAlias type="com.dto.CouponDTO" alias="CouponDTO" />
 		<typeAlias type="com.dto.CartDTO" alias="CartDTO" />
+		<typeAlias type="com.dto.BoardDTO" alias="BoardDTO" />
 	</typeAliases>
 
 	<environments default="development">
@@ -34,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/mapper/CartMapper.xml" />
 		<mapper resource="com/mapper/ProductMapper.xml" />
 		<mapper resource="com/mapper/OrderMapper.xml" />
+		<mapper resource="com/mapper/BoardMapper.xml" />
 	</mappers>
 </configuration>
 

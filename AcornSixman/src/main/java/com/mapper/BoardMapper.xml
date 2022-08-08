@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.board">
+	
+	<resultMap id="test" type="BoardDTO" >
+		<result property="boardContentId" column="BOARD_CONTENT_ID"/>
+		<result property="boardCategory" column="BOARD_CATEGORY"/>
+		<result property="boardUserId" column="BOARD_USER_ID"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT" jdbcType="CLOB" javaType="java.lang.String" />
+		<result property="boardRegDate" column="BOARD_REG_DATE"/>
+		<result property="boardUpdateDate" column="BOARD_UPDATE_DATE"/>
+		<result property="boardDelDate" column="BOARD_DEL_DATE"/>
+		<result property="boardHitCount" column="BOARD_HIT_COUNT"/>
+	</resultMap>
+	
+	<select id="boardList" parameterType="String" resultMap="test">
+		select
+			BOARD_CONTENT_ID, 
+			BOARD_CATEGORY, 
+			BOARD_USER_ID, 
+			BOARD_TITLE, 
+			BOARD_CONTENT, 
+			BOARD_REG_DATE, 
+			BOARD_UPDATE_DATE, 
+			BOARD_DEL_DATE, 
+			BOARD_HIT_COUNT
+		from
+			BOARD_DETATIL
+		where
+			BOARD_CATEGORY = #{category}
+		order by 1 asc
+	</select>
+	
+</mapper>
