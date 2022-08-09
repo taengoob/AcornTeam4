@@ -1,12 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.dto.BoardDTO" %>
+<%@page import="com.dto.MemberDTO" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <%
 	List<BoardDTO> flist = (List<BoardDTO>)request.getAttribute("flist");
 	List<BoardDTO> slist = (List<BoardDTO>)request.getAttribute("slist");
+	
+	String userId = "";
+	Object obj = session.getAttribute("login");
+	if (obj != null)
+	{
+		MemberDTO user = (MemberDTO)obj;
+		userId = user.getAccountId();
+	}
 
 %>
 <style type="text/css">
@@ -48,9 +57,12 @@
 	}
 
 	function getIsAdmin() {
-		//admin인지 체크하는 코드
-		return false;
-}
+		if("taengoov"=="<%=userId%>"){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 
 </script>
@@ -89,7 +101,7 @@
 		}
 		String Title = dto.getBoardTitle();
 		String UserId = dto.getBoardUserId();
-		if(UserId.equals("dg38")){
+		if(UserId.equals("taengoov")){
 			UserId = "관리자";
 		}
 		String RegDate = dto.getBoardRegDate();
@@ -115,7 +127,7 @@
 	    }
 		String Title = dto.getBoardTitle();
 		String UserId = dto.getBoardUserId();
-		if(UserId.equals("dg38")){
+		if(UserId.equals("taengoov")){
 			UserId = "관리자";
 		}
 		String RegDate = dto.getBoardRegDate();
