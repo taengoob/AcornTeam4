@@ -5,8 +5,8 @@
 <%@page import="java.util.ArrayList"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <%
-	List<BoardDTO> nlist = (List<BoardDTO>)request.getAttribute("nlist");
-	List<BoardDTO> glist = (List<BoardDTO>)request.getAttribute("glist");
+	List<BoardDTO> flist = (List<BoardDTO>)request.getAttribute("flist");
+	List<BoardDTO> slist = (List<BoardDTO>)request.getAttribute("slist");
 
 %>
 <style type="text/css">
@@ -27,61 +27,116 @@
 </style>
 <script type="text/javascript">
 
+	window.onload = function () {
+		hideAdminElelments(getIsAdmin());
+	};
+
+	function hideAdminElelments(isAdmin) {
+		if (isAdmin === false) {
+			//class 에 admin이 있는 요소들을 찾는다.
+			const elements = document.getElementsByClassName("admin");
+	
+			//class 에 admin이 있는 요소들을 순회하면서
+			for (const key in elements) {
+				if (Object.hasOwnProperty.call(elements, key)) {
+					const element = elements[key];
+					//안보이게 만든다.
+					element.style.display = "none";
+				}
+			}
+		}
+	}
+
+	function getIsAdmin() {
+		//admin인지 체크하는 코드
+		return false;
+}
+
 
 </script>
 <div class="container">
 <br>
 <h1 class="text-center" >회원게시판</h1>
 <br>
-<button type="button" class="btn btn-outline-dark">전체글</button>
-<button type="button" class="btn btn-outline-dark">공지</button>
+<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
+<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
 <button type="button" class="btn btn-secondary " style="float: right;">글쓰기</button>
 <div id="nTableTop"></div>
 <div id="nTableBox">
 <table class="table table-light table-hover text-center" id="nTable">
-   <tr>
-      <th scope="col" style="width: 10%;">번호</th>
-      <th scope="col" style="width: 50%;">제목</th>
-      <th scope="col" style="width: 10%;">글쓴이</th>
-      <th scope="col" style="width: 20%;">작성일</th>
-      <th scope="col" style="width: 10%;">조회수</th>
-   </tr>
-   <%for(int i=0;i<nlist.size();i++){ 
-		BoardDTO dto = nlist.get(i);
-		String nContentId = dto.getBoardContentId();
-		String nTitle = dto.getBoardTitle();
-		String nRegDate = dto.getBoardRegDate();
-		int nHitCount = dto.getBoardHitCount();
-   %>
-   <tr class="table-secondary fw-bold">
-     <td scope="row"><%=nContentId %></td>
-     <td ><a href="#" class="link-dark text-decoration-none"><%=nTitle %></a></td>
-     <td>관리자</td>
-     <td><%=nRegDate %></td>
-     <td><%=nHitCount %></td>
-   </tr>
-   <%} %>
-   <%for(int i=0;i<glist.size();i++){ 
-	    BoardDTO dto = glist.get(i);
-	    String gContentId = dto.getBoardContentId();
-		String gTitle = dto.getBoardTitle();
-		String gUserId = dto.getBoardUserId();
-		String gRegDate = dto.getBoardRegDate();
-		int gHitCount = dto.getBoardHitCount();
-   %>
-   <tr>
-     <td scope="row"><%=gContentId %></td>
-     <td><a href="#" class="link-dark text-decoration-none"><%=gTitle %></a></td>
-     <td><%=gUserId %></td>
-     <td><%=gRegDate %></td>
-     <td><%=gHitCount %></td>
-   </tr>
-   <%} %>
+	<colgroup>
+		<col width="5%;"/>
+		<col width="10%;"/>
+		<col width="50%;"/>
+		<col width="10%;"/>
+		<col width="20%;"/>
+		<col width="5%;"/>
+	</colgroup>
+    <tr>
+    	<th>번호</th>
+      	<th>분류</th>
+      	<th>제목</th>
+      	<th>글쓴이</th>
+      	<th>작성일</th>
+      	<th>조회수</th>
+    </tr>
+    <%for(int i=0;i<flist.size();i++){ 
+		BoardDTO dto = flist.get(i);
+		String ContentId = dto.getBoardContentId();
+		String Category = dto.getBoardCategory();
+		if(Category.equals("NOTICE")){
+			Category = "공지사항";
+		}
+		String Title = dto.getBoardTitle();
+		String UserId = dto.getBoardUserId();
+		if(UserId.equals("dg38")){
+			UserId = "관리자";
+		}
+		String RegDate = dto.getBoardRegDate();
+		int HitCount = dto.getBoardHitCount();
+    %>
+    <tr class="table-secondary fw-bold">
+     <td scope="row"><%=ContentId %></td>
+     <td><%=Category %></td>
+     <td><a href="BoardInfoServlet?ContentId=<%=ContentId %>" class="link-dark text-decoration-none"><%=Title %></a></td>
+     <td><%=UserId %></td>
+     <td><%=RegDate %></td>
+     <td><%=HitCount %></td>
+    </tr>
+    <%} %>
+    <%for(int i=0;i<slist.size();i++){ 
+	    BoardDTO dto = slist.get(i);
+	    String ContentId = dto.getBoardContentId();
+	    String Category = dto.getBoardCategory();
+	    if(Category.equals("NOTICE")){
+	    	Category = "공지사항";
+	    }else if(Category.equals("GENERAL")){
+	    	Category = "잡담";
+	    }
+		String Title = dto.getBoardTitle();
+		String UserId = dto.getBoardUserId();
+		if(UserId.equals("dg38")){
+			UserId = "관리자";
+		}
+		String RegDate = dto.getBoardRegDate();
+		int HitCount = dto.getBoardHitCount();
+    %>
+    <tr>
+     <td scope="row"><%=ContentId %></td>
+     <td><%=Category %></td>
+     <td><a href="BoardInfoServlet?ContentId=<%=ContentId %>" class="link-dark text-decoration-none"><%=Title %></a>
+     	&nbsp;<button type="button" class="btn btn-outline-danger admin">x</button>
+     </td>
+     <td><%=UserId %></td>
+     <td><%=RegDate %></td>
+     <td><%=HitCount %></td>
+    </tr>
+    <%} %>
 </table>
 </div>
 <div id="nTableBot"></div>
-<button type="button" class="btn btn-outline-dark">전체글</button>
-<button type="button" class="btn btn-outline-dark">공지</button>
+<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
+<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
 <a class="btn btn-secondary" style="float: right;">글쓰기</a>
 </div>
 <nav aria-label="Page navigation example">

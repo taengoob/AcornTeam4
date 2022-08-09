@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="boardList" parameterType="String" resultMap="test">
-		select
+		SELECT
 			BOARD_CONTENT_ID, 
 			BOARD_CATEGORY, 
 			BOARD_USER_ID, 
@@ -27,11 +27,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_UPDATE_DATE, 
 			BOARD_DEL_DATE, 
 			BOARD_HIT_COUNT
-		from
+		FROM
 			BOARD_DETATIL
-		where
+		WHERE
 			BOARD_CATEGORY = #{category}
 		order by 1 asc
 	</select>
 	
+	<select id="boardInfo" parameterType="String" resultMap="test">
+		SELECT
+			BOARD_CONTENT_ID, 
+			BOARD_CATEGORY, 
+			BOARD_USER_ID, 
+			BOARD_TITLE, 
+			BOARD_CONTENT, 
+			BOARD_REG_DATE, 
+			BOARD_UPDATE_DATE, 
+			BOARD_DEL_DATE, 
+			BOARD_HIT_COUNT
+		FROM
+			BOARD_DETATIL
+		WHERE
+			BOARD_CONTENT_ID = #{ContentId}
+	</select>
+	
+	<update id="increaseHitCount" parameterType="String">
+		UPDATE
+			BOARD_DETATIL
+		SET
+			BOARD_HIT_COUNT = BOARD_HIT_COUNT+1
+		WHERE
+			BOARD_CONTENT_ID = #{ContentId}
+	</update>	
 </mapper>

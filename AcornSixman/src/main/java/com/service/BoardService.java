@@ -22,5 +22,26 @@ public class BoardService {
 		}
 		return list;
 	}
+
+	public BoardDTO boardInfo(String ContentId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		BoardDTO dto = null;
+		try {
+			dto = dao.boardInfo(session, ContentId);
+		}finally {
+			session.close();
+		}
+		return dto;
+	}
+
+	public void increaseHitCount(String ContentId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		try {
+			dao.increaseHitCount(session, ContentId);
+			session.commit();
+		}finally {
+			session.close();
+		}
+	}
 	
 }

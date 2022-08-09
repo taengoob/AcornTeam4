@@ -9,31 +9,37 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.dto.BoardDTO;
-import com.dto.MemberDTO;
 import com.service.BoardService;
 
-@WebServlet("/BoardListServlet")
-public class BoardListServlet extends HttpServlet {
+@WebServlet("/BoardInfoServlet")
+public class BoardInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
-    public BoardListServlet() {}
+    
+    public BoardInfoServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String ContentId = request.getParameter("ContentId");
+		
+		BoardService service = new BoardService();
+		service.increaseHitCount(ContentId);
+		BoardDTO bdto = service.boardInfo(ContentId);
+		
+		request.setAttribute("bdto", bdto);
+		
 		String category = request.getParameter("category");
 		if(category==null) {
 			category = "GENERAL";
 		}
 		String notice = "NOTICE";
-		BoardService service = new BoardService();
 		List<BoardDTO> flist = service.boardList(notice);
 		List<BoardDTO> slist = service.boardList(category);
 		
 		request.setAttribute("flist", flist);
 		request.setAttribute("slist", slist);
-		RequestDispatcher dis = request.getRequestDispatcher("boardMain.jsp");
+		
+		RequestDispatcher dis = request.getRequestDispatcher("boardInfo.jsp");
 		dis.forward(request, response);
 	}
 
