@@ -22,4 +22,14 @@ public class BoardDAO {
 		session.update("com.mapper.board.increaseHitCount", ContentId);
 	}
 
+	public int boardWrite(SqlSession session, BoardDTO dto) {
+		int n = session.insert("com.mapper.board.boardWrite", dto);
+		return n;
+	}
+
+	public int boardCount(SqlSession session) {
+		int n = session.selectOne("com.mapper.board.boardCount");
+		return n;
+	}
+
 }

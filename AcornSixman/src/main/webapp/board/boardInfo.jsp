@@ -14,7 +14,7 @@
 			Category = "잡담";
 		}
 		String UserId = bdto.getBoardUserId();
-		if(UserId.equals("dg38")){
+		if(UserId.equals("taengoov")){
 			UserId = "관리자";
 		}
 		String Title = bdto.getBoardTitle();
@@ -48,7 +48,9 @@
 </script>
 <div class="container">
 <br>
+<br>
 <h1 class="text-center" >회원게시판</h1>
+<br>
 <br>
 <a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
 <a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
@@ -79,7 +81,7 @@
      <td colspan="1">0</td>
    </tr>
    <tr>
-     <td colspan="7" style="height: 500px;"><br><br><%=Content %><br><br></td>
+     <td colspan="7" style="height: 500px;" align="left"><br><br><%=Content %><br><br></td>
    </tr>
 </table>
 </div>

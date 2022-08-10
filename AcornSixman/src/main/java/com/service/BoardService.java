@@ -43,5 +43,29 @@ public class BoardService {
 			session.close();
 		}
 	}
+
+	public int boardWrite(BoardDTO dto) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int n = 0;
+		try {
+			n = dao.boardWrite(session, dto);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return n;
+	}
+
+	public int boardCount() {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int n = 0;
+		try {
+			n = dao.boardCount(session);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return n;
+	}
 	
 }

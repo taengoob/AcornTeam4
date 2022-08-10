@@ -59,4 +59,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			BOARD_CONTENT_ID = #{ContentId}
 	</update>	
+	
+	<insert id="boardWrite" parameterType="BoardDTO">
+		INSERT INTO BOARD_DETATIL
+			( 
+			BOARD_CONTENT_ID,
+			BOARD_CATEGORY, 
+			BOARD_USER_ID, 
+			BOARD_TITLE, 
+			BOARD_CONTENT
+			)
+		VALUES
+			(
+			#{boardContentId},
+			#{boardCategory},
+			#{boardUserId},
+			#{boardTitle},
+			#{boardContent}
+			)
+	</insert>
+	
+	<select id="boardCount" resultType="int">
+		select count(*) from BOARD_DETATIL
+	</select>
 </mapper>

@@ -68,11 +68,13 @@
 </script>
 <div class="container">
 <br>
+<br>
 <h1 class="text-center" >회원게시판</h1>
+<br>
 <br>
 <a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
 <a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
-<button type="button" class="btn btn-secondary " style="float: right;">글쓰기</button>
+<a href="BoardWriteUIServlet" class="btn btn-secondary" style="float: right;">글쓰기</a>
 <div id="nTableTop"></div>
 <div id="nTableBox">
 <table class="table table-light table-hover text-center" id="nTable">
@@ -137,7 +139,7 @@
      <td scope="row"><%=ContentId %></td>
      <td><%=Category %></td>
      <td><a href="BoardInfoServlet?ContentId=<%=ContentId %>" class="link-dark text-decoration-none"><%=Title %></a>
-     	&nbsp;<button type="button" class="btn btn-outline-danger admin">x</button>
+     	&nbsp;<button type="button" class="btn btn-outline-danger btn-sm admin">x</button>
      </td>
      <td><%=UserId %></td>
      <td><%=RegDate %></td>
@@ -149,7 +151,7 @@
 <div id="nTableBot"></div>
 <a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
 <a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
-<a class="btn btn-secondary" style="float: right;">글쓰기</a>
+<a href="BoardWriteUIServlet" class="btn btn-secondary" style="float: right;">글쓰기</a>
 </div>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
