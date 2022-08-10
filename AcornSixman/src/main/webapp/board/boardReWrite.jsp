@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.dto.MemberDTO" %>
+<%@page import="com.dto.BoardDTO" %>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <% 
@@ -11,6 +12,13 @@
 		MemberDTO user = (MemberDTO)obj;
 		userId = user.getAccountId();
 	}
+	
+	BoardDTO bdto = (BoardDTO)request.getAttribute("bdto");
+		String ContentId = bdto.getBoardContentId();
+		String Category = bdto.getBoardCategory();
+		String Title = bdto.getBoardTitle();
+		String Content = bdto.getBoardContent();
+	
 %>
 <style type="text/css">
 
@@ -98,20 +106,20 @@ function hideAdminElelments(isAdmin) {
 			</colgroup>
 			<tr>
 				<td colspan=2  align="center" height="80px;" style="font-size: 24px; font-weight: bold; vertical-align: middle;">
-				 	게시판 글쓰기
+				 	게시판 글수정
 				</td>
 			</tr>
 			<tr>
 				<td colspan="1" align="center">
 					<select name="category" id="category" style="width: 100%;">
 						<option>카테고리</option>
-						<option class="option admin" value="NOTICE">공지사항</option>
-						<option class="option admin" value="EVENT">이벤트</option>
-						<option value="GENERAL">잡담</option>
+						<option class="option admin" value="NOTICE" <%if("NOTICE".equals(Category)){%> selected="selected" <%} %>>공지사항</option>
+						<option class="option admin" value="EVENT" <%if("EVENT".equals(Category)){%> selected="selected" <%} %>>이벤트</option>
+						<option value="GENERAL" <%if("GENERAL".equals(Category)){%> selected="selected" <%} %>>잡담</option>
 					</select>
 				</td>
 				<td colspan="1" align="center">
-					<input type="text" name="title" id="title" placeholder="글 제목" style="width: 100%;">
+					<input type="text" name="title" id="title" placeholder="글 제목" style="width: 100%;" value="<%=Title%>">
 				</td>
 			</tr>
 				<td colspan="2" height="30px;"></td>
@@ -120,14 +128,14 @@ function hideAdminElelments(isAdmin) {
 			<tr>
 				<td colspan="2">
 					<textarea class="form-control" name="content" id="content" placeholder="글 내용" 
-					 maxlength="2048"></textarea>
+					 maxlength="2048" spellcheck="false"><%=Content%></textarea>
 				</td>
 			</tr>
 		</table>
 		<div id="nTableBot"></div>
 		<a href="BoardListServlet" class="btn btn-outline-dark">작성취소</a>
 		<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">임시저장</a>
-		<a id="writeBtn" onclick="writeChk(event)" class="btn btn-secondary" style="float: right;">작성완료</a>
+		<a id="writeBtn" onclick="writeChk(event)" class="btn btn-secondary" style="float: right;">수정완료</a>
 	</form>
 </div>
 <br>
