@@ -1,0 +1,36 @@
+# 방화벽 오픈
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw allow 8080/tcp # tomcat 기본 port
+sudo ufw allow 3389/tcp # xrdp를 위한 port
+sudo ufw allow 3306/tcp # mysql 또는 mariadb를 위한 port
+ 
+# 오픈 내역 확인
+sudo ufw show raw
+ 
+# IPtables 규칙
+sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
+sudo iptables -I INPUT 1 -p tcp --dport 443 -j ACCEPT
+sudo iptables -I INPUT 1 -p tcp --dport 8080 -j ACCEPT
+sudo iptables -I INPUT 1 -p tcp --dport 3389 -j ACCEPT
+sudo iptables -I INPUT 1 -p tcp --dport 3306 -j ACCEPT
+ 
+# 규칙 저장
+sudo service iptables save
+ 
+# 내역 확인
+sudo iptables --list
+ 
+## 재부팅시 규칙 초기화 방지를 위해
+# 패키지 설치
+sudo apt-get install iptables-persistent netfilter-persistent
+ 
+# 저장
+netfilter-persistent save
+ 
+# 다시 로그
+netfilter-persistent start
+ 
+ 
+# 재부팅
+reboot
