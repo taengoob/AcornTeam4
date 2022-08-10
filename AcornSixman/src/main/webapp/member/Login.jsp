@@ -67,7 +67,7 @@ a {
 		<div class="iph">
 			<a href="MainJoinUpServlet" class="heiwon">회원가입</a> <a
 				href="FirstFindID.jsp" class="id" id="find-id">아이디 찾기</a> <a
-				class="ll">|</a> <a href="#" class="password" id="find-pw">비밀번호
+				class="ll">|</a> <a href="FirstFindPW.jsp" class="password" id="find-pw">비밀번호
 				찾기</a>
 		</div>
 		<a href="#" class="kakao">카카오 로그인 <img src="member/img/kka.png"
