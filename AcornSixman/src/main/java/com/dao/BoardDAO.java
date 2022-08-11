@@ -32,4 +32,9 @@ public class BoardDAO {
 		return n;
 	}
 
+	public int boardReWrite(SqlSession session, BoardDTO dto) {
+		int n = session.update("com.mapper.board.boardReWrite", dto);
+		return n;
+	}
+
 }

@@ -54,7 +54,7 @@ function hideAdminElelments(isAdmin) {
 	}
 }
 
-	function getIsAdmin() {
+	function getIsAdmin() {//세션에서 받아온 로그인중인 ID가 taengoov 일 경우 관리자로 인식
 		if("taengoov"=="<%=userId%>"){
 			return true;
 		}else{
@@ -63,10 +63,10 @@ function hideAdminElelments(isAdmin) {
 	}
 
 	function writeChk(event) {
-		//id가 smarteditor인 textarea에 에디터에서 대입
+		//스마트 에디터를 사용할 textarea의 ID 입력
         oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
 
-        // 이부분에 에디터 validation 검증
+        //버튼 클릭시 유효성 검사(제목/내용 미입력 및 카테고리 셀렉트 안할시)
         var category = document.getElementById("category").value;
 		var title = document.getElementById("title").value;
 		var content = document.getElementById("content").value;
@@ -75,7 +75,7 @@ function hideAdminElelments(isAdmin) {
 			event.preventDefault();
 			alert("작성되지 않은 칸이 있습니다.");
 		}else{
-			try {
+			try {//유효성 검사가 끝난 후 서브밋 진행
 				document.getElementById("writeForm").submit();
 			} catch(e) {}
 		}
@@ -97,8 +97,8 @@ function hideAdminElelments(isAdmin) {
 	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
 	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
 	<div id="nTableTop"></div>
-	<form action="BoardWriteServlet" id="writeForm" method="post">
-		<input type="hidden" value="">
+	<form action="BoardReWriteServlet" id="writeForm" method="post">
+		<input type="hidden" name="ContentId" value="<%=ContentId%>">
 		<table class="table table-light text-center">
 			<colgroup>
 				<col width="10%;"/>
@@ -145,7 +145,7 @@ function hideAdminElelments(isAdmin) {
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 	 oAppRef: oEditors,
-	 elPlaceHolder: "content",
+	 elPlaceHolder: "content",//textarea ID 입력
 	 sSkinURI: "smarteditor2/SmartEditor2Skin.html",
 	 fCreator: "createSEditor2"
 	});

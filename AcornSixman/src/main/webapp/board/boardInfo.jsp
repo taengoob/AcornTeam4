@@ -55,7 +55,7 @@
 <script type="text/javascript">
 
 	function reWrite() {
-		var writer = document.getElementById("writer").value;
+		var writer = document.getElementById("writer").innerText;
 		console.log(writer);
 		if(writer=="<%=userId%>"||"taengoov"=="<%=userId%>"){
 			var href = "BoardWriteUIServlet?ContentId="+"<%=ContentId%>";
@@ -78,7 +78,6 @@
 <div id="nTableTop"></div>
 <div id="nTableBox">
 <table class="table table-light table-hover text-center" id="nTable">
-	<input type="hidden" id="writer" name="writer" value="<%=wUserId%>">
 	<colgroup>
 		<col width="10%;"/>
 		<col width="10%;"/>
@@ -94,7 +93,7 @@
       <td colspan="4" align="left"><%if(RegDate==UpdateDate){%><%=RegDate %><%}else{%><%=UpdateDate%><%}%></td>
    </tr>
    <tr>
-     <td colspan="1"><%=wUserId %></td>
+     <td colspan="1"><span id="writer"><%=wUserId %></span></td>
      <td colspan="2"> </td>
      <td colspan="1">조회수</td>
      <td colspan="1"><%=HitCount%></td>

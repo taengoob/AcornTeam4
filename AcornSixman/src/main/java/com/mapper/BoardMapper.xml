@@ -82,4 +82,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="boardCount" resultType="int">
 		select count(*) from BOARD_DETATIL
 	</select>
+	
+	<select id="boardReWrite" parameterType="BoardDTO">
+		UPDATE BOARD_DETATIL SET
+			BOARD_CATEGORY = #{boardCategory}, 
+			BOARD_TITLE = #{boardTitle}, 
+			BOARD_CONTENT = #{boardContent}
+		WHERE
+			BOARD_CONTENT_ID = #{boardContentId}
+	</select>
 </mapper>

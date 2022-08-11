@@ -67,5 +67,17 @@ public class BoardService {
 		}
 		return n;
 	}
+
+	public int boardReWrite(BoardDTO dto) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int n = 0;
+		try {
+			n = dao.boardReWrite(session, dto);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return n;
+	}
 	
 }
