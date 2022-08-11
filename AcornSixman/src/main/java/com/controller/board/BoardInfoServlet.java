@@ -20,12 +20,23 @@ public class BoardInfoServlet extends HttpServlet {
     public BoardInfoServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String ContentId = request.getParameter("ContentId");
-		
 		BoardService service = new BoardService();
-		service.increaseHitCount(ContentId);
-		BoardDTO bdto = service.boardInfo(ContentId);
 		
+		int boardCount = service.boardCount();
+		System.out.println("게시글 갯수"+boardCount);
+		request.setAttribute("boardCount", boardCount);
+		
+		String ContentId = request.getParameter("ContentId");
+		service.increaseHitCount(ContentId);
+		
+		String Move = request.getParameter("Move");
+		BoardDTO bdto = null;
+		if(Move!=null) { 
+			bdto = service.boardMove(Move, ContentId);
+			
+		}else {
+			bdto = service.boardInfo(ContentId);
+		}
 		request.setAttribute("bdto", bdto);
 		
 		String category = request.getParameter("category");

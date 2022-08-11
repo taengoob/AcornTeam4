@@ -7,32 +7,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class NoticeDeleteServlet
- */
+import com.dto.MemberDTO;
+import com.service.BoardService;
+
 @WebServlet("/BoardDeleteServlet")
 public class BoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BoardDeleteServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+    
+    public BoardDeleteServlet() {}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String userId = "";
+		Object obj = request.getSession().getAttribute("login");
+		if (obj != null){
+			MemberDTO user = (MemberDTO)obj;
+			userId = user.getAccountId();
+		}else {
+			response.sendRedirect("LoginUIservlet");
+		}
+		
+		String ContentId = request.getParameter("ContentId");
+		
+		BoardService service = new BoardService();
+		int n = service.boardDelete(ContentId);
+		response.sendRedirect("BoardListServlet");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

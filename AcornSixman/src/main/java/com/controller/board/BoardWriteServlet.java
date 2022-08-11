@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.IDGenerator;
 import com.dto.BoardDTO;
 import com.dto.MemberDTO;
 import com.service.BoardService;
@@ -34,10 +35,9 @@ public class BoardWriteServlet extends HttpServlet {
 		String content = request.getParameter("content");
 		
 		BoardService service = new BoardService();
-		int boardCount = service.boardCount();
 		
 		BoardDTO dto = new BoardDTO();
-		dto.setBoardContentId(boardCount+1+"");
+		dto.setBoardContentId(IDGenerator.getNewBoardContentId());
 		dto.setBoardUserId(userId);
 		dto.setBoardTitle(title);
 		dto.setBoardCategory(category);

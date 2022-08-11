@@ -139,7 +139,7 @@
      <td scope="row"><%=ContentId %></td>
      <td><%=Category %></td>
      <td><a href="BoardInfoServlet?ContentId=<%=ContentId %>" class="link-dark text-decoration-none"><%=Title %></a>
-     	&nbsp;<button type="button" class="btn btn-outline-danger btn-sm admin">x</button>
+     	&nbsp;<a href="BoardDeleteServlet?ContentId=<%=ContentId %>" class="btn btn-outline-danger btn-sm admin">x</a>
      </td>
      <td><%=UserId %></td>
      <td><%=RegDate %></td>

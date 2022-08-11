@@ -13,8 +13,10 @@
 			MemberDTO user = (MemberDTO)obj;
 			userId = user.getAccountId();
 		}
+		
+		int boardCount = (int)request.getAttribute("boardCount");
 
-	BoardDTO bdto = (BoardDTO)request.getAttribute("bdto");
+		BoardDTO bdto = (BoardDTO)request.getAttribute("bdto");
 		String ContentId = bdto.getBoardContentId();
 		String Category = bdto.getBoardCategory();
 		if(Category.equals("NOTICE")){
@@ -58,13 +60,55 @@
 		var writer = document.getElementById("writer").innerText;
 		console.log(writer);
 		if(writer=="<%=userId%>"||"taengoov"=="<%=userId%>"){
-			var href = "BoardWriteUIServlet?ContentId="+"<%=ContentId%>";
-			location.href = href;
+			if(window.confirm("정말 게시글을 수정하시겠습니까?")){
+				var href = "BoardWriteUIServlet?ContentId="+"<%=ContentId%>";
+				location.href = href;
+			}else{
+				alert("수정이 취소되었습니다.");
+			}
 		}else{
 			alert("수정 권한이 없습니다.");
 		}
 	}
-
+	
+	function nextPage() {
+		var ContentId = document.getElementById("ContentId").value;
+		var boardCount = document.getElementById("boardCount").value;
+		var Move = "Next";
+		if(parseInt(ContentId)<boardCount){
+			href = "BoardInfoServlet?Move="+Move+"&ContentId="+ContentId;
+			location.href = href;
+		}else{
+			alert("다음글이 없습니다.");
+		}
+	}
+	
+	function prevPage() {
+		var ContentId = document.getElementById("ContentId").value;
+		var Move = "Prev";
+		if(parseInt(ContentId)>1){
+			href = "BoardInfoServlet?Move="+Move+"&ContentId="+ContentId;
+			location.href = href;
+		}else{
+			alert("이전글이 없습니다.");
+		}
+	}
+	
+	function boardDel() {
+		var writer = document.getElementById("writer").innerText;
+		var ContentId = document.getElementById("ContentId").value;
+		if(writer=="<%=userId%>"||"taengoov"=="<%=userId%>"){
+			if(window.confirm("정말 게시글을 삭제하시겠습니까?")){
+				href = "BoardDeleteServlet?ContentId="+ContentId;
+				location.href = href;
+			}else{
+				alert("삭제가 취소되었습니다.");
+			}
+		}else{
+			alert("삭제 권한이 없습니다.");
+		}
+	}
+	
 </script>
 <div class="container">
 <br>
@@ -78,6 +122,8 @@
 <div id="nTableTop"></div>
 <div id="nTableBox">
 <table class="table table-light table-hover text-center" id="nTable">
+	<input type="hidden" id="ContentId" value="<%=ContentId%>">
+	<input type="hidden" id="boardCount" value="<%=boardCount%>">
 	<colgroup>
 		<col width="10%;"/>
 		<col width="10%;"/>
@@ -106,8 +152,8 @@
 </table>
 </div>
 <div id="nTableBot"></div>
-<button type="button" class="btn btn-outline-dark">이전글</button>
-<button type="button" class="btn btn-outline-dark">다음글</button>
-<a class="btn btn-secondary" style="float: right;">글삭제</a>
+<a href="#" onclick="prevPage()" class="btn btn-outline-dark">이전글</a>
+<a href="#" onclick="nextPage()" class="btn btn-outline-dark">다음글</a>
+<a href="#" onclick="boardDel()" class="btn btn-secondary" style="float: right;">글삭제</a>
 </div>
 

@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -35,6 +36,16 @@ public class BoardDAO {
 	public int boardReWrite(SqlSession session, BoardDTO dto) {
 		int n = session.update("com.mapper.board.boardReWrite", dto);
 		return n;
+	}
+
+	public int boardDelete(SqlSession session, String contentId) {
+		int n = session.update("com.mapper.board.boardDelete", contentId);
+		return n;
+	}
+
+	public BoardDTO boardMove(SqlSession session, HashMap<String, String> map) {
+		BoardDTO bdto = session.selectOne("com.mapper.board.boardMove", map);
+		return bdto;
 	}
 
 }

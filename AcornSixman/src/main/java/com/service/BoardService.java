@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -78,6 +79,32 @@ public class BoardService {
 			session.close();
 		}
 		return n;
+	}
+
+	public int boardDelete(String contentId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int n = 0;
+		try {
+			n = dao.boardDelete(session, contentId);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return n;
+	}
+
+	public BoardDTO boardMove(String Move, String ContentId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("Move", Move);
+		map.put("ContentId", ContentId);
+		BoardDTO bdto = null;
+		try {
+			bdto = dao.boardMove(session, map);
+		}finally {
+			session.close();
+		}
+		return bdto;
 	}
 	
 }
