@@ -59,4 +59,9 @@ public class CommonDAO
 	{
 		return session.selectOne("com.mapper.common.testLogin");
 	}
+
+	public String getNewBoardFileId(SqlSession session)
+	{
+		return session.selectOne("com.mapper.common.getNewBoardFileId");
+	}
 }

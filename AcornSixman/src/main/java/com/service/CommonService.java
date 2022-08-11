@@ -165,4 +165,19 @@ public class CommonService
 		}
 		return result;
 	}
+
+	public String getNewBoardFileId()
+	{
+		String result = "";
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			result = dao.getNewBoardFileId(session);
+		}
+		finally
+		{
+			session.close();
+		}
+		return result;
+	}
 }

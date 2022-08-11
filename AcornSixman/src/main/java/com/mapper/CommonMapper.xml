@@ -34,6 +34,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM DUAL
 	</select>
 	
+	<select id="getNewBoardFileId" resultType="String">
+		SELECT 'BF' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_BOARD_FILE.NEXTVAL, 5, '0') AS BOARD_FILE_ID
+		FROM DUAL
+	</select>
+	
 	<insert id="uploadImageFile" parameterType="java.util.HashMap">
 		INSERT INTO PRODUCT_IMAGE
 		(
