@@ -19,8 +19,8 @@
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
 <title>Insert title here</title>
 <style type="text/css">
-.alert-success {
-	
+a {
+	color: grey;
 }
 
 .login-input {
@@ -35,9 +35,8 @@
 </style>
 <%
 request.setCharacterEncoding("utf-8");
-String mesg1 = (String) session.getAttribute("userid");
 String mesg = (String) session.getAttribute("name");
-if (mesg1 == null) {
+if (mesg == null) {
 %>
 </head>
 <body>
@@ -47,10 +46,10 @@ if (mesg1 == null) {
 		<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	</div>
 	<div class="wide"></div>
-	<jsp:include page="member/FindIDforPhone.jsp" flush="true"></jsp:include>
+	<jsp:include page="member/findipw.jsp" flush="true"></jsp:include>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	<%
-	} else if (mesg1 != null) {
+	} else if (mesg != null) {
 	%>
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -80,52 +79,16 @@ if (mesg1 == null) {
 			aria-label="Success:">
 			<use xlink:href="#check-circle-fill" /></svg>
 		<div class="mesg123" style="text-align: center;">
-			<%=mesg%>님의 아이디는
-			<%=mesg1%>
-			입니다.
+			<%=mesg%>님 바꾸실 비밀번호를 입력해 주세요.
 		</div>
 	</div>
-	<jsp:include page="member/Login.jsp" flush="true"></jsp:include>
+	<jsp:include page="member/changePW.jsp" flush="true"></jsp:include>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	<%
 	session.removeAttribute("userid");
 	session.removeAttribute("name");
 	}
 	%>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
-	<script type="text/javascript">
-		window.onload = function() {
-			//테스트 버튼
-			//document.getElementById("testButton").onclick = onTestButtonCliked;
-
-			//서브밋 예제
-			document.getElementById("mainform").onsubmit = onTestButtonCliked;
-		}
-
-		//회원가입시 패스워드 암호화 해서 서버에 넘기는 예제
-		//db에는 암호화 된 패스워드를 insert
-		function onTestButtonCliked() {
-			//입력값
-			const target = document.getElementById("passwd");
-			console.log("target.value :", target.value);
-
-			//암호화 시킨값
-			const encryptedVal = sha256(target.value);
-			console.log("encrypted");
-
-			//input에 데이터 넣기
-			target.value = encryptedVal;
-			console.log("target.value :", target.value);
-			console.log("encryptedVal :", encryptedVal);
-
-			//action으로 submit
-			return ture;
-
-			//submit 중지
-			//return false;
-		}
-	</script>
 
 </body>
 </html>

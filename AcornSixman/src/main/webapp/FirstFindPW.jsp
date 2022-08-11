@@ -18,6 +18,15 @@
 <link href="member/Maincss/sample.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
 <title>Insert title here</title>
+<%
+String findid =(String) session.getAttribute("findid");
+if(findid != null){
+%>
+<script type="text/javascript">
+alert("일치하는 계정이 없습니다.정보를 다시 입력해주세요.")
+</script>
+<%session.removeAttribute("findid")
+; }%>
 </head>
 <body>
 	<div class="menu-item">

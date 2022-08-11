@@ -63,12 +63,7 @@ if (mesg1 == null) {
   </symbol>
 </svg>
 	
-	<div class="alert alert-success align-items-center" role="alert">
-  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-  <div class="mesg123" style="text-align: center;">
-    <%=mesg%>님의 아이디는 <%=mesg1%> 입니다.
-  </div>
-</div>
+
 </head>
 <body>
 	<div class="menu-item">
@@ -77,6 +72,12 @@ if (mesg1 == null) {
 		<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
 	</div>
 	<div class="wide"></div>
+		<div class="alert alert-success align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+  <div class="mesg123" style="text-align: center;">
+    <%=mesg%>님의 아이디는 <%=mesg1%> 입니다.
+  </div>
+</div>
 	<jsp:include page="member/Login.jsp" flush="true"></jsp:include>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	<%

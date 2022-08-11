@@ -1,0 +1,78 @@
+package com.controller.member;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
+import com.dto.MemberDTO;
+import com.service.MemberService;
+
+/**
+ * Servlet implementation class FindUser
+ */
+@WebServlet("/FindPhonePWServlet")
+public class FindPhonePWServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public FindPhonePWServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		String accountId = request.getParameter("name");
+		String accountPhone = request.getParameter("phoneNumber");
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("accountId", accountId);
+		map.put("accountPhone", accountPhone);
+
+		System.out.println(map);
+		MemberService service = new MemberService();
+		MemberDTO dto = service.findpwforphone(map);// 중복 count
+		HttpSession session = request.getSession();
+		String id= "";
+		String name = "";
+		if (dto != null) {
+			id = dto.getAccountId();
+			name= dto.getAccountName();
+			System.out.println("FindPhonePWServlet 아이디값"+id);
+			System.out.println("FindPhonePWServlet 이름값"+name);
+			session.setAttribute("useridpw", id);
+			session.setAttribute("name", name);
+			response.sendRedirect("FindPWforPhone.jsp");
+		}else {
+			session.setAttribute("findid", "nonid");
+			response.sendRedirect("FirstFindPW.jsp");	
+		}
+		
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
