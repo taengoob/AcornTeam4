@@ -108,6 +108,7 @@
 	}
 	a{
 	color: grey;
+	text-decoration: none;
 	}
 </style>
 <div id="bot0"></div>
