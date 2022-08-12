@@ -49,9 +49,10 @@ ul li {
 }
 
 .main-write {
+	font-size: 30px;
 	margin-top: 15%;
 	border-bottom: 4px solid #000;
-	width: 30%;
+	width: 50%;
 	padding-bottom: 18px;
 }
 
@@ -95,15 +96,15 @@ ul li {
 <body>
 	<div class="main-container">
 
-		<h1 class="main-write">아이디찾기</h1>
+		<h1 class="main-write">휴대폰번호로 비밀번호 찾기</h1>
 		<span class="high-line"></span>
 		<div class="main-box">
-			<form action="FindPhoneServlet" method="post" id="mainform">
+			<form action="FindPhonePWServlet" method="post" id="mainform">
 				<br>
 				<div class="login-input">
 					<input type="text" class="form-control" style="width: 40%;"
-						id="name" name="name" placeholder="이름">&nbsp;&nbsp; <span
-						class="name-result"></span>
+						id="name" name="name" placeholder="아이디를 입력하세요">&nbsp;&nbsp;
+					<span class="name-result"></span>
 
 					<section class="call-number-container">
 						<p class="number-item1">
@@ -118,8 +119,8 @@ ul li {
 				</div>
 				<br>
 
-				<button type="submit" class="btn btn-outline-primary" id="submit">아이디
-					찾기</button>
+				<button type="submit" class="btn btn-outline-primary" id="submit">사용자
+					확인</button>
 				<br> <br> <span class="span-line"></span>
 				<div class="menu-link">
 					<a href="Mainservlet" class="btn btn-outline-success">홈으로</a>

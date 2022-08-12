@@ -49,10 +49,12 @@ ul li {
 }
 
 .main-write {
-	margin-top: 15%;
+	font-size: 30px;
+	width: 40%; 
+	margin-top : 15%;
 	border-bottom: 4px solid #000;
-	width: 30%;
 	padding-bottom: 18px;
+	margin-top: 15%;
 }
 
 .high-line {
@@ -99,27 +101,23 @@ ul li {
 <body>
 	<div class="main-container">
 
-		<h1 class="main-write">이메일로 비밀번호 변경
-		
-		</h1>
+		<h1 class="main-write">이메일로 비밀번호 변경</h1>
 		<span class="high-line"></span>
 		<div class="main-box">
-			<form action="FindUseridServlet" method="post" id="mainform">
-
+			<form action="FindUserpwServlet" method="post" id="mainform">
 				<br>
 				<div class="login-input">
 					<div class="mb-3">
 						<input type="text" class="form-control" id="name" name="name"
-							placeholder="이름">
+							placeholder="아이디를 입력하세요">
 					</div>
 					&nbsp;&nbsp; <span class="name-result"></span> <br> <br>
 					<input type="text" class="form-control" name="email01" id="email01"
 						placeholder="이메일을 입력하세요" style="width: 30%; display: inline;">
-						 <span class="input-group-text" style="width: 6%; display: inline;">@</span>
-					<input type="text" name="email02" id="email02"
-						class="form-control" style="width: 30%; display: inline;">&nbsp;&nbsp;
-					<select id="sel" class="form-select"
-						aria-label="Default select example"
+					<span class="input-group-text" style="width: 6%; display: inline;">@</span>
+					<input type="text" name="email02" id="email02" class="form-control"
+						style="width: 30%; display: inline;">&nbsp;&nbsp; <select
+						id="sel" class="form-select" aria-label="Default select example"
 						style="width: 22%; display: inline; cursor: pointer;">
 						<option value="self" selected="selected"
 							style="display: inline-block;">직접입력</option>
@@ -132,8 +130,8 @@ ul li {
 				</div>
 				<br>
 
-				<button type="submit" class="btn btn-outline-primary" id="submit">아이디
-					찾기</button>
+				<button type="submit" class="btn btn-outline-primary" id="submit">사용자
+					확인</button>
 				<br> <br> <span class="span-line"></span>
 				<div class="menu-link">
 					<a href="Mainservlet" class="btn btn-outline-success">홈으로</a>
@@ -171,7 +169,7 @@ ul li {
 			var email2 = $("#email02").val();
 			if (name.length == 0) {
 				event.preventDefault();
-				$(".name-result").text("이름 부분이 비어있습니다.");
+				$(".name-result").text("아이디 부분이 비어있습니다.");
 				$(".email-result").text("");
 			} else if (email.length == 0 || email2.length == 0) {
 				event.preventDefault();

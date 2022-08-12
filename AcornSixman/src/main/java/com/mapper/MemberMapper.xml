@@ -70,4 +70,30 @@
 		#{accountName} and
 		ACCOUNT_PHONE = #{accountPhone}
 	</select>
+	<select id="findid2" parameterType="hashmap"
+		resultType="MemberDTO">
+		select
+		*
+		from user_account
+		where ACCOUNT_ID =
+		#{accountId} and
+		ACCOUNT_EMAIL_ID = #{accountEmailId} and
+		ACCOUNT_EMAIL_DOMAIN =
+		#{accountEmailDomain}
+	</select>
+	<update id="changePW" parameterType="hashmap">
+		update user_account set
+		ACCOUNT_PASSWD = #{accountPasswd}
+		where ACCOUNT_ID = #{accountId}
+	</update>
+	<select id="findpwforphone" parameterType="hashmap"
+		resultType="MemberDTO">
+		select
+		*
+		from user_account
+		where ACCOUNT_ID =
+		#{accountId} and
+		ACCOUNT_PHONE =
+		#{accountPhone} 
+	</select>
 </mapper>

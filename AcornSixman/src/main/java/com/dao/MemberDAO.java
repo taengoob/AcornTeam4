@@ -34,5 +34,17 @@ public class MemberDAO {
 		return session.selectOne("MemberMapper.findidforphone", map);
 	}
 
+	public int changePW(SqlSession session, HashMap<String, String> map) {
+		return session.update("MemberMapper.changePW", map);
+	}
+
+	public MemberDTO findid2(SqlSession session, HashMap<String, String> map) {
+		return session.selectOne("MemberMapper.findid2", map);
+	}
+
+	public MemberDTO findpwforphone(SqlSession session, HashMap<String, String> map) {
+		return session.selectOne("MemberMapper.findpwforphone", map);
+	}
+
 
 }

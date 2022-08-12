@@ -51,7 +51,7 @@ ul li {
 .main-write {
 	margin-top: 15%;
 	border-bottom: 4px solid #000;
-	width: 30%;
+	width: 35%;
 	padding-bottom: 18px;
 }
 
@@ -91,13 +91,13 @@ text-align: right;
 
 <body>
 	<div class="main-container">
-		<h1 class="main-write">개인정보 확인</h1>
+		<h1 class="main-write">비밀번호 찾기</h1>
 		<span class="high-line"></span>
 		<div class="main-box">
 			<br>
 			<div class="d-grid gap-2 col-6 mx-auto" id="button">
 				<button type="button" class="btn btn-outline-primary"
-					onclick="location.href='findpw.jsp'">이메일로 비밀번호 변경</button>
+					onclick="location.href='findipw.jsp'">이메일로 비밀번호 변경</button>
 				<button type="button" class="btn btn-outline-primary"
 					onclick="location.href='FindPWforPhone.jsp'">휴대폰 번호로 비밀번호 변경</button>
 			</div>

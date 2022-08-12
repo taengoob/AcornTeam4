@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+a{
+	text-decoration: none;
+}
+</style>
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
 
 <%

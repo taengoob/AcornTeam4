@@ -9,13 +9,13 @@ import com.dbconfig.MySqlSessionFactory;
 import com.dao.MemberDAO;
 import com.dto.MemberDTO;
 
-
 public class MemberService {
 	private MemberDAO dao;
 
 	public MemberService() {
 		dao = new MemberDAO();
 	}
+
 	public int update(MemberDTO dto2) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int dto = 0;
@@ -72,6 +72,7 @@ public class MemberService {
 		}
 		return dto;
 	}
+
 	public MemberDTO findid(HashMap<String, String> map) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		MemberDTO list = null;
@@ -84,6 +85,7 @@ public class MemberService {
 		}
 		return list;
 	}
+
 	public MemberDTO findidforphone(HashMap<String, String> map) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		MemberDTO list = null;
@@ -96,5 +98,47 @@ public class MemberService {
 		}
 		return list;
 	}
+
+	public int changePW(HashMap<String, String> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int dto = 0;
+		try {
+			dto = dao.changePW(session, map);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return dto;
+	}
+
+	public MemberDTO findid2(HashMap<String, String> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO list = null;
+		try {
+			list = dao.findid2(session, map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	public MemberDTO findpwforphone(HashMap<String, String> map) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO list = null;
+		try {
+			list = dao.findpwforphone(session, map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+
 
 }
