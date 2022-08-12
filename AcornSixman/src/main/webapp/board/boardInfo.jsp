@@ -15,6 +15,8 @@
 		}
 		
 		int boardCount = (int)request.getAttribute("boardCount");
+		int boardStart = (int)request.getAttribute("boardStart");
+		int boardEnd = (int)request.getAttribute("boardEnd");
 
 		BoardDTO bdto = (BoardDTO)request.getAttribute("bdto");
 		String ContentId = bdto.getBoardContentId();
@@ -73,9 +75,8 @@
 	
 	function nextPage() {
 		var ContentId = document.getElementById("ContentId").value;
-		var boardCount = document.getElementById("boardCount").value;
 		var Move = "Next";
-		if(parseInt(ContentId)<boardCount){
+		if(parseInt(ContentId)<<%=boardEnd%>){
 			href = "BoardInfoServlet?Move="+Move+"&ContentId="+ContentId;
 			location.href = href;
 		}else{
@@ -86,7 +87,7 @@
 	function prevPage() {
 		var ContentId = document.getElementById("ContentId").value;
 		var Move = "Prev";
-		if(parseInt(ContentId)>1){
+		if(parseInt(ContentId)><%=boardStart%>){
 			href = "BoardInfoServlet?Move="+Move+"&ContentId="+ContentId;
 			location.href = href;
 		}else{
@@ -123,7 +124,6 @@
 <div id="nTableBox">
 <table class="table table-light table-hover text-center" id="nTable">
 	<input type="hidden" id="ContentId" value="<%=ContentId%>">
-	<input type="hidden" id="boardCount" value="<%=boardCount%>">
 	<colgroup>
 		<col width="10%;"/>
 		<col width="10%;"/>

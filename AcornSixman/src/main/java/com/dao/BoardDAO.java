@@ -48,4 +48,14 @@ public class BoardDAO {
 		return bdto;
 	}
 
+	public int boardStart(SqlSession session) {
+		int n = session.selectOne("com.mapper.board.boardStart");
+		return n;
+	}
+	
+	public int boardEnd(SqlSession session) {
+		int n = session.selectOne("com.mapper.board.boardEnd");
+		return n;
+	}
+
 }

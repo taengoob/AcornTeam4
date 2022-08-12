@@ -23,8 +23,13 @@ public class BoardInfoServlet extends HttpServlet {
 		BoardService service = new BoardService();
 		
 		int boardCount = service.boardCount();
-		System.out.println("게시글 갯수"+boardCount);
+		int boardStart = service.boardStart();
+		int boardEnd = service.boardEnd();
+		System.out.println(boardStart +"  "+boardEnd);
+		
 		request.setAttribute("boardCount", boardCount);
+		request.setAttribute("boardStart", boardStart);
+		request.setAttribute("boardEnd", boardEnd);
 		
 		String ContentId = request.getParameter("ContentId");
 		service.increaseHitCount(ContentId);

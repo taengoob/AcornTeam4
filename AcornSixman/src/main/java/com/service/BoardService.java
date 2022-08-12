@@ -106,5 +106,27 @@ public class BoardService {
 		}
 		return bdto;
 	}
+
+	public int boardStart() {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int n = 0;
+		try {
+			n = dao.boardStart(session);
+		}finally {
+			session.close();
+		}
+		return n;
+	}
+	
+	public int boardEnd() {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int n = 0;
+		try {
+			n = dao.boardEnd(session);
+		}finally {
+			session.close();
+		}
+		return n;
+	}
 	
 }
