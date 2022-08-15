@@ -4,106 +4,137 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-<link rel="stylesheet" type="text/css" href="Maincss/MainJoinUp.css">
- -->
-
-
 <title>로그인</title>
-
-
 <style type="text/css">
-#idCheck2 {
+#id {
+	width: 50%;
+}
+
+.main-box {
+	width: 100%;
+	border: 1px solid;
+	border-color: gray;
+	overflow: hidden;
+	height: 600px;
+	width: 80%;
+	margin-top: 3%;
+	margin-left: 10%;
+}
+
+#id-con {
+	background-color: grey;
 	padding: 6px;
+	color: white;
+}
+
+.form-group {
+	margin-top: 2.3%;
+	margin-left: 7%;
+}
+
+#checkResult, #result {
+	color: blue;
+	font-size: 14px;
+}
+
+.addr-input {
+	margin-left: 17.2%;
+}
+.finish{
+text-align: right;
+margin-right: 5%;
+margin-top: 3%;	
 }
 </style>
 </head>
 <body>
-	<h1 class="gibon-item1">기본정보</h1>
-	<p class="gibon-item2">
-		<span class="xi-checkbox-blank"></span> 표시는 반드시 입력하셔야 하는 항목입니다.
-	</p>
-	<form action="MemberAddServlet" method="post" id="mainform">
-		<section class="id-container">
-			<p class="form-item">
-				<span class="xi-checkbox-blank"></span> 아이디
-			</p>
-			<input type="text" id="id" name="id">&nbsp;&nbsp;&nbsp;&nbsp;
-			<button id="idCheck" name="idCheck" type="button">아이디 중복 확인</button>
-			&nbsp;&nbsp;&nbsp;&nbsp; <span id="checkResult"></span>
-			&nbsp;&nbsp;&nbsp;&nbsp; <input type="hidden" id="idc" name="idc">
-			<input type="radio" value="사용자" id="consumer" name="sel">사용자
-			&nbsp;&nbsp; <input type="radio" value="판매자" id="seller" name="sel">판매자
-			<input type="hidden" id="seller_YN" name="seller_YN">
 
-		</section>
-		<section class="password-container">
-			<p class="form-item">
-				<span class="xi-checkbox-blank"></span> 비밀번호
-			</p>
-			<input type="password" id="passwd" name="passwd">
-		</section>
-		<section class="password-good-container">
-			<p class="form-item">
-				<span class="xi-checkbox-blank"></span> 비밀번호 확인
-			</p>
-			<input type="password" id="passwd1" name="passwd1"> <span
-				id='result'></span>
-		</section>
-		<section class="name-container">
-			<p class="form-item">
-				<span class="xi-checkbox-blank"></span> 이름
-			</p>
-			<input type="text" id="name" name="name">
-		</section>
-		<section class="email-container">
-			<p class="email-name">
-				<span class="xi-checkbox-blank"></span> 이메일
-			</p>
-			<input type="text" name="email01" id="email01"
-				placeholder="이메일을 입력하세요">&nbsp;&nbsp; @ <input type="text"
-				name="email02" id="email02"> <select id="sel">
-				<option value="self" selected="selected">직접입력</option>
-				<option value="naver.com">naver.com</option>
-				<option value="hanmail.net">hanmail.net</option>
-				<option value="daum.net">daum.net</option>
-				<option value="nate.com">nate.com</option>
-				<option value="gmail.com">gmail.com</option>
-			</select>
-		</section>
-		<section class="call-number-container">
-			<p class="number-item1">
-				<span class="xi-checkbox-blank"></span> 휴대폰번호
-			</p>
-			<input type="text" placeholder="- 없이 입력하세요." data-pattern="gdNum"
-				id="phoneNumber" name="phoneNumber" onkeyup="checkNumber(event)">
+	<form action="MemberAddServlet" class="form-inline" method="post"
+		id="mainform">
+		<div class="main-box">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">아이디</label>
+				<input type="text" class="form-control" id="id" name="id"
+					placeholder="" style="display: inline; width: 40%;">&nbsp;&nbsp;
+				<button class="btn btn-outline-secondary" id="idCheck"
+					name="idCheck" type="button" style="margin-bottom: 4.5px;">
+					아이디 중복 확인</button>
+				&nbsp;&nbsp; <span id="checkResult"></span> &nbsp;&nbsp; <input
+					type="hidden" id="idc" name="idc"> <input type="radio"
+					value="사용자" id="consumer" name="sel">사용자 &nbsp;&nbsp; <input
+					type="radio" value="판매자" id="seller" name="sel">판매자 <input
+					type="hidden" id="seller_YN" name="seller_YN">
+			</div>
 
-		</section>
-		<section class="addr-container">
-			<p class="number-item3">
-				<span class="xi-checkbox-blank"></span> 주소
-			</p>
-			<input type="text" name="post" id="sample4_postcode"
-				placeholder="우편번호">&nbsp;&nbsp; <input type="button"
-				onclick="sample4_execDaumPostcode()" value="우편번호 찾기" id="idCheck2"
-				name="idCheck2"> <br> <input type="text" name="addr1"
-				id="sample4_roadAddress" placeholder="도로명주소"> <input
-				type="text" name="addr2" id="sample4_jibunAddress"
-				placeholder="지번주소"> <span id="guide" style="color: #999">
-			</span>
-		</section>
-		<span class="addr-bottom-line"></span>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">비밀번호</label>
+				<input type="password" id="passwd" name="passwd"
+					class="form-control" style="display: inline; width: 40%;">
+			</div>
 
-		<div class="finish">
-			<a href="../FirstJoinUpPage.jsp" id="cancle">취소</a> <input
-				type="submit" id="finishuser" value="회원가입">
+
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">비밀번호
+					확인</label> <input type="password" id="passwd1" name="passwd1"
+					class="form-control" style="display: inline; width: 40%;">
+				&nbsp;&nbsp; <span id='result'></span>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">이름</label>
+				<input type="text" id="name" name="name" class="form-control"
+					style="display: inline; width: 40%;">
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">이메일</label>
+				<input type="text" name="email01" id="email01" class="form-control"
+					style="display: inline; width: 20%;" placeholder="이메일을 입력하세요"><span
+					class="input-group-text" style="width: 6%; display: inline;">@</span><input
+					type="text" name="email02" id="email02" class="form-control"
+					style="display: inline; width: 16.6%;">&nbsp;&nbsp;<select
+					id="sel" class="form-select" style="display: inline; width: 10%;">
+					<option value="self" selected="selected">직접입력</option>
+					<option value="naver.com">naver.com</option>
+					<option value="hanmail.net">hanmail.net</option>
+					<option value="daum.net">daum.net</option>
+					<option value="nate.com">nate.com</option>
+					<option value="gmail.com">gmail.com</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">휴대폰
+					번호</label> <input type="text" placeholder="- 없이 입력하세요."
+					data-pattern="gdNum" id="phoneNumber" name="phoneNumber"
+					onkeyup="checkNumber(event)" class="form-control"
+					style="display: inline; width: 20%;">
+
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">
+					주소</label> <input type="text" name="post" id="sample4_postcode"
+					class="form-control" style="display: inline; width: 20%;"
+					placeholder="우편번호">&nbsp;&nbsp;
+				<button onclick="sample4_execDaumPostcode()" id="idCheck2"
+					class="btn btn-outline-secondary" name="idCheck2" type="button"
+					style="margin-bottom: 4.5px;">우편주소 찾기</button>
+				<br>
+				<div class="addr-input">
+					<input type="text" name="addr1" class="form-control"
+						style="display: inline; width: 24.2%;" id="sample4_roadAddress"
+						placeholder="도로명주소">&nbsp;&nbsp;<input type="text"
+						name="addr2" id="sample4_jibunAddress" class="form-control"
+						style="display: inline; width: 24.4%; margin-left: 0.5%;" placeholder="지번주소">
+					<span id="guide" style="color: #999"> </span>
+				</div>
+			</div>
+			<div class="finish">
+				<button class="btn btn-outline-success" type="button" 
+				onclick="location.href='FirstJoinUpPage.jsp'" id="cancle">취소</button>
+				<button class="btn btn-outline-success"
+					type="submit" id="finishuser">회원가입</button>
+			</div>
+			<span class="addr-bottom-line"></span>
 		</div>
+
 	</form>
 	<p class="row"></p>
 	<script

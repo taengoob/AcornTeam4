@@ -16,11 +16,11 @@
 </style>
 </head>
 <body>
-<div class="menu-item">
-<jsp:include page="common/top.jsp" flush="true"></jsp:include>
-<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
-</div>
-<div class="wide"></div>
+	<div class="menu-item">
+		<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
+		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
+	</div>
+	<div class="wide"></div>
 <jsp:include page="cart/cartmenu.jsp" flush="true"></jsp:include><br>
 <jsp:include page="cart/cartlist2.jsp" flush="true"></jsp:include><br>
 <jsp:include page="common/bot.jsp" flush="true"></jsp:include><br>

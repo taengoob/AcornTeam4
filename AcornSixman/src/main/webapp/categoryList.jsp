@@ -9,10 +9,10 @@
 </head>
 <body>
 	<div class="menu-item">
+		<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
 		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
-		<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
-		
-	</div><div class="wide"></div>
+	</div>
+	<div class="wide"></div>
 	<hr>
 	<jsp:include page="product/productList.jsp"></jsp:include>
 	

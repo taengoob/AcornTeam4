@@ -163,8 +163,9 @@ rotate
 
 	<div class="menu-item">
 		<!-- 메뉴는 이거랑 css 같이 다니게 복붙해주세요 -김봉근- -->
+		<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
 		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
-		<jsp:include page="common/menu.jsp" flush="true"></jsp:include>
+		
 	</div>
 	<div class="wide"></div>
 	<div class="main-container">

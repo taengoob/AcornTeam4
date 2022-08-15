@@ -22,7 +22,6 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Noto Sans KR', sans-serif;
 }
 
 a {
@@ -109,9 +108,9 @@ ul li {
 				<div class="login-input">
 					<div class="mb-3">
 						<input type="text" class="form-control" id="name" name="name"
-							placeholder="아이디를 입력하세요">
+							placeholder="아이디를 입력하세요"> <span class="name-result"></span>
 					</div>
-					&nbsp;&nbsp; <span class="name-result"></span> <br> <br>
+					 <br> <br>
 					<input type="text" class="form-control" name="email01" id="email01"
 						placeholder="이메일을 입력하세요" style="width: 30%; display: inline;">
 					<span class="input-group-text" style="width: 6%; display: inline;">@</span>
@@ -126,7 +125,7 @@ ul li {
 						<option value="daum.net">daum.net</option>
 						<option value="nate.com">nate.com</option>
 						<option value="gmail.com">gmail.com</option>
-					</select><br> <span class="email-result"></span>
+					</select><span class="email-result"></span>
 				</div>
 				<br>
 
