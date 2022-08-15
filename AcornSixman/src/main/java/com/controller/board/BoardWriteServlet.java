@@ -11,6 +11,8 @@ import com.common.IDGenerator;
 import com.dto.BoardDTO;
 import com.dto.MemberDTO;
 import com.service.BoardService;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @WebServlet("/BoardWriteServlet")
 public class BoardWriteServlet extends HttpServlet {
@@ -34,6 +36,17 @@ public class BoardWriteServlet extends HttpServlet {
 		String category = request.getParameter("category");
 		String content = request.getParameter("content");
 		
+		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
+	    Matcher matcher = pattern.matcher(content);
+	    
+	    String[] imgs = new String[10];//이미지 최대 10개 저장
+	    int index = 0;
+		while(matcher.find()){ 
+			 imgs[index] = matcher.group(1);//img 태그의 src 값만 추출
+			 index++;
+		}
+
+	
 		BoardService service = new BoardService();
 		
 		BoardDTO dto = new BoardDTO();
@@ -42,6 +55,7 @@ public class BoardWriteServlet extends HttpServlet {
 		dto.setBoardTitle(title);
 		dto.setBoardCategory(category);
 		dto.setBoardContent(content);
+		dto.setBoardPreviewImg(imgs[0]);
 		
 		int n = service.boardWrite(dto);
 		if(n!=0	){

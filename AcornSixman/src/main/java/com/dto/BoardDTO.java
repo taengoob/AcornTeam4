@@ -12,6 +12,7 @@ public class BoardDTO {
 	private String boardDelDate;
 	private int boardHitCount;
 	private String boardSubCategory;
+	private String boardPreviewImg;
 	
 	public BoardDTO() {
 		super();
@@ -20,7 +21,7 @@ public class BoardDTO {
 
 	public BoardDTO(String boardContentId, String boardCategory, String boardUserId, String boardTitle,
 			String boardContent, String boardRegDate, String boardUpdateDate, String boardDelDate, int boardHitCount,
-			String boardSubCategory) {
+			String boardSubCategory, String boardPreviewImg) {
 		super();
 		this.boardContentId = boardContentId;
 		this.boardCategory = boardCategory;
@@ -32,6 +33,7 @@ public class BoardDTO {
 		this.boardDelDate = boardDelDate;
 		this.boardHitCount = boardHitCount;
 		this.boardSubCategory = boardSubCategory;
+		this.boardPreviewImg = boardPreviewImg;
 	}
 
 	public String getBoardContentId() {
@@ -114,14 +116,23 @@ public class BoardDTO {
 		this.boardSubCategory = boardSubCategory;
 	}
 
+	public String getBoardPreviewImg() {
+		return boardPreviewImg;
+	}
+
+	public void setBoardPreviewImg(String boardPreviewImg) {
+		this.boardPreviewImg = boardPreviewImg;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardDTO [boardContentId=" + boardContentId + ", boardCategory=" + boardCategory + ", boardUserId="
 				+ boardUserId + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent + ", boardRegDate="
 				+ boardRegDate + ", boardUpdateDate=" + boardUpdateDate + ", boardDelDate=" + boardDelDate
-				+ ", boardHitCount=" + boardHitCount + ", boardSubCategory=" + boardSubCategory + "]";
+				+ ", boardHitCount=" + boardHitCount + ", boardSubCategory=" + boardSubCategory + ", boardPreviewImg="
+				+ boardPreviewImg + "]";
 	}
-
+	
 	
 	
 }

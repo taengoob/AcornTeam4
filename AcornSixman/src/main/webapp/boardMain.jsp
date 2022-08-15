@@ -15,7 +15,18 @@
 	</div><div class="wide"></div>
 	<jsp:include page="common/search.jsp"></jsp:include>
 	<hr>
+<%
+	String view = (String)request.getAttribute("view");
+	if(view!=null){
+%>
+	<jsp:include page="board/boardImageList.jsp"></jsp:include>
+<%
+	}else{
+%>
 	<jsp:include page="board/boardList.jsp"></jsp:include>
+<%
+	}
+%>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	<hr>
 	<jsp:include page="common/mesg.jsp"></jsp:include>

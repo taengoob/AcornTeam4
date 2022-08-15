@@ -12,6 +12,8 @@
 	List<BoardDTO> slist = bpDTO.getList();
 	int curPage = bpDTO.getCurPage();
 	
+	String view = (String)request.getAttribute("view");
+	
 	String userId = "";
 	Object obj = session.getAttribute("login");
 	if (obj != null)
@@ -22,12 +24,9 @@
 
 %>
 <style type="text/css">
-	#boardlistctn{
-		
-	}
 	#nTableBox{
 		border-top: 2px solid black;
-		border-bottom: 2px solid black;
+		border-bottom: 2px solid grey;
 	}
 	#nTable{
 		padding: 0px;
@@ -42,6 +41,11 @@
 	#NoticeRow{
 		border-top: 1px solid grey;
 		border-bottom: 1px solid grey;
+	}
+	#previewimg{
+		width: 253px;
+		height: 191px;
+		object-fit: cover;
 	}
 </style>
 <script type="text/javascript">
@@ -76,18 +80,18 @@
 
 
 </script>
-<div class="container" id="boardlistctn">
+<div class="container">
 	<div style="height: 50px;"></div>
-	<h1 class="text-center" >회원게시판</h1>
+	<h1 class="text-center">회원게시판</h1>
 	<div style="height: 50px;"></div>
-	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
-	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
-	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
+	<a href="BoardListServlet?view=img" class="btn btn-outline-dark">전체글</a>
+	<a href="BoardListServlet?view=img&category=NOTICE" class="btn btn-outline-dark">공지</a>
+	<a href="BoardListServlet?view=img&category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
 	<a href="BoardListServlet?view=img" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
-		<img src="upload/imgview5.png" width="40px;" height="40px;">
+		<img src="upload/imgview.png" width="40px;" height="40px;">
 	</a>
 	<a href="BoardListServlet" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
-		<img src="upload/textview2.png" width="40px;" height="40px;">
+		<img src="upload/textview.png" width="40px;" height="40px;">
 	</a>
 	<div id="nTableTop"></div>
 	<div id="nTableBox">
@@ -126,52 +130,64 @@
 			<tr class="table-secondary fw-bold">
 				<td scope="row"><%=ContentId %></td>
 				<td><%=Category %></td>
-				<td>
-					<a href="BoardInfoServlet?curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
-						<%=Title %>
-					</a>
-				</td>
-				<td><%=UserId %></td>
-				<td><%=RegDate %></td>
-				<td><%=HitCount %></td>
-				<%} %>
-			</tr>
-			<tr id="NoticeRow">
-			</tr>
-			<%for(int i=0;i<slist.size();i++){ 
-				BoardDTO dto = slist.get(i);
-				String ContentId = dto.getBoardContentId();
-				String Category = dto.getBoardCategory();
-				if(Category.equals("NOTICE")){
-					Category = "공지사항";
-				}else if(Category.equals("GENERAL")){
-					Category = "잡담";
-				}
-				String Title = dto.getBoardTitle();
-				String UserId = dto.getBoardUserId();
-				if(UserId.equals("taengoov")){
-					UserId = "관리자";
-				}
-				String RegDate = dto.getBoardRegDate();
-				int HitCount = dto.getBoardHitCount();
-			 %>
-			<tr>
-				<td scope="row"><%=ContentId %></td>
-				<td><%=Category %></td>
-				<td>
-					<a href="BoardInfoServlet?curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
-						<%=Title %>
-					</a>&nbsp;
-					<a href="BoardDeleteServlet?curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="btn btn-outline-danger btn-sm admin">
-						x
-					</a>
-				</td>
+				<td><a href="BoardInfoServlet?view=img&curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none"><%=Title %></a></td>
 				<td><%=UserId %></td>
 				<td><%=RegDate %></td>
 				<td><%=HitCount %></td>
 			</tr>
 			<%} %>
-		</table>
+			<tr id="NoticeRow">
+			</tr>
+	    </table>
+	</div>
+    <div class="row" style="width: 100%;margin: auto;" >
+		<div class="w-100" style="height: 25px;"></div>
+		<%for(int i=0;i<slist.size();i++){ 
+			BoardDTO dto = slist.get(i);
+			String ContentId = dto.getBoardContentId();
+			String Category = dto.getBoardCategory();
+			if(Category.equals("NOTICE")){
+				Category = "공지사항";
+			}else if(Category.equals("GENERAL")){
+				Category = "잡담";
+			}
+			String Title = dto.getBoardTitle();
+			String UserId = dto.getBoardUserId();
+			if(UserId.equals("taengoov")){
+				UserId = "관리자";
+			}
+			String RegDate = dto.getBoardRegDate();
+			int HitCount = dto.getBoardHitCount();
+			String PreviewImg = dto.getBoardPreviewImg();
+		%>
+		<div class="col-sm-3">
+			<div class="card">
+				<a href="BoardInfoServlet?view=img&curPage=<%=curPage %>&ContentId=<%=ContentId %>" style="margin: auto;">
+					<img class="card-img-top" id="previewimg"
+					<%if(PreviewImg!=null) {//대표 이미지 출력%>
+						src="<%=PreviewImg %>"
+					<%}else{//저장된 이미지가 없을 경우 noimage 출력 %>
+						src="upload/noimage.png"
+					<%} %>>
+				</a>
+				<ul class="list-group list-group-flush table-hover">
+					<li class="list-group-item">
+						<span style="font-weight: bold;"><%=Title %></span>
+					</li>
+					<li class="list-group-item">
+						<span><%=UserId %></span>
+					</li>
+					<li class="list-group-item">
+						<span>•조회수 <%=HitCount %></span>
+						<span style="float: right">•<%=RegDate %></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+			<% if((i+1)%4==0){%>
+				<div class="w-100" style="height: 30px;"></div>
+			<%} %>
+		<%} %>
 	</div>
 	<div id="nTableBot"></div>
 	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
@@ -191,11 +207,11 @@
 		for(int i=1; i<=totalPage;i++){
 			if(i==curPage){%>
 				<li class="page-item active">
-					<a href="BoardListServlet?curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
+					<a href="BoardListServlet?view=y&curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
 				</li>
 			<%}else{ %>
 				<li class="page-item">
-					<a href="BoardListServlet?curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
+					<a href="BoardListServlet?view=y&curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
 				</li>
 			<%}%>
     <%

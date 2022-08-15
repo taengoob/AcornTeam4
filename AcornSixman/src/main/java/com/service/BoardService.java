@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.dao.BoardDAO;
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.BoardDTO;
+import com.dto.BoardPageDTO;
 
 public class BoardService {
 
@@ -129,4 +130,23 @@ public class BoardService {
 		return n;
 	}
 	
+	public void showImg(String img, String ContentId) {
+		System.out.println(img);
+		System.out.println(ContentId);
+	}
+
+	public BoardPageDTO boardPageList(String category, String view, int curPage, String searchName, String searchValue) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("category", category);
+		map.put("searchName", searchName);
+		map.put("searchValue", searchValue);
+		BoardPageDTO bpDTO = null;
+		try {
+			bpDTO = dao.boardPageList(session, map, curPage, view);
+		}finally {
+			session.close();
+		}
+		return bpDTO;
+	}
 }

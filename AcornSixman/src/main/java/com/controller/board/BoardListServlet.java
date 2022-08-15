@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dto.BoardDTO;
+import com.dto.BoardPageDTO;
 import com.dto.MemberDTO;
 import com.service.BoardService;
 
@@ -22,19 +23,32 @@ public class BoardListServlet extends HttpServlet {
     public BoardListServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String category = request.getParameter("category");
-		if(category==null) {
-			category = "GENERAL";
-		}
-		String notice = "NOTICE";
 		BoardService service = new BoardService();
-		List<BoardDTO> flist = service.boardList(notice);
-		List<BoardDTO> slist = service.boardList(category);
+		
+		String category = request.getParameter("category");//현재 어떤 페이지인지
+		if(category==null) {category = "GENERAL";}//카테고리가 없을경우 일반 페이지
+		
+		String curPage = request.getParameter("curPage");//현재 몇 페이지인지
+		if(curPage==null) {curPage="1";}
+		
+		String view = request.getParameter("view");//게시판 형식
+		if(view!=null) {request.setAttribute("view", view);}//null이 아닐경우 이미지로 보기
+		
+		String searchName = request.getParameter("searchName");//검색분류
+		String searchValue = request.getParameter("searchValue");//검색어
+		
+		String notice = "NOTICE";//공지사항
+		List<BoardDTO> flist = service.boardList(notice); //게시판 공지목록
+		
+		BoardPageDTO bpDTO = service.boardPageList(category, view, Integer.parseInt(curPage), searchName, searchValue);
 		
 		request.setAttribute("flist", flist);
-		request.setAttribute("slist", slist);
+		request.setAttribute("bpDTO", bpDTO);
+		request.setAttribute("searchName", searchName);//현재 선택된 검색분류 넘기기
+		request.setAttribute("searchValue", searchValue);//현재 검색된 검색어 넘기기
 		RequestDispatcher dis = request.getRequestDispatcher("boardMain.jsp");
 		dis.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

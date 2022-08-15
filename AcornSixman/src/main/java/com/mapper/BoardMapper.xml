@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="boardDelDate" column="BOARD_DEL_DATE"/>
 		<result property="boardHitCount" column="BOARD_HIT_COUNT"/>
 		<result property="boardSubCategory" column="BOARD_SUB_CATEGORY"/>
+		<result property="boardPreviewImg" column="BOARD_PREVIEW_IMG"/>
 	</resultMap>
 	
 	<select id="boardList" parameterType="String" resultMap="test">
@@ -27,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_REG_DATE, 
 			BOARD_UPDATE_DATE, 
 			BOARD_DEL_DATE, 
-			BOARD_HIT_COUNT
+			BOARD_HIT_COUNT,
 			BOARD_SUB_CATEGORY
 		FROM
 			BOARD_DETATIL
@@ -71,7 +72,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_CATEGORY, 
 			BOARD_USER_ID, 
 			BOARD_TITLE, 
-			BOARD_CONTENT
+			BOARD_CONTENT,
+			BOARD_PREVIEW_IMG
 			)
 		VALUES
 			(
@@ -79,7 +81,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{boardCategory},
 			#{boardUserId},
 			#{boardTitle},
-			#{boardContent}
+			#{boardContent},
+			#{boardPreviewImg}
 			)
 	</insert>
 	
@@ -99,7 +102,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_CATEGORY = #{boardCategory}, 
 			BOARD_TITLE = #{boardTitle}, 
 			BOARD_CONTENT = #{boardContent},
-			BOARD_UPDATE_DATE = (SELECT FN_GET_KST_DATE() FROM DUAL)
+			BOARD_UPDATE_DATE = (SELECT FN_GET_KST_DATE() FROM DUAL),
+			BOARD_PREVIEW_IMG = #{boardPreviewImg}
 		WHERE
 			SUBSTR(BOARD_CONTENT_ID,15,5) = #{boardContentId}
 	</update>
@@ -168,5 +172,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	BOARD_DEL_DATE IS NULL
 	</select>
 	
+	<select id="boardPageList" parameterType="HashMap" resultMap="test">
+		SELECT
+			SUBSTR(BOARD_CONTENT_ID,15,5) BOARD_CONTENT_ID, 
+			BOARD_CATEGORY, 
+			BOARD_USER_ID, 
+			BOARD_TITLE, 
+			BOARD_CONTENT, 
+			BOARD_REG_DATE, 
+			BOARD_UPDATE_DATE, 
+			BOARD_DEL_DATE, 
+			BOARD_HIT_COUNT,
+			BOARD_SUB_CATEGORY,
+			BOARD_PREVIEW_IMG
+		FROM
+			BOARD_DETATIL
+		WHERE
+			BOARD_CATEGORY = #{category}
+		AND
+			BOARD_DEL_DATE IS NULL
+		order by 1 DESC
+	</select>
 	
 </mapper>

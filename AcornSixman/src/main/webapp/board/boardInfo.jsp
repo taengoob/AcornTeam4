@@ -55,6 +55,9 @@
 	#nTr{
 		border-bottom: 1px solid black;
 	}
+	#ContentBox{
+		padding: 50px 50px 50px 50px;
+	}
 </style>
 <script type="text/javascript">
 
@@ -122,7 +125,7 @@
 <a href="#" onclick="reWrite()" class="btn btn-secondary " style="float: right;">글수정</a>
 <div id="nTableTop"></div>
 <div id="nTableBox">
-<table class="table table-light table-hover text-center" id="nTable">
+<table class="table table-light text-center" id="nTable">
 	<input type="hidden" id="ContentId" value="<%=ContentId%>">
 	<colgroup>
 		<col width="10%;"/>
@@ -147,7 +150,9 @@
      <td colspan="1">0</td>
    </tr>
    <tr>
-     <td colspan="7" style="height: 500px;" align="left"><br><br><%=Content %><br><br></td>
+     <td colspan="7" style="height: 500px;" align="left">
+     	<div id="ContentBox"><%=Content %></div>
+     </td>
    </tr>
 </table>
 </div>

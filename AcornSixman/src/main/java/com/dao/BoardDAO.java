@@ -3,9 +3,11 @@ package com.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.dto.BoardDTO;
+import com.dto.BoardPageDTO;
 
 public class BoardDAO {
 
@@ -56,6 +58,21 @@ public class BoardDAO {
 	public int boardEnd(SqlSession session) {
 		int n = session.selectOne("com.mapper.board.boardEnd");
 		return n;
+	}
+
+	public BoardPageDTO boardPageList(SqlSession session, HashMap<String, Object> map, int curPage, String view) {
+		BoardPageDTO bpDTO = new BoardPageDTO();
+		if(view!=null) {bpDTO.setPerPage(12);}//이미지로 볼 경우 12개씩 출력되게
+		int perPage = bpDTO.getPerPage();   //한페이지 20개씩 
+		int offset = (curPage - 1) * perPage;
+		
+		List<BoardDTO> list = session.selectList("com.mapper.board.boardPageList",map,new RowBounds(offset, perPage));
+		
+		bpDTO.setList(list);
+		bpDTO.setCurPage(curPage);
+		bpDTO.setTotalCount(boardCount(session));
+		
+		return bpDTO;
 	}
 
 }

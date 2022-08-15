@@ -16,6 +16,7 @@
 	<jsp:include page="common/search.jsp"></jsp:include>
 	<hr>
 	<jsp:include page="board/boardInfo.jsp"></jsp:include>
+	<jsp:include page="board/boardReply.jsp"></jsp:include>
 	<div style="height: 300px;"></div>
 	<jsp:include page="board/boardList.jsp"></jsp:include>
 	<jsp:include page="common/bot.jsp"></jsp:include>
