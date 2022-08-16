@@ -18,7 +18,6 @@
 	}
 	function delAll() {
 		document.querySelector("#delForm").action='seller/deleteAllProduct.jsp';
-	//	document.querySelector("#delForm").submit; 
 	}
 	function delProduct(n) {
 		 event.preventDefault(); /*location.href전에 event.preventDefault()사용  */
@@ -27,15 +26,19 @@
 </script>
 </head>
 <body>
-<form id="delForm">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+	 <%
+	List<ProductDTO_Temp> list = (List<ProductDTO_Temp>) request.getAttribute("list");
+	%> 
+	
+
+<form id="delForm" class="table table-striped">
 <table border="1">
 <tr>
 	</tr>
  	<tr>
- 	 <%
-	List<ProductDTO_Temp> list = (List<ProductDTO_Temp>) request.getAttribute("list");
-	%> 
-	  <th colspan="2"></th>
+ 
+	  <th colspan="2"><input type="checkbox" name="delCheckAll" id="delCheckAll" onclick="chk(this)">전체선택 </th>
   	  <th colspan="2">상품명</th>
   	  <th colspan="4">상품이미지</th>
   	  <th colspan="2">상품금액</th>

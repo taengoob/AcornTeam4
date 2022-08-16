@@ -28,6 +28,9 @@
 					border="0">
 					<tr>
 						<td><a href="ProductUploadFormServlet" id="product">*제품 등록*</a>&nbsp;</td>
+						<td><a href="ProductAddServlet" id="Add">*제품 등록(수정중)*</a>&nbsp;</td>
+						<td><a href="ProductListServlet1" id="List">*판매자 상품리스트*</a>&nbsp;</td>
+						<td><a href="ProcessListServlet" id="product">*주문처리현황*</a>&nbsp;</td>
 					</tr>
 
 					<tr>
