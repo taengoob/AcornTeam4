@@ -51,7 +51,7 @@ ul li {
 	font-size: 30px;
 	margin-top: 15%;
 	border-bottom: 4px solid #000;
-	width: 50%;
+	width: 55%;
 	padding-bottom: 18px;
 }
 
