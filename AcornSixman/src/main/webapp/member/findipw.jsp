@@ -49,7 +49,7 @@ ul li {
 
 .main-write {
 	font-size: 30px;
-	width: 40%; 
+	width: 45%; 
 	margin-top : 15%;
 	border-bottom: 4px solid #000;
 	padding-bottom: 18px;
