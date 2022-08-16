@@ -180,4 +180,19 @@ public class CommonService
 		}
 		return result;
 	}
+
+	public String getNewBoardReplyId() 
+	{
+		String result = "";
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			result = dao.getNewBoardReplyId(session);
+		}
+		finally
+		{
+			session.close();
+		}
+		return result;
+	}
 }

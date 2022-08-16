@@ -39,6 +39,7 @@
 			DelDate = " ";
 		}
 		int HitCount = bdto.getBoardHitCount();
+		String RealContentId = bdto.getBoardRealContentId();
 %>
 <style type="text/css">
 	#nTableBox{
@@ -127,6 +128,7 @@
 <div id="nTableBox">
 <table class="table table-light text-center" id="nTable">
 	<input type="hidden" id="ContentId" value="<%=ContentId%>">
+	<input type="hidden" id="RealContentId" value="<%=RealContentId%>">
 	<colgroup>
 		<col width="10%;"/>
 		<col width="10%;"/>

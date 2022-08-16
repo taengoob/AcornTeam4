@@ -2,6 +2,7 @@ package com.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -9,6 +10,7 @@ import com.dao.BoardDAO;
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
+import com.dto.BoardReplyDTO;
 
 public class BoardService {
 
@@ -130,11 +132,6 @@ public class BoardService {
 		return n;
 	}
 	
-	public void showImg(String img, String ContentId) {
-		System.out.println(img);
-		System.out.println(ContentId);
-	}
-
 	public BoardPageDTO boardPageList(String category, String view, int curPage, String searchName, String searchValue) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		HashMap<String, Object> map = new HashMap<>();
@@ -149,4 +146,55 @@ public class BoardService {
 		}
 		return bpDTO;
 	}
+
+	public int replyAdd(String refcontentId, String replyId, String userId, String replyContent) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("refcontentId", refcontentId);
+		map.put("replyId", replyId);
+		map.put("userId", userId);
+		map.put("replyContent", replyContent);
+		int n = 0;
+		try {
+			n = dao.replyAdd(session, map);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return n;
+	}
+
+	public List<BoardReplyDTO> replySelect(String replyId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		List<BoardReplyDTO> list = null;
+		try {
+			list = dao.replySelect(session, replyId);
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+
+	public Map<String, Object> replyList(String contentId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			List<BoardDTO> list = dao.replyList(session, contentId);
+			map.put("list", list);
+			for (int i = 0; i < list.size(); i++) {
+				BoardDTO xxx = list.get(i);
+				List<BoardDTO> list2 = dao.replyList(session, xxx.getBoardContentId());
+				if(list2!=null) {map.put("list"+i, list2);}
+				for (int j = 0; j < list2.size(); j++) {
+					BoardDTO yyy = list2.get(j);
+					List<BoardDTO> list3 = dao.replyList(session, yyy.getBoardContentId());
+					if(list3!=null) {map.put("list"+i+j, list3);}
+				}
+			}
+		}finally {
+			session.close();
+		}
+		return map;
+	}
+
 }

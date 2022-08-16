@@ -14,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.dto.CouponDTO" alias="CouponDTO" />
 		<typeAlias type="com.dto.CartDTO" alias="CartDTO" />
 		<typeAlias type="com.dto.BoardDTO" alias="BoardDTO" />
+		<typeAlias type="com.dto.BoardReplyDTO" alias="BoardReplyDTO" />
 	</typeAliases>
 
 	<environments default="development">

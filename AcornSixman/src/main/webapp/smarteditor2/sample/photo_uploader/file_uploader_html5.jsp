@@ -85,7 +85,6 @@
 	BoardService service = new BoardService();
 	String ContentId = request.getParameter("ContentId");
 	String img = "/AcornSixman/upload/"+realname;
-	service.showImg(img, ContentId);
 	
 	out.println(sFileInfo);
 

@@ -13,6 +13,8 @@ public class BoardDTO {
 	private int boardHitCount;
 	private String boardSubCategory;
 	private String boardPreviewImg;
+	private String boardRefContentId;
+	private String boardRealContentId;
 	
 	public BoardDTO() {
 		super();
@@ -21,7 +23,7 @@ public class BoardDTO {
 
 	public BoardDTO(String boardContentId, String boardCategory, String boardUserId, String boardTitle,
 			String boardContent, String boardRegDate, String boardUpdateDate, String boardDelDate, int boardHitCount,
-			String boardSubCategory, String boardPreviewImg) {
+			String boardSubCategory, String boardPreviewImg, String boardRefContentId, String boardRealContentId) {
 		super();
 		this.boardContentId = boardContentId;
 		this.boardCategory = boardCategory;
@@ -34,6 +36,8 @@ public class BoardDTO {
 		this.boardHitCount = boardHitCount;
 		this.boardSubCategory = boardSubCategory;
 		this.boardPreviewImg = boardPreviewImg;
+		this.boardRefContentId = boardRefContentId;
+		this.boardRealContentId = boardRealContentId;
 	}
 
 	public String getBoardContentId() {
@@ -124,13 +128,30 @@ public class BoardDTO {
 		this.boardPreviewImg = boardPreviewImg;
 	}
 
+	public String getBoardRefContentId() {
+		return boardRefContentId;
+	}
+
+	public void setBoardRefContentId(String boardRefContentId) {
+		this.boardRefContentId = boardRefContentId;
+	}
+
+	public String getBoardRealContentId() {
+		return boardRealContentId;
+	}
+
+	public void setBoardRealContentId(String boardRealContentId) {
+		this.boardRealContentId = boardRealContentId;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardDTO [boardContentId=" + boardContentId + ", boardCategory=" + boardCategory + ", boardUserId="
 				+ boardUserId + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent + ", boardRegDate="
 				+ boardRegDate + ", boardUpdateDate=" + boardUpdateDate + ", boardDelDate=" + boardDelDate
 				+ ", boardHitCount=" + boardHitCount + ", boardSubCategory=" + boardSubCategory + ", boardPreviewImg="
-				+ boardPreviewImg + "]";
+				+ boardPreviewImg + ", boardRefContentId=" + boardRefContentId + ", boardRealContentId="
+				+ boardRealContentId + "]";
 	}
 	
 	

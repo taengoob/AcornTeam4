@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
+import com.dto.BoardReplyDTO;
 
 public class BoardDAO {
 
@@ -73,6 +74,21 @@ public class BoardDAO {
 		bpDTO.setTotalCount(boardCount(session));
 		
 		return bpDTO;
+	}
+
+	public int replyAdd(SqlSession session, HashMap<String, Object> map) {
+		int n = session.insert("com.mapper.board.replyAdd", map);
+		return n;
+	}
+
+	public List<BoardReplyDTO> replySelect(SqlSession session, String replyId) {
+		List<BoardReplyDTO> list = session.selectList("com.mapper.board.replySelect", replyId);
+		return list;
+	}
+
+	public List<BoardDTO> replyList(SqlSession session, String ContentId) {
+		List<BoardDTO> list = session.selectList("com.mapper.board.replyList", ContentId);
+		return list;
 	}
 
 }

@@ -64,4 +64,9 @@ public class CommonDAO
 	{
 		return session.selectOne("com.mapper.common.getNewBoardFileId");
 	}
+
+	public String getNewBoardReplyId(SqlSession session) 
+	{
+		return session.selectOne("com.mapper.common.getNewBoardReplyId");
+	}
 }

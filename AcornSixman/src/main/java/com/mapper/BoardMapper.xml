@@ -16,6 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="boardHitCount" column="BOARD_HIT_COUNT"/>
 		<result property="boardSubCategory" column="BOARD_SUB_CATEGORY"/>
 		<result property="boardPreviewImg" column="BOARD_PREVIEW_IMG"/>
+		<result property="boardRefContentId" column="BOARD_REF_CONTENT_ID"/>
+		<result property="boardRealContentId" column="BOARD_REAL_CONTENT_ID"/>
 	</resultMap>
 	
 	<select id="boardList" parameterType="String" resultMap="test">
@@ -36,12 +38,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_CATEGORY = #{category}
 		AND
 			BOARD_DEL_DATE IS NULL
+		AND
+			BOARD_TITLE IS NOT NULL
 		order by 1 DESC
 	</select>
 	
 	<select id="boardInfo" parameterType="String" resultMap="test">
 		SELECT
-			SUBSTR(BOARD_CONTENT_ID,15,5) BOARD_CONTENT_ID, 
+			SUBSTR(BOARD_CONTENT_ID,15,5) BOARD_CONTENT_ID,
 			BOARD_CATEGORY, 
 			BOARD_USER_ID, 
 			BOARD_TITLE, 
@@ -49,11 +53,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_REG_DATE, 
 			BOARD_UPDATE_DATE, 
 			BOARD_DEL_DATE, 
-			BOARD_HIT_COUNT
+			BOARD_HIT_COUNT,
+			BOARD_CONTENT_ID BOARD_REAL_CONTENT_ID
 		FROM
 			BOARD_DETATIL
 		WHERE
 			SUBSTR(BOARD_CONTENT_ID,15,5) = #{ContentId}
+		AND
+			BOARD_TITLE IS NOT NULL
 	</select>
 	
 	<update id="increaseHitCount" parameterType="String">
@@ -93,6 +100,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_DETATIL
 		WHERE
 			BOARD_DEL_DATE IS NULL
+		AND
+			BOARD_TITLE IS NOT NULL
 	</select>
 	
 	<update id="boardReWrite" parameterType="BoardDTO">
@@ -194,4 +203,55 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by 1 DESC
 	</select>
 	
+	<insert id="replyAdd" parameterType="HashMap">
+		
+		INSERT INTO BOARD_DETATIL
+			(
+			BOARD_CONTENT_ID, 
+			BOARD_USER_ID, 
+			BOARD_CONTENT, 
+			BOARD_REG_DATE,
+			BOARD_REF_CONTENT_ID 
+			)
+		 VALUES
+		 	(
+		 	#{replyId},
+		 	#{userId},
+		 	#{replyContent},
+		 	(SELECT FN_GET_KST_DATE() FROM DUAL),
+		 	#{refcontentId}
+		 	)
+	</insert>
+		
+	<select id="replySelect" parameterType="String" resultMap="test">
+		SELECT
+			SUBSTR(BOARD_CONTENT_ID,15,5) BOARD_CONTENT_ID, 
+			BOARD_USER_ID, 
+			BOARD_CONTENT, 
+			BOARD_REG_DATE, 
+			BOARD_UPDATE_DATE, 
+			BOARD_DEL_DATE, 
+			BOARD_REF_CONTENT_ID
+		FROM
+			BOARD_DETATIL
+		WHERE
+			BOARD_CONTENT_ID = #{replyId}
+	</select>
+	
+	<select id="replyList" parameterType="String" resultMap="test">
+		SELECT
+			SUBSTR(BOARD_CONTENT_ID,15,5) BOARD_CONTENT_ID, 
+			BOARD_USER_ID, 
+			BOARD_CONTENT, 
+			BOARD_REG_DATE, 
+			BOARD_UPDATE_DATE, 
+			BOARD_DEL_DATE, 
+			BOARD_REF_CONTENT_ID
+		FROM
+			BOARD_DETATIL
+		WHERE
+			SUBSTR(BOARD_REF_CONTENT_ID,15,5) = #{ContentId}
+		AND
+			BOARD_TITLE IS NULL
+	</select>
 </mapper>

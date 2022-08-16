@@ -45,4 +45,10 @@ public class IDGenerator
 		CommonService service = new CommonService();
 		return service.getNewBoardFileId();
 	}
+	
+	public static String getNewBoardReplyId()
+	{
+		CommonService service = new CommonService();
+		return service.getNewBoardReplyId();
+	}
 }

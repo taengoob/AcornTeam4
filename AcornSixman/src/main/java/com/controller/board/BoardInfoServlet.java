@@ -2,6 +2,8 @@ package com.controller.board;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,6 +45,42 @@ public class BoardInfoServlet extends HttpServlet {
 			bdto = service.boardInfo(ContentId);
 		}
 		request.setAttribute("bdto", bdto);
+		
+		
+		
+		//댓글
+		String x = "11111";
+		Map<String, Object> map = service.replyList(ContentId);
+//		System.out.println("성공"+map);
+//		Set<String> keys = map.keySet();
+//		for (String key : keys) {
+//			System.out.println("키값:"+key);
+//			System.out.println("밸류값:"+map.get(key));
+//		}
+		
+//		if(map.get("list")!=null) {
+//			List<BoardDTO> list = (List<BoardDTO>) map.get("list");
+//			for (int i = 0; i < list.size(); i++) {
+//				BoardDTO xxx = list.get(i);
+//				System.out.println(xxx.getBoardContentId()+"댓글의");
+//				if(map.get("list"+i)!=null) {
+//					List<BoardDTO> list2 = (List<BoardDTO>) map.get("list"+i);
+//					for (int j = 0; j < list2.size(); j++) {
+//						BoardDTO yyy = list2.get(j);
+//						System.out.println(yyy);
+//						if(map.get("list"+i+j)!=null) {
+//							List<BoardDTO> list3 = (List<BoardDTO>) map.get("list"+i+j);
+//							for (int k = 0; k < list3.size(); k++) {
+//								BoardDTO zzz = list3.get(k);
+//								System.out.println(zzz);
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}
+		request.setAttribute("map", map);
+		
 		
 		
 		//아래 게시글 목록
