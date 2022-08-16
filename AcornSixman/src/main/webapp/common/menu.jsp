@@ -20,7 +20,7 @@ if (dto != null) {
 
 	<span class="top-login" OnClick="location.href='logoutServlet'"
 		style="margin-right: 4%"><img src="image/logout.png"
-		width="30px" height="30px"></span> <span class="top-login"
+		width="30px" height="30px" style="margin-right: -0.5%;"></span> <span class="top-login"
 		OnClick="location.href='MyPageServlet'" style="margin-right: 4.2%"><img
 		src="image/mypage.png" width="30px" height="30px"></span>
 
