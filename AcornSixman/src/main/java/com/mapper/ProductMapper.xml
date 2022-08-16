@@ -98,12 +98,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,PRODUCT_PREVIEW        AS productPreview
 			,PRODUCT_CONTENT        AS productContent
 			,PRODUCT_CATEGORY       AS productCategory
-		FROM PRODUCT_DETAIL A
-			,PRODUCT_GUITAR_CATEGORY B
+		FROM PRODUCT_DETAIL A INNER JOIN PRODUCT_GUITAR_CATEGORY B
+		ON A.PRODUCT_CATEGORY = B.CATEGORY_ID
 		WHERE 1=1
-			AND A.PRODUCT_CATEGORY = B.CATEGORY_ID
-		<if test='category != null and category != "" and category != "All"'>
-			AND PRODUCT_CATEGORY = #{category}
+		<if test='category1 != null and category1 != "" and category1 != "All"'>
+			AND PRODUCT_CATEGORY = #{category1}
  		</if>
  		<if test='searchStr != null and searchStr != ""'>
 			AND
@@ -115,6 +114,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				 OR LOWER(B.CATEGORY_NAME) LIKE '%' || LOWER(#{searchStr}) || '%'
 				 OR LOWER(B.CATEGORY_DESC) LIKE '%' || LOWER(#{searchStr}) || '%'
 			)
+ 		</if>
+ 		<if test='category2 != null and category2 != "" and category2 != "All"'>
+			OR PRODUCT_CATEGORY = #{category2}
  		</if>
 	</select>
 	<select id="goodsRetrieve" resultType="com.dto.ProductDTO_Temp" parameterType="string">

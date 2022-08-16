@@ -36,22 +36,31 @@
 	CategoryDTO dto0 = list.get(0);
 	String id0 = dto0.getCategoryId();
 	%>
+			<%
+				
+				CategoryDTO dto = list.get(1);
+				String id = dto.getCategoryId();
+				CategoryDTO dto2 = list.get(4);
+				String id2 = dto2.getCategoryId();
+			%>
+			<%
+				CategoryDTO dto3 = list.get(2);
+				String id3 = dto3.getCategoryId();
+				CategoryDTO dto4 = list.get(3);
+				String id4 = dto4.getCategoryId();
+				CategoryDTO dto5 = list.get(5);
+				String id5 = dto5.getCategoryId();
+			%>
 	<div class="btn-group btn-group-justified" role="group"
 		aria-label="...">
 		<button type="button" class="btn btn-link" 	onclick="location.href='ProductListServlet?category=<%=id0%>'"
 			style="text-decoration: none; color: black;">전체 상품</button>
 		<div class="dropdown1" style="display: inline-block;">|
 			<button type="button" class="btn btn-link"
-				style="text-decoration: none; color: black;">일렉기타 & 베이스</button>
+				style="text-decoration: none; color: black;"><a style="text-decoration: none; color: black;" href="ProductListServlet?category=<%=id %>*<%=id2%>">일렉기타 & 베이스</a></button>
 			<ul class="dropdown-menu" role="menu"
 				aria-labelledby="dropdownMenuDivider">
-				<%
-				
-				CategoryDTO dto = list.get(1);
-				String id = dto.getCategoryId();
-				CategoryDTO dto2 = list.get(4);
-				String id2 = dto2.getCategoryId();
-				%>
+
 				<li><a class="dropdown-item"
 					href="ProductListServlet?category=<%=id%>"><%=id%></a></li>
 				<li><a class="dropdown-item"
@@ -61,17 +70,10 @@
 		</div>
 		<div class="dropdown1" style="display: inline-block;">
 			<button type="button" class="btn btn-link"
-				style="text-decoration: none; color: black;">어쿠스틱기타 & 클래식기타</button>
+				style="text-decoration: none; color: black;"><a style="text-decoration: none; color: black;" href="ProductListServlet?category=<%=id3 %>*<%=id4%>">어쿠스틱기타 & 클래식기타</a></button>
 			<ul class="dropdown-menu" role="menu"
 				aria-labelledby="dropdownMenuDivider">
-				<%
-				CategoryDTO dto3 = list.get(2);
-				String id3 = dto3.getCategoryId();
-				CategoryDTO dto4 = list.get(3);
-				String id4 = dto4.getCategoryId();
-				CategoryDTO dto5 = list.get(5);
-				String id5 = dto5.getCategoryId();
-				%>
+
 				<li><a class="dropdown-item"
 					href="ProductListServlet?category=<%=id3%>"><%=id3%></a></li>
 				<li><a class="dropdown-item"
