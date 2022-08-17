@@ -10,7 +10,6 @@ import com.dao.BoardDAO;
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
-import com.dto.BoardReplyDTO;
 
 public class BoardService {
 
@@ -164,9 +163,9 @@ public class BoardService {
 		return n;
 	}
 
-	public List<BoardReplyDTO> replySelect(String replyId) {
+	public List<BoardDTO> replySelect(String replyId) {
 		SqlSession session = MySqlSessionFactory.getSession();
-		List<BoardReplyDTO> list = null;
+		List<BoardDTO> list = null;
 		try {
 			list = dao.replySelect(session, replyId);
 		}finally {

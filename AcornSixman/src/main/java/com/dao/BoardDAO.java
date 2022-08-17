@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.dto.BoardDTO;
 import com.dto.BoardPageDTO;
-import com.dto.BoardReplyDTO;
 
 public class BoardDAO {
 
@@ -81,8 +80,8 @@ public class BoardDAO {
 		return n;
 	}
 
-	public List<BoardReplyDTO> replySelect(SqlSession session, String replyId) {
-		List<BoardReplyDTO> list = session.selectList("com.mapper.board.replySelect", replyId);
+	public List<BoardDTO> replySelect(SqlSession session, String replyId) {
+		List<BoardDTO> list = session.selectList("com.mapper.board.replySelect", replyId);
 		return list;
 	}
 

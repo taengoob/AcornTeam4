@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.common.IDGenerator;
 import com.dto.BoardDTO;
-import com.dto.BoardReplyDTO;
 import com.google.gson.Gson;
 import com.service.BoardService;
 
@@ -31,7 +30,7 @@ public class BoardReplyAddServlet extends HttpServlet {
 		
 		BoardService service = new BoardService();
 		int n = service.replyAdd(refContentId, ReplyId, UserId, ReplyContent);
-		List<BoardReplyDTO> list = null;
+		List<BoardDTO> list = null;
 		if(n!=0) {
 			list = service.replySelect(ReplyId);
 			//System.out.println(list);
