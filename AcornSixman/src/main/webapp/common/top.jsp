@@ -21,6 +21,7 @@
 	display: block;
 	margin: 0;
 }
+
 </style>
 </head>
 
@@ -56,8 +57,8 @@
 		<button type="button" class="btn btn-link" 	onclick="location.href='ProductListServlet?category=<%=id0%>'"
 			style="text-decoration: none; color: black;">전체 상품</button>
 		<div class="dropdown1" style="display: inline-block;">|
-			<button type="button" class="btn btn-link"
-				style="text-decoration: none; color: black;"><a style="text-decoration: none; color: black;" href="ProductListServlet?category=<%=id %>*<%=id2%>">일렉기타 & 베이스</a></button>
+			<button type="button" class="btn btn-link" onclick="location.href='ProductListServlet?category=<%=id %>*<%=id2%>'"
+				style="text-decoration: none; color: black;">일렉기타 & 베이스</button>
 			<ul class="dropdown-menu" role="menu"
 				aria-labelledby="dropdownMenuDivider">
 
@@ -69,8 +70,8 @@
 			</ul>|
 		</div>
 		<div class="dropdown1" style="display: inline-block;">
-			<button type="button" class="btn btn-link"
-				style="text-decoration: none; color: black;"><a style="text-decoration: none; color: black;" href="ProductListServlet?category=<%=id3 %>*<%=id4%>">어쿠스틱기타 & 클래식기타</a></button>
+			<button type="button" class="btn btn-link" onclick="location.href='ProductListServlet?category=<%=id3%>*<%=id4%>'"
+				style="text-decoration: none; color: black;">어쿠스틱기타 & 클래식기타</button>
 			<ul class="dropdown-menu" role="menu"
 				aria-labelledby="dropdownMenuDivider">
 
@@ -101,8 +102,6 @@
 			</ul>
 		</div>
 	</div>
-
-	<div class="top-container" style="text-align: center;"></div>
 
 </body>
 </html>

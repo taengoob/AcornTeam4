@@ -22,7 +22,7 @@
 }
 
 #id-con {
-	background-color: grey;
+	background-color: #aaaaaa;
 	padding: 6px;
 	color: white;
 }

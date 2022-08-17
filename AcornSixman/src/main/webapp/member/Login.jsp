@@ -67,15 +67,32 @@ a {
 		<div class="iph">
 			<a href="MainJoinUpServlet" class="heiwon">회원가입</a> <a
 				href="FirstFindID.jsp" class="id" id="find-id">아이디 찾기</a> <a
-				class="ll">|</a> <a href="FirstFindPW.jsp" class="password" id="find-pw">비밀번호
-				찾기</a>
+				class="ll">|</a> <a href="FirstFindPW.jsp" class="password"
+				id="find-pw">비밀번호 찾기</a>
 		</div>
-		<a href="#" class="kakao">카카오 로그인 <img src="member/img/kka.png"
-			alt="카카오" class="kakao-img">
+		<a href="javascript:loginWithKakao();" class="kakao">카카오 로그인 <img
+			src="member/img/kka.png" alt="카카오" class="kakao-img">
 		</a> <a href="#" class="naver">NAVER 로그인 <img src="member/img/nav.png"
 			alt="네이버" class="naver-img">
 		</a>
 	</form>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script type="text/javascript">
+	Kakao.init('12991a69612ed8393fdc0e713c736af9');
+    console.log(Kakao.isInitialized());
+	  function loginWithKakao() {
+		    Kakao.Auth.login({
+		      success: function(authObj) {
+		        alert(JSON.stringify(authObj))
+		        console.log(authObj)
+		      },
+		      fail: function(err) {
+		        alert(JSON.stringify(err))
+		      },
+		    })
+		  }
+		</script>
+
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -111,10 +128,8 @@ a {
 			console.log($("#userid").val());
 			$("#userid").val("<%=mesg1%>");
 			console.log($("#userid").val());
-			<%
-	session.removeAttribute("userid");
-			};
-			%>
+	<%session.removeAttribute("userid");
+} ;%>
 		};
 
 		//회원가입시 패스워드 암호화 해서 서버에 넘기는 예제
@@ -140,8 +155,6 @@ a {
 			//return false;
 		}
 	</script>
-
-
 
 
 </body>

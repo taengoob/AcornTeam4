@@ -134,8 +134,7 @@ ul li {
 				<br> <br> <span class="span-line"></span>
 				<div class="menu-link">
 					<a href="Mainservlet" class="btn btn-outline-success">홈으로</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUIservlet"
-						class="btn btn-outline-success">로그인</a>
+				
 				</div>
 			</form>
 		</div>

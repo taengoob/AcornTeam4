@@ -44,7 +44,7 @@ ul li {
 .main-write {
 	margin-top: 15%;
 	border-bottom: 4px solid #000;
-	width: 18.27%;
+	width: 20.27%;
 	padding-bottom: 18px;
 }
 
@@ -165,7 +165,6 @@ rotate
 		<!-- 메뉴는 이거랑 css 같이 다니게 복붙해주세요 -김봉근- -->
 		<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
 		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
-		
 	</div>
 	<div class="wide"></div>
 	<div class="main-container">
@@ -180,8 +179,8 @@ rotate
 				<span class="write2-span" id="name"></span>님의 회원가입을 축하합니다.<br>알차고
 				실속있는 서비스로 찾아뵙겠습니다.
 			</p>
-			<span class="span-line"></span> <a href="#" class="home">홈으로</a> <a
-				href="LoginUIservlet" class="login">로그인</a>
+			<span class="span-line"></span> <a href="#" class="home" style="text-decoration: none;">홈으로</a> <a
+				href="LoginUIservlet" class="login" style="text-decoration: none;">로그인</a>
 		</div>
 	</div>
 	<%
@@ -191,12 +190,12 @@ rotate
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-	$("#name").text(
-"<%=mesg%>");
+	$("#name").text("<%=mesg%>");
 	</script>
 	<%
 	session.removeAttribute("mesg");
 	}
 	%>
+	<jsp:include page="common/bot.jsp"></jsp:include>
 </body>
 </html>
