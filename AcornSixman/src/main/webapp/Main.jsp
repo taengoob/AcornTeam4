@@ -45,6 +45,8 @@ session.removeAttribute("memberupdate");
 	<jsp:include page="common/search.jsp"></jsp:include>
 	<hr>
 	<jsp:include page="common/banner.jsp"></jsp:include>
+<%-- 		<hr>
+	<jsp:include page="common/youtube.jsp"></jsp:include> --%>
 	<hr>
 	<jsp:include page="coupon/bannertest.html"></jsp:include>
 	<jsp:include page="common/bot.jsp"></jsp:include>
