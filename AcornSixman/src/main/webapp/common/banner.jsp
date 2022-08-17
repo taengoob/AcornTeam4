@@ -42,7 +42,7 @@ margin-right: 5%;
     </div>
     <div class="carousel-item">
       <img id="img1" src="image/banner_3.png" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption d-none d-md-block"> 
       </div>
     </div>
     <div class="carousel-item">
