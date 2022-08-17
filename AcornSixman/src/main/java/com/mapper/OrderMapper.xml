@@ -118,5 +118,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			AND A.ORDER_STATUS = B.ORDER_STATUS_ID
 			AND A.ORDER_PAY_METHOD = C.PAY_METHOD_ID
 	</select>
-	
+	<select id="processList" parameterType="String" resultType="com.dto.ProcessListDTO">
+		select 
+			ORDER_ID                  AS orderId
+			,ORDER_PRODUCT_ID          AS orderProductId
+			,ORDER_USER_ID             AS orderUserId
+			,ORDER_SELLER_ID           AS orderSellerId
+			,ORDER_STATUS              AS orderStatus
+			,ORDER_REG_DATE            AS orderRegDate
+			,ORDER_UPDATE_DATE         AS orderUpdateDate
+			,ORDER_RECV_PHONE          AS orderRecvPhone
+			,ORDER_AMOUNT              AS orderAmount
+			,ORDER_RECV_ADDRESS_NUMBER AS orderRecvAddressNumber
+			,ORDER_PAYMENT_PRICE       AS orderPaymentPrice
+			,ORDER_RECV_ADDRESS_ROAD   AS orderRecvAddressRoad
+			,ORDER_PROD_PRICE          AS orderProdPrice
+			,ORDER_DELIVERY_PRICE      AS orderDeliveryPrice
+			,ORDER_RECV_NAME           AS orderRecvName
+			,ORDER_PAY_METHOD			AS orderPayMethod
+			,PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		from ORDER_DETAIL 
+		join product_detail on (ORDER_PRODUCT_ID = product_id)
+	</select>
 </mapper>

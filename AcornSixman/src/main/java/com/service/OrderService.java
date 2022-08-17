@@ -1,15 +1,14 @@
 package com.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.dao.OrderDAO;
-import com.dao.ProductDAO;
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.OrderDTO;
 import com.dto.PayMethodDTO;
+import com.dto.ProcessListDTO;
 import com.dto.ProductDTO_Temp;
 
 public class OrderService
@@ -111,4 +110,18 @@ public class OrderService
 		}
 		return payMethodList;
 	}
+	public List<ProcessListDTO> select() {
+		OrderDAO dao = new   OrderDAO();
+		 SqlSession session = MySqlSessionFactory.getSession();
+		 List<ProcessListDTO> list = null; 
+		 try {
+	      list = dao.select(session);
+	    	  
+//	      }catch(Exception e) {
+//	    	  e.printStackTrace();
+	      }finally {
+			session.close();
+	      }
+	      return list;
+		}
 }

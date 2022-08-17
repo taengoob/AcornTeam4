@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.dto.ImageDTO;
 import com.dto.OrderDTO;
 import com.dto.PayMethodDTO;
+import com.dto.ProcessListDTO;
 import com.dto.ProductDTO_Temp;
 
 public class OrderDAO
@@ -39,5 +40,10 @@ public class OrderDAO
 	public OrderDTO selectOrderByOrderId(SqlSession session, String orderId)
 	{
 		return session.selectOne("com.mapper.order.selectOrderByOrderId", orderId);
+	}
+
+	public List<ProcessListDTO> select(SqlSession session) {
+		List<ProcessListDTO> list =  session.selectList("com.mapper.order.processList");
+		return list;
 	}
 }
