@@ -8,6 +8,11 @@
 <style type="text/css">
 img{
 margin: auto;
+
+}
+#img1{
+	width: 1500px;
+	height: 500px;
 }
 .carousel{
 margin-left: 5%;
@@ -24,23 +29,24 @@ margin-right: 5%;
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
   </div>
   <div class="carousel-inner">
+  <div class="img-thumbnail">
     <div class="carousel-item active">
-      <img src="image/banner1.png" class="d-block w-100" alt="...">
+      <img  id="img1" src="image/banner_1.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>
     <div class="carousel-item">
-      <img src="image/banner2.png" class="d-block w-100" alt="...">
+      <img id="img1" src="image/banner_2.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>
     <div class="carousel-item">
-      <img src="image/banner3.png" class="d-block w-100" alt="...">
+      <img id="img1" src="image/banner_3.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>
     <div class="carousel-item">
-      <img src="image/banner4.png" class="d-block w-100" alt="...">
+      <img id="img1" src="image/banner_4.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>
@@ -55,5 +61,5 @@ margin-right: 5%;
   </button>
 </div>
 </div>
-
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
