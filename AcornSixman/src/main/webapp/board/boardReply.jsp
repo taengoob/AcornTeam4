@@ -36,7 +36,7 @@
 		font-size: 25px;
 		font-weight: bold;
 	}
-	#replyBtn{
+	#replyAddBtn{
 		position: absolute;
 		right: 20px;
 		top: 110px;
@@ -75,18 +75,19 @@
 	%>
 		<div class="row" id="reply" style="width: 100%;">
 			<div style="height: 20px; width: 100%; margin: auto; border-top: 2px solid grey;"></div>
-			<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px;"></div>
-			<div class="col-sm-2" style="height: 60px; width: 120px; text-align: center; line-height: 60px;"><%=xxx.getBoardUserId() %></div>
+			<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px; margin-top: 10px;"></div>
+			<div class="col-sm-2" style="height: 79px; width: 120px; text-align: center; line-height: 60px;"><%=xxx.getBoardUserId() %></div>
 			<div class="col-sm-6" style="width: 780px;"><%=xxx.getBoardContent() %></div>
 			<div class="col-sm-2" style="width: 190px; right: -10px;">
-			<a class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</a>
-			<a class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</a>
-			<a class="btn btn-outline-secondary btn-sm" id="replybtn3" data-xxx="<%=xxx.getBoardRealContentId()%>">답글</a>
+			<button class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</button>
+			<button class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</button>
+			<button class="btn btn-outline-secondary btn-sm" id="replybtn3" onclick="showReplyArea(this)"
+			 data-xxx="<%=xxx.getBoardRealContentId()%>" data-width1="70" data-width2="710">답글</button>
 			<span style="float: right;"><br><%=xxx.getBoardRegDate() %></span>
 			</div>
 		</div>
 		<div style="height: 20px; width: 100%; margin: auto;"></div>
-		<div id="reply<%=xxx.getBoardRealContentId() %>"></div>		
+		<div id="reply<%=xxx.getBoardRealContentId()%>"></div>		
 	<%
 		if(map.get("list"+i)!=null) {
 			List<BoardDTO> list2 = (List<BoardDTO>) map.get("list"+i);
@@ -95,19 +96,22 @@
 	%>			
 		<div class="row" id="reply" style="width: 100%;">
 			<div style="height: 20px; width: 100%; margin: auto; border-top: 2px solid grey;"></div>
-			<div style="width:70px"></div>
-			<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px;"></div>
-			<div class="col-sm-2" style="height: 60px; width: 120px; text-align: center; line-height: 60px;"><%=yyy.getBoardUserId() %></div>
+			<div style="width:70px; height: 79px;">
+				<img src="upload/reply2.png" width="50px;" height="50px;" style="margin-left: 25px;">
+			</div>
+			<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left:30px;  margin-top: 10px;"></div>
+			<div class="col-sm-2" style="height: 79px; width: 120px; text-align: center; line-height: 79px;"><%=yyy.getBoardUserId() %></div>
 			<div class="col-sm-6" style="width: 710px;"><%=yyy.getBoardContent() %></div>
 			<div class="col-sm-2" style="width: 190px; right: -10px;">
-			<a class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</a>
-			<a class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</a>
-			<a class="btn btn-outline-secondary btn-sm" id="replybtn3">답글</a>
+			<button class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</button>
+			<button class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</button>
+			<button class="btn btn-outline-secondary btn-sm" id="replybtn3" onclick="showReplyArea(this)"
+			 data-xxx="<%=yyy.getBoardRealContentId()%>" data-width1="140" data-width2="640">답글</button>
 			<span style="float: right;"><br><%=yyy.getBoardRegDate() %></span>
 			</div>
 		</div>
 		<div style="height: 20px; width: 100%; margin: auto;"></div>
-		<div id="reply<%=yyy.getBoardRealContentId() %>"></div>							
+		<div id="reply<%=yyy.getBoardRealContentId()%>"></div>							
 	<%			
 		if(map.get("list"+i+j)!=null) {
 			List<BoardDTO> list3 = (List<BoardDTO>) map.get("list"+i+j);
@@ -116,19 +120,22 @@
 	%>			
 		<div class="row" id="reply" style="width: 100%;">
 			<div style="height: 20px; width: 100%; margin: auto; border-top: 2px solid grey;"></div>
-			<div style="width:140px"></div>
-			<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px;"></div>
-			<div class="col-sm-2" style="height: 60px; width: 120px; text-align: center; line-height: 60px;"><%=zzz.getBoardUserId() %></div>
+			<div style="width:140px; height: 79px;">
+				<img src="upload/reply2.png" width="50px;" height="50px;" style="margin-left: 95px;">
+			</div>
+			<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px; margin-top: 10px;"></div>
+			<div class="col-sm-2" style="height: 79px; width: 120px; text-align: center; line-height: 79px;"><%=zzz.getBoardUserId() %></div>
 			<div class="col-sm-6" style="width: 640px;"><%=zzz.getBoardContent() %></div>
 			<div class="col-sm-2" style="width: 190px; right: -10px;">
-			<a class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</a>
-			<a class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</a>
-			<a class="btn btn-outline-secondary btn-sm" id="replybtn3">답글</a>
+			<button class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</button>
+			<button class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</button>
+			<%-- <button class="btn btn-outline-secondary btn-sm" id="replybtn3"
+			 data-xxx="<%=zzz.getBoardRealContentId()%>" data-width1="140" data-width2="640">답글</button> --%>
 			<span style="float: right;"><br><%=zzz.getBoardRegDate() %></span>
 			</div>
 		</div>
 		<div style="height: 20px; width: 100%; margin: auto;"></div>
-		<div id="reply<%=zzz.getBoardRealContentId() %>"></div>			
+		<div id="reply<%=zzz.getBoardRealContentId()%>"></div>			
 				
 				
 	<%			
@@ -138,28 +145,9 @@
 		}
 	}
 	%>	
-		
-		
-		
-		<div class="row" id="reply" style="width: 100%;">
-			<div style="height: 20px; width: 100%; margin: auto; border-top: 2px solid grey;"></div>
-			<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px;"></div>
-			<div class="col-sm-2" style="height: 60px; width: 120px; text-align: center; line-height: 60px;">닉네임</div>
-			<div class="col-sm-6" style="width: 780px;">
-			</div>
-			<div class="col-sm-2" style="width: 190px; right: -10px;">
-				<a class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</a>
-				<a class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</a>
-				<a class="btn btn-outline-secondary btn-sm" id="replybtn3">답글</a>
-				<span style="float: right;"><br>2022/08/15 16:33:24</span>
-			</div>
-		</div>
-		<div style="height: 20px; width: 100%; margin: auto;"></div>
-		<div id="reply1"></div>
-		
-		<%
-		}
-		%>	
+	<%
+	}
+	%>	
 		
 		
 	
@@ -173,7 +161,7 @@
 					<%if(userId!=null){%><%=userId %><%}else{%>로그인이 필요합니다.<%}%>
 				</span>
 			</label>
-			<a id="replyBtn" class="btn btn-outline-secondary">등록</a>
+			<button id="replyAddBtn" class="btn btn-outline-secondary reply" onclick="replyAdd(this)" data-width1=" " data-width2="780">등록</button>
 		</div>
 		<div class="w-900" style="height: 30px;"></div>
 	</div>
@@ -182,16 +170,19 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
-		$("#replyBtn").on("click", replyAdd);
+		/* $("button[id='replyAddBtn']").on("click", replyAdd); */
+		/* $("button[id='replybtn3']").on("click", showReplyArea); */
 	})
 	
-	function replyAdd() {//댓글 추가
-		var ContentId = $(this).attr("data-xxx");
-		if(ContentId==null){
-			ContentId = $("#RealContentId").val();
-		}
+	function replyAdd(e) {//댓글 추가
+		var ContentId = $(e).attr("data-xxx");
+		if(ContentId==null){ContentId = $("#RealContentId").val();}
+		var width1 = $(e).attr("data-width1");
+		var width2 = $(e).attr("data-width2");
+		console.log("아이디: "+ContentId+"너비: "+width1, width2);
 		var UserId = document.getElementById("replyUserId").innerText;
-		var ReplyContent = document.getElementById("replyarea").value;
+		var ReplyContent = $("#replyarea"+ContentId).val();
+		if(!ReplyContent){ReplyContent=$("#replyarea").val();}
 		if(UserId!=null){
 			$.ajax({
 				type: "post",
@@ -204,7 +195,7 @@
 				dataType: "text",
 				success: function(data, status, xhr) {
 					console.log("성공");
-					showHtml(JSON.parse(data), ContentId);
+					showHtml(JSON.parse(data), ContentId, width1, width2);
 				},
 				error: function(xhr, status, error) {
 					
@@ -215,32 +206,68 @@
 		}
 	}
 	
-	function showHtml(data, ContentId) {
+	function showHtml(data, ContentId, width1, width2) {
 		var html = "";
 		$.each(data, function(i, ele) {
 			html += '<div class="row" id="reply" style="width: 100%;">'
 				 + '<div style="height: 20px; width: 100%; margin: auto; border-top: 2px solid grey;"></div>'
-				 + '<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px;"></div>'	
-				 + '<div class="col-sm-2" style="height: 60px; width: 120px; text-align: center; line-height: 60px;">유저아이디</div>'	
-				 + '<div class="col-sm-6" style="width: 780px;">댓글내용</div>'	
+				 + '<div style="width:'+width1+'px; height: '+width1+'px;">'
+			if(width2=="710"){
+					html += '<img src="upload/reply2.png" width="50px;" height="50px;" style="margin-left: 25px;">'
+			}else if(width2=="640"){
+					html += '<img src="upload/reply2.png" width="50px;" height="50px;" style="margin-left: 95px;">'
+			}
+			html += '</div><div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px; margin-top: 10px;"></div>'	
+				 + '<div class="col-sm-2" style="height: 79px; width: 120px; text-align: center; line-height: 79px;">'+ele.boardUserId+'</div>'	
+				 + '<div class="col-sm-6" style="width:'+width2+'px; min-height:79px;">'+ele.boardContent +'</div>'	
 				 + '<div class="col-sm-2" style="width: 190px; right: -10px;">'	
-				 + '<a class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</a>'	
-				 + '<a class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</a>'	
-				 + '<a class="btn btn-outline-secondary btn-sm" id="replybtn3" data-xxx="콘텐트아이디">답글</a>'	
-				 + '<span style="float: right;"><br>댓글생성날짜</span>'	
+				 + '<button class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</button>'	
+				 + '<button class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</button>'
+			if(width2!="640"){
+					html += '<button class="btn btn-outline-secondary btn-sm" id="replybtn3" onclick="showReplyArea(this)" data-xxx="'+ele.boardRealContetId+'">답글</button>';	
+			}	 
+			html += '<span style="float: right;"><br>'+ele.boardRegDate+'</span>'	
 				 + '</div>'	
 				 + '</div>'	
 				 + '<div style="height: 20px; width: 100%; margin: auto;"></div>'	
-				 + '<div id="reply콘텐츠아이디"></div>';	
+				 + '<div id="reply'+ele.boardRealContetId+'"></div>';	
 		})
 		
 		$("#reply"+ContentId).append(html);
 		if($("#reply"+ContentId).val()==null){
 			$("#replybody").append(html);
+			$("#replyarea").val("");
+			$("#replyarea").focus();
+		}else{
+			$("#replyarea"+ContentId).val("");
+			$("#replyarea"+ContentId).focus();
 		}
-		$("#replyarea").val("");
-		$("#replyarea").focus();
 	}
 	
-
+	function showReplyArea(e) {
+		var ContentId = $(e).attr("data-xxx");
+		var width1 = $(e).attr("data-width1");
+		var width2 = $(e).attr("data-width2");
+		console.log(width1, width2);
+		console.log(ContentId);
+		var	html = "";
+			html += '<div class="form-floating col-sm-11" id="replybox'+ContentId+'" style="display: width: 95%; margin: auto;">'
+			     + '<div style="height: 50px; width: 100%; border-top: 2px solid grey; margin: auto;">'
+				 + '</div><div class="form-floating col-sm-11" style="margin: auto; position: relative;">'
+			     + '<textarea class="form-control reply" id="replyarea'+ContentId+'" maxlength="360" spellcheck="false"'
+			     + 'style="height: 160px; resize: none; padding: 40px 50px 40px 50px; position: relative;"></textarea>'
+			     + '<label for="floatingTextarea" id="replylabel">'
+			     + '<span id="replyUserId"><%=userId%></span></label>'
+			     + '<button id="replyAddBtn" class="btn btn-outline-secondary" onclick=" replyAdd(this)" data-width1="'+width1+'" data-width2="'+width2+'" data-xxx="'+ContentId+'">등록</button>'
+			     + '</div><div class="w-900" style="height: 30px;"></div></div>';
+		if($("#replybox"+ContentId).css('display') === 'block' ){
+			$("#replybox"+ContentId).hide();
+		}else if($("#replybox"+ContentId).css('display') === 'none'){
+			$("#replybox"+ContentId).show();
+			$("#replyarea"+ContentId).focus();
+		}else{
+			$("#reply"+ContentId).append(html);
+			$("#replyarea"+ContentId).focus();
+		}
+	}
 </script>

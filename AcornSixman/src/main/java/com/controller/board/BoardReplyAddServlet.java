@@ -36,6 +36,7 @@ public class BoardReplyAddServlet extends HttpServlet {
 			//System.out.println(list);
 			String json = new Gson().toJson(list);
 			//System.out.println(json);
+			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.print(json);
 		}

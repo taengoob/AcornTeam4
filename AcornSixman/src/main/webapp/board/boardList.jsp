@@ -50,7 +50,7 @@
 		hideAdminElelments(getIsAdmin());
 	};
 
-	function hideAdminElelments(isAdmin) {
+	function hideAdminElelments(isAdmin) {//나중에 메인 jsp에서 참조
 		if (isAdmin === false) {
 			//class 에 admin이 있는 요소들을 찾는다.
 			const elements = document.getElementsByClassName("admin");

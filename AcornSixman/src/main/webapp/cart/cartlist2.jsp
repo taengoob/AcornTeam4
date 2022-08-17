@@ -191,6 +191,115 @@
 	}	
 	
 </style>
+
+<div class="boxtop"></div>
+<div class="tabaleboxout">
+<div class="tablebox">
+<table border="1" class="listtable">
+	<tr>
+		<td class="tabletop" colspan="13"></td>
+	</tr>
+	
+<%	for(int i=0; i<cartList.size();i++){
+		CartDTO cdto = cartList.get(i);
+		String cartId = cdto.getCartId();
+		String cartuserId = cdto.getCartuserId();
+		int cartCount = cdto.getCartCount();
+		String productId = cdto.getProductId();
+		String productName = cdto.getProductName();
+		int productPrice = cdto.getProductPrice();
+		int productDeliveryPrice = cdto.getProductDeliveryPrice();
+		String productModel = cdto.getProductModel();
+		String productMaker = cdto.getProductMaker();
+		String previewUrl = cdto.getPreviewUrl();
+		String productCategory = cdto.getProductCategory();
+%>
+
+	<tr class="basketlist">
+		<td colspan="2">
+			<div class="selectbox">
+				<input type="checkbox" checked="checked" class="chkProduct" name="chkProduct" data-zzz="<%=cartCount*productPrice%>" data-www="<%=cartId %>"
+				id="chk<%=productId %>" value="<%=productPrice %>" data-vvv="<%=productDeliveryPrice%>" data-DisPrice=0 data-productId="<%=productId%>">
+			</div>
+			<div><img src="<%=previewUrl %>" width="78px" height="78px"></div>
+		</td>
+		<td colspan="4">
+			<div style="text-align: left; font-size: 15px; font-weight: bold;"><%=productName%></div>
+			<div style="text-align: left; color: grey; font-weight: bold; margin-top: 5px;"><%=productModel%>/<%=productMaker %>/<%=productCategory %></div>
+		</td>
+		<td colspan="3">
+			수량&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="number" id="amt<%=productId %>" class="cartCount" style="width:90px; text-align: right;" value="<%=cartCount%>" 
+			data-xxx="<%=productId%>" data-yyy="<%=productPrice %>"><br>
+			쿠폰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<select class="cpnSelect" id="cpnSelect<%=productId%>" data-productId="<%=productId%>" style="width:98px; height:20px; font-size:7px; text-align: right">
+				<option selected="selected" value="0">없음</option>
+			<%for(int j=0; j<couponList.size();j++){
+				CouponDTO cpdto = couponList.get(j);
+				String couponid = cpdto.getCouponId();
+				String couponName = cpdto.getCouponName();
+				double couponDisper = cpdto.getCouponDisper();
+				%>
+				<option value="<%=couponDisper %>" ><%=couponName %></option>
+			<%} %>
+			</select>
+		</td>
+		<td colspan="2">
+			<span >상품금액</span><br>
+			<span class="sumPrice" id="sum<%=productId%>"><%=decFormat.format(productPrice*cartCount) %>
+			</span>원</td>
+		<td colspan="2">배송비<br><span class="delPrice"><%=decFormat.format(productDeliveryPrice) %></span>원</td>
+	</tr>
+	<%} %>
+	<tr>
+		<td class="tablebot" colspan="13"></td>
+	</tr>
+</table>
+</div>
+</div>
+<div class="boxbot"></div>
+
+<div class="totalpriceTop"></div>
+<div class="totalpriceBox0">
+	<div class="totalpriceBox1">
+		<div class="totalpriceCell1">총 선택상품금액</div>
+		<div class="totalpriceCell2"><span id="totalPrice"></span>원</div>
+	</div>
+	<div class="totalpriceBox2">
+		<img src="cart/plus.png" width="20px;" height="20px;">
+	</div>
+	<div class="totalpriceBox1">
+		<div class="totalpriceCell1">총 배송비</div>
+		<div class="totalpriceCell2"><span id="totalDelPrice">0</span>원</div>
+	</div>
+	<div class="totalpriceBox2">
+		<img src="cart/plus.png" width="20px;" height="20px;">
+	</div>
+	<div class="totalpriceBox1">
+		<div class="totalpriceCell1">할인예상금액</div>
+		<div class="totalpriceCell2"><span id="totalDisperPrice">0</span>원</div>
+	</div>
+	<div class="totalpriceBox2">
+		<img src="cart/equal.png" width="20px;" height="20px;">
+	</div>
+	<div class="totalpriceBox3">
+		<div class="totalpriceCell3">총 주문금액</div>
+	</div>
+	<div class="totalpriceBox4">
+		<div class="totalpriceCell4">
+			<span id="totalSumPrice">0</span>원
+		</div>
+	</div>
+</div>
+<div class="bottom">
+
+<div class="goPaybox">
+<form id="btnForm" method="get">
+<input type="hidden" id="hiddenInput" name="jsonStr">
+<button class="goPay" id="goOrderbtn">총 <span id="chkCount"></span>건 주문하기</button>
+</form>
+</div>
+</div>
 <script type="text/javascript">
 	
 	
@@ -338,114 +447,6 @@
 	}
 	
 </script>
-<div class="boxtop"></div>
-<div class="tabaleboxout">
-<div class="tablebox">
-<table border="1" class="listtable">
-	<tr>
-		<td class="tabletop" colspan="13"></td>
-	</tr>
-	
-<%	for(int i=0; i<cartList.size();i++){
-		CartDTO cdto = cartList.get(i);
-		String cartId = cdto.getCartId();
-		String cartuserId = cdto.getCartuserId();
-		int cartCount = cdto.getCartCount();
-		String productId = cdto.getProductId();
-		String productName = cdto.getProductName();
-		int productPrice = cdto.getProductPrice();
-		int productDeliveryPrice = cdto.getProductDeliveryPrice();
-		String productModel = cdto.getProductModel();
-		String productMaker = cdto.getProductMaker();
-		String previewUrl = cdto.getPreviewUrl();
-		String productCategory = cdto.getProductCategory();
-%>
-
-	<tr class="basketlist">
-		<td colspan="2">
-			<div class="selectbox">
-				<input type="checkbox" checked="checked" class="chkProduct" name="chkProduct" data-zzz="<%=cartCount*productPrice%>" data-www="<%=cartId %>"
-				id="chk<%=productId %>" value="<%=productPrice %>" data-vvv="<%=productDeliveryPrice%>" data-DisPrice=0 data-productId="<%=productId%>">
-			</div>
-			<div><img src="<%=previewUrl %>" width="78px" height="78px"></div>
-		</td>
-		<td colspan="4">
-			<div style="text-align: left; font-size: 15px; font-weight: bold;"><%=productName%></div>
-			<div style="text-align: left; color: grey; font-weight: bold; margin-top: 5px;"><%=productModel%>/<%=productMaker %>/<%=productCategory %></div>
-		</td>
-		<td colspan="3">
-			수량&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="number" id="amt<%=productId %>" class="cartCount" style="width:90px; text-align: right;" value="<%=cartCount%>" 
-			data-xxx="<%=productId%>" data-yyy="<%=productPrice %>"><br>
-			쿠폰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<select class="cpnSelect" id="cpnSelect<%=productId%>" data-productId="<%=productId%>" style="width:98px; height:20px; font-size:7px; text-align: right">
-				<option selected="selected" value="0">없음</option>
-			<%for(int j=0; j<couponList.size();j++){
-				CouponDTO cpdto = couponList.get(j);
-				String couponid = cpdto.getCouponId();
-				String couponName = cpdto.getCouponName();
-				double couponDisper = cpdto.getCouponDisper();
-				%>
-				<option value="<%=couponDisper %>" ><%=couponName %></option>
-			<%} %>
-			</select>
-		</td>
-		<td colspan="2">
-			<span >상품금액</span><br>
-			<span class="sumPrice" id="sum<%=productId%>"><%=decFormat.format(productPrice*cartCount) %>
-			</span>원</td>
-		<td colspan="2">배송비<br><span class="delPrice"><%=decFormat.format(productDeliveryPrice) %></span>원</td>
-	</tr>
-	<%} %>
-	<tr>
-		<td class="tablebot" colspan="13"></td>
-	</tr>
-</table>
-</div>
-</div>
-<div class="boxbot"></div>
-
-<div class="totalpriceTop"></div>
-<div class="totalpriceBox0">
-	<div class="totalpriceBox1">
-		<div class="totalpriceCell1">총 선택상품금액</div>
-		<div class="totalpriceCell2"><span id="totalPrice"></span>원</div>
-	</div>
-	<div class="totalpriceBox2">
-		<img src="cart/plus.png" width="20px;" height="20px;">
-	</div>
-	<div class="totalpriceBox1">
-		<div class="totalpriceCell1">총 배송비</div>
-		<div class="totalpriceCell2"><span id="totalDelPrice">0</span>원</div>
-	</div>
-	<div class="totalpriceBox2">
-		<img src="cart/plus.png" width="20px;" height="20px;">
-	</div>
-	<div class="totalpriceBox1">
-		<div class="totalpriceCell1">할인예상금액</div>
-		<div class="totalpriceCell2"><span id="totalDisperPrice">0</span>원</div>
-	</div>
-	<div class="totalpriceBox2">
-		<img src="cart/equal.png" width="20px;" height="20px;">
-	</div>
-	<div class="totalpriceBox3">
-		<div class="totalpriceCell3">총 주문금액</div>
-	</div>
-	<div class="totalpriceBox4">
-		<div class="totalpriceCell4">
-			<span id="totalSumPrice">0</span>원
-		</div>
-	</div>
-</div>
-<div class="bottom">
-
-<div class="goPaybox">
-<form id="btnForm" method="get">
-<input type="hidden" id="hiddenInput" name="jsonStr">
-<button class="goPay" id="goOrderbtn">총 <span id="chkCount"></span>건 주문하기</button>
-</form>
-</div>
-</div>
 <script type="text/javascript">
 
 	window.onload = function() {
