@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+						http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+						">
+
+	<!-- @Mapper가 붙은 인터페이스의 객체를 빈 등록한다. -->
+	<!-- DAO 객체들 -->
+	<mybatis:scan base-package="com.acorn.sixman.dao" annotation="org.apache.ibatis.annotations.Mapper"/>
+
+	<!-- jdbc 설정 -->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+
+		<!-- 로컬 테스트용 경로 -->
+		<!-- <property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/TaengOOv/Desktop/WorkPlace/Acorn/Projects/Sixman/source/Wallet_AcornDB" name="url" /> -->
+		<property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/acorn/Desktop/taengoov/study/repos/Wallet_AcornDB" name="url" />
+
+		<!-- 오라클 클라우드 웹서버용 경로 -->
+<!-- 		<property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=/opt/Wallet_AcornDB" name="url" /> -->
+
+		<property value="oracle.jdbc.driver.OracleDriver" name="driverClassName" />
+		<property value="sixman" name="username" />
+		<property value="Acornteam4project" name="password" />
+	</bean>
+
+	<!-- 세션 팩토리 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="SqlSessionFactory">
+		<property name="dataSource" ref="dataSource" />
+		<property value="classpath:/config/mybatis-config.xml" name="configLocation" />
+		<!-- sql이 작성된 mapper 위치 -->
+		<property value="classpath:/mapper/*Mapper.xml" name="mapperLocations" />
+	</bean>
+</beans>

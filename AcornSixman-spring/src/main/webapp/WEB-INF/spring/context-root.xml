@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+						">
+	<!-- ContextLoaderListenr, 프로젝트 전체에서 공유되는 빈들 관리 Buisness, Persistence layer의 
+		빈들을 가지고 있도록 설정 =>@Controller 제외하고 전부입니다. -->
+	<!-- 컨트롤러를 제외한 @Repostioy,@Component,@Service 등의 어노테이션 등록 -->
+	<context:component-scan base-package="com.acorn.sixman" use-default-filters="true">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+</beans>

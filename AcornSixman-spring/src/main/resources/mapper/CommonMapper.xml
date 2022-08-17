@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acorn.sixman.dao.commonDAO">
+
+	<select id="testDBConnection" resultType="String">
+		SELECT ACCOUNT_ID
+		FROM USER_ACCOUNT
+	</select>
+
+	<select id="selectDbTime" resultType="String">
+		SELECT TO_CHAR(FN_GET_KST_DATE(), 'YYYY-MM-DD HH:MI:SS') AS CURRENT_DATE
+		FROM DUAL
+	</select>
+	
+</mapper>
