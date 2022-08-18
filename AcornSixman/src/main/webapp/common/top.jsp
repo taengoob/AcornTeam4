@@ -1,3 +1,4 @@
+<%@page import="com.dto.MemberDTO"%>
 <%@page import="com.dto.CategoryDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -22,6 +23,43 @@
 	margin: 0;
 }
 
+#span1 {
+	color: black;
+}
+
+header {
+	text-decoration: none;
+	width: 100%;
+	z-index: 999;
+	top: 0;
+}
+
+header.sticky {
+	position: fixed;
+	background-color: #ffffff; background-color : rgba( 255, 255, 255, 0.5);
+	transition: 0.3s;
+	padding: 1.5%;
+	text-align: right;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+header.sticky #span1 {
+	color: black;
+	font-size: 20px;
+}
+
+#button-tag {
+	text-decoration: none;
+}
+
+.login-service {
+	display: none;
+}
+
+header.sticky .login-service {
+	width: 300px;
+	display: inline-block;
+}
 </style>
 </head>
 
@@ -37,72 +75,152 @@
 	CategoryDTO dto0 = list.get(0);
 	String id0 = dto0.getCategoryId();
 	%>
-			<%
-				
-				CategoryDTO dto = list.get(1);
-				String id = dto.getCategoryId();
-				CategoryDTO dto2 = list.get(4);
-				String id2 = dto2.getCategoryId();
-			%>
-			<%
-				CategoryDTO dto3 = list.get(2);
-				String id3 = dto3.getCategoryId();
-				CategoryDTO dto4 = list.get(3);
-				String id4 = dto4.getCategoryId();
-				CategoryDTO dto5 = list.get(5);
-				String id5 = dto5.getCategoryId();
-			%>
-	<div class="btn-group btn-group-justified" role="group"
-		aria-label="...">
-		<button type="button" class="btn btn-link" 	onclick="location.href='ProductListServlet?category=<%=id0%>'"
-			style="text-decoration: none; color: black;">전체 상품</button>
-		<div class="dropdown1" style="display: inline-block;">|
-			<button type="button" class="btn btn-link" onclick="location.href='ProductListServlet?category=<%=id %>*<%=id2%>'"
-				style="text-decoration: none; color: black;">일렉기타 & 베이스</button>
-			<ul class="dropdown-menu" role="menu"
-				aria-labelledby="dropdownMenuDivider">
+	<%
+	CategoryDTO dto = list.get(1);
+	String id = dto.getCategoryId();
+	CategoryDTO dto2 = list.get(4);
+	String id2 = dto2.getCategoryId();
+	%>
+	<%
+	CategoryDTO dto3 = list.get(2);
+	String id3 = dto3.getCategoryId();
+	CategoryDTO dto4 = list.get(3);
+	String id4 = dto4.getCategoryId();
+	CategoryDTO dto5 = list.get(5);
+	String id5 = dto5.getCategoryId();
+	%>
+	<header>
+		<div class="navbar1">
+			<button type="button" class="btn btn-link" id="button-tag"
+				onclick="location.href='ProductListServlet?category=<%=id0%>'">
+				<span id="span1">전체 상품</span>
+			</button>
+			<div class="dropdown1" style="display: inline-block;">
+				|
+				<button type="button" class="btn btn-link" id="button-tag"
+					onclick="location.href='ProductListServlet?category=<%=id%>*<%=id2%>'">
+					<span id="span1">일렉기타 & 베이스</span>
+				</button>
+				<ul class="dropdown-menu" role="menu"
+					aria-labelledby="dropdownMenuDivider">
 
-				<li><a class="dropdown-item"
-					href="ProductListServlet?category=<%=id%>"><%=id%></a></li>
-				<li><a class="dropdown-item"
-					href="ProductListServlet?category=<%=id2%>"><%=id2%></a></li>
-				<li role="presentation" class="divider"></li>
-			</ul>|
-		</div>
-		<div class="dropdown1" style="display: inline-block;">
-			<button type="button" class="btn btn-link" onclick="location.href='ProductListServlet?category=<%=id3%>*<%=id4%>'"
-				style="text-decoration: none; color: black;">어쿠스틱기타 & 클래식기타</button>
-			<ul class="dropdown-menu" role="menu"
-				aria-labelledby="dropdownMenuDivider">
+					<li><a class="dropdown-item"
+						href="ProductListServlet?category=<%=id%>"><%=id%></a></li>
+					<li><a class="dropdown-item"
+						href="ProductListServlet?category=<%=id2%>"><%=id2%></a></li>
+					<li role="presentation" class="divider"></li>
+				</ul>
+				|
+			</div>
+			<div class="dropdown1" style="display: inline-block;">
+				<button type="button" class="btn btn-link" id="button-tag"
+					onclick="location.href='ProductListServlet?category=<%=id3%>*<%=id4%>'">
+					<span id="span1">어쿠스틱기타 & 클래식기타</span>
+				</button>
+				<ul class="dropdown-menu" role="menu"
+					aria-labelledby="dropdownMenuDivider">
 
-				<li><a class="dropdown-item"
-					href="ProductListServlet?category=<%=id3%>"><%=id3%></a></li>
-				<li><a class="dropdown-item"
-					href="ProductListServlet?category=<%=id4%>"><%=id4%></a></li>
-				<li role="presentation" class="divider"></li>
-			</ul>|
-		</div>
+					<li><a class="dropdown-item"
+						href="ProductListServlet?category=<%=id3%>"><%=id3%></a></li>
+					<li><a class="dropdown-item"
+						href="ProductListServlet?category=<%=id4%>"><%=id4%></a></li>
+					<li role="presentation" class="divider"></li>
+				</ul>
+				|
+			</div>
 
-		<button type="button" class="btn btn-link"
-			onclick="location.href='ProductListServlet?category=<%=id5%>'"
-			style="text-decoration: none; color: black;">우쿠렐레</button>
-			<div class="dropdown1" style="display: inline-block;">|
-			<button type="button" class="btn btn-link"onclick="location.href='BoardListServlet'"
-				style="text-decoration: none; color: black;">게시판</button>
-			<ul class="dropdown-menu" role="menu"
-				aria-labelledby="dropdownMenuDivider">
+			<button type="button" class="btn btn-link" id="button-tag"
+				onclick="location.href='ProductListServlet?category=<%=id5%>'">
+				<span id="span1">우쿠렐레</span>
+			</button>
+			<div class="dropdown1" style="display: inline-block;">
+				|
+				<button type="button" class="btn btn-link" id="button-tag"
+					onclick="location.href='BoardListServlet'">
+					<span id="span1">게시판</span>
+				</button>
+				<ul class="dropdown-menu" role="menu"
+					aria-labelledby="dropdownMenuDivider">
+					<li><a class="dropdown-item" href="#"><span id="span1">공지사항</span></a></li>
+					<li><a class="dropdown-item" href="#"><span id="span1">판매
+								문의 게시판</span></a></li>
+					<li role="presentation" class="divider"></li>
+				</ul>
+			</div>
+			<div class="login-service">
+
 				<%
-				
+				MemberDTO dtolo = (MemberDTO) session.getAttribute("login");
+				if (dtolo != null) {
+					String username = dtolo.getAccountName();
+					String sell = dtolo.getAccountIsSeller();
 				%>
-				<li><a class="dropdown-item"
-					href="#">공지사항</a></li>
-				<li><a class="dropdown-item"
-					href="#">판매 문의 게시판</a></li>
-				<li role="presentation" class="divider"></li>
-			</ul>
-		</div>
-	</div>
+				<div class="menu-container">
 
+					<span class="top-login" OnClick="location.href='logoutServlet'"
+						style="margin-right: 4%"><img src="image/logout.png"
+						width="30px" height="30px" style="margin-right: -0.5%;"></span> <span
+						class="top-login" OnClick="location.href='MyPageServlet'"
+						style="margin-right: 4.2%"><img src="image/mypage.png"
+						width="30px" height="30px"></span>
+
+					<!-- <span
+		class="top-login" OnClick="location.href='MyPageServlet'"><img
+		src="image/JoinupIcon.png" width="30px" height="30px"></span> -->
+					<%
+					if (dtolo.getAccountIsSeller().equals("False")) {
+					%>
+					<span class="top-login" OnClick="location.href='CartListServlet'"
+						style="margin-right: 2.8%"><img src="image/cart3.png"
+						width="30px" height="30px"></span>
+
+					<%
+					} else {
+					%>
+					<span class="top-login"
+						OnClick="location.href='UploadedListServlet'"
+						style="margin-right: 3.5%"><img src="image/set.png"
+						width="30px" height="30px"></span>
+					<%
+					}
+					%>
+				</div>
+				<%
+				} else {
+				%>
+				<div class="menu-container">
+					<span class="top-login" OnClick="location.href='LoginUIservlet'"
+						style="margin-right: 2.5%"><img src="image/LoginIcon.png"
+						width="30px" height="30px"></span> <span class="top-login"
+						OnClick="location.href='MainJoinUpServlet'"
+						style="margin-left: 5%"><img src="image/JoinupIcon.png"
+						width="30px" height="30px"></span>
+				</div>
+				<%
+				}
+				%>
+			</div>
+		</div>
+	</header>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var $header = $('header')
+			$(window).scroll(function() {
+				var window = $(this).scrollTop();
+				if (window > 300) {
+					$header.addClass('sticky');
+					$("#login-service").attr("style", "display: inline-block;")
+					console.log("자바스크륍트")
+				} else {
+					$header.removeClass('sticky');
+					$("#login-service").attr("style", "display: none;")
+				}
+			})
+
+		})
+	</script>
 </body>
 </html>
 

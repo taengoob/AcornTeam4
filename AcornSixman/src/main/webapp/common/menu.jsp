@@ -16,7 +16,7 @@ if (dto != null) {
 	String username = dto.getAccountName();
 	String sell = dto.getAccountIsSeller();
 %>
-<div class="menu-container">
+<div class="menu-container" >
 
 	<span class="top-login" OnClick="location.href='logoutServlet'"
 		style="margin-right: 4%"><img src="image/logout.png"
