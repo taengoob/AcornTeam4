@@ -60,6 +60,54 @@
 		padding: 50px 50px 50px 50px;
 	}
 </style>
+<div class="container">
+<br>
+<br>
+<h1 class="text-center" >회원게시판</h1>
+<br>
+<br>
+<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
+<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
+<a href="#" onclick="reWrite()" class="btn btn-secondary " style="float: right;">글수정</a>
+<div id="nTableTop"></div>
+<div id="nTableBox">
+<table class="table table-light text-center" id="nTable">
+	<input type="hidden" id="ContentId" value="<%=ContentId%>">
+	<input type="hidden" id="RealContentId" value="<%=RealContentId%>">
+	<colgroup>
+		<col width="10%;"/>
+		<col width="10%;"/>
+		<col width="60%;"/>
+		<col width="5%;"/>
+		<col width="5%;"/>
+		<col width="5%;"/>
+		<col width="5%;"/>
+	</colgroup>
+   <tr>
+      <td colspan="1"><%=Category%></td>
+      <td colspan="2" align="left">&nbsp;&nbsp;&nbsp;&nbsp;<%=Title%></td>
+      <td colspan="4" align="left"><%if(RegDate==UpdateDate){%><%=RegDate %><%}else{%><%=UpdateDate%><%}%></td>
+   </tr>
+   <tr>
+     <td colspan="1"><span id="writer"><%=wUserId %></span></td>
+     <td colspan="2"> </td>
+     <td colspan="1">조회수</td>
+     <td colspan="1"><%=HitCount%></td>
+     <td colspan="1">댓글</td>
+     <td colspan="1">0</td>
+   </tr>
+   <tr>
+     <td colspan="7" style="height: 500px;" align="left">
+     	<div id="ContentBox"><%=Content %></div>
+     </td>
+   </tr>
+</table>
+</div>
+<div id="nTableBot"></div>
+<a href="#" onclick="prevPage()" class="btn btn-outline-dark">이전글</a>
+<a href="#" onclick="nextPage()" class="btn btn-outline-dark">다음글</a>
+<a href="#" onclick="boardDel()" class="btn btn-secondary" style="float: right;">글삭제</a>
+</div>
 <script type="text/javascript">
 
 	function reWrite() {
@@ -115,52 +163,3 @@
 	}
 	
 </script>
-<div class="container">
-<br>
-<br>
-<h1 class="text-center" >회원게시판</h1>
-<br>
-<br>
-<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
-<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
-<a href="#" onclick="reWrite()" class="btn btn-secondary " style="float: right;">글수정</a>
-<div id="nTableTop"></div>
-<div id="nTableBox">
-<table class="table table-light text-center" id="nTable">
-	<input type="hidden" id="ContentId" value="<%=ContentId%>">
-	<input type="hidden" id="RealContentId" value="<%=RealContentId%>">
-	<colgroup>
-		<col width="10%;"/>
-		<col width="10%;"/>
-		<col width="60%;"/>
-		<col width="5%;"/>
-		<col width="5%;"/>
-		<col width="5%;"/>
-		<col width="5%;"/>
-	</colgroup>
-   <tr>
-      <td colspan="1"><%=Category%></td>
-      <td colspan="2" align="left">&nbsp;&nbsp;&nbsp;&nbsp;<%=Title%></td>
-      <td colspan="4" align="left"><%if(RegDate==UpdateDate){%><%=RegDate %><%}else{%><%=UpdateDate%><%}%></td>
-   </tr>
-   <tr>
-     <td colspan="1"><span id="writer"><%=wUserId %></span></td>
-     <td colspan="2"> </td>
-     <td colspan="1">조회수</td>
-     <td colspan="1"><%=HitCount%></td>
-     <td colspan="1">댓글</td>
-     <td colspan="1">0</td>
-   </tr>
-   <tr>
-     <td colspan="7" style="height: 500px;" align="left">
-     	<div id="ContentBox"><%=Content %></div>
-     </td>
-   </tr>
-</table>
-</div>
-<div id="nTableBot"></div>
-<a href="#" onclick="prevPage()" class="btn btn-outline-dark">이전글</a>
-<a href="#" onclick="nextPage()" class="btn btn-outline-dark">다음글</a>
-<a href="#" onclick="boardDel()" class="btn btn-secondary" style="float: right;">글삭제</a>
-</div>
-

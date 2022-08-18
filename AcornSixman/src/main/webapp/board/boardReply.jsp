@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%
 
-	String userId = "";
+	String userId = " ";
 	Object obj = session.getAttribute("login");
 	if (obj != null)
 	{
@@ -155,7 +155,7 @@
 		<div class="form-floating col-sm-11" style="margin: auto; position: relative;">
 			<textarea class="form-control" id="replyarea" maxlength="360" spellcheck="false"></textarea>
 			<label for="floatingTextarea" id="replylabel">
-				<span id="replyUserId"><%=userId %></span>
+				<span id="replyUserId"><%if(userId!=" "){%><%=userId %><%}else{%>로그인이 필요합니다.<%} %></span>
 			</label>
 			<button id="replyAddBtn" class="btn btn-outline-secondary reply" onclick="replyAdd(this)" data-width1=" " data-width2="780">등록</button>
 		</div>
@@ -179,7 +179,8 @@
 		var UserId = $("#replyUserId").text();
 		var ReplyContent = $("#replyarea"+ContentId).val();
 		if(!ReplyContent){ReplyContent=$("#replyarea").val();}
-		if(UserId.length!=0||UserId!="undefined"){
+		console.log("아이디: "+UserId+"아이디의 길이:"+UserId.length);
+		if(UserId!="로그인이 필요합니다."){
 			$.ajax({
 				type: "post",
 				url: "BoardReplyAddServlet",
@@ -204,7 +205,9 @@
 	
 	function showHtml(data, ContentId, width1, width2) {
 		var html = "";
+		var replyNextId = "";
 		$.each(data, function(i, ele) {
+			replyNextId = ele.boardRelpyNextId;
 			html += '<div class="row" id="reply" style="width: 100%;">'
 				 + '<div style="height: 20px; width: 100%; margin: auto; border-top: 2px solid grey;"></div>';
 			if(width2=="710"){
@@ -233,7 +236,12 @@
 					 + '</div><div id="reply'+ele.boardRealContentId+'"></div>';	
 			}	
 		})
-		$("#reply"+ContentId).after(html);
+		console.log("다음 아이디"+replyNextId);
+		if(replyNextId!=""){
+			$("#reply"+replyNextId).append(html);
+		}else{
+			$("#reply"+ContentId).append(html);
+		}
 		if($("#reply"+ContentId).val()==null){
 			$("#replybody").append(html);
 			$("#replyarea").val("");

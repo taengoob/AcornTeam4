@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -163,11 +164,16 @@ public class BoardService {
 		return n;
 	}
 
-	public List<BoardDTO> replySelect(String replyId) {
+	public List<BoardDTO> replySelect(String replyId, String refContentId) {
 		SqlSession session = MySqlSessionFactory.getSession();
-		List<BoardDTO> list = null;
+		List<BoardDTO> list = new ArrayList<BoardDTO>();
+		BoardDTO dto = null;
 		try {
-			list = dao.replySelect(session, replyId);
+			dto = dao.replySelect(session, replyId);
+			String boardReplyNextId = dao.replyNextId(session, replyId, refContentId);
+			System.out.println("다음 아이디는"+boardReplyNextId);
+			dto.setBoardRelpyNextId(boardReplyNextId);
+			list.add(dto);
 		}finally {
 			session.close();
 		}

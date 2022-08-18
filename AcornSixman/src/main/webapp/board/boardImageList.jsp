@@ -47,39 +47,15 @@
 		height: 191px;
 		object-fit: cover;
 	}
+	#ReplyCount{
+		font-size: 14px;
+		color: #92B8B1;
+	}
+	#ReplyCount2{
+		font-size: 18px;
+		color: #92B8B1;
+	}
 </style>
-<script type="text/javascript">
-
-	window.onload = function () {
-		hideAdminElelments(getIsAdmin());
-	};
-
-	function hideAdminElelments(isAdmin) {
-		if (isAdmin === false) {
-			//class 에 admin이 있는 요소들을 찾는다.
-			const elements = document.getElementsByClassName("admin");
-	
-			//class 에 admin이 있는 요소들을 순회하면서
-			for (const key in elements) {
-				if (Object.hasOwnProperty.call(elements, key)) {
-					const element = elements[key];
-					//안보이게 만든다.
-					element.style.display = "none";
-				}
-			}
-		}
-	}
-
-	function getIsAdmin() {
-		if("taengoov"=="<%=userId%>"){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-
-</script>
 <div class="container">
 	<div style="height: 50px;"></div>
 	<h1 class="text-center">회원게시판</h1>
@@ -126,11 +102,16 @@
 				}
 				String RegDate = dto.getBoardRegDate();
 				int HitCount = dto.getBoardHitCount();
+				int ReplyCount = dto.getBoardReplyCount();
 			%>
 			<tr class="table-secondary fw-bold">
 				<td scope="row"><%=ContentId %></td>
 				<td><%=Category %></td>
-				<td><a href="BoardInfoServlet?view=img&curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none"><%=Title %></a></td>
+				<td>
+					<a href="BoardInfoServlet?view=img&curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
+						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
+					</a>
+				</td>
 				<td><%=UserId %></td>
 				<td><%=RegDate %></td>
 				<td><%=HitCount %></td>
@@ -159,6 +140,7 @@
 			String RegDate = dto.getBoardRegDate();
 			int HitCount = dto.getBoardHitCount();
 			String PreviewImg = dto.getBoardPreviewImg();
+			int ReplyCount = dto.getBoardReplyCount();
 		%>
 		<div class="col-sm-3">
 			<div class="card">
@@ -172,7 +154,7 @@
 				</a>
 				<ul class="list-group list-group-flush table-hover">
 					<li class="list-group-item">
-						<span style="font-weight: bold;"><%=Title %></span>
+						<span style="font-weight: bold;"><%=Title %><span id="ReplyCount2">(<%=ReplyCount %>)</span></span>
 					</li>
 					<li class="list-group-item">
 						<span><%=UserId %></span>
@@ -221,3 +203,35 @@
     </li>
   </ul>
 </nav>
+<script type="text/javascript">
+
+	window.onload = function () {
+		hideAdminElelments(getIsAdmin());
+	};
+
+	function hideAdminElelments(isAdmin) {
+		if (isAdmin === false) {
+			//class 에 admin이 있는 요소들을 찾는다.
+			const elements = document.getElementsByClassName("admin");
+	
+			//class 에 admin이 있는 요소들을 순회하면서
+			for (const key in elements) {
+				if (Object.hasOwnProperty.call(elements, key)) {
+					const element = elements[key];
+					//안보이게 만든다.
+					element.style.display = "none";
+				}
+			}
+		}
+	}
+
+	function getIsAdmin() {
+		if("taengoov"=="<%=userId%>"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+</script>
