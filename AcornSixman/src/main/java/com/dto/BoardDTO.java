@@ -15,6 +15,7 @@ public class BoardDTO {
 	private String boardPreviewImg;
 	private String boardRefContentId;
 	private String boardRealContentId;
+	private int boardReplyCount;
 	
 	public BoardDTO() {
 		super();
@@ -23,7 +24,8 @@ public class BoardDTO {
 
 	public BoardDTO(String boardContentId, String boardCategory, String boardUserId, String boardTitle,
 			String boardContent, String boardRegDate, String boardUpdateDate, String boardDelDate, int boardHitCount,
-			String boardSubCategory, String boardPreviewImg, String boardRefContentId, String boardRealContentId) {
+			String boardSubCategory, String boardPreviewImg, String boardRefContentId, String boardRealContentId,
+			int boardReplyCount) {
 		super();
 		this.boardContentId = boardContentId;
 		this.boardCategory = boardCategory;
@@ -38,6 +40,7 @@ public class BoardDTO {
 		this.boardPreviewImg = boardPreviewImg;
 		this.boardRefContentId = boardRefContentId;
 		this.boardRealContentId = boardRealContentId;
+		this.boardReplyCount = boardReplyCount;
 	}
 
 	public String getBoardContentId() {
@@ -144,6 +147,14 @@ public class BoardDTO {
 		this.boardRealContentId = boardRealContentId;
 	}
 
+	public int getBoardReplyCount() {
+		return boardReplyCount;
+	}
+
+	public void setBoardReplyCount(int boardReplyCount) {
+		this.boardReplyCount = boardReplyCount;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardDTO [boardContentId=" + boardContentId + ", boardCategory=" + boardCategory + ", boardUserId="
@@ -151,9 +162,7 @@ public class BoardDTO {
 				+ boardRegDate + ", boardUpdateDate=" + boardUpdateDate + ", boardDelDate=" + boardDelDate
 				+ ", boardHitCount=" + boardHitCount + ", boardSubCategory=" + boardSubCategory + ", boardPreviewImg="
 				+ boardPreviewImg + ", boardRefContentId=" + boardRefContentId + ", boardRealContentId="
-				+ boardRealContentId + "]";
+				+ boardRealContentId + ", boardReplyCount=" + boardReplyCount + "]";
 	}
-	
-	
 	
 }

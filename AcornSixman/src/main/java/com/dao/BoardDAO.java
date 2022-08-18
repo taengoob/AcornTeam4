@@ -90,4 +90,9 @@ public class BoardDAO {
 		return list;
 	}
 
+	public int replyCount(SqlSession session, String ContentId) {
+		int n = session.selectOne("com.mapper.board.replyCount", ContentId);
+		return n;
+	}
+
 }

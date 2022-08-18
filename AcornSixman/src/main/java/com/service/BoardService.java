@@ -179,7 +179,9 @@ public class BoardService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			List<BoardDTO> list = dao.replyList(session, contentId);
+			int replyCount = dao.replyCount(session, contentId);
 			map.put("list", list);
+			map.put("replyCount", replyCount);
 			for (int i = 0; i < list.size(); i++) {
 				BoardDTO xxx = list.get(i);
 				List<BoardDTO> list2 = dao.replyList(session, xxx.getBoardContentId());
