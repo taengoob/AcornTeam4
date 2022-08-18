@@ -1,7 +1,9 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -80,14 +82,31 @@ public class BoardDAO {
 		return n;
 	}
 
-	public List<BoardDTO> replySelect(SqlSession session, String replyId) {
-		List<BoardDTO> list = session.selectList("com.mapper.board.replySelect", replyId);
-		return list;
+	public BoardDTO replySelect(SqlSession session, String replyId) {
+		BoardDTO dto = session.selectOne("com.mapper.board.replySelect", replyId);
+		return dto;
 	}
 
 	public List<BoardDTO> replyList(SqlSession session, String ContentId) {
 		List<BoardDTO> list = session.selectList("com.mapper.board.replyList", ContentId);
 		return list;
+	}
+
+	public int replyCount(SqlSession session, String ContentId) {
+		int n = session.selectOne("com.mapper.board.replyCount", ContentId);
+		return n;
+	}
+
+	public String replyNextId(SqlSession session, String replyId, String refContentId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("replyId", replyId);
+		map.put("refContentId", refContentId);
+		BoardDTO dto = session.selectOne("com.mapper.board.replyNextId", map);
+		String s = "";
+		if(dto!=null) {
+			s = dto.getBoardRelpyNextId();
+		}
+		return s;
 	}
 
 }

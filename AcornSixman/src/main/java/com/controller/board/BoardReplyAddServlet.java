@@ -32,7 +32,7 @@ public class BoardReplyAddServlet extends HttpServlet {
 		int n = service.replyAdd(refContentId, ReplyId, UserId, ReplyContent);
 		List<BoardDTO> list = null;
 		if(n!=0) {
-			list = service.replySelect(ReplyId);
+			list = service.replySelect(ReplyId, refContentId);
 			//System.out.println(list);
 			String json = new Gson().toJson(list);
 			//System.out.println(json);

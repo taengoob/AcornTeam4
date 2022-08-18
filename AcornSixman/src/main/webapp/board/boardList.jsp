@@ -43,39 +43,11 @@
 		border-top: 1px solid grey;
 		border-bottom: 1px solid grey;
 	}
+	#ReplyCount{
+		font-size: 14px;
+		color: #92B8B1;
+	}
 </style>
-<script type="text/javascript">
-
-	window.onload = function () {
-		hideAdminElelments(getIsAdmin());
-	};
-
-	function hideAdminElelments(isAdmin) {//나중에 메인 jsp에서 참조
-		if (isAdmin === false) {
-			//class 에 admin이 있는 요소들을 찾는다.
-			const elements = document.getElementsByClassName("admin");
-	
-			//class 에 admin이 있는 요소들을 순회하면서
-			for (const key in elements) {
-				if (Object.hasOwnProperty.call(elements, key)) {
-					const element = elements[key];
-					//안보이게 만든다.
-					element.style.display = "none";
-				}
-			}
-		}
-	}
-
-	function getIsAdmin() {
-		if("taengoov"=="<%=userId%>"){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-
-</script>
 <div class="container" id="boardlistctn">
 	<div style="height: 50px;"></div>
 	<h1 class="text-center" >회원게시판</h1>
@@ -122,13 +94,14 @@
 				}
 				String RegDate = dto.getBoardRegDate();
 				int HitCount = dto.getBoardHitCount();
+				int ReplyCount = dto.getBoardReplyCount();
 			%>
 			<tr class="table-secondary fw-bold">
 				<td scope="row"><%=ContentId %></td>
 				<td><%=Category %></td>
 				<td>
 					<a href="BoardInfoServlet?curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
-						<%=Title %>
+						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>
 				</td>
 				<td><%=UserId %></td>
@@ -154,13 +127,14 @@
 				}
 				String RegDate = dto.getBoardRegDate();
 				int HitCount = dto.getBoardHitCount();
+				int ReplyCount = dto.getBoardReplyCount();
 			 %>
 			<tr>
 				<td scope="row"><%=ContentId %></td>
 				<td><%=Category %></td>
 				<td>
 					<a href="BoardInfoServlet?curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
-						<%=Title %>
+						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>&nbsp;
 					<a href="BoardDeleteServlet?curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="btn btn-outline-danger btn-sm admin">
 						x
@@ -205,3 +179,35 @@
     </li>
   </ul>
 </nav>
+<script type="text/javascript">
+
+	window.onload = function () {
+		hideAdminElelments(getIsAdmin());
+	};
+
+	function hideAdminElelments(isAdmin) {//나중에 메인 jsp에서 참조
+		if (isAdmin === false) {
+			//class 에 admin이 있는 요소들을 찾는다.
+			const elements = document.getElementsByClassName("admin");
+	
+			//class 에 admin이 있는 요소들을 순회하면서
+			for (const key in elements) {
+				if (Object.hasOwnProperty.call(elements, key)) {
+					const element = elements[key];
+					//안보이게 만든다.
+					element.style.display = "none";
+				}
+			}
+		}
+	}
+
+	function getIsAdmin() {
+		if("taengoov"=="<%=userId%>"){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+</script>

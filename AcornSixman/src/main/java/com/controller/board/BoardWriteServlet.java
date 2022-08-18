@@ -45,7 +45,9 @@ public class BoardWriteServlet extends HttpServlet {
 			 imgs[index] = matcher.group(1);//img 태그의 src 값만 추출
 			 index++;
 		}
-
+		if(imgs[0]==null) {
+			imgs[0]="";
+		}
 	
 		BoardService service = new BoardService();
 		
