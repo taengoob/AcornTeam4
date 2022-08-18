@@ -76,6 +76,17 @@ a {
 			alt="네이버" class="naver-img">
 		</a>
 	</form>
+	<%
+	String mesg2 = (String) session.getAttribute("nologin");
+	if (mesg2 != null){
+	%>
+	<script type="text/javascript">
+	alert("로그인 정보를 다시 확인해주세요.");
+	</script>
+	<%
+	}
+	session.removeAttribute("nologin");
+	%>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script type="text/javascript">
 	Kakao.init('12991a69612ed8393fdc0e713c736af9');
@@ -111,6 +122,7 @@ a {
 	<%
 	request.setCharacterEncoding("utf-8");
 	String mesg1 = (String) session.getAttribute("userid");
+	
 	%>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
