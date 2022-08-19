@@ -39,7 +39,7 @@
 		font-size: 25px;
 		font-weight: bold;
 	}
-	#replyAddBtn{
+	#replyAddBtn,#replyUpdateBtn{
 		position: absolute;
 		right: 20px;
 		top: 110px;
@@ -59,9 +59,9 @@
 	<div>
 		<div class="w-100" style="height: 50px;">
 			<div style="float: left; margin-left: 40px;">
-				<h2>댓글&nbsp;<span id="replyCount"><%if(replyCount!=0){%><%=replyCount %><%} %></span></h2>
+				<h2>댓글&nbsp;<span id="replyCount"><%if(replyCount!=0){%><%=replyCount %><%}else{%> <%}%></span></h2>
 			</div>
-			<a href="#" style="float: left; margin-left: 60px;">등록순</a>
+			<a href="#" style="float: left; margin-left: 20px;">등록순</a>
 			<a href="#" style="float: left; margin-left: 20px;">최신순</a>
 		</div>
 	</div>
@@ -74,11 +74,15 @@
 			<div class="row" id="reply" style="width: 100%;">
 				<div style="height: 20px; width: 100%; margin: auto; border-top: 2px solid grey;"></div>
 				<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px; margin-top: 10px;"></div>
-				<div class="col-sm-2" style="height: 79px; width: 120px; text-align: center; line-height: 60px;"><%=xxx.getBoardUserId() %></div>
-				<div class="col-sm-6" style="width: 780px;"><%=xxx.getBoardContent() %></div>
+				<div class="col-sm-2" id="replyWriteId<%=xxx.getBoardRealContentId()%>" style="height: 79px; width: 120px; text-align: center; line-height: 60px;"><%=xxx.getBoardUserId() %></div>
+				<div class="col-sm-6" id="replyContent<%=xxx.getBoardRealContentId()%>" style="width: 780px;">
+					<%if(xxx.getBoardDelDate()==null){%><%=xxx.getBoardContent()%><%}else{%> 삭제된 댓글입니다. <%}%>
+				</div>
 				<div class="col-sm-2" style="width: 190px; right: -10px;">
-				<button class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</button>
-				<button class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</button>
+				<button class="btn btn-outline-secondary btn-sm" id="replybtn1" onclick="replyDelete(this)"
+				 data-xxx="<%=xxx.getBoardRealContentId()%>">삭제</button>
+				<button class="btn btn-outline-secondary btn-sm" id="replybtn2" onclick="showReplyArea(this)"
+				 data-xxx="<%=xxx.getBoardRealContentId()%>" data-update="update">수정</button>
 				<button class="btn btn-outline-secondary btn-sm" id="replybtn3" onclick="showReplyArea(this)"
 				 data-xxx="<%=xxx.getBoardRealContentId()%>" data-width1="70" data-width2="710">답글</button>
 				<span style="float: right;"><br><%=xxx.getBoardRegDate() %></span>
@@ -99,11 +103,15 @@
 					<img src="upload/reply2.png" width="50px;" height="50px;" style="margin-left: 25px;">
 				</div>
 				<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left:30px;  margin-top: 10px;"></div>
-				<div class="col-sm-2" style="height: 79px; width: 120px; text-align: center; line-height: 79px;"><%=yyy.getBoardUserId() %></div>
-				<div class="col-sm-6" style="width: 710px;"><%=yyy.getBoardContent() %></div>
+				<div class="col-sm-2" id="replyWriteId<%=yyy.getBoardRealContentId()%>" style="height: 79px; width: 120px; text-align: center; line-height: 79px;"><%=yyy.getBoardUserId() %></div>
+				<div class="col-sm-6" id="replyContent<%=yyy.getBoardRealContentId()%>" style="width: 710px;">
+					<%if(yyy.getBoardDelDate()==null){%><%=yyy.getBoardContent()%><%}else{%> 삭제된 댓글입니다. <%}%>
+				</div>
 				<div class="col-sm-2" style="width: 190px; right: -10px;">
-				<button class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</button>
-				<button class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</button>
+				<button class="btn btn-outline-secondary btn-sm" id="replybtn1" onclick="replyDelete(this)"
+				 data-xxx="<%=yyy.getBoardRealContentId()%>">삭제</button>
+				<button class="btn btn-outline-secondary btn-sm" id="replybtn2" onclick="showReplyArea(this)"
+				 data-xxx="<%=yyy.getBoardRealContentId()%>" data-update="update">수정</button>
 				<button class="btn btn-outline-secondary btn-sm" id="replybtn3" onclick="showReplyArea(this)"
 				 data-xxx="<%=yyy.getBoardRealContentId()%>" data-width1="140" data-width2="640">답글</button>
 				<span style="float: right;"><br><%=yyy.getBoardRegDate() %></span>
@@ -124,11 +132,15 @@
 				<img src="upload/reply2.png" width="50px;" height="50px;" style="margin-left: 95px;">
 			</div>
 			<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px; margin-top: 10px;"></div>
-			<div class="col-sm-2" style="height: 79px; width: 120px; text-align: center; line-height: 79px;"><%=zzz.getBoardUserId() %></div>
-			<div class="col-sm-6" style="width: 640px;"><%=zzz.getBoardContent() %></div>
+			<div class="col-sm-2" id="replyWriteId<%=zzz.getBoardRealContentId()%>" style="height: 79px; width: 120px; text-align: center; line-height: 79px;"><%=zzz.getBoardUserId()%></div>
+			<div class="col-sm-6" id="replyContent<%=zzz.getBoardRealContentId()%>" style="width: 640px;">
+				<%if(zzz.getBoardDelDate()==null){%><%=zzz.getBoardContent()%><%}else{%> 삭제된 댓글입니다. <%}%>
+			</div>
 			<div class="col-sm-2" style="width: 190px; right: -10px;">
-			<button class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</button>
-			<button class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</button>
+			<button class="btn btn-outline-secondary btn-sm" id="replybtn1" onclick="replyDelete(this)"
+				 data-xxx="<%=zzz.getBoardRealContentId()%>">삭제</button>
+				<button class="btn btn-outline-secondary btn-sm" id="replybtn2" onclick="showReplyArea(this)"
+				 data-xxx="<%=zzz.getBoardRealContentId()%>" data-update="update">수정</button>
 			<%-- <button class="btn btn-outline-secondary btn-sm" id="replybtn3"
 			 data-xxx="<%=zzz.getBoardRealContentId()%>" data-width1="140" data-width2="640">답글</button> --%>
 			<span style="float: right;"><br><%=zzz.getBoardRegDate() %></span>
@@ -169,6 +181,63 @@
 		/* $("button[id='replyAddBtn']").on("click", replyAdd); */
 		/* $("button[id='replybtn3']").on("click", showReplyArea); */
 	})
+	
+	function replyUpdate(e) {
+		var ContentId = $(e).attr("data-xxx");
+		var ReplyContent = $("#replyarea"+ContentId).val();
+		if(window.confirm("정말 댓글을 수정하시겠습니까?")){
+			$.ajax({
+				type: "post",
+				url: "BoardReplyUpdateServlet",
+				data:{
+					ContentId: ContentId,
+					ReplyContent: ReplyContent
+				},
+				dataType: "text",
+				success: function(data, status, xhr) {
+					console.log("댓글수정 성공");
+					$("#replyContent"+ContentId).text(data);
+					$("#replyarea"+ContentId).val("");
+					$("#replybox"+ContentId).css('display', "none");
+				},
+				error: function(xhr, status, error) {
+					
+				}
+			})//end ajax
+		}else{
+			alert("수정이 취소되었습니다.");
+		}
+	}
+	
+	function replyDelete(e) {
+		var ContentId = $(e).attr("data-xxx");
+		var UserId = $("#replyUserId").text();
+		var replyWriteId = $("#replyWriteId"+ContentId).text();
+		console.log("로그인중인 아이디"+UserId+"댓글작성 아이디"+replyWriteId);
+		if(UserId==replyWriteId||UserId=="taengoov"){
+			if(window.confirm("정말 댓글을 삭제하시겠습니까?")){
+				$.ajax({
+					type: "post",
+					url: "BoardReplyUpdateServlet",
+					data:{
+						ContentId: ContentId
+					},
+					dataType: "text",
+					success: function(data, status, xhr) {
+						console.log("댓글삭제 성공");
+						$("#replyContent"+ContentId).text(data);
+					},
+					error: function(xhr, status, error) {
+						
+					}
+				})//end ajax
+			}else{
+				alert("삭제가 취소되었습니다.");
+			}
+		}else{
+			alert("삭제 권한이 없습니다.");
+		}
+	}
 	
 	function replyAdd(e) {//댓글 추가
 		var ContentId = $(e).attr("data-xxx");
@@ -218,11 +287,13 @@
 						 +  '<img src="upload/reply2.png" width="50px;" height="50px;" style="margin-left: 95px;"></div>';
 			}
 			html += '<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px; margin-top: 10px;"></div>'	
-				 + '<div class="col-sm-2" style="height: 79px; width: 120px; text-align: center; line-height: 79px;">'+ele.boardUserId+'</div>'	
-				 + '<div class="col-sm-6" style="width:'+width2+'px; min-height:79px;">'+ele.boardContent +'</div>'	
+				 + '<div class="col-sm-2" id="replyWriteId'+ele.boardRealContentId+'" style="height: 79px; width: 120px; text-align: center; line-height: 79px;">'+ele.boardUserId+'</div>'	
+				 + '<div class="col-sm-6" id="replyContent'+ele.boardRealContentId+'" style="width:'+width2+'px; min-height:79px;">'+ele.boardContent +'</div>'	
 				 + '<div class="col-sm-2" style="width: 190px; right: -10px;">'	
-				 + '<button class="btn btn-outline-secondary btn-sm" id="replybtn1">삭제</button>'	
-				 + '<button class="btn btn-outline-secondary btn-sm" id="replybtn2">수정</button>';
+				 + '<button class="btn btn-outline-secondary btn-sm" id="replybtn1"'
+				 + 'onclick="replyDelete(this)" data-xxx='+ele.boardRealContentId+'>삭제</button>'	
+				 + '<button class="btn btn-outline-secondary btn-sm" id="replybtn2"'
+				 + 'onclick="showReplyArea(this)" data-xxx='+ele.boardRealContentId+'>수정</button>';
 			if(width2!="640"){
 				if(width1==" "){width1="0";}
 				html +='<button class="btn btn-outline-secondary btn-sm" id="replybtn3" onclick="showReplyArea(this)"' 
@@ -237,21 +308,26 @@
 			}	
 		})
 		console.log("다음 아이디"+replyNextId);
-		if(replyNextId!=""){
-			$("#reply"+replyNextId).append(html);
-		}else{
-			$("#reply"+ContentId).append(html);
-		}
-		if($("#reply"+ContentId).val()==null){
-			$("#replybody").append(html);
-			$("#replyarea").val("");
-			$("#replyarea").focus();
-		}else{
+		console.log("값 검정"+$("#reply"+ContentId).val());
+		if($("#reply"+ContentId).css('display') === 'block'){
+			if(replyNextId==" "){
+				$("#reply"+ContentId).append(html);
+			}else{
+				$("#reply"+replyNextId).append(html);
+			}
 			$("#replyarea"+ContentId).val("");
 			$("#replybox"+ContentId).css('display', "none");
+		}else{
+			if(replyNextId==" "){
+				$("#replybody").append(html);
+			}else{
+				$("#reply"+replyNextId).append(html);
+			}
+			$("#replyarea").val("");
+			$("#replyarea").focus();
 		}
 		var replyCount = $("#replyCount").text();
-		if(replyCount==null){
+		if(replyCount==" "){
 			$("#replyCount").text(1);
 		}else{
 			$("#replyCount").text(parseInt(replyCount)+1);
@@ -259,10 +335,12 @@
 	}
 	
 	function showReplyArea(e) {
-		var UserId = $("#replyUserId").text();
 		var ContentId = $(e).attr("data-xxx");
+		var replyWriteId = $("#replyWriteId"+ContentId).text();
+		var UserId = $("#replyUserId").text();
 		var width1 = $(e).attr("data-width1");
 		var width2 = $(e).attr("data-width2");
+		var Update = $(e).attr("data-update");
 		console.log(width1, width2);
 		console.log(ContentId);
 		var	html = "";
@@ -272,17 +350,25 @@
 			     + '<textarea class="form-control reply" id="replyarea'+ContentId+'" maxlength="360" spellcheck="false"'
 			     + 'style="height: 160px; resize: none; padding: 40px 50px 40px 50px; position: relative;"></textarea>'
 			     + '<label for="floatingTextarea" id="replylabel">'
-			     + '<span id="replyUserId">'+UserId+'</span></label>'
-			     + '<button id="replyAddBtn" class="btn btn-outline-secondary" onclick=" replyAdd(this)" data-width1="'+width1+'" data-width2="'+width2+'" data-xxx="'+ContentId+'">등록</button>'
-			     + '</div><div class="w-900" style="height: 30px;"></div></div>';
-		if($("#replybox"+ContentId).css('display') === 'block' ){
-			$("#replybox"+ContentId).hide();
-		}else if($("#replybox"+ContentId).css('display') === 'none'){
-			$("#replybox"+ContentId).css('display',"block");
-			$("#replyarea"+ContentId).focus();
+			     + '<span id="replyUserId">'+UserId+'</span></label>';
+		if(Update!=null){
+			html += '<button id="replyUpdateBtn" class="btn btn-outline-secondary" onclick=" replyUpdate(this)" data-xxx="'+ContentId+'">수정</button>';
 		}else{
-			$("#reply"+ContentId).append(html);
-			$("#replyarea"+ContentId).focus();
+			html += '<button id="replyAddBtn" class="btn btn-outline-secondary" onclick=" replyAdd(this)" data-width1="'+width1+'" data-width2="'+width2+'" data-xxx="'+ContentId+'">등록</button>';
+		}
+			html += '</div><div class="w-900" style="height: 30px;"></div></div>';
+		if(Update!=null&&UserId!=replyWriteId){
+			alert("수정권한이 없습니다.");
+		}else{
+			if($("#replybox"+ContentId).css('display') === 'block' ){
+				$("#replybox"+ContentId).hide();
+			}else if($("#replybox"+ContentId).css('display') === 'none'){
+				$("#replybox"+ContentId).css('display',"block");
+				$("#replyarea"+ContentId).focus();
+			}else{
+				$("#reply"+ContentId).append(html);
+				$("#replyarea"+ContentId).focus();
+			}
 		}
 	}
 </script>

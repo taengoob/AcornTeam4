@@ -102,11 +102,21 @@ public class BoardDAO {
 		map.put("replyId", replyId);
 		map.put("refContentId", refContentId);
 		BoardDTO dto = session.selectOne("com.mapper.board.replyNextId", map);
-		String s = "";
+		String s = " ";
 		if(dto!=null) {
 			s = dto.getBoardRelpyNextId();
 		}
 		return s;
+	}
+
+	public int replyDelete(SqlSession session, String replyId) {
+		int n = session.update("com.mapper.board.replyDelete", replyId);
+		return n;
+	}
+
+	public int replyUpdate(SqlSession session, Map<String, Object> map) {
+		int n = session.update("com.mapper.board.replyUpdate", map);
+		return n;
 	}
 
 }

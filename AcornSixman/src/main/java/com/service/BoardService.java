@@ -204,4 +204,31 @@ public class BoardService {
 		return map;
 	}
 
+	public int replyDelete(String replyId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		int n = 0;
+		try {
+			n = dao.replyDelete(session, replyId);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return n;
+	}
+
+	public int replyUpdate(String replyId, String replyContent) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("replyId", replyId);
+		map.put("replyContent", replyContent);
+		int n = 0;
+		try {
+			n = dao.replyUpdate(session, map);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return n;
+	}
+
 }

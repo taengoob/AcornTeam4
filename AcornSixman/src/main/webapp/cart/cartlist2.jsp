@@ -48,16 +48,14 @@
 		border-bottom: 1px solid #bcbcbc;
 	    border-left: 1px solid #bcbcbc;
 	    padding: 10px;
+	    text-align: center;
+		font-size: 12px;
 	}
 	.tabletop{
 		height: 50px;
 	}
 	.tablebot{
 		height: 60px;
-	}
-	td{
-		text-align: center;
-		font-size: 12px;
 	}
 	.basketlist{
 		height: 80px;

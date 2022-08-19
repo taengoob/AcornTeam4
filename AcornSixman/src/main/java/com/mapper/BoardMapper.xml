@@ -301,4 +301,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				BOARD_REF_CONTENT_ID = #{refContentId}
 			)
 	</select>
+	
+	<update id="replyDelete" parameterType="String">
+		UPDATE 
+			BOARD_DETATIL 
+		SET
+			BOARD_DEL_DATE = (SELECT FN_GET_KST_DATE() FROM DUAL)
+		WHERE
+			BOARD_CONTENT_ID = #{replyId}
+	</update>
+	
+	<update id="replyUpdate" parameterType="HashMap">
+		UPDATE 
+			BOARD_DETATIL 
+		SET
+			BOARD_CONTENT = #{replyContent},
+			BOARD_UPDATE_DATE = (SELECT FN_GET_KST_DATE() FROM DUAL)
+		WHERE
+			BOARD_CONTENT_ID = #{replyId}
+	</update>
+	
 </mapper>
