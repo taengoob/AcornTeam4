@@ -14,6 +14,9 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style type="text/css">
+@import
+	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 .logo-image {
 	margin-top: -1.5%;
 }
@@ -36,7 +39,8 @@ header {
 
 header.sticky {
 	position: fixed;
-	background-color: #ffffff; background-color : rgba( 255, 255, 255, 0.5);
+	background-color: #ffffff;
+	background-color: rgba(255, 255, 255, 0.5);
 	transition: 0.3s;
 	padding: 1.5%;
 	text-align: right;
@@ -59,6 +63,19 @@ header.sticky #span1 {
 header.sticky .login-service {
 	width: 300px;
 	display: inline-block;
+}
+
+#main-span {
+	font-family: 'Lobster', cursive;
+	color: black;
+	font-size: 30px;
+	cursor: pointer;
+	text-align: left;
+	margin-right: 9%;
+	display: none;
+}
+header.sticky #main-span{
+display: inline-block;
 }
 </style>
 </head>
@@ -90,7 +107,9 @@ header.sticky .login-service {
 	String id5 = dto5.getCategoryId();
 	%>
 	<header>
+
 		<div class="navbar1">
+<span onclick="location.href='Mainservlet'" id="main-span">The SixMan</span>
 			<button type="button" class="btn btn-link" id="button-tag"
 				onclick="location.href='ProductListServlet?category=<%=id0%>'">
 				<span id="span1">전체 상품</span>
@@ -148,7 +167,7 @@ header.sticky .login-service {
 				</ul>
 			</div>
 			<div class="login-service">
-
+				
 				<%
 				MemberDTO dtolo = (MemberDTO) session.getAttribute("login");
 				if (dtolo != null) {
