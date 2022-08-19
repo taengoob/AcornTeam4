@@ -51,4 +51,9 @@ public class IDGenerator
 		CommonService service = new CommonService();
 		return service.getNewBoardReplyId();
 	}
+	
+	public static String getNewOrderRequestId(String orderId, OrderRequestType type)
+	{
+		return type.toString() + orderId;
+	}
 }
