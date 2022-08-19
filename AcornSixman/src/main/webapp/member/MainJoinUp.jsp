@@ -15,7 +15,6 @@
 	border: 1px solid;
 	border-color: gray;
 	overflow: hidden;
-	height: 600px;
 	width: 80%;
 	margin-top: 3%;
 	margin-left: 10%;
@@ -44,6 +43,7 @@
 text-align: right;
 margin-right: 5%;
 margin-top: 3%;	
+margin-bottom: 3%;
 }
 </style>
 </head>

@@ -56,7 +56,7 @@ a {
 <body>
 	<p class="main-img"></p>
 	<form action="loginServlet" method="post" id="mainform">
-		<p class="main-name">The 식스맨#</p>
+		<p class="main-name">The SixMan</p>
 		<div class="input-style">
 			<input type="text" placeholder="아이디" id="userid" name="userid"
 				class="form-control" style="width: 29%"> <input
