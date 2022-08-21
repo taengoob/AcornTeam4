@@ -41,8 +41,8 @@ public class ProductDAO
 	{
 		return session.selectList("com.mapper.product.selectProductBySellerId", sellerId);
 	}
-	public List<ProductDTO_Temp> select(SqlSession session) {
-		List<ProductDTO_Temp> list =  session.selectList("com.mapper.product.selectProductAll");
+	public List<ProductDTO_Temp> select(SqlSession session, HashMap<String, String> map) {
+		List<ProductDTO_Temp> list =  session.selectList("com.mapper.product.selectProductAll", map);
 		return list;
 	}
 	public int delete(SqlSession session, String ProductId) {

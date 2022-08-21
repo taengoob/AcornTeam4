@@ -33,8 +33,10 @@ public class ProductListServlet1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String searchName = request.getParameter("searchName");
+		String searchValue = request.getParameter("searchValue");
 		ProductService service = new ProductService();
-		List<ProductDTO_Temp> list = service.select();
+		List<ProductDTO_Temp> list = service.select(searchName, searchValue);
 		request.setAttribute("list", list);
 		RequestDispatcher dis = request.getRequestDispatcher("seller/1productlist.jsp");
 		dis.forward(request, response);
