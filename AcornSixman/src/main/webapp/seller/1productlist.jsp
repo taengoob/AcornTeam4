@@ -35,15 +35,15 @@
 <form id="delForm" class="table table-striped">
 <h1>상품리스트</h1>
 <hr>
-<tr>
-			<tr>
+		<tr>
 			<td colspan="5">
 				<form action="ProductListServlet1">
 					<select name="searchName">
-						<option value="productCategory">분류</option>
-						<option value="ename">이름</option>
+						<option value="Acoustic">Acoustic</option>
+						<option value="Bass">Bass</option>
+						<option value="Classic">Classic</option>
+						<option value="Elec">Elec</option>
 					</select> 
-					<input type="text" name="searchValue"> 
 					<input type="submit" value="검색">
 				</form>
 			</td>

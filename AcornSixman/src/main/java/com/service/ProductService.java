@@ -104,10 +104,9 @@ public class ProductService
 		}
 		return list;
 	}
-	public List<ProductDTO_Temp> select(String searchName, String searchValue) {
+	public List<ProductDTO_Temp> select(String searchName) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("searchName", searchName);
-		map.put("searchValue", searchValue);
 		ProductDAO dao = new   ProductDAO();
 		 SqlSession session = MySqlSessionFactory.getSession();
 		 List<ProductDTO_Temp> list = null; 
