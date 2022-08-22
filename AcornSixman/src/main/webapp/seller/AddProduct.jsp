@@ -77,11 +77,11 @@ $(document).ready(function(){
 	});
 </script>
 
-<div class="jumbotron">
+ <div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">상품 등록 </h1>
 		</div>
-	</div>
+	</div> 
 	
 	<div class="container">
 	

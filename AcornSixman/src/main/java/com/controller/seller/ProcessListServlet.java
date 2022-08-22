@@ -36,7 +36,7 @@ public class ProcessListServlet extends HttpServlet {
 		OrderService service = new OrderService();
 		List<ProcessListDTO> list = service.select();
 		request.setAttribute("list", list);
-		RequestDispatcher dis = request.getRequestDispatcher("seller/processlist.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("seller/processlistInclude.jsp");
 		dis.forward(request, response);
 	}
 

@@ -33,7 +33,7 @@ public class ProductAddServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		RequestDispatcher dis = request.getRequestDispatcher("seller/AddProduct.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("seller/AddProductInclude.jsp");
 		dis.forward(request, response);
 	}
 	

@@ -37,7 +37,7 @@ public class ProductListServlet1 extends HttpServlet {
 		ProductService service = new ProductService();
 		List<ProductDTO_Temp> list = service.select(searchName);
 		request.setAttribute("list", list);
-		RequestDispatcher dis = request.getRequestDispatcher("seller/1productlist.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("seller/1productlistInclude.jsp");
 		dis.forward(request, response);
 	}
 
