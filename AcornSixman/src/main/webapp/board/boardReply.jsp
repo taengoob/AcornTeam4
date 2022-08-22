@@ -309,28 +309,28 @@
 		})
 		console.log("다음 아이디"+replyNextId);
 		console.log("값 검정"+$("#reply"+ContentId).val());
-		if($("#reply"+ContentId).css('display') === 'block'){
-			if(replyNextId==" "){
-				$("#reply"+ContentId).append(html);
-			}else{
-				$("#reply"+replyNextId).append(html);
+		if($("#reply"+ContentId).css('display') === 'block'){//대댓글인 경우
+			if(replyNextId==" "){//해당 댓글에 다른 대댓글이 없을경우
+				$("#reply"+ContentId).append(html);//해당 댓글 아래에 대댓글 추가
+			}else{//해당 댓글에 다른 대댓글이 있을경우
+				$("#reply"+replyNextId).append(html);//다른 대댓글들중 가장 나중에 작성한 댓글 아래에 추가
 			}
-			$("#replyarea"+ContentId).val("");
-			$("#replybox"+ContentId).css('display', "none");
-		}else{
-			if(replyNextId==" "){
-				$("#replybody").append(html);
-			}else{
-				$("#reply"+replyNextId).append(html);
+			$("#replyarea"+ContentId).val("");//텍스트 입력창 비우고
+			$("#replybox"+ContentId).css('display', "none");//텍스트 입력창 숨김
+		}else{//대댓글이 아닌경우
+			if(replyNextId==" "){//해당 게시들에 다른 댓글이 없을경우
+				$("#replybody").append(html);//첫 댓글 추가
+			}else{//해당 게시물에 다른 댓글이 있을경우
+				$("#reply"+replyNextId).append(html);//가장 나중에 작성한 댓글 아래에 추가
 			}
-			$("#replyarea").val("");
-			$("#replyarea").focus();
+			$("#replyarea").val("");//텍스트 입력창 비우고
+			$("#replyarea").focus();//텍스트 입력창 포커스
 		}
 		var replyCount = $("#replyCount").text();
-		if(replyCount==" "){
-			$("#replyCount").text(1);
+		if(replyCount==" "){//댓글이 없을 경우
+			$("#replyCount").text(1);//총 댓글수는 1개
 		}else{
-			$("#replyCount").text(parseInt(replyCount)+1);
+			$("#replyCount").text(parseInt(replyCount)+1);//댓글이 있을경우 +1
 		}
 	}
 	
@@ -351,13 +351,13 @@
 			     + 'style="height: 160px; resize: none; padding: 40px 50px 40px 50px; position: relative;"></textarea>'
 			     + '<label for="floatingTextarea" id="replylabel">'
 			     + '<span id="replyUserId">'+UserId+'</span></label>';
-		if(Update!=null){
+		if(Update!=null){//수정 버튼을 클릭한 경우
 			html += '<button id="replyUpdateBtn" class="btn btn-outline-secondary" onclick=" replyUpdate(this)" data-xxx="'+ContentId+'">수정</button>';
-		}else{
+		}else{//일반적인 대댓글 작성인 경우
 			html += '<button id="replyAddBtn" class="btn btn-outline-secondary" onclick=" replyAdd(this)" data-width1="'+width1+'" data-width2="'+width2+'" data-xxx="'+ContentId+'">등록</button>';
 		}
 			html += '</div><div class="w-900" style="height: 30px;"></div></div>';
-		if(Update!=null&&UserId!=replyWriteId){
+		if(Update!=null&&UserId!=replyWriteId){//수정 버튼을 클릭했는데 로그인한 계정과 작성자가 맞지않는 경우
 			alert("수정권한이 없습니다.");
 		}else{
 			if($("#replybox"+ContentId).css('display') === 'block' ){

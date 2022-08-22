@@ -7,11 +7,13 @@
 <%@page import="java.util.ArrayList"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <%
+	//페이징 처리
 	List<BoardDTO> flist = (List<BoardDTO>)request.getAttribute("flist");
 	BoardPageDTO bpDTO = (BoardPageDTO)request.getAttribute("bpDTO");
 	List<BoardDTO> slist = bpDTO.getList();
 	int curPage = bpDTO.getCurPage();
-	
+
+	//로그인 인증
 	String userId = "";
 	Object obj = session.getAttribute("login");
 	if (obj != null)
@@ -19,7 +21,10 @@
 		MemberDTO user = (MemberDTO)obj;
 		userId = user.getAccountId();
 	}
-
+	
+	//카테고리 분류
+	String Category = (String)request.getAttribute("Category");
+	
 %>
 <style type="text/css">
 	#boardlistctn{
@@ -50,17 +55,31 @@
 </style>
 <div class="container" id="boardlistctn">
 	<div style="height: 50px;"></div>
-	<h1 class="text-center" >회원게시판</h1>
+	<h1 class="text-center" >
+	<%if(Category.equals("NOTICE")){%>
+		공지사항 게시판
+	<%}else if(Category.equals("NEWS")){%>
+		최신소식 게시판
+	<%}else if(Category.equals("BOARD")){%>
+		회원 게시판
+	<%}else if(Category.equals("SECONDHAND")){%>
+		중고거래 게시판
+	<%}else{%>
+		Q&A 게시판
+	<%} %>
+	</h1>
 	<div style="height: 50px;"></div>
 	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
 	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
 	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
+	<%if(Category.equals("BOARD")||Category.equals("SECONDHAND")){ %>
 	<a href="BoardListServlet?view=img" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
 		<img src="upload/imgview5.png" width="40px;" height="40px;">
 	</a>
 	<a href="BoardListServlet" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
 		<img src="upload/textview2.png" width="40px;" height="40px;">
 	</a>
+	<%} %>
 	<div id="nTableTop"></div>
 	<div id="nTableBox">
 		<table class="table table-light table-hover text-center" id="nTable">
@@ -83,10 +102,8 @@
 			<%for(int i=0;i<flist.size();i++){ 
 				BoardDTO dto = flist.get(i);
 				String ContentId = dto.getBoardContentId();
-				String Category = dto.getBoardCategory();
-				if(Category.equals("NOTICE")){
-					Category = "공지사항";
-				}
+				String subCategory = dto.getBoardSubCategory();
+				if(subCategory.equals("bNOTICE"));
 				String Title = dto.getBoardTitle();
 				String UserId = dto.getBoardUserId();
 				if(UserId.equals("taengoov")){
@@ -97,10 +114,10 @@
 				int ReplyCount = dto.getBoardReplyCount();
 			%>
 			<tr class="table-secondary fw-bold">
-				<td scope="row"><%=ContentId %></td>
-				<td><%=Category %></td>
+				<td scope="row">-</td>
+				<td><%=subCategory %></td>
 				<td>
-					<a href="BoardInfoServlet?curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
+					<a href="BoardInfoServlet?Category=<%=Category %>&curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>
 				</td>
@@ -114,12 +131,7 @@
 			<%for(int i=0;i<slist.size();i++){ 
 				BoardDTO dto = slist.get(i);
 				String ContentId = dto.getBoardContentId();
-				String Category = dto.getBoardCategory();
-				if(Category.equals("NOTICE")){
-					Category = "공지사항";
-				}else if(Category.equals("GENERAL")){
-					Category = "잡담";
-				}
+				String subCategory = dto.getBoardSubCategory();
 				String Title = dto.getBoardTitle();
 				String UserId = dto.getBoardUserId();
 				if(UserId.equals("taengoov")){
@@ -131,9 +143,9 @@
 			 %>
 			<tr>
 				<td scope="row"><%=ContentId %></td>
-				<td><%=Category %></td>
+				<td><%=subCategory %></td>
 				<td>
-					<a href="BoardInfoServlet?curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
+					<a href="BoardInfoServlet?Category=<%=Category %>&curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>&nbsp;
 					<a href="BoardDeleteServlet?curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="btn btn-outline-danger btn-sm admin">
@@ -150,7 +162,7 @@
 	<div id="nTableBot"></div>
 	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
 	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
-	<a href="BoardWriteUIServlet" class="btn btn-secondary" style="float: right;">글쓰기</a>
+	<a href="BoardWriteUIServlet?Category=<%=Category %>" class="btn btn-secondary" style="float: right;">글쓰기</a>
 </div>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
@@ -165,11 +177,11 @@
 		for(int i=1; i<=totalPage;i++){
 			if(i==curPage){%>
 				<li class="page-item active">
-					<a href="BoardListServlet?curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
+					<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i%>" class="page-link link-dark"><%=i %></a>
 				</li>
 			<%}else{ %>
 				<li class="page-item">
-					<a href="BoardListServlet?curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
+					<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
 				</li>
 			<%}%>
     <%

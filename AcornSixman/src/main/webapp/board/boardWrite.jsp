@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.dto.MemberDTO" %>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <% 
 	String userId = "";
@@ -11,40 +12,159 @@
 		MemberDTO user = (MemberDTO)obj;
 		userId = user.getAccountId();
 	}
+	
+	String Category = (String)request.getAttribute("Category");
 %>
 <style type="text/css">
-
-	textarea{
+	#writeBox{
+		width: 90%;
+		margin: auto;
+	}
+	#writeBoxOut{
+		background-color: #f8f9fa;
+		border: 1px solid grey;
+	}
+	#writeTB{
+		border: none;
+	}
+	#content{
 		height: 800px;
 		resize: none;
+		border: none;
+		background-color: white;
 	}
 	
 	#nTableTop, #nTableBot{
 		height: 20px;
 	}
+	#Category, #subCategory,#title{
+		padding-left: 10px;
+	}
 	
 </style>
+<div class="container">
+	<div style="height: 50px;"></div>
+	<h1 class="text-center" >회원게시판</h1>
+	<div style="height: 50px;"></div>
+	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
+	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
+	<div id="nTableTop"></div>
+	<form action="BoardWriteServlet" id="writeForm" method="post">
+		<input type="hidden" value="">
+		<div class="w-100" id="writeBoxOut">
+			<div id="writeBox">
+				<table class="table table-light table-borderless text-center" id="writeTB">
+					<colgroup>
+						<col width="15%;"/>
+						<col width="15%;"/>
+						<col width="60%;"/>
+						<col width="10%;"/>
+					</colgroup>
+					<tr>
+						<td colspan=4  align="center" height="80px;" style="font-size: 24px; font-weight: bold; vertical-align: middle;">
+						 	게시판 글쓰기
+						</td>
+					</tr>
+					<tr>
+						<td colspan="1" align="center">
+							<select name="category" id="Category" style="width: 100%;" onchange="changeCategory()">
+								<option value="" disabled selected>게시판 선택</option>
+								<option class="option admin" value="NOTICE">공지사항 게시판</option>
+								<option class="option admin" value="NEWS">최신소식 게시판</option>
+								<option value="BOARD">회원 게시판</option>
+								<option value="SECONDHAND">중고거래 게시판</option>
+								<option value="QnA">Q&A 게시판</option>
+							</select>
+						</td>
+						<td colspan="1" align="center">
+							<select name="category" id="subCategory" style="width: 100%;">
+								 <option value="" disabled selected>글유형</option>
+							<%if(Category=="NOTICE"){%>
+								<option>공지사항</option>
+								<option>이벤트</option>
+							<%}else if(Category=="NEWS"){%>
+								<option class="n admin">공지사항</option>
+								<option>기타소식</option>
+								<option>할인소식</option>
+								<option>공연소식</option>
+							<%}else if(Category=="BOARD"){%>
+								<option class="n admin">공지사항</option>
+								<option>잡담</option>
+								<option>질문</option>
+								<option>정보</option>
+							<%}else if(Category=="SECONDHAND"){%>
+								<option class="n admin">공지사항</option>
+								<option>기타소식</option>
+								<option>삽니다</option>
+								<option>팝니다</option>
+							<%}else{ %>
+								<option class="n admin">공지사항</option>
+								<option>질문</option>
+								<option>답변</option>
+							<%} %>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" align="center">
+							<input type="text" name="title" id="title" placeholder="글 제목" style="width: 100%;">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" height="30px;" width="70%;">
+							<span style="float: left;">음란물, 차별, 비하, 혐오 및 초상권, 저작권 침해 게시물은 민, 형사상의 책임을 질 수 있습니다. [저작권법 안내] [게시물 활용 안내]</span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" style="border: 1px solid grey;">
+							<textarea class="form-control" name="content" id="content" placeholder="글 내용" 
+							 maxlength="2048"></textarea>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="nTableBot"></div>
+		<a href="BoardListServlet" class="btn btn-outline-dark">작성취소</a>
+		<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">임시저장</a>
+		<a id="writeBtn" onclick="writeChk(event)" class="btn btn-secondary" style="float: right;">작성완료</a>
+	</form>
+</div>
+<br>
+<script type="text/javascript" src="smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 
-window.onload = function () {
-	hideAdminElelments(getIsAdmin());
-};
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+	 oAppRef: oEditors,
+	 elPlaceHolder: "content",//textarea ID 입력
+	 sSkinURI: "smarteditor2/SmartEditor2Skin.html",
+	 fCreator: "createSEditor2"
+	 
+	});
+	
+</script>
+<script type="text/javascript">
 
-function hideAdminElelments(isAdmin) {
-	if (isAdmin === false) {
-		//class 에 admin이 있는 요소들을 찾는다.
-		const elements = document.getElementsByClassName("admin");
-
-		//class 에 admin이 있는 요소들을 순회하면서
-		for (const key in elements) {
-			if (Object.hasOwnProperty.call(elements, key)) {
-				const element = elements[key];
-				//안보이게 만든다.
-				element.style.display = "none";
+	window.onload = function () {
+		hideAdminElelments(getIsAdmin());
+	};
+	
+	function hideAdminElelments(isAdmin) {
+		if (isAdmin === false) {
+			//class 에 admin이 있는 요소들을 찾는다.
+			const elements = document.getElementsByClassName("admin");
+	
+			//class 에 admin이 있는 요소들을 순회하면서
+			for (const key in elements) {
+				if (Object.hasOwnProperty.call(elements, key)) {
+					const element = elements[key];
+					//안보이게 만든다.
+					element.style.display = "none";
+				}
 			}
 		}
 	}
-}
 
 	function getIsAdmin() {//세션에서 받아온 로그인중인 ID가 taengoov 일 경우 관리자로 인식
 		if("taengoov"=="<%=userId%>"){
@@ -78,69 +198,34 @@ function hideAdminElelments(isAdmin) {
 		    return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
 
 	 }
-
-</script>
-<div class="container">
-	<br>
-	<br>
-	<h1 class="text-center" >회원게시판</h1>
-	<br>
-	<br>
-	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
-	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
-	<div id="nTableTop"></div>
-	<form action="BoardWriteServlet" id="writeForm" method="post">
-		<input type="hidden" value="">
-		<table class="table table-light text-center">
-			<colgroup>
-				<col width="10%;"/>
-				<col width="90%;"/>
-			</colgroup>
-			<tr>
-				<td colspan=2  align="center" height="80px;" style="font-size: 24px; font-weight: bold; vertical-align: middle;">
-				 	게시판 글쓰기
-				</td>
-			</tr>
-			<tr>
-				<td colspan="1" align="center">
-					<select name="category" id="category" style="width: 100%;">
-						<option>카테고리</option>
-						<option class="option admin" value="NOTICE">공지사항</option>
-						<option class="option admin" value="EVENT">이벤트</option>
-						<option value="GENERAL">잡담</option>
-					</select>
-				</td>
-				<td colspan="1" align="center">
-					<input type="text" name="title" id="title" placeholder="글 제목" style="width: 100%;">
-				</td>
-			</tr>
-				<td colspan="2" height="30px;"></td>
-			<tr>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<textarea class="form-control" name="content" id="content" placeholder="글 내용" 
-					 maxlength="2048"></textarea>
-				</td>
-			</tr>
-		</table>
-		<div id="nTableBot"></div>
-		<a href="BoardListServlet" class="btn btn-outline-dark">작성취소</a>
-		<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">임시저장</a>
-		<a id="writeBtn" onclick="writeChk(event)" class="btn btn-secondary" style="float: right;">작성완료</a>
-	</form>
-</div>
-<br>
-<script type="text/javascript" src="smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
-<script type="text/javascript">
-
-	var oEditors = [];
-	nhn.husky.EZCreator.createInIFrame({
-	 oAppRef: oEditors,
-	 elPlaceHolder: "content",//textarea ID 입력
-	 sSkinURI: "smarteditor2/SmartEditor2Skin.html",
-	 fCreator: "createSEditor2"
-	 
-	});
 	
+	 function changeCategory() {
+		 var NOTICE = ["공지사항","이벤트"];
+         var NEWS = ["공지사항",'기타소식','할인소식','공연소식'];
+         var BOARD = ["공지사항",'잡담','질문','정보'];
+         var SECONDHAND = ["공지사항",'삽니다','팝니다'];
+         var QnA = ["공지사항",'질문','답변'];
+         var Category = document.getElementById("Category").value;
+         var Option;
+         if(Category == 'NOTICE'){
+        	Option = NOTICE;
+         }else if(Category == 'NEWS'){
+        	Option = NEWS;
+         }else if(Category == 'BOARD'){
+         	Option = BOARD;
+         }else if(Category == 'SECONDHAND'){
+         	Option = SECONDHAND;
+         }else{
+        	Option = QnA;
+         }
+         document.getElementById("subCategory").innerHTML = "";
+         $("#subCategory").append('<option disabled selected>글유형</option>');
+         for (var i=0; i<Option.length; i++) {
+         	if(Option[i]=="공지사항"){//관리자 전용 메뉴 
+         		$("#subCategory").append('<option class="n admin">'+Option[i]+'</option>');
+         	}else{
+        		$("#subCategory").append('<option>'+Option[i]+'</option>');
+         	}
+        }
+	}
 </script>

@@ -160,9 +160,21 @@ display: inline-block;
 				</button>
 				<ul class="dropdown-menu" role="menu"
 					aria-labelledby="dropdownMenuDivider">
-					<li><a class="dropdown-item" href="#"><span id="span1">공지사항</span></a></li>
-					<li><a class="dropdown-item" href="#"><span id="span1">판매
-								문의 게시판</span></a></li>
+					<li>
+						<a class="dropdown-item" href="BoardListServlet?Category=NOTICE"><span id="span1">공지사항</span></a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="BoardListServlet?Category=NEWS"><span id="span1">최신소식</span></a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="BoardListServlet?Category=BOARD"><span id="span1">회원게시판</span></a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="BoardListServlet?Category=SECONDHAND"><span id="span1">중고거래</span></a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="BoardListServlet?Category=Q&A"><span id="span1">Q&A</span></a>
+					</li>
 					<li role="presentation" class="divider"></li>
 				</ul>
 			</div>

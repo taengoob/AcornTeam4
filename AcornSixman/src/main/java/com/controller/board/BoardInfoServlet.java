@@ -51,41 +51,13 @@ public class BoardInfoServlet extends HttpServlet {
 		//댓글
 		String x = "11111";
 		Map<String, Object> map = service.replyList(ContentId);
-//		System.out.println("성공"+map);
-//		Set<String> keys = map.keySet();
-//		for (String key : keys) {
-//			System.out.println("키값:"+key);
-//			System.out.println("밸류값:"+map.get(key));
-//		}
-		
-//		if(map.get("list")!=null) {
-//			List<BoardDTO> list = (List<BoardDTO>) map.get("list");
-//			for (int i = 0; i < list.size(); i++) {
-//				BoardDTO xxx = list.get(i);
-//				System.out.println(xxx.getBoardContentId()+"댓글의");
-//				if(map.get("list"+i)!=null) {
-//					List<BoardDTO> list2 = (List<BoardDTO>) map.get("list"+i);
-//					for (int j = 0; j < list2.size(); j++) {
-//						BoardDTO yyy = list2.get(j);
-//						System.out.println(yyy);
-//						if(map.get("list"+i+j)!=null) {
-//							List<BoardDTO> list3 = (List<BoardDTO>) map.get("list"+i+j);
-//							for (int k = 0; k < list3.size(); k++) {
-//								BoardDTO zzz = list3.get(k);
-//								System.out.println(zzz);
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
 		request.setAttribute("map", map);
 		
 		
 		
 		//아래 게시글 목록
-		String category = request.getParameter("category");//현재 어떤 페이지인지
-		if(category==null) {category = "GENERAL";}//카테고리가 없을경우 일반 페이지
+		String Category = request.getParameter("Category");//현재 어떤 페이지인지
+		if(Category==null) {Category="BOARD";}
 		
 		String curPage = request.getParameter("curPage");//현재 몇 페이지인지
 		if(curPage==null) {curPage="1";}
@@ -96,11 +68,11 @@ public class BoardInfoServlet extends HttpServlet {
 		String searchName = request.getParameter("searchName");//검색분류
 		String searchValue = request.getParameter("searchValue");//검색어
 		
-		String notice = "NOTICE";//공지사항
-		List<BoardDTO> flist = service.boardList(notice); //게시판 공지목록
+		List<BoardDTO> flist = service.boardList(Category); //게시판 공지목록
 		
-		BoardPageDTO bpDTO = service.boardPageList(category, view, Integer.parseInt(curPage), searchName, searchValue);
+		BoardPageDTO bpDTO = service.boardPageList(Category, view, Integer.parseInt(curPage), searchName, searchValue);
 		
+		request.setAttribute("Category", Category);
 		request.setAttribute("flist", flist);
 		request.setAttribute("bpDTO", bpDTO);
 		request.setAttribute("searchName", searchName);//현재 선택된 검색분류 넘기기

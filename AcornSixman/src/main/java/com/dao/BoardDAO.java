@@ -14,7 +14,7 @@ import com.dto.BoardPageDTO;
 public class BoardDAO {
 
 	public List<BoardDTO> boardList(SqlSession session, String category) {
-		List<BoardDTO> list = session.selectList("com.mapper.board.boardList", category);
+		List<BoardDTO> list = session.selectList("com.mapper.board.boardList", category,new RowBounds(0, 3));
 		return list;
 	}
 
