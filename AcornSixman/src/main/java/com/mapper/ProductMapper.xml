@@ -62,6 +62,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,PRODUCT_CATEGORY       AS productCategory
 		FROM PRODUCT_DETAIL
 		<where>
+			<if test="searchName == 'all'">
+	      		  
+			  </if>
 	  			<if test="searchName == 'Acoustic'">
 	      		 PRODUCT_CATEGORY like 'Acoustic' 
 			  </if>

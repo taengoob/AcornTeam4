@@ -39,6 +39,7 @@
 			<td colspan="5">
 				<form action="ProductListServlet1">
 					<select name="searchName">
+						<option value="all">전체보기</option>
 						<option value="Acoustic">Acoustic</option>
 						<option value="Bass">Bass</option>
 						<option value="Classic">Classic</option>
@@ -48,6 +49,11 @@
 				</form>
 			</td>
 		</tr>
+		<div name="all1">전체</div>
+		<div name="Acoustic1">Acoustic</div>
+		<div name="Bass1">Bass</div>
+		<div name="Classic1">Classic</div>
+		<div name="Elec1">Elec</div>
 <table border="1">
 <tr>
 	</tr>
