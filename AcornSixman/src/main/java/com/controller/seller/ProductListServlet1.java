@@ -1,7 +1,6 @@
 package com.controller.seller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dto.ProductDTO_Temp;
+import com.dto.ProductPageDTO;
 import com.service.ProductService;
 
 /**
@@ -33,10 +32,19 @@ public class ProductListServlet1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
+		String curPage = request.getParameter("curPage");   //현재페이지 
+		if(curPage == null) curPage = "1";   //시작시 현재페이지 1 
+		
+		
 		String searchName = request.getParameter("searchName");
 		ProductService service = new ProductService();
-		List<ProductDTO_Temp> list = service.select(searchName);
-		request.setAttribute("list", list);
+
+		ProductPageDTO pDTO = service.select(searchName, Integer.parseInt(curPage));
+		
+		request.setAttribute("pDTO", pDTO);
+		request.setAttribute("searchName", searchName);
+		
 		RequestDispatcher dis = request.getRequestDispatcher("seller/1productlistInclude.jsp");
 		dis.forward(request, response);
 	}

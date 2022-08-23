@@ -9,6 +9,7 @@ import com.dao.ProductDAO;
 import com.dbconfig.MySqlSessionFactory;
 import com.dto.ImageDTO;
 import com.dto.ProductDTO_Temp;
+import com.dto.ProductPageDTO;
 
 public class ProductService
 {
@@ -104,21 +105,23 @@ public class ProductService
 		}
 		return list;
 	}
-	public List<ProductDTO_Temp> select(String searchName) {
+	public ProductPageDTO select(String searchName, int curPage) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("searchName", searchName);
+		
 		ProductDAO dao = new   ProductDAO();
+		
 		 SqlSession session = MySqlSessionFactory.getSession();
-		 List<ProductDTO_Temp> list = null; 
+		 ProductPageDTO pDTO = null; 
 		 try {
-	      list = dao.select(session, map);
+			 pDTO = dao.select(session, map, curPage);
 	    	  
 //	      }catch(Exception e) {
 //	    	  e.printStackTrace();
 	      }finally {
 			session.close();
 	      }
-	      return list;
+	      return pDTO;
 		}//end select
 	public int delete(String ProductId) {
 		 SqlSession session = MySqlSessionFactory.getSession();

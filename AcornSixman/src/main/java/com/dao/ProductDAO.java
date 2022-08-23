@@ -3,10 +3,12 @@ package com.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.dto.ImageDTO;
 import com.dto.ProductDTO_Temp;
+import com.dto.ProductPageDTO;
 
 public class ProductDAO
 {
@@ -41,9 +43,23 @@ public class ProductDAO
 	{
 		return session.selectList("com.mapper.product.selectProductBySellerId", sellerId);
 	}
-	public List<ProductDTO_Temp> select(SqlSession session, HashMap<String, String> map) {
-		List<ProductDTO_Temp> list =  session.selectList("com.mapper.product.selectProductAll", map);
-		return list;
+	
+	public int totalCount(SqlSession session,HashMap<String, String> map) {
+		return session.selectOne("com.mapper.product.totalCount",map);
+	}
+	
+	public ProductPageDTO select(SqlSession session, HashMap<String, String> map, int curPage) {
+		ProductPageDTO pDTO = new ProductPageDTO();
+		int perPage = pDTO.getPerPage();   //한페이지 2개씩 
+		int offset = (curPage - 1) * perPage;
+		
+		List<ProductDTO_Temp> list =  session.selectList("com.mapper.product.selectProductAll", map, new RowBounds(offset, perPage));
+		
+		pDTO.setCurPage(curPage);//현재 페이지번호
+		pDTO.setList(list);//페이지 에 해당 데이터
+		pDTO.setTotalCount(totalCount(session,map));//전체 레코드 갯수 저장 
+		
+		return pDTO;
 	}
 	public int delete(SqlSession session, String ProductId) {
 		

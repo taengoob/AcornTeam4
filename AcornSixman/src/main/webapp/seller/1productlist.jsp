@@ -1,3 +1,4 @@
+<%@page import="com.dto.ProductPageDTO"%>
 <%@page import="com.service.ProductService"%>
 <%@page import="com.dto.ProductDTO_Temp"%>
 <%@page import="java.util.List"%>
@@ -28,8 +29,12 @@
 <body>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 	 <%
-	List<ProductDTO_Temp> list = (List<ProductDTO_Temp>) request.getAttribute("list");
+	 
+	 ProductPageDTO pDTO = (ProductPageDTO) request.getAttribute("pDTO");
+	 List<ProductDTO_Temp> list = pDTO.getList();
+	 String searchName = (String)request.getAttribute("searchName");
 	%> 
+	
 	
 
 <form id="delForm" class="table table-striped">
@@ -38,7 +43,8 @@
 		<tr>
 			<td colspan="5">
 				<form action="ProductListServlet1">
-					<select name="searchName">
+					<select name="searchName" onchange="this.form.submit()">
+						<option >카테고리별 검색</option>
 						<option value="all">전체보기</option>
 						<option value="Acoustic">Acoustic</option>
 						<option value="Bass">Bass</option>
@@ -113,6 +119,25 @@
 		
 	</tr>
   <%} %>
+  <tr>
+		 <td colspan="5"> 
+		   <%
+		        int curPage = pDTO.getCurPage();
+		        int perPage = pDTO.getPerPage();
+				int totalCount = pDTO.getTotalCount();
+				int totalPage = totalCount/perPage;
+				if(totalCount%perPage!=0) totalPage++;
+		        for(int i=1; i<= totalPage; i++){
+		          	if(i== curPage){
+		          		out.print(i+"&nbsp;");
+		          	}else{
+		          		out.print("<a href='ProductListServlet1?curPage="+i+"&searchName="+searchName+"'>"+i+"</a>&nbsp;");
+		          	}
+		        }//end for
+		   %>
+		
+		  </td>
+		</tr>
 </table>
 			<button id="deleteAllProduct" onclick="delAll()">선택 항목 삭제</button>
 </form>

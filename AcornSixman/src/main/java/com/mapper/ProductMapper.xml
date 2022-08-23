@@ -44,7 +44,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,#{productCategory}
 		)
 	</insert>
-	
+	<select id="totalCount" resultType="int" parameterType="hashmap">
+      select count(*)
+      from PRODUCT_DETAIL
+      <where>
+			<if test="searchName == 'all'">
+	      		  
+			  </if>
+	  			<if test="searchName == 'Acoustic'">
+	      		 PRODUCT_CATEGORY like 'Acoustic' 
+			  </if>
+	  			<if test="searchName == 'Bass'">
+	      		 PRODUCT_CATEGORY like 'Bass' 
+			  </if>
+	  			<if test="searchName == 'Classic'">
+	      		 PRODUCT_CATEGORY like 'Classic' 
+			  </if>
+	  			<if test="searchName == 'Elec'">
+	      		 PRODUCT_CATEGORY like 'Elec' 
+			  </if>
+     </where>
+    </select>
+    
 	<select id="selectProductAll" resultType="com.dto.ProductDTO_Temp" parameterType="hashmap">
 		SELECT
 			PRODUCT_ID              AS productId
