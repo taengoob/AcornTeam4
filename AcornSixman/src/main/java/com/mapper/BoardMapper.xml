@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			f.BOARD_SUB_CATEGORY = '공지사항'
 		AND
 			f.BOARD_DEL_DATE IS NULL
-		order by 1 DESC
+		order by 1 ASC
 	</select>
 	
 	<select id="boardInfo" parameterType="String" resultMap="test">
@@ -89,7 +89,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_USER_ID, 
 			BOARD_TITLE, 
 			BOARD_CONTENT,
-			BOARD_PREVIEW_IMG
+			BOARD_PREVIEW_IMG,
+			BOARD_SUB_CATEGORY
 			)
 		VALUES
 			(
@@ -98,7 +99,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{boardUserId},
 			#{boardTitle},
 			#{boardContent},
-			#{boardPreviewImg}
+			#{boardPreviewImg},
+			#{boardSubCategory}
 			)
 	</insert>
 	
@@ -111,7 +113,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_DEL_DATE IS NULL
 		AND
 			BOARD_TITLE IS NOT NULL
-		
+		AND
+			BOARD_CATEGORY = #{category}
 	</select>
 	
 	<update id="boardReWrite" parameterType="BoardDTO">
@@ -122,7 +125,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_TITLE = #{boardTitle}, 
 			BOARD_CONTENT = #{boardContent},
 			BOARD_UPDATE_DATE = (SELECT FN_GET_KST_DATE() FROM DUAL),
-			BOARD_PREVIEW_IMG = #{boardPreviewImg}
+			BOARD_PREVIEW_IMG = #{boardPreviewImg},
+			BOARD_SUB_CATEGORY = #{boardSubCategory}
+			
 		WHERE
 			SUBSTR(BOARD_CONTENT_ID,15,5) = #{boardContentId}
 	</update>
@@ -184,6 +189,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	BOARD_DEL_DATE IS NULL
 		AND
 			BOARD_TITLE IS NOT NULL
+		AND
+			BOARD_CATEGORY = #{category}
 	</select>
 	
 	<select id="boardStart" resultType="int">
@@ -195,6 +202,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	BOARD_DEL_DATE IS NULL
         AND
 			BOARD_TITLE IS NOT NULL
+		AND
+			BOARD_CATEGORY = #{category}
 	</select>
 	
 	<select id="boardPageList" parameterType="HashMap" resultMap="test">

@@ -13,7 +13,7 @@
 		userId = user.getAccountId();
 	}
 	
-	String Category = (String)request.getAttribute("Category");
+	String Category = (String)request.getParameter("Category");
 %>
 <style type="text/css">
 	#writeBox{
@@ -68,31 +68,31 @@
 					<tr>
 						<td colspan="1" align="center">
 							<select name="category" id="Category" style="width: 100%;" onchange="changeCategory()">
-								<option value="" disabled selected>게시판 선택</option>
-								<option class="option admin" value="NOTICE">공지사항 게시판</option>
-								<option class="option admin" value="NEWS">최신소식 게시판</option>
-								<option value="BOARD">회원 게시판</option>
-								<option value="SECONDHAND">중고거래 게시판</option>
-								<option value="QnA">Q&A 게시판</option>
+								<option value="" disabled>게시판 선택</option>
+								<option class="option admin" value="NOTICE" <%if("NOTICE".equals(Category)){%> selected="selected" <%} %>>공지사항 게시판</option>
+								<option class="option admin" value="NEWS" <%if("NEWS".equals(Category)){%> selected="selected" <%} %>>최신소식 게시판</option>
+								<option value="BOARD" <%if("BOARD".equals(Category)){%> selected="selected" <%} %>>회원 게시판</option>
+								<option value="SECONDHAND" <%if("SECONDHAND".equals(Category)){%> selected="selected" <%} %>>중고거래 게시판</option>
+								<option value="QnA" <%if("QnA".equals(Category)){%> selected="selected" <%} %>>Q&A 게시판</option>
 							</select>
 						</td>
 						<td colspan="1" align="center">
-							<select name="category" id="subCategory" style="width: 100%;">
-								 <option value="" disabled selected>글유형</option>
-							<%if(Category=="NOTICE"){%>
+							<select name="subcategory" id="subCategory" style="width: 100%;">
+								 <option value="" disabled selected>글유형 선택</option>
+							<%if("NOTICE".equals(Category)){%>
 								<option>공지사항</option>
 								<option>이벤트</option>
-							<%}else if(Category=="NEWS"){%>
+							<%}else if("NEWS".equals(Category)){%>
 								<option class="n admin">공지사항</option>
 								<option>기타소식</option>
 								<option>할인소식</option>
 								<option>공연소식</option>
-							<%}else if(Category=="BOARD"){%>
+							<%}else if("BOARD".equals(Category)){%>
 								<option class="n admin">공지사항</option>
 								<option>잡담</option>
 								<option>질문</option>
 								<option>정보</option>
-							<%}else if(Category=="SECONDHAND"){%>
+							<%}else if("SECONDHAND".equals(Category)){%>
 								<option class="n admin">공지사항</option>
 								<option>기타소식</option>
 								<option>삽니다</option>
@@ -179,11 +179,12 @@
         oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
 
         //버튼 클릭시 유효성 검사(제목/내용 미입력 및 카테고리 셀렉트 안할시)
-        var category = document.getElementById("category").value;
+        var category = document.getElementById("Category").value;
+        var subcategory = document.getElementById("subCategory").value;
 		var title = document.getElementById("title").value;
 		var content = document.getElementById("content").value;
 		console.log(category,title,content);
-		if(category.length==0||title.length==0||content.length==0){
+		if(category.length==0||title.length==0||content.length==0||subcategory.length==0){
 			event.preventDefault();
 			alert("작성되지 않은 칸이 있습니다.");
 		}else{
@@ -219,13 +220,12 @@
         	Option = QnA;
          }
          document.getElementById("subCategory").innerHTML = "";
-         $("#subCategory").append('<option disabled selected>글유형</option>');
-         for (var i=0; i<Option.length; i++) {
-         	if(Option[i]=="공지사항"){//관리자 전용 메뉴 
-         		$("#subCategory").append('<option class="n admin">'+Option[i]+'</option>');
-         	}else{
-        		$("#subCategory").append('<option>'+Option[i]+'</option>');
-         	}
-        }
-	}
+         if("taengoov"=="<%=userId%>"){//관리자 전용 메뉴 
+          	$("#subCategory").append('<option class="n admin" value="'+Option[i]+'">'+Option[0]+'</option>');
+         }
+         $("#subCategory").append('<option disabled selected>글유형 선택</option>');
+         for (var i=1; i<Option.length; i++) {
+        	$("#subCategory").append('<option value="'+Option[i]+'">'+Option[i]+'</option>');
+         }
+	 }
 </script>

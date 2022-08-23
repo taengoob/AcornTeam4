@@ -66,8 +66,8 @@
 <h1 class="text-center" >회원게시판</h1>
 <br>
 <br>
-<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
-<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
+<a href="BoardListServlet?Category=<%=Category %>" class="btn btn-outline-dark">전체글</a>
+<a href="BoardListServlet?Category=NOTICE" class="btn btn-outline-dark">공지</a>
 <a href="#" onclick="reWrite()" class="btn btn-secondary " style="float: right;">글수정</a>
 <div id="nTableTop"></div>
 <div id="nTableBox">
@@ -84,7 +84,7 @@
 		<col width="5%;"/>
 	</colgroup>
    <tr>
-      <td colspan="1"><%=Category%></td>
+      <td colspan="1"><span id="Category"><%=Category%></span></td>
       <td colspan="2" align="left">&nbsp;&nbsp;&nbsp;&nbsp;<%=Title%></td>
       <td colspan="4" align="left"><%if(RegDate==UpdateDate){%><%=RegDate %><%}else{%><%=UpdateDate%><%}%></td>
    </tr>
@@ -127,9 +127,10 @@
 	
 	function nextPage() {
 		var ContentId = document.getElementById("ContentId").value;
+		var Category = document.getElementById("Category").innerText;
 		var Move = "Next";
 		if(parseInt(ContentId)<<%=boardEnd%>){
-			href = "BoardInfoServlet?Move="+Move+"&ContentId="+ContentId;
+			href = "BoardInfoServlet?Category="+Category+"&Move="+Move+"&ContentId="+ContentId;
 			location.href = href;
 		}else{
 			alert("다음글이 없습니다.");
@@ -138,9 +139,10 @@
 	
 	function prevPage() {
 		var ContentId = document.getElementById("ContentId").value;
+		var Category = document.getElementById("Category").innerText;
 		var Move = "Prev";
 		if(parseInt(ContentId)><%=boardStart%>){
-			href = "BoardInfoServlet?Move="+Move+"&ContentId="+ContentId;
+			href = "BoardInfoServlet?Category="+Category+"&Move="+Move+"&ContentId="+ContentId;
 			location.href = href;
 		}else{
 			alert("이전글이 없습니다.");

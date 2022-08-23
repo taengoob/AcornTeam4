@@ -55,8 +55,8 @@
 	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
 	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
 	<div id="nTableTop"></div>
-	<form action="BoardWriteServlet" id="writeForm" method="post">
-		<input type="hidden" value="">
+	<form action="BoardReWriteServlet" id="writeForm" method="post">
+		<input type="hidden" name="ContentId" value="<%=ContentId%>">
 		<div class="w-100" id="writeBoxOut">
 			<div id="writeBox">
 				<table class="table table-light table-borderless text-center" id="writeTB">
@@ -73,16 +73,24 @@
 					</tr>
 					<tr>
 						<td colspan="1" align="center">
-							<select name="category" id="Category" style="width: 100%;" onchange="changeCategory()" <%if(userId!="taengoov"){ %>readonly <%} %>>
+							<select name="category" id="Category" style="width: 100%;" onchange="changeCategory()">
+							<%if("taengoov".equals(userId)){//운영자일 경우 게시글 수정시 게시판 변경 가능 %>
 								<option class="option admin" value="NOTICE" <%if("NOTICE".equals(Category)){%> selected="selected" <%} %>>공지사항 게시판</option>
 								<option class="option admin" value="NEWS" <%if("NEWS".equals(Category)){%> selected="selected" <%} %>>최신소식 게시판</option>
 								<option value="BOARD" <%if("BOARD".equals(Category)){%> selected="selected" <%} %>>회원 게시판</option>
 								<option value="SECONDHAND" <%if("SECONDHAND".equals(Category)){%> selected="selected" <%} %>>중고거래 게시판</option>
 								<option value="QnA" <%if("QnA".equals(Category)){%> selected="selected" <%} %>>Q&A 게시판</option>
+							<%}else{//일반회원일 경우 게시글 수정시 게시판 변경 불가 %>
+								<option value="<%=Category%>" disabled selected="selected">
+									<%if("BOARD".equals(Category)) {%>회원 게시판
+									<%}else if("SECONDHAND".equals(Category)) {%>최신소식 게시판
+									<%}else{%>QnA 게시판<%}%>
+								</option>
+							<%} %>
 							</select>
 						</td>
 						<td colspan="1" align="center">
-							<select name="category" id="subCategory" style="width: 100%;">
+							<select name="subcategory" id="subCategory" style="width: 100%;">
 							<%if("NOTICE".equals(Category)){%>
 								<option <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
 								<option <%if("이벤트".equals(subCategory)){%> selected="selected" <%} %>>이벤트</option>
@@ -181,11 +189,12 @@
         oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
 
         //버튼 클릭시 유효성 검사(제목/내용 미입력 및 카테고리 셀렉트 안할시)
-        var category = document.getElementById("category").value;
+        var category = document.getElementById("Category").value;
+        var subcategory = document.getElementById("subCategory").value;
 		var title = document.getElementById("title").value;
 		var content = document.getElementById("content").value;
 		console.log(category,title,content);
-		if(category.length==0||title.length==0||content.length==0){
+		if(category.length==0||title.length==0||content.length==0||subcategory.length==0){
 			event.preventDefault();
 			alert("작성되지 않은 칸이 있습니다.");
 		}else{
@@ -221,13 +230,12 @@
         	Option = QnA;
          }
          document.getElementById("subCategory").innerHTML = "";
-         $("#subCategory").append('<option disabled selected>글유형</option>');
-         for (var i=0; i<Option.length; i++) {
-         	if(Option[i]=="공지사항"){//관리자 전용 메뉴 
-         		$("#subCategory").append('<option class="n admin">'+Option[i]+'</option>');
-         	}else{
-        		$("#subCategory").append('<option>'+Option[i]+'</option>');
-         	}
-        }
+         if("taengoov"=="<%=userId%>"){//관리자 전용 메뉴 
+          	$("#subCategory").append('<option class="n admin">'+Option[0]+'</option>');
+         }
+         $("#subCategory").append('<option disabled selected>글유형 선택</option>');
+         for (var i=1; i<Option.length; i++) {
+        	$("#subCategory").append('<option>'+Option[i]+'</option>');
+         }
 	}
 </script>

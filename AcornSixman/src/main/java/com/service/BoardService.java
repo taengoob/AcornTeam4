@@ -60,11 +60,11 @@ public class BoardService {
 		return n;
 	}
 
-	public int boardCount() {
+	public int boardCount(String category) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int n = 0;
 		try {
-			n = dao.boardCount(session);
+			n = dao.boardCount(session, category);
 			session.commit();
 		}finally {
 			session.close();
@@ -110,22 +110,22 @@ public class BoardService {
 		return bdto;
 	}
 
-	public int boardStart() {
+	public int boardStart(String category) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int n = 0;
 		try {
-			n = dao.boardStart(session);
+			n = dao.boardStart(session, category);
 		}finally {
 			session.close();
 		}
 		return n;
 	}
 	
-	public int boardEnd() {
+	public int boardEnd(String category) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		int n = 0;
 		try {
-			n = dao.boardEnd(session);
+			n = dao.boardEnd(session, category);
 		}finally {
 			session.close();
 		}
@@ -140,7 +140,7 @@ public class BoardService {
 		map.put("searchValue", searchValue);
 		BoardPageDTO bpDTO = null;
 		try {
-			bpDTO = dao.boardPageList(session, map, curPage, view);
+			bpDTO = dao.boardPageList(session, map, curPage, view, category);
 		}finally {
 			session.close();
 		}

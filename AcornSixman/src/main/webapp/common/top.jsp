@@ -173,7 +173,7 @@ display: inline-block;
 						<a class="dropdown-item" href="BoardListServlet?Category=SECONDHAND"><span id="span1">중고거래</span></a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=Q&A"><span id="span1">Q&A</span></a>
+						<a class="dropdown-item" href="BoardListServlet?Category=QnA"><span id="span1">Q&A</span></a>
 					</li>
 					<li role="presentation" class="divider"></li>
 				</ul>

@@ -35,6 +35,7 @@ public class BoardReWriteServlet extends HttpServlet {
 		String ContentId = request.getParameter("ContentId");
 		String title = request.getParameter("title");
 		String category = request.getParameter("category");
+		String subcategory = request.getParameter("subcategory");
 		String content = request.getParameter("content");
 		
 		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
@@ -57,14 +58,15 @@ public class BoardReWriteServlet extends HttpServlet {
 		dto.setBoardUserId(userId);
 		dto.setBoardTitle(title);
 		dto.setBoardCategory(category);
+		dto.setBoardSubCategory(subcategory);
 		dto.setBoardContent(content);
 		dto.setBoardPreviewImg(imgs[0]);
 		
 		int n = service.boardReWrite(dto);
 		if(n!=0	){
-			response.sendRedirect("BoardInfoServlet?ContentId="+ContentId);
+			response.sendRedirect("BoardInfoServlet?Category="+category+"&ContentId="+ContentId);
 		}else {
-			response.sendRedirect("BoardListServlet");
+			response.sendRedirect("BoardListServlet?Category="+category);
 		}
 	}
 

@@ -21,6 +21,7 @@ public class BoardWriteUIServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ContentId = request.getParameter("ContentId");
+		String Category = request.getParameter("Category");
 		Object obj = request.getSession().getAttribute("login");
 		if (obj != null){//1. 회원인증
 			if(ContentId != null) {//2-1. 글수정 버튼으로 왔을경우, 넘겨받은 ContentId의 글수정 페이지로 이동
@@ -30,7 +31,8 @@ public class BoardWriteUIServlet extends HttpServlet {
 				RequestDispatcher dis = request.getRequestDispatcher("boardReWrite.jsp");
 				dis.forward(request, response);
 			}else {//2-1. 글쓰기 버튼으로 왔을경우, 넘겨받은 ContentId가 없으므로 글쓰기 페이지로 이동
-				response.sendRedirect("boardWrite.jsp");
+				System.out.println(Category);
+				response.sendRedirect("boardWrite.jsp?Category="+Category);
 			}
 		}else {//회원이 아닐경우 로그인UI로 이동
 			response.sendRedirect("LoginUIservlet");

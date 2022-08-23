@@ -34,6 +34,7 @@ public class BoardWriteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String title = request.getParameter("title");
 		String category = request.getParameter("category");
+		String subcategory = request.getParameter("subcategory");
 		String content = request.getParameter("content");
 		
 		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
@@ -56,12 +57,13 @@ public class BoardWriteServlet extends HttpServlet {
 		dto.setBoardUserId(userId);
 		dto.setBoardTitle(title);
 		dto.setBoardCategory(category);
+		dto.setBoardSubCategory(subcategory);
 		dto.setBoardContent(content);
 		dto.setBoardPreviewImg(imgs[0]);
 		
 		int n = service.boardWrite(dto);
 		if(n!=0	){
-			response.sendRedirect("BoardListServlet");
+			response.sendRedirect("BoardListServlet?Category="+category);
 		}
 	}
 

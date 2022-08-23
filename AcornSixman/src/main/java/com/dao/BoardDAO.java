@@ -32,8 +32,8 @@ public class BoardDAO {
 		return n;
 	}
 
-	public int boardCount(SqlSession session) {
-		int n = session.selectOne("com.mapper.board.boardCount");
+	public int boardCount(SqlSession session, String category) {
+		int n = session.selectOne("com.mapper.board.boardCount", category);
 		return n;
 	}
 
@@ -52,17 +52,17 @@ public class BoardDAO {
 		return bdto;
 	}
 
-	public int boardStart(SqlSession session) {
-		int n = session.selectOne("com.mapper.board.boardStart");
+	public int boardStart(SqlSession session, String category) {
+		int n = session.selectOne("com.mapper.board.boardStart", category);
 		return n;
 	}
 	
-	public int boardEnd(SqlSession session) {
-		int n = session.selectOne("com.mapper.board.boardEnd");
+	public int boardEnd(SqlSession session, String category) {
+		int n = session.selectOne("com.mapper.board.boardEnd", category);
 		return n;
 	}
 
-	public BoardPageDTO boardPageList(SqlSession session, HashMap<String, Object> map, int curPage, String view) {
+	public BoardPageDTO boardPageList(SqlSession session, HashMap<String, Object> map, int curPage, String view, String category) {
 		BoardPageDTO bpDTO = new BoardPageDTO();
 		if(view!=null) {bpDTO.setPerPage(12);}//이미지로 볼 경우 12개씩 출력되게
 		int perPage = bpDTO.getPerPage();   //한페이지 20개씩 
@@ -72,7 +72,7 @@ public class BoardDAO {
 		
 		bpDTO.setList(list);
 		bpDTO.setCurPage(curPage);
-		bpDTO.setTotalCount(boardCount(session));
+		bpDTO.setTotalCount(boardCount(session, category));
 		
 		return bpDTO;
 	}

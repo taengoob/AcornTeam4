@@ -69,14 +69,14 @@
 	<%} %>
 	</h1>
 	<div style="height: 50px;"></div>
-	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
-	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
+	<a href="BoardListServlet?Category=<%=Category %>" class="btn btn-outline-dark">전체글</a>
+	<a href="BoardListServlet?Category=NOTICE" class="btn btn-outline-dark">공지</a>
 	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
 	<%if(Category.equals("BOARD")||Category.equals("SECONDHAND")){ %>
-	<a href="BoardListServlet?view=img" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
+	<a href="BoardListServlet?Category=<%=Category %>&view=img" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
 		<img src="upload/imgview5.png" width="40px;" height="40px;">
 	</a>
-	<a href="BoardListServlet" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
+	<a href="BoardListServlet?Category=<%=Category %>" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
 		<img src="upload/textview2.png" width="40px;" height="40px;">
 	</a>
 	<%} %>
@@ -160,9 +160,11 @@
 		</table>
 	</div>
 	<div id="nTableBot"></div>
-	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
-	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
+	<a href="BoardListServlet?Category=<%=Category %>" class="btn btn-outline-dark">전체글</a>
+	<a href="BoardListServlet?Category=NOTICE" class="btn btn-outline-dark">공지</a>
+<%if("taengoov".equals(userId)||Category.equals("BOARD")||Category.equals("SECONDHAND")||Category.equals("QnA")) {%>
 	<a href="BoardWriteUIServlet?Category=<%=Category %>" class="btn btn-secondary" style="float: right;">글쓰기</a>
+<%} %>
 </div>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">

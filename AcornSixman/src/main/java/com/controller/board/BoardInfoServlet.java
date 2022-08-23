@@ -24,10 +24,14 @@ public class BoardInfoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardService service = new BoardService();
+		
+		String Category = request.getParameter("Category");//현재 어떤 페이지인지
+		if(Category==null) {Category="BOARD";}
+		
 		//게시글 상세보기
-		int boardCount = service.boardCount();
-		int boardStart = service.boardStart();
-		int boardEnd = service.boardEnd();
+		int boardCount = service.boardCount(Category);
+		int boardStart = service.boardStart(Category);
+		int boardEnd = service.boardEnd(Category);
 		
 		request.setAttribute("boardCount", boardCount);
 		request.setAttribute("boardStart", boardStart);
@@ -56,8 +60,6 @@ public class BoardInfoServlet extends HttpServlet {
 		
 		
 		//아래 게시글 목록
-		String Category = request.getParameter("Category");//현재 어떤 페이지인지
-		if(Category==null) {Category="BOARD";}
 		
 		String curPage = request.getParameter("curPage");//현재 몇 페이지인지
 		if(curPage==null) {curPage="1";}

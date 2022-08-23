@@ -21,7 +21,9 @@
 		MemberDTO user = (MemberDTO)obj;
 		userId = user.getAccountId();
 	}
-
+	
+	//카테고리 분류
+	String Category = (String)request.getAttribute("Category");
 %>
 <style type="text/css">
 	#nTableBox{
@@ -58,7 +60,19 @@
 </style>
 <div class="container">
 	<div style="height: 50px;"></div>
-	<h1 class="text-center">회원게시판</h1>
+	<h1 class="text-center">
+	<%if(Category.equals("NOTICE")){%>
+		공지사항 게시판
+	<%}else if(Category.equals("NEWS")){%>
+		최신소식 게시판
+	<%}else if(Category.equals("BOARD")){%>
+		회원 게시판
+	<%}else if(Category.equals("SECONDHAND")){%>
+		중고거래 게시판
+	<%}else{%>
+		Q&A 게시판
+	<%} %>
+	</h1>
 	<div style="height: 50px;"></div>
 	<a href="BoardListServlet?view=img" class="btn btn-outline-dark">전체글</a>
 	<a href="BoardListServlet?view=img&category=NOTICE" class="btn btn-outline-dark">공지</a>
@@ -91,10 +105,7 @@
 			<%for(int i=0;i<flist.size();i++){ 
 				BoardDTO dto = flist.get(i);
 				String ContentId = dto.getBoardContentId();
-				String Category = dto.getBoardCategory();
-				if(Category.equals("NOTICE")){
-					Category = "공지사항";
-				}
+				String subCategory = dto.getBoardSubCategory();
 				String Title = dto.getBoardTitle();
 				String UserId = dto.getBoardUserId();
 				if(UserId.equals("taengoov")){
@@ -105,8 +116,8 @@
 				int ReplyCount = dto.getBoardReplyCount();
 			%>
 			<tr class="table-secondary fw-bold">
-				<td scope="row"><%=ContentId %></td>
-				<td><%=Category %></td>
+				<td scope="row">-</td>
+				<td><%=subCategory %></td>
 				<td>
 					<a href="BoardInfoServlet?view=img&curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
@@ -126,12 +137,7 @@
 		<%for(int i=0;i<slist.size();i++){ 
 			BoardDTO dto = slist.get(i);
 			String ContentId = dto.getBoardContentId();
-			String Category = dto.getBoardCategory();
-			if(Category.equals("NOTICE")){
-				Category = "공지사항";
-			}else if(Category.equals("GENERAL")){
-				Category = "잡담";
-			}
+			String subCategory = dto.getBoardSubCategory();
 			String Title = dto.getBoardTitle();
 			String UserId = dto.getBoardUserId();
 			if(UserId.equals("taengoov")){
