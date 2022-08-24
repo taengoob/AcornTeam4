@@ -70,9 +70,9 @@ a {
 				class="ll">|</a> <a href="FirstFindPW.jsp" class="password"
 				id="find-pw">비밀번호 찾기</a>
 		</div>
-		<a href="javascript:loginWithKakao();" class="kakao">카카오 로그인 <img
+		<a href="javascript:loginWithKakao();" class="kakao">카카오로 1초만에 로그인하기<img
 			src="member/img/kka.png" alt="카카오" class="kakao-img">
-		</a> <a href="#" class="naver">NAVER 로그인 <img src="member/img/nav.png"
+		</a> <a href="#" class="naver">네이버로 1초만에 로그인하기<img src="member/img/nav.png"
 			alt="네이버" class="naver-img">
 		</a>
 	</form>
@@ -94,7 +94,16 @@ a {
 	  function loginWithKakao() {
 		    Kakao.Auth.login({
 		      success: function(authObj) {
-		        alert(JSON.stringify(authObj))
+		    	  
+		    	  Kakao.API.request({
+		    		url:'/v2/user/me',
+		    		success: function (res) {
+						console.log(res);
+						var email = res.kakao_account.email;
+						var name = res.properties.nickname;
+						location.href='kakaologinServlet?email='+ email +'&name='+name;
+					}
+		    	 }) 
 		        console.log(authObj)
 		      },
 		      fail: function(err) {

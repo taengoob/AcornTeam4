@@ -4,44 +4,37 @@
 
 <style type="text/css">
 .row {
-	margin-left: 9%;
+	text-align:center;
 	width: 100%;
 }
 
-p {
-	text-align: center;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
-.col-xs-6 col-md-3 {
+.youtub-sumnail{
 	width: 100%;
 }
+
 
 .main-name1 {
 	font-family: 'Lobster', cursive;
 	color: black;
 	font-size: 50px;
 }
+.main-namep{
+text-align: center;
+}
 </style>
 
-<p>
+<p class="main-namep">
 	<span class="main-name1">the SixMan의 추천영상</span>
 </p>
 <div class="row">
-	<div class="col-xs-6 col-md-3">
-		<iframe width="560" height="315"
+	<div class="youtub-sumnail">
+		<iframe width="560" height="315" 
 			src="https://www.youtube.com/embed/5u7YMvVnoEw"
 			title="YouTube video player" frameborder="0"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 			allowfullscreen></iframe>
-	</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<div class="col-xs-6 col-md-3">
-		<iframe width="560" height="315" style="margin-left: 17%;"
+	
+		<iframe width="560" height="315" style="margin-left: 7%;"
 			src="https://www.youtube.com/embed/CTtUeNabfDk"
 			title="YouTube video player" frameborder="0"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

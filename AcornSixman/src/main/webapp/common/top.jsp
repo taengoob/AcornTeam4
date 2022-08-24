@@ -39,12 +39,10 @@ header {
 
 header.sticky {
 	position: fixed;
-	background-color: #ffffff;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.8);
 	transition: 0.3s;
 	padding: 1.5%;
-	text-align: right;
-	background-color: rgba(255, 255, 255, 0.5);
+
 }
 
 header.sticky #span1 {
@@ -76,6 +74,12 @@ header.sticky .login-service {
 }
 header.sticky #main-span{
 display: inline-block;
+}
+header.sticky .navbar1{
+text-align: center;
+}
+header.sticky .menu-container-top{
+text-align: center;
 }
 </style>
 </head>
@@ -186,7 +190,7 @@ display: inline-block;
 					String username = dtolo.getAccountName();
 					String sell = dtolo.getAccountIsSeller();
 				%>
-				<div class="menu-container">
+				<div class="menu-container-top">
 
 					<span class="top-login" OnClick="location.href='logoutServlet'"
 						style="margin-right: 4%"><img src="image/logout.png"
@@ -219,7 +223,7 @@ display: inline-block;
 				<%
 				} else {
 				%>
-				<div class="menu-container">
+				<div class="menu-container-top">
 					<span class="top-login" OnClick="location.href='LoginUIservlet'"
 						style="margin-right: 2.5%"><img src="image/LoginIcon.png"
 						width="30px" height="30px"></span> <span class="top-login"

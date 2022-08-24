@@ -46,5 +46,9 @@ public class MemberDAO {
 		return session.selectOne("MemberMapper.findpwforphone", map);
 	}
 
+	public MemberDTO Loginforkakao(SqlSession session, HashMap<String, String> kakao) {
+		return session.selectOne("Loginforkakao", kakao);
+	}
+
 
 }

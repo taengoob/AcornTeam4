@@ -35,8 +35,10 @@ public class logoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("login");
 		if (dto != null) {
-			session.invalidate();
+			session.setAttribute("logout", "로그아웃임다");
 			response.sendRedirect("Mainservlet");
+			session.removeAttribute("login");
+		
 		}else {
 			response.sendRedirect("LoginUIServlet");
 		}

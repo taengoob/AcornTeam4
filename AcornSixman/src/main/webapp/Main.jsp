@@ -25,6 +25,7 @@
 <%
 request.setCharacterEncoding("utf-8");
 String mesg = (String) session.getAttribute("memberupdate");
+String logout = (String) session.getAttribute("logout");
 if (mesg != null) {
 %>
 <script type="text/javascript">
@@ -34,7 +35,16 @@ if (mesg != null) {
 session.removeAttribute("memberupdate");
 }
 %>
-
+<%
+if (logout != null){
+%>
+<script type="text/javascript">
+		alert("로그아웃 완료. 다음에 또 만나요 ~^^");
+</script>
+<%
+session.removeAttribute("logout");
+}
+%>
 </head>
 <body>
 	<div class="menu-item">

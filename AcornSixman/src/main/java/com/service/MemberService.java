@@ -139,6 +139,20 @@ public class MemberService {
 		return list;
 	}
 
+	public MemberDTO Loginforkakao(HashMap<String, String> kakao) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		MemberDTO dto = null;
+		try {
+			dto = dao.Loginforkakao(session, kakao);
+			System.out.println("서비스 디티오 " + dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return dto;
+	}
+
 
 
 }

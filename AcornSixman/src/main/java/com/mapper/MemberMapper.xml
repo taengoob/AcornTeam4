@@ -38,6 +38,14 @@
 		and ACCOUNT_PASSWD =
 		#{accountPasswd}
 	</select>
+		<select id="Loginforkakao" resultType="MemberDTO"
+		parameterType="hashmap">
+		select *
+		from user_account
+		where ACCOUNT_NAME = #{accountName}
+		and ACCOUNT_EMAIL_ID =
+		#{accountEmailId} and ACCOUNT_EMAIL_DOMAIN =#{accountEmailDomain}
+	</select>
 	<update id="update" parameterType="MemberDTO">
 		update user_account set
 		ACCOUNT_PASSWD = #{accountPasswd},
