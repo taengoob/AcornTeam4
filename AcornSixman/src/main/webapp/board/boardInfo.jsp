@@ -42,6 +42,25 @@
 		String RealContentId = bdto.getBoardRealContentId();
 %>
 <style type="text/css">
+	.page-link {
+	  color: #000; 
+	  background-color: #fff;
+	  border: 1px solid #ccc; 
+	}
+	
+	.page-item.active .page-link {
+	 z-index: 1;
+	 color: #555;
+	 font-weight:bold;
+	 background-color: #f1f1f1;
+	 border-color: #ccc;
+	 
+	}
+	.page-link:focus, .page-link:hover {
+	  color: #000;
+	  background-color: #fafafa; 
+	  border-color: #ccc;
+	}
 	#nTableBox{
 		border-top: 2px solid black;
 		border-bottom: 2px solid black;
@@ -66,8 +85,7 @@
 <h1 class="text-center" >회원게시판</h1>
 <br>
 <br>
-<a href="BoardListServlet?Category=<%=Category %>" class="btn btn-outline-dark">전체글</a>
-<a href="BoardListServlet?Category=NOTICE" class="btn btn-outline-dark">공지</a>
+<a href="BoardListServlet?Category=<%=Category %>" class="btn btn-outline-dark">목록보기</a>
 <a href="#" onclick="reWrite()" class="btn btn-secondary " style="float: right;">글수정</a>
 <div id="nTableTop"></div>
 <div id="nTableBox">

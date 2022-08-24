@@ -46,8 +46,12 @@
 	<div style="height: 50px;"></div>
 	<h1 class="text-center" >회원게시판</h1>
 	<div style="height: 50px;"></div>
-	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
-	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
+	<a href="BoardListServlet?Category=BOARD" class="btn btn-outline-dark">일반게시판</a>
+	<a href="BoardListServlet?Category=NOTICE" class="btn btn-outline-dark">공지사항</a>
+	<a href="BoardListServlet?Category=NEWS" class="btn btn-outline-dark">최신소식</a>
+	<a href="BoardListServlet?Category=SECONDHAND" class="btn btn-outline-dark">중고거래</a>
+	<a href="BoardListServlet?Category=QnA" class="btn btn-outline-dark">QnA</a>
+	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
 	<div id="nTableTop"></div>
 	<form action="BoardWriteServlet" id="writeForm" method="post">
 		<input type="hidden" value="">

@@ -26,6 +26,25 @@
 	String Category = (String)request.getAttribute("Category");
 %>
 <style type="text/css">
+	.page-link {
+	  color: #000; 
+	  background-color: #fff;
+	  border: 1px solid #ccc; 
+	}
+	
+	.page-item.active .page-link {
+	 z-index: 1;
+	 color: #555;
+	 font-weight:bold;
+	 background-color: #f1f1f1;
+	 border-color: #ccc;
+	 
+	}
+	.page-link:focus, .page-link:hover {
+	  color: #000;
+	  background-color: #fafafa; 
+	  border-color: #ccc;
+	}
 	#nTableBox{
 		border-top: 2px solid black;
 		border-bottom: 2px solid grey;
@@ -57,6 +76,41 @@
 		font-size: 18px;
 		color: #92B8B1;
 	}
+	#searchValue{
+		position: relative;
+		width: 180px;
+		height: 35px;
+		float: left;
+		padding-left: 20px;
+		padding-right: 35px;
+	}
+	#searchBtn{
+		position: absolute;
+		float: left;
+		height: 33px;
+		width: 30px;
+		padding: 6px 2px 2px 2px;
+		margin-left: -30px;
+		margin-top: 1px;
+		font-size: 12px;
+		text-align-last: center;
+		border: none;
+	}
+	#searchGroup{
+		width: 110px;
+		height: 35px;
+		float: left;
+		padding: 2px 25px 2px 5px;
+		margin-left: 10px;
+		font-size: 15px;
+		text-align-last: center;
+		color: grey;
+	}
+	#writeGoBtn{
+		float: right;
+		height: 35px;
+		width: 80px;
+	}
 </style>
 <div class="container">
 	<div style="height: 50px;"></div>
@@ -74,9 +128,12 @@
 	<%} %>
 	</h1>
 	<div style="height: 50px;"></div>
-	<a href="BoardListServlet?view=img" class="btn btn-outline-dark">전체글</a>
-	<a href="BoardListServlet?view=img&category=NOTICE" class="btn btn-outline-dark">공지</a>
-	<a href="BoardListServlet?view=img&category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
+	<a href="BoardListServlet?Category=BOARD" class="btn btn-outline-dark">일반게시판</a>
+	<a href="BoardListServlet?Category=NOTICE" class="btn btn-outline-dark">공지사항</a>
+	<a href="BoardListServlet?Category=NEWS" class="btn btn-outline-dark">최신소식</a>
+	<a href="BoardListServlet?Category=SECONDHAND" class="btn btn-outline-dark">중고거래</a>
+	<a href="BoardListServlet?Category=QnA" class="btn btn-outline-dark">QnA</a>
+	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
 	<a href="BoardListServlet?view=img" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
 		<img src="upload/imgview.png" width="40px;" height="40px;">
 	</a>
@@ -177,38 +234,54 @@
 			<%} %>
 		<%} %>
 	</div>
-	<div id="nTableBot"></div>
-	<a href="BoardListServlet" class="btn btn-outline-dark">전체글</a>
-	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">공지</a>
-	<a href="BoardWriteUIServlet" class="btn btn-secondary" style="float: right;">글쓰기</a>
+	<div id="nTableBots"></div>
+	<div class="w-100" id="searchBox" style="height: 35px;">
+		<form action="BoardSearchServlet" method="get">
+			<input class="form-control" name="searchValue" id="searchValue" type="text" placeholder="게시판 내 검색">
+			<a href="#" class="btn btn-outline-secondary" id="searchBtn">
+				<img id="searchIcon" src="upload/search.png" width="20px;" height="20px;">
+			</a>
+			<select class="form-select" name="searchGroup" id="searchGroup">
+				<option value="Title">제목</option>
+				<option value="UserId">작성자</option>
+				<option value="Title">내용</option>
+				<option value="Title">제목+내용</option>
+			</select>
+		</form>
+		<%if("taengoov".equals(userId)||Category.equals("BOARD")||Category.equals("SECONDHAND")||Category.equals("QnA")) {%>
+		<a href="BoardWriteUIServlet?Category=<%=Category %>" class="btn btn-secondary" id="writeGoBtn">글쓰기</a>
+		<%} %>
+	</div>
 </div>
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link link-dark">Previous</a>
-    </li>
-    <%  
-		int perPage = bpDTO.getPerPage();
-		int totalCount = bpDTO.getTotalCount();
-		int totalPage = totalCount/perPage;
-		if(totalCount%perPage!=0)totalPage++;
-		for(int i=1; i<=totalPage;i++){
-			if(i==curPage){%>
-				<li class="page-item active">
-					<a href="BoardListServlet?view=y&curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
-				</li>
-			<%}else{ %>
-				<li class="page-item">
-					<a href="BoardListServlet?view=y&curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
-				</li>
-			<%}%>
-    <%
-    	}
-    %>
-      <li class="page-item"><a class="page-link link-dark" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+<div class="container" style="margin: auto;">
+	<nav aria-label="Page navigation example">
+	  <ul class="pagination justify-content-center">
+	    <li class="page-item disabled">
+	      <a class="page-link link-dark">◀</a>
+	    </li>
+	    <%  
+			int perPage = bpDTO.getPerPage();
+			int totalCount = bpDTO.getTotalCount();
+			int totalPage = totalCount/perPage;
+			if(totalCount%perPage!=0)totalPage++;
+			for(int i=1; i<=totalPage;i++){
+				if(i==curPage){%>
+					<li class="page-item active">
+						<a href="BoardListServlet?Category=<%=Category%>&view=img&curPage=<%=i%>" class="page-link link-dark"><%=i %></a>
+					</li>
+				<%}else{ %>
+					<li class="page-item">
+						<a href="BoardListServlet?Category=<%=Category%>&view=img&curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
+					</li>
+				<%}%>
+	    <%
+	    	}
+	    %>
+	      <li class="page-item"><a class="page-link link-dark" href="#">▶</a>
+	    </li>
+	  </ul>
+	</nav>
+</div>
 <script type="text/javascript">
 
 	window.onload = function () {
