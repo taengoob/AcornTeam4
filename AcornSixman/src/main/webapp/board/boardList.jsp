@@ -230,8 +230,8 @@
 			<select class="form-select" name="searchGroup" id="searchGroup">
 				<option value="Title">제목</option>
 				<option value="UserId">작성자</option>
-				<option value="Title">내용</option>
-				<option value="Title">제목+내용</option>
+				<option value="Content">내용</option>
+				<option value="Title&Content">제목+내용</option>
 			</select>
 		</form>
 		<%if("taengoov".equals(userId)||Category.equals("BOARD")||Category.equals("SECONDHAND")||Category.equals("QnA")) {%>
