@@ -219,7 +219,7 @@
 					<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>
-					<a href="BoardDeleteServlet?ContentId=<%=ContentId %>">
+					<a href="BoardDeleteServlet?ContentId=<%=ContentId %>" class="b admin">
 						<img src="upload/delete2.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
 					</a>
 				</td>
