@@ -32,20 +32,25 @@ public class BoardListServlet extends HttpServlet {
 		if(curPage==null) {curPage="1";}
 		
 		String view = request.getParameter("view");//게시판 형식
-		if(view!=null) {request.setAttribute("view", view);}//null이 아닐경우 이미지로 보기
+		if(view==null||view.equals("")) {
+			view = "";
+		}else {
+			request.setAttribute("view", view);
+		}
 		
-		String searchName = request.getParameter("searchName");//검색분류
+		String searchGroup = request.getParameter("searchGroup");//검색분류
+		if(searchGroup==null) {searchGroup="";}
 		String searchValue = request.getParameter("searchValue");//검색어
-		
+		if(searchValue==null) {searchValue="";}
 		
 		List<BoardDTO> flist = service.boardList(Category); //게시판 공지목록
 		
-		BoardPageDTO bpDTO = service.boardPageList(Category, view, Integer.parseInt(curPage), searchName, searchValue);
+		BoardPageDTO bpDTO = service.boardPageList(Category, view, Integer.parseInt(curPage), searchGroup, searchValue);
 		
 		request.setAttribute("Category", Category);
 		request.setAttribute("flist", flist);
 		request.setAttribute("bpDTO", bpDTO);
-		request.setAttribute("searchName", searchName);//현재 선택된 검색분류 넘기기
+		request.setAttribute("searchGroup", searchGroup);//현재 선택된 검색분류 넘기기
 		request.setAttribute("searchValue", searchValue);//현재 검색된 검색어 넘기기
 		RequestDispatcher dis = request.getRequestDispatcher("boardMain.jsp");
 		dis.forward(request, response);

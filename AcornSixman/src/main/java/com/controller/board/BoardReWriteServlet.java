@@ -37,6 +37,7 @@ public class BoardReWriteServlet extends HttpServlet {
 		String category = request.getParameter("category");
 		String subcategory = request.getParameter("subcategory");
 		String content = request.getParameter("content");
+		System.out.println("번호"+ContentId+" 제목"+title+" 카테고리"+category+" 서브카테고리"+subcategory+" 내용"+content);
 		
 		Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
 	    Matcher matcher = pattern.matcher(content);
@@ -55,7 +56,6 @@ public class BoardReWriteServlet extends HttpServlet {
 		
 		BoardDTO dto = new BoardDTO();
 		dto.setBoardContentId(ContentId);
-		dto.setBoardUserId(userId);
 		dto.setBoardTitle(title);
 		dto.setBoardCategory(category);
 		dto.setBoardSubCategory(subcategory);

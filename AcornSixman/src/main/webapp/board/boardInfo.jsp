@@ -40,6 +40,10 @@
 		}
 		int HitCount = bdto.getBoardHitCount();
 		String RealContentId = bdto.getBoardRealContentId();
+		
+		String searchGroup = (String)request.getAttribute("searchGroup");
+		String searchValue = (String)request.getAttribute("searchValue");
+		String view = (String)request.getAttribute("view");
 %>
 <style type="text/css">
 	.page-link {
@@ -80,11 +84,21 @@
 	}
 </style>
 <div class="container">
-<br>
-<br>
-<h1 class="text-center" >회원게시판</h1>
-<br>
-<br>
+<div style="height: 50px;"></div>
+<h1 class="text-center" >
+<%if(Category.equals("NOTICE")){%>
+	공지사항 게시판
+<%}else if(Category.equals("NEWS")){%>
+	최신소식 게시판
+<%}else if(Category.equals("BOARD")){%>
+	회원 게시판
+<%}else if(Category.equals("SECONDHAND")){%>
+	중고거래 게시판
+<%}else{%>
+	Q&A 게시판
+<%} %>
+</h1>
+<div style="height: 50px;"></div>
 <a href="BoardListServlet?Category=<%=Category %>" class="btn btn-outline-dark">목록보기</a>
 <a href="#" onclick="reWrite()" class="btn btn-secondary " style="float: right;">글수정</a>
 <div id="nTableTop"></div>
@@ -92,6 +106,9 @@
 <table class="table table-light text-center" id="nTable">
 	<input type="hidden" id="ContentId" value="<%=ContentId%>">
 	<input type="hidden" id="RealContentId" value="<%=RealContentId%>">
+	<input type="hidden" id="searchValue" value="<%=searchValue%>">
+	<input type="hidden" id="searchGroup" value="<%=searchGroup%>">
+	<input type="hidden" id="view" value="<%=view%>">
 	<colgroup>
 		<col width="10%;"/>
 		<col width="10%;"/>
@@ -146,9 +163,15 @@
 	function nextPage() {
 		var ContentId = document.getElementById("ContentId").value;
 		var Category = document.getElementById("Category").innerText;
+		var curPage = document.getElementById("curPage").innerText;
+		var searchValue = document.getElementById("searchValue").value;
+		var searchGroup = document.getElementById("searchGroup").value;
+		var view = document.getElementById("view").value;
+		if(view==null){view="";}
 		var Move = "Next";
 		if(parseInt(ContentId)<<%=boardEnd%>){
-			href = "BoardInfoServlet?Category="+Category+"&Move="+Move+"&ContentId="+ContentId;
+			href = "BoardInfoServlet?Category="+Category+"&curPage="+curPage+"&searchValue="+searchValue
+				 + "&searchGroup="+searchGroup+"&ContentId="+ContentId+"&view="+view+"&Move="+Move;
 			location.href = href;
 		}else{
 			alert("다음글이 없습니다.");
@@ -158,10 +181,16 @@
 	function prevPage() {
 		var ContentId = document.getElementById("ContentId").value;
 		var Category = document.getElementById("Category").innerText;
+		var curPage = document.getElementById("curPage").innerText;
+		var searchValue = document.getElementById("searchValue").value;
+		var searchGroup = document.getElementById("searchGroup").value;
+		var view = document.getElementById("view").value;
+		if(view==null){view="";}
 		var Move = "Prev";
 		if(parseInt(ContentId)><%=boardStart%>){
-			href = "BoardInfoServlet?Category="+Category+"&Move="+Move+"&ContentId="+ContentId;
-			location.href = href;
+			href = "BoardInfoServlet?Category="+Category+"&curPage="+curPage+"&searchValue="+searchValue
+				 + "&searchGroup="+searchGroup+"&ContentId="+ContentId+"&view="+view+"&Move="+Move;
+		location.href = href;
 		}else{
 			alert("이전글이 없습니다.");
 		}

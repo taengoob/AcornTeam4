@@ -59,7 +59,7 @@
 	<a href="BoardListServlet?Category=QnA" class="btn btn-outline-dark">QnA</a>
 	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
 	<div id="nTableTop"></div>
-	<form action="BoardReWriteServlet" id="writeForm" method="post">
+	<form action="BoardReWriteServlet" id="writeForm" method="post">	
 		<input type="hidden" name="ContentId" value="<%=ContentId%>">
 		<div class="w-100" id="writeBoxOut">
 			<div id="writeBox">
@@ -85,7 +85,7 @@
 								<option value="SECONDHAND" <%if("SECONDHAND".equals(Category)){%> selected="selected" <%} %>>중고거래 게시판</option>
 								<option value="QnA" <%if("QnA".equals(Category)){%> selected="selected" <%} %>>Q&A 게시판</option>
 							<%}else{//일반회원일 경우 게시글 수정시 게시판 변경 불가 %>
-								<option value="<%=Category%>" disabled selected="selected">
+								<option value="<%=Category%>" selected="selected">
 									<%if("BOARD".equals(Category)) {%>회원 게시판
 									<%}else if("SECONDHAND".equals(Category)) {%>최신소식 게시판
 									<%}else{%>QnA 게시판<%}%>
@@ -96,26 +96,26 @@
 						<td colspan="1" align="center">
 							<select name="subcategory" id="subCategory" style="width: 100%;">
 							<%if("NOTICE".equals(Category)){%>
-								<option <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
-								<option <%if("이벤트".equals(subCategory)){%> selected="selected" <%} %>>이벤트</option>
+								<option value="공지사항" <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
+								<option value="이벤트" <%if("이벤트".equals(subCategory)){%> selected="selected" <%} %>>이벤트</option>
 							<%}else if("NEWS".equals(Category)){%>
-								<option class="n admin" <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
-								<option <%if("기타소식".equals(subCategory)){%> selected="selected" <%} %>>기타소식</option>
-								<option <%if("할인소식".equals(subCategory)){%> selected="selected" <%} %>>할인소식</option>
-								<option <%if("공연소식".equals(subCategory)){%> selected="selected" <%} %>>공연소식</option>
+								<option value="공지사항" class="n admin" <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
+								<option value="기타소식" <%if("기타소식".equals(subCategory)){%> selected="selected" <%} %>>기타소식</option>
+								<option value="할인소식" <%if("할인소식".equals(subCategory)){%> selected="selected" <%} %>>할인소식</option>
+								<option value="공연소식" <%if("공연소식".equals(subCategory)){%> selected="selected" <%} %>>공연소식</option>
 							<%}else if("BOARD".equals(Category)){%>
-								<option class="n admin" <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
-								<option <%if("잡담".equals(subCategory)){%> selected="selected" <%} %>>잡담</option>
-								<option <%if("질문".equals(subCategory)){%> selected="selected" <%} %>>질문</option>
-								<option <%if("정보".equals(subCategory)){%> selected="selected" <%} %>>정보</option>
+								<option value="공지사항" class="n admin" <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
+								<option value="잡담" <%if("잡담".equals(subCategory)){%> selected="selected" <%} %>>잡담</option>
+								<option value="질문" <%if("질문".equals(subCategory)){%> selected="selected" <%} %>>질문</option>
+								<option value="정보" <%if("정보".equals(subCategory)){%> selected="selected" <%} %>>정보</option>
 							<%}else if("SECONDHAND".equals(Category)){%>
-								<option class="n admin" <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
-								<option <%if("삽니다".equals(subCategory)){%> selected="selected" <%} %>>삽니다</option>
-								<option <%if("팝니다".equals(subCategory)){%> selected="selected" <%} %>>팝니다</option>
+								<option value="공지사항" class="n admin" <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
+								<option value="삽니다" <%if("삽니다".equals(subCategory)){%> selected="selected" <%} %>>삽니다</option>
+								<option value="팝니다" <%if("팝니다".equals(subCategory)){%> selected="selected" <%} %>>팝니다</option>
 							<%}else{ %>
-								<option class="n admin" <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
-								<option <%if("질문".equals(subCategory)){%> selected="selected" <%} %>>질문</option>
-								<option <%if("답변".equals(subCategory)){%> selected="selected" <%} %>>답변</option>
+								<option value="공지사항" class="n admin" <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
+								<option value="질문" <%if("질문".equals(subCategory)){%> selected="selected" <%} %>>질문</option>
+								<option value="답변" <%if("답변".equals(subCategory)){%> selected="selected" <%} %>>답변</option>
 							<%} %>
 							</select>
 						</td>
@@ -142,7 +142,7 @@
 		<div id="nTableBot"></div>
 		<a href="BoardListServlet" class="btn btn-outline-dark">작성취소</a>
 		<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">임시저장</a>
-		<a id="writeBtn" onclick="writeChk(event)" class="btn btn-secondary" style="float: right;">작성완료</a>
+		<a id="writeBtn" onclick="writeChk()" class="btn btn-secondary" style="float: right;">작성완료</a>
 	</form>
 </div>
 <br>
@@ -197,7 +197,7 @@
         var subcategory = document.getElementById("subCategory").value;
 		var title = document.getElementById("title").value;
 		var content = document.getElementById("content").value;
-		console.log(category,title,content);
+		console.log(category+" "+title+" "+content+" "+subcategory);
 		if(category.length==0||title.length==0||content.length==0||subcategory.length==0){
 			event.preventDefault();
 			alert("작성되지 않은 칸이 있습니다.");

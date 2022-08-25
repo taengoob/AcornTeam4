@@ -224,10 +224,10 @@
         	Option = QnA;
          }
          document.getElementById("subCategory").innerHTML = "";
+         $("#subCategory").append('<option disabled selected>글유형 선택</option>');
          if("taengoov"=="<%=userId%>"){//관리자 전용 메뉴 
           	$("#subCategory").append('<option class="n admin" value="'+Option[i]+'">'+Option[0]+'</option>');
          }
-         $("#subCategory").append('<option disabled selected>글유형 선택</option>');
          for (var i=1; i<Option.length; i++) {
         	$("#subCategory").append('<option value="'+Option[i]+'">'+Option[i]+'</option>');
          }

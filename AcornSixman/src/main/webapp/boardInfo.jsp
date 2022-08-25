@@ -18,7 +18,18 @@
 	<jsp:include page="board/boardInfo.jsp"></jsp:include>
 	<jsp:include page="board/boardReply.jsp"></jsp:include>
 	<div style="height: 300px;"></div>
+<%
+	String view = (String)request.getAttribute("view");
+	if(view==null||view.equals("null")||view.equals("")){
+%>
 	<jsp:include page="board/boardList.jsp"></jsp:include>
+<%
+	}else{
+%>
+	<jsp:include page="board/boardImageList.jsp"></jsp:include>
+<%
+	}
+%>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	<hr>
 	<jsp:include page="common/mesg.jsp"></jsp:include>

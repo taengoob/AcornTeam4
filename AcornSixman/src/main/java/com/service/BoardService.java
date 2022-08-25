@@ -60,11 +60,15 @@ public class BoardService {
 		return n;
 	}
 
-	public int boardCount(String category) {
+	public int boardCount(String category, String searchGroup, String searchValue) {
 		SqlSession session = MySqlSessionFactory.getSession();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("category", category);
+		map.put("searchGroup", searchGroup);
+		map.put("searchValue", searchValue);
 		int n = 0;
 		try {
-			n = dao.boardCount(session, category);
+			n = dao.boardCount(session, map);
 			session.commit();
 		}finally {
 			session.close();
@@ -96,11 +100,14 @@ public class BoardService {
 		return n;
 	}
 
-	public BoardDTO boardMove(String Move, String ContentId) {
+	public BoardDTO boardMove(String Move, String ContentId, String category, String searchGroup, String searchValue) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("Move", Move);
 		map.put("ContentId", ContentId);
+		map.put("category", category);
+		map.put("searchGroup", searchGroup);
+		map.put("searchValue", searchValue);
 		BoardDTO bdto = null;
 		try {
 			bdto = dao.boardMove(session, map);
@@ -110,37 +117,45 @@ public class BoardService {
 		return bdto;
 	}
 
-	public int boardStart(String category) {
+	public int boardStart(String category, String searchGroup, String searchValue) {
 		SqlSession session = MySqlSessionFactory.getSession();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("category", category);
+		map.put("searchGroup", searchGroup);
+		map.put("searchValue", searchValue);
 		int n = 0;
 		try {
-			n = dao.boardStart(session, category);
+			n = dao.boardStart(session, map);
 		}finally {
 			session.close();
 		}
 		return n;
 	}
 	
-	public int boardEnd(String category) {
+	public int boardEnd(String category, String searchGroup, String searchValue) {
 		SqlSession session = MySqlSessionFactory.getSession();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("category", category);
+		map.put("searchGroup", searchGroup);
+		map.put("searchValue", searchValue);
 		int n = 0;
 		try {
-			n = dao.boardEnd(session, category);
+			n = dao.boardEnd(session, map);
 		}finally {
 			session.close();
 		}
 		return n;
 	}
 	
-	public BoardPageDTO boardPageList(String category, String view, int curPage, String searchName, String searchValue) {
+	public BoardPageDTO boardPageList(String category, String view, int curPage, String searchGroup, String searchValue) {
 		SqlSession session = MySqlSessionFactory.getSession();
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("category", category);
-		map.put("searchName", searchName);
+		map.put("searchGroup", searchGroup);
 		map.put("searchValue", searchValue);
 		BoardPageDTO bpDTO = null;
 		try {
-			bpDTO = dao.boardPageList(session, map, curPage, view, category);
+			bpDTO = dao.boardPageList(session, map, curPage, view);
 		}finally {
 			session.close();
 		}

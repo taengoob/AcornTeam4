@@ -24,6 +24,8 @@
 	
 	//카테고리 분류
 	String Category = (String)request.getAttribute("Category");
+	String searchGroup = (String)request.getAttribute("searchGroup");
+	String searchValue = (String)request.getAttribute("searchValue");
 %>
 <style type="text/css">
 	.page-link {
@@ -34,10 +36,11 @@
 	
 	.page-item.active .page-link {
 	 z-index: 1;
-	 color: #555;
+	 color: #343a40;
 	 font-weight:bold;
-	 background-color: #f1f1f1;
-	 border-color: #ccc;
+	 color: white;
+	 background-color: #343a40;
+	 border-color: #343a40;
 	 
 	}
 	.page-link:focus, .page-link:hover {
@@ -170,13 +173,17 @@
 				}
 				String RegDate = dto.getBoardRegDate();
 				int HitCount = dto.getBoardHitCount();
+				String PreviewImg = dto.getBoardPreviewImg();
 				int ReplyCount = dto.getBoardReplyCount();
 			%>
 			<tr class="table-secondary fw-bold">
 				<td scope="row">-</td>
 				<td><%=subCategory %></td>
 				<td>
-					<a href="BoardInfoServlet?view=img&curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
+				<%if(PreviewImg!=null){%> 
+					<img src="upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
+				<%} %>
+					<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>&view=img" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>
 				</td>
@@ -207,7 +214,7 @@
 		%>
 		<div class="col-sm-3">
 			<div class="card">
-				<a href="BoardInfoServlet?view=img&curPage=<%=curPage %>&ContentId=<%=ContentId %>" style="margin: auto;">
+				<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>&view=img" style="margin: auto;">
 					<img class="card-img-top" id="previewimg"
 					<%if(PreviewImg!=null) {//대표 이미지 출력%>
 						src="<%=PreviewImg %>"
@@ -229,23 +236,27 @@
 				</ul>
 			</div>
 		</div>
-			<% if((i+1)%4==0){%>
+			<% if((i+1)%4==0 && i<11){%>
 				<div class="w-100" style="height: 30px;"></div>
-			<%} %>
+			<%}%>
 		<%} %>
+	<div class="w-100" style="height: 30px;"></div>
 	</div>
 	<div id="nTableBots"></div>
 	<div class="w-100" id="searchBox" style="height: 35px;">
-		<form action="BoardSearchServlet" method="get">
-			<input class="form-control" name="searchValue" id="searchValue" type="text" placeholder="게시판 내 검색">
-			<a href="#" class="btn btn-outline-secondary" id="searchBtn">
+		<form action="BoardListServlet" method="get" id="searchForm">
+			<input type="hidden" name="Category" value="<%=Category%>">
+			<input type="hidden" name="view" value="img">
+			<input class="form-control" name="searchValue" id="searchValue" type="text" 
+			<%if(searchValue!=""){%>value="<%=searchValue%>"<%} %>	placeholder="게시판 내 검색">
+			<a href="#" class="btn btn-outline-secondary" id="searchBtn" onclick="searchGo()">
 				<img id="searchIcon" src="upload/search.png" width="20px;" height="20px;">
 			</a>
 			<select class="form-select" name="searchGroup" id="searchGroup">
-				<option value="Title">제목</option>
-				<option value="UserId">작성자</option>
-				<option value="Title">내용</option>
-				<option value="Title">제목+내용</option>
+				<option value="Title" <%if("Title".equals(searchGroup)){%> selected <%}%>>제목</option>
+				<option value="UserId" <%if("UserId".equals(searchGroup)){%> selected <%}%>>작성자</option>
+				<option value="Content" <%if("Content".equals(searchGroup)){%> selected <%}%>>내용</option>
+				<option value="Title,Content" <%if("Title,Content".equals(searchGroup)){%> selected <%}%>>제목+내용</option>
 			</select>
 		</form>
 		<%if("taengoov".equals(userId)||Category.equals("BOARD")||Category.equals("SECONDHAND")||Category.equals("QnA")) {%>
@@ -267,11 +278,11 @@
 			for(int i=1; i<=totalPage;i++){
 				if(i==curPage){%>
 					<li class="page-item active">
-						<a href="BoardListServlet?Category=<%=Category%>&view=img&curPage=<%=i%>" class="page-link link-dark"><%=i %></a>
+						<a id="curPage" href="BoardListServlet?Category=<%=Category%>&curPage=<%=i %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&view=img" class="page-link link-dark"><%=i %></a>
 					</li>
 				<%}else{ %>
 					<li class="page-item">
-						<a href="BoardListServlet?Category=<%=Category%>&view=img&curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
+						<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&view=img" class="page-link link-dark"><%=i %></a>
 					</li>
 				<%}%>
 	    <%
@@ -311,6 +322,9 @@
 			return false;
 		}
 	}
-
+	
+	function searchGo() {
+		document.getElementById("searchForm").submit();
+	}
 
 </script>

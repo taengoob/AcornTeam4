@@ -24,6 +24,8 @@
 	
 	//카테고리 분류
 	String Category = (String)request.getAttribute("Category");
+	String searchGroup = (String)request.getAttribute("searchGroup");
+	String searchValue = (String)request.getAttribute("searchValue");
 	
 %>
 <style type="text/css">
@@ -172,13 +174,17 @@
 				}
 				String RegDate = dto.getBoardRegDate();
 				int HitCount = dto.getBoardHitCount();
+				String PreviewImg = dto.getBoardPreviewImg();
 				int ReplyCount = dto.getBoardReplyCount();
 			%>
 			<tr class="table-secondary fw-bold">
 				<td scope="row">-</td>
 				<td><%=subCategory %></td>
 				<td>
-					<a href="BoardInfoServlet?Category=<%=Category %>&curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
+				<%if(PreviewImg!=null){%> 
+					<img src="upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
+				<%} %>
+					<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>
 				</td>
@@ -200,17 +206,21 @@
 				}
 				String RegDate = dto.getBoardRegDate();
 				int HitCount = dto.getBoardHitCount();
+				String PreviewImg = dto.getBoardPreviewImg();
 				int ReplyCount = dto.getBoardReplyCount();
 			 %>
 			<tr>
 				<td scope="row"><%=ContentId %></td>
 				<td><%=subCategory %></td>
 				<td>
-					<a href="BoardInfoServlet?Category=<%=Category %>&curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
+				<%if(PreviewImg!=null){%> 
+					<img src="upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
+				<%} %>
+					<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
-					</a>&nbsp;
-					<a href="BoardDeleteServlet?curPage=<%=curPage %>&ContentId=<%=ContentId %>" class="btn btn-outline-danger btn-sm admin">
-						x
+					</a>
+					<a href="BoardDeleteServlet?ContentId=<%=ContentId %>">
+						<img src="upload/delete2.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
 					</a>
 				</td>
 				<td><%=UserId %></td>
@@ -222,16 +232,18 @@
 	</div>
 	<div id="nTableBot"></div>
 	<div class="w-100" id="searchBox" style="height: 35px;">
-		<form action="BoardSearchServlet" method="get">
-			<input class="form-control" name="searchValue" id="searchValue" type="text" placeholder="게시판 내 검색">
-			<a href="#" class="btn btn-outline-secondary" id="searchBtn">
+		<form action="BoardListServlet" method="get" id="searchForm">
+			<input type="hidden" name="Category" value="<%=Category%>">
+			<input class="form-control" name="searchValue" id="searchValue" type="text" 
+			<%if(searchValue!=""){%>value="<%=searchValue%>"<%} %>	placeholder="게시판 내 검색">
+			<a href="#" class="btn btn-outline-secondary" id="searchBtn" onclick="searchGo()">
 				<img id="searchIcon" src="upload/search.png" width="20px;" height="20px;">
 			</a>
 			<select class="form-select" name="searchGroup" id="searchGroup">
-				<option value="Title">제목</option>
-				<option value="UserId">작성자</option>
-				<option value="Content">내용</option>
-				<option value="Title&Content">제목+내용</option>
+				<option value="Title" <%if("Title".equals(searchGroup)){%> selected <%}%>>제목</option>
+				<option value="UserId" <%if("UserId".equals(searchGroup)){%> selected <%}%>>작성자</option>
+				<option value="Content" <%if("Content".equals(searchGroup)){%> selected <%}%>>내용</option>
+				<option value="Title,Content" <%if("Title,Content".equals(searchGroup)){%> selected <%}%>>제목+내용</option>
 			</select>
 		</form>
 		<%if("taengoov".equals(userId)||Category.equals("BOARD")||Category.equals("SECONDHAND")||Category.equals("QnA")) {%>
@@ -243,7 +255,7 @@
 	<nav aria-label="Page navigation example">
 	  <ul class="pagination justify-content-center">
 	    <li class="page-item disabled">
-	      <a class="page-link link-dark">◀</a>
+	      <a class="page-link link-dark" href="#">◀</a>
 	    </li>
 	    <%  
 			int perPage = bpDTO.getPerPage();
@@ -253,17 +265,17 @@
 			for(int i=1; i<=totalPage;i++){
 				if(i==curPage){%>
 					<li class="page-item active">
-						<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i%>" class="page-link link-dark"><%=i %></a>
+						<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i%>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>" class="page-link link-dark"><span id="curPage"><%=i %></span></a>
 					</li>
 				<%}else{ %>
 					<li class="page-item">
-						<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i %>" class="page-link link-dark"><%=i %></a>
+						<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>" class="page-link link-dark"><%=i %></a>
 					</li>
 				<%}%>
 	    <%
 	    	}
 	    %>
-	      <li class="page-item"><a class="page-link link-dark" href="#">▶</a>
+	      <li class="page-item disabled"><a class="page-link link-dark" href="#">▶</a>
 	    </li>
 	  </ul>
 	</nav>
@@ -274,6 +286,7 @@
 		hideAdminElelments(getIsAdmin());
 		document.getElementById("searchBtn").addEventListener('mouseover', changeIcon);
 		document.getElementById("searchBtn").addEventListener('mouseout', changeIcon2);
+		
 	};
 
 	function hideAdminElelments(isAdmin) {//나중에 메인 jsp에서 참조
@@ -305,6 +318,10 @@
 	}
 	function changeIcon2() {
 		document.getElementById("searchIcon").src="upload/search.png"
+	}
+	
+	function searchGo() {
+		document.getElementById("searchForm").submit();
 	}
 
 </script>

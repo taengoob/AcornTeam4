@@ -17,13 +17,13 @@
 	<hr>
 <%
 	String view = (String)request.getAttribute("view");
-	if(view!=null){
+	if(view==null||view.equals("null")||view.equals("")){
 %>
-	<jsp:include page="board/boardImageList.jsp"></jsp:include>
+	<jsp:include page="board/boardList.jsp"></jsp:include>
 <%
 	}else{
 %>
-	<jsp:include page="board/boardList.jsp"></jsp:include>
+	<jsp:include page="board/boardImageList.jsp"></jsp:include>
 <%
 	}
 %>
