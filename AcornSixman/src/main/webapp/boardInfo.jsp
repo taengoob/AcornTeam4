@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
+<link rel="stylesheet" type="text/css" href="board/boardCSS/boardInfo.css">
+<link rel="stylesheet" type="text/css" href="board/boardCSS/boardList.css">
 <title>게시글 상세보기</title>
 </head>
 <body>

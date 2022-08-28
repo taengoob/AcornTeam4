@@ -15,33 +15,6 @@
 	
 	String Category = (String)request.getParameter("Category");
 %>
-<style type="text/css">
-	#writeBox{
-		width: 90%;
-		margin: auto;
-	}
-	#writeBoxOut{
-		background-color: #f8f9fa;
-		border: 1px solid grey;
-	}
-	#writeTB{
-		border: none;
-	}
-	#content{
-		height: 800px;
-		resize: none;
-		border: none;
-		background-color: white;
-	}
-	
-	#nTableTop, #nTableBot{
-		height: 20px;
-	}
-	#Category, #subCategory,#title{
-		padding-left: 10px;
-	}
-	
-</style>
 <div class="container">
 	<div style="height: 50px;"></div>
 	<h1 class="text-center" >회원게시판</h1>

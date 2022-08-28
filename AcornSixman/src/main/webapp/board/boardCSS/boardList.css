@@ -1,0 +1,67 @@
+	
+	#nTableBox{
+		border-top: 2px solid black;
+		border-bottom: 2px solid grey;
+	}
+	#nTable{
+		padding: 0px;
+		margin: 0px;
+	}
+	#nTableTop, #nTableBot{
+		height: 20px;
+	}
+	#nTr{
+		border-bottom: 1px solid black;
+	}
+	#NoticeRow{
+		border-top: 1px solid grey;
+		border-bottom: 1px solid grey;
+	}
+	#previewimg{
+		width: 253px;
+		height: 191px;
+		object-fit: cover;
+	}
+	#ReplyCount{
+		font-size: 14px;
+		color: #92B8B1;
+	}
+	#ReplyCount2{
+		font-size: 18px;
+		color: #92B8B1;
+	}
+	#searchValue{
+		position: relative;
+		width: 180px;
+		height: 35px;
+		float: left;
+		padding-left: 20px;
+		padding-right: 35px;
+	}
+	#searchBtn{
+		position: absolute;
+		float: left;
+		height: 33px;
+		width: 30px;
+		padding: 6px 2px 2px 2px;
+		margin-left: -30px;
+		margin-top: 1px;
+		font-size: 12px;
+		text-align-last: center;
+		border: none;
+	}
+	#searchGroup{
+		width: 110px;
+		height: 35px;
+		float: left;
+		padding: 2px 25px 2px 5px;
+		margin-left: 10px;
+		font-size: 15px;
+		text-align-last: center;
+		color: grey;
+	}
+	#writeGoBtn{
+		float: right;
+		height: 35px;
+		width: 80px;
+	}

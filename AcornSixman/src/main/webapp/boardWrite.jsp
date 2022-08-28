@@ -4,6 +4,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
+<link rel="stylesheet" type="text/css" href="board/boardCSS/boardWrite.css">
 <style type="text/css">
 
 </style>

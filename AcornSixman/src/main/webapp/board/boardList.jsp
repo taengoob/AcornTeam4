@@ -29,7 +29,7 @@
 	
 %>
 <style type="text/css">
-	.page-link {
+	.page-link {/* 부트스트랩을 css파일에서 수정하려면 우선도 설정을 다시 해야함(해결법: https://think0wise.tistory.com/24 ) */
 	  color: #000; 
 	  background-color: #fff;
 	  border: 1px solid #ccc; 
@@ -48,69 +48,6 @@
 	  color: #000;
 	  background-color: #fafafa; 
 	  border-color: #ccc;
-	}
-	#boardlistctn{
-		
-	}
-	#nTableBox{
-		border-top: 2px solid black;
-		border-bottom: 2px solid black;
-	}
-	#nTable{
-		padding: 0px;
-		margin: 0px;
-	}
-	#nTableTop, #nTableBot{
-		height: 20px;
-	}
-	#nTr{
-		border-bottom: 1px solid black;
-	}
-	#NoticeRow{
-		border-top: 1px solid grey;
-		border-bottom: 1px solid grey;
-	}
-	#ReplyCount{
-		font-size: 14px;
-		color: #92B8B1;
-	}
-	#searchBox{
-		
-	}
-	#searchValue{
-		position: relative;
-		width: 180px;
-		height: 35px;
-		float: left;
-		padding-left: 20px;
-		padding-right: 35px;
-	}
-	#searchBtn{
-		position: absolute;
-		float: left;
-		height: 33px;
-		width: 30px;
-		padding: 6px 2px 2px 2px;
-		margin-left: -30px;
-		margin-top: 1px;
-		font-size: 12px;
-		text-align-last: center;
-		border: none;
-	}
-	#searchGroup{
-		width: 110px;
-		height: 35px;
-		float: left;
-		padding: 2px 25px 2px 5px;
-		margin-left: 10px;
-		font-size: 15px;
-		text-align-last: center;
-		color: grey;
-	}
-	#writeGoBtn{
-		float: right;
-		height: 35px;
-		width: 80px;
 	}
 </style>
 <div class="container" id="boardlistctn">
@@ -280,48 +217,7 @@
 	  </ul>
 	</nav>
 </div>
+<script src="board/boardJS/boardList.js"></script>
 <script type="text/javascript">
-
-	window.onload = function () {
-		hideAdminElelments(getIsAdmin());
-		document.getElementById("searchBtn").addEventListener('mouseover', changeIcon);
-		document.getElementById("searchBtn").addEventListener('mouseout', changeIcon2);
-		
-	};
-
-	function hideAdminElelments(isAdmin) {//나중에 메인 jsp에서 참조
-		if (isAdmin === false) {
-			//class 에 admin이 있는 요소들을 찾는다.
-			const elements = document.getElementsByClassName("admin");
-	
-			//class 에 admin이 있는 요소들을 순회하면서
-			for (const key in elements) {
-				if (Object.hasOwnProperty.call(elements, key)) {
-					const element = elements[key];
-					//안보이게 만든다.
-					element.style.display = "none";
-				}
-			}
-		}
-	}
-
-	function getIsAdmin() {
-		if("taengoov"=="<%=userId%>"){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	
-	function changeIcon() {
-		document.getElementById("searchIcon").src="upload/search2.png"
-	}
-	function changeIcon2() {
-		document.getElementById("searchIcon").src="upload/search.png"
-	}
-	
-	function searchGo() {
-		document.getElementById("searchForm").submit();
-	}
 
 </script>

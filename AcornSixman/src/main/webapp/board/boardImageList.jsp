@@ -48,72 +48,6 @@
 	  background-color: #fafafa; 
 	  border-color: #ccc;
 	}
-	#nTableBox{
-		border-top: 2px solid black;
-		border-bottom: 2px solid grey;
-	}
-	#nTable{
-		padding: 0px;
-		margin: 0px;
-	}
-	#nTableTop, #nTableBot{
-		height: 20px;
-	}
-	#nTr{
-		border-bottom: 1px solid black;
-	}
-	#NoticeRow{
-		border-top: 1px solid grey;
-		border-bottom: 1px solid grey;
-	}
-	#previewimg{
-		width: 253px;
-		height: 191px;
-		object-fit: cover;
-	}
-	#ReplyCount{
-		font-size: 14px;
-		color: #92B8B1;
-	}
-	#ReplyCount2{
-		font-size: 18px;
-		color: #92B8B1;
-	}
-	#searchValue{
-		position: relative;
-		width: 180px;
-		height: 35px;
-		float: left;
-		padding-left: 20px;
-		padding-right: 35px;
-	}
-	#searchBtn{
-		position: absolute;
-		float: left;
-		height: 33px;
-		width: 30px;
-		padding: 6px 2px 2px 2px;
-		margin-left: -30px;
-		margin-top: 1px;
-		font-size: 12px;
-		text-align-last: center;
-		border: none;
-	}
-	#searchGroup{
-		width: 110px;
-		height: 35px;
-		float: left;
-		padding: 2px 25px 2px 5px;
-		margin-left: 10px;
-		font-size: 15px;
-		text-align-last: center;
-		color: grey;
-	}
-	#writeGoBtn{
-		float: right;
-		height: 35px;
-		width: 80px;
-	}
 </style>
 <div class="container">
 	<div style="height: 50px;"></div>
@@ -246,7 +180,6 @@
 	<div class="w-100" id="searchBox" style="height: 35px;">
 		<form action="BoardListServlet" method="get" id="searchForm">
 			<input type="hidden" name="Category" value="<%=Category%>">
-			<input type="hidden" name="view" value="img">
 			<input class="form-control" name="searchValue" id="searchValue" type="text" 
 			<%if(searchValue!=""){%>value="<%=searchValue%>"<%} %>	placeholder="게시판 내 검색">
 			<a href="#" class="btn btn-outline-secondary" id="searchBtn" onclick="searchGo()">
@@ -293,38 +226,4 @@
 	  </ul>
 	</nav>
 </div>
-<script type="text/javascript">
-
-	window.onload = function () {
-		hideAdminElelments(getIsAdmin());
-	};
-
-	function hideAdminElelments(isAdmin) {
-		if (isAdmin === false) {
-			//class 에 admin이 있는 요소들을 찾는다.
-			const elements = document.getElementsByClassName("admin");
-	
-			//class 에 admin이 있는 요소들을 순회하면서
-			for (const key in elements) {
-				if (Object.hasOwnProperty.call(elements, key)) {
-					const element = elements[key];
-					//안보이게 만든다.
-					element.style.display = "none";
-				}
-			}
-		}
-	}
-
-	function getIsAdmin() {
-		if("taengoov"=="<%=userId%>"){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	
-	function searchGo() {
-		document.getElementById("searchForm").submit();
-	}
-
-</script>
+<script src="board/boardJS/boardImageList.js"></script>
