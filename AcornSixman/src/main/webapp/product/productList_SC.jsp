@@ -10,7 +10,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Document</title>
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	    <link href="product.css" rel="stylesheet" type="text/css" >
+	    <link href="product/product.css" rel="stylesheet" type="text/css" >
 
 	</head>
 	
@@ -29,28 +29,35 @@
 	                        <ul>
 	                        	
 	                        <%
+	                        for(int i = 0; i < list.size(); i++){
+	                        	ProductDTO_Temp product=list.get(i);
+	                        	String pdid = product.getProductId();
+	                        	String pdname = product.getProductName();
+	                        	int pdprice = product.getProductPrice();
+	                        	String pdcont = product.getProductContent();
+	                        	String pdimg = product.getPreviewUrl();
 	                        
 	                        %>
 	                        	<li>
 	                                <div class="item_cont">
 	                                    <div class="item_photo" >
-	                                    	<a href="ProductDetailServlet?productId=<%=temp%>">
-                                    			<img src="<%=temp%>" alt="photo">
+	                                    	<a href="ProductDetailServlet?productId=<%=pdid%>">
+                                    			<img src="<%=pdimg%>" alt="photo">
 	                                    	</a>
 	                                    </div>
 	                                    <div class="item_info" >
 	                                        <div class="name_box">
-	                                        	<a href="ProductDetailServlet?productId=<%=temp%>">
-	                                        		<b class="item_name"><%=temp%></b>
+	                                        	<a href="ProductDetailServlet?productId=<%=pdname%>">
+	                                        		<b class="item_name"><%=pdname%></b>
 	                                        	</a>
 	                                        </div>
-	                                        <div class="cont_box"><%=temp%></div>
-	                                        <div class="money_box"><b>판매가 : <%=temp%>원</b></div>
+	                                        <div class="cont_box"><%=pdcont%></div>
+	                                        <div class="money_box"><b>판매가 : <%=pdprice%>원</b></div>
 	                                    </div>
 	                                </div>
 	                            </li>
 	                        <%
-	                        
+	                        }
 	                        %>
 	                        </ul>
 	                    </div>
