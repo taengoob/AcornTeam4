@@ -151,5 +151,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,PRODUCT_CATEGORY       AS productCategory
 		from ORDER_DETAIL 
 		join product_detail on (ORDER_PRODUCT_ID = product_id)
+		where ORDER_SELLER_ID = #{sellerId}
 	</select>
 </mapper>

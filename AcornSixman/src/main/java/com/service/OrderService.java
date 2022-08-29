@@ -110,12 +110,12 @@ public class OrderService
 		}
 		return payMethodList;
 	}
-	public List<ProcessListDTO> select() {
+	public List<ProcessListDTO> select(String sellerId) {
 		OrderDAO dao = new   OrderDAO();
 		 SqlSession session = MySqlSessionFactory.getSession();
 		 List<ProcessListDTO> list = null; 
 		 try {
-	      list = dao.select(session);
+	      list = dao.select(session, sellerId);
 	    	  
 //	      }catch(Exception e) {
 //	    	  e.printStackTrace();

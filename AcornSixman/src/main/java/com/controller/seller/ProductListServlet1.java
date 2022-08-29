@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dto.MemberDTO;
 import com.dto.ProductPageDTO;
 import com.service.ProductService;
 
@@ -32,6 +33,13 @@ public class ProductListServlet1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String userId = "";
+		Object dto = request.getSession().getAttribute("login");
+		if (dto != null)
+		{
+			MemberDTO user = (MemberDTO)dto;
+			userId = user.getAccountId();
+		}
 		
 		String curPage = request.getParameter("curPage");   //현재페이지 
 		if(curPage == null) curPage = "1";   //시작시 현재페이지 1 
@@ -40,7 +48,7 @@ public class ProductListServlet1 extends HttpServlet {
 		String searchName = request.getParameter("searchName");
 		ProductService service = new ProductService();
 
-		ProductPageDTO pDTO = service.select(searchName, Integer.parseInt(curPage));
+		ProductPageDTO pDTO = service.select(searchName, Integer.parseInt(curPage), userId);
 		
 		request.setAttribute("pDTO", pDTO);
 		request.setAttribute("searchName", searchName);

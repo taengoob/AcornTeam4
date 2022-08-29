@@ -37,7 +37,6 @@
 	
 	
 
-<form id="delForm" class="table table-striped">
 <h1>상품리스트</h1>
 <hr>
 		<tr>
@@ -51,15 +50,9 @@
 						<option value="Classic">Classic</option>
 						<option value="Elec">Elec</option>
 					</select> 
-					<input type="submit" value="검색">
 				</form>
 			</td>
 		</tr>
-		<div name="all1">전체</div>
-		<div name="Acoustic1">Acoustic</div>
-		<div name="Bass1">Bass</div>
-		<div name="Classic1">Classic</div>
-		<div name="Elec1">Elec</div>
 <table border="1">
 <tr>
 	</tr>
@@ -87,12 +80,25 @@
 	  String ProductCategory = dto.getProductCategory();
 	  String previewUrl = dto.getPreviewUrl();
 	 %> 
-	
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		var x = $("#<%=ProductStock%>");
+		console.log(x)
+		if (x.text()<=5) {
+			x.css("color","red");
+			x.wrap("<span></span>").css("border","3px dotted red");
+		}
+	})
+	</script>
 	<tr class="basketlist">
 	    <td colspan="2"><input type="checkbox" name="delCheck"  class="delCheck" value="<%= dto.getProductId()%>"></td>
 	
 		<td colspan="2">
-		<%=productName%>
+		<%=productName%><br>
+		
+		<a href="ProductRetrieveServlet?productName=<%=productName%>" style="color: red;">  [상품 편집] </a>
+		
 		</td>
 		<td colspan="4">
 			<img src="<%=previewUrl %>" width="78px" height="78px">
@@ -103,7 +109,7 @@
 		<td colspan="2">
 			<%=ProductDeliveryPrice%>
 		</td>
-		<td colspan="2">
+		<td colspan="2" id="<%=ProductStock%>">
 			<%=ProductStock%>
 		</td>
 		<td colspan="2">
@@ -113,7 +119,7 @@
 			<%=ProductCategory%>
 		</td>
 		
-		  	        <td><button onclick="  if(confirm('삭제 하시겠습니까?')){
+		  	        <td><button id="delForm" onclick="  if(confirm('삭제 하시겠습니까?')){
 						location.href='seller/deleteProduct.jsp?ProductId=<%= dto.getProductId()%>'}
 						" >삭제</button></td> 
 		
@@ -139,7 +145,7 @@
 		  </td>
 		</tr>
 </table>
+
 			<button id="deleteAllProduct" onclick="delAll()">선택 항목 삭제</button>
-</form>
 </body>
 </html>

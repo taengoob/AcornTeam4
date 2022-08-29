@@ -1,30 +1,25 @@
 package com.controller.seller;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dto.MemberDTO;
-import com.dto.ProcessListDTO;
-import com.service.OrderService;
-
 /**
- * Servlet implementation class ProcessListServlet
+ * Servlet implementation class ProductRetrieveServlet
  */
-@WebServlet("/ProcessListServlet")
-public class ProcessListServlet extends HttpServlet {
+@WebServlet("/ProductRetrieveServlet")
+public class ProductRetrieveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProcessListServlet() {
+    public ProductRetrieveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,19 +29,16 @@ public class ProcessListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String userId = "";
-		Object dto = request.getSession().getAttribute("login");
-		if (dto != null)
-		{
-			MemberDTO user = (MemberDTO)dto;
-			userId = user.getAccountId();
-		}
-		
-		OrderService service = new OrderService();
-		List<ProcessListDTO> list = service.select(userId);
-		request.setAttribute("list", list);
-		RequestDispatcher dis = request.getRequestDispatcher("seller/processlistInclude.jsp");
-		dis.forward(request, response);
+		String productName= request.getParameter("productName");
+		request.setCharacterEncoding("UTF-8");	
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out =response.getWriter();
+		out.println("<html><body>");
+		out.println("<h2>상품수정페이지</h2>");
+		out.println(productName+"연결됨");
+		out.println("</body></html>");
+
+		System.out.println(productName);
 	}
 
 	/**

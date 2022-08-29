@@ -105,9 +105,10 @@ public class ProductService
 		}
 		return list;
 	}
-	public ProductPageDTO select(String searchName, int curPage) {
+	public ProductPageDTO select(String searchName, int curPage, String sellerId) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("searchName", searchName);
+		map.put("sellerId", sellerId);
 		
 		ProductDAO dao = new   ProductDAO();
 		

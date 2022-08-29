@@ -42,8 +42,8 @@ public class OrderDAO
 		return session.selectOne("com.mapper.order.selectOrderByOrderId", orderId);
 	}
 
-	public List<ProcessListDTO> select(SqlSession session) {
-		List<ProcessListDTO> list =  session.selectList("com.mapper.order.processList");
+	public List<ProcessListDTO> select(SqlSession session, String sellerId) {
+		List<ProcessListDTO> list =  session.selectList("com.mapper.order.processList", sellerId);
 		return list;
 	}
 }
