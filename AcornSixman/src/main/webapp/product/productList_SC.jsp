@@ -13,7 +13,7 @@
 	    <link href="product/product.css" rel="stylesheet" type="text/css" >
 
 	</head>
-	
+	 
 	<%
 	List<ProductDTO_Temp> list = (List<ProductDTO_Temp>)request.getAttribute("list");
 	String temp = "임시문자";
