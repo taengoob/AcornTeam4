@@ -110,9 +110,9 @@
 				 + '<div class="col-sm-6" id="replyContent'+ele.boardRealContentId+'" style="width:'+width2+'px; min-height:79px;">'+ele.boardContent +'</div>'	
 				 + '<div class="col-sm-2" style="width: 190px; right: -10px;">'	
 				 + '<button class="btn btn-outline-secondary btn-sm" id="replybtn1"'
-				 + 'onclick="replyDelete(this)" data-xxx='+ele.boardRealContentId+'>삭제</button>'	
+				 + 'onclick="replyDelete(this)" data-xxx="'+ele.boardRealContentId+'">삭제</button>'	
 				 + '<button class="btn btn-outline-secondary btn-sm" id="replybtn2"'
-				 + 'onclick="showReplyArea(this)" data-xxx='+ele.boardRealContentId+'>수정</button>';
+				 + 'onclick="showReplyArea(this)" data-xxx="'+ele.boardRealContentId+'" data-update="update">수정</button>';
 			if(width2!="640"){
 				if(width1==" "){width1="0";}
 				html +='<button class="btn btn-outline-secondary btn-sm" id="replybtn3" onclick="showReplyArea(this)"' 
