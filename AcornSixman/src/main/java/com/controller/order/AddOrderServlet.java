@@ -18,8 +18,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.common.IDGenerator;
+import com.common.OrderRequestType;
 import com.dto.MemberDTO;
 import com.dto.OrderDTO;
+import com.dto.OrderRequestDTO;
 import com.dto.ProductDTO_Temp;
 import com.service.OrderService;
 import com.service.ProductService;
@@ -80,7 +82,8 @@ public class AddOrderServlet extends HttpServlet {
 			jsonArray = (JSONArray)parser.parse(jsonStr);
 			OrderService orderService = new OrderService();
 			ProductService prodService = new ProductService();
-			List<ProductDTO_Temp> orderInfoList = new ArrayList<ProductDTO_Temp>(); 
+			List<ProductDTO_Temp> orderInfoList = new ArrayList<ProductDTO_Temp>();
+			List<OrderRequestDTO> orderRequestList = new ArrayList<OrderRequestDTO>();
 			for (Object obj : jsonArray)
 			{
 				JSONObject json = (JSONObject)obj;
@@ -114,18 +117,26 @@ public class AddOrderServlet extends HttpServlet {
 					
 					int result = orderService.insertOrder(order, cartId);
 					if (result > 0)
+					{
 						orderInfoList.add(product);
+						
+						OrderRequestDTO orderRequest = new OrderRequestDTO();
+						orderRequest.setOrderId(order.getOrderId());
+						orderRequest.setOrderStatus("WP");
+						orderRequest.setProductName(product.getProductName());
+						orderRequest.setRequestId(IDGenerator.getNewOrderRequestId(order.getOrderId(), OrderRequestType.PAYMENT));
+						orderRequest.setRequestType(OrderRequestType.PAYMENT.toString());
+						orderRequest.setUserId(userId);
+						orderRequestList.add(orderRequest);
+					}
 				}
 			}
 			
 			request.setAttribute("orderInfoList", orderInfoList);
-			
-//			메인용 경로
-			RequestDispatcher dis = request.getRequestDispatcher("orderDone.jsp");
-			
-//			테스트용 경로
-//			RequestDispatcher dis = request.getRequestDispatcher("order/orderDone.jsp");
-			
+			request.setAttribute("orderRequestList", orderRequestList);
+
+//			Order Request 추가 서블릿으로 forward
+			RequestDispatcher dis = request.getRequestDispatcher("AddOrderRequestServlet");
 			dis.forward(request, response);
 		}
 		catch (Exception e)

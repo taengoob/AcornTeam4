@@ -1,29 +1,25 @@
 package com.controller.orderrequest;
 
 import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dto.OrderRequestDTO;
 import com.service.OrderRequestService;
 
 /**
- * Servlet implementation class PaymentRequestListServlet
+ * Servlet implementation class UpdateOrderRequestServlet
  */
-@WebServlet("/PaymentRequestListServlet")
-public class PaymentRequestListServlet extends HttpServlet {
+@WebServlet("/UpdateOrderRequestServlet")
+public class UpdateOrderRequestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PaymentRequestListServlet() {
+    public UpdateOrderRequestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,19 +33,13 @@ public class PaymentRequestListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
+		String requestId = request.getParameter("requestId");
+		String status = request.getParameter("status");
+		
 		OrderRequestService service = new OrderRequestService();
-		List<OrderRequestDTO> orderRequestWPList = service.selectOrderRequestList("WP");
-		List<OrderRequestDTO> orderRequestCPList = service.selectOrderRequestList("CP");
+		service.UpdateOrderRequestStatus(requestId, status);
 		
-		request.setAttribute("orderRequestWPList", orderRequestWPList);
-		request.setAttribute("orderRequestCPList", orderRequestCPList);
-		
-//		메인용 경로
-//		RequestDispatcher dis = request.getRequestDispatcher("paymentRquestList.jsp");
-		
-//		테스트용 경로
-		RequestDispatcher dis = request.getRequestDispatcher("orderRequest/paymentRquestList.jsp");
-		dis.forward(request, response);
+		response.sendRedirect("PaymentRequestListServlet");
 	}
 
 	/**

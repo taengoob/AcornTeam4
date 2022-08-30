@@ -14,16 +14,16 @@ import com.dto.OrderRequestDTO;
 import com.service.OrderRequestService;
 
 /**
- * Servlet implementation class PaymentRequestListServlet
+ * Servlet implementation class AddOrderRequestServlet
  */
-@WebServlet("/PaymentRequestListServlet")
-public class PaymentRequestListServlet extends HttpServlet {
+@WebServlet("/AddOrderRequestServlet")
+public class AddOrderRequestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PaymentRequestListServlet() {
+    public AddOrderRequestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,18 +37,20 @@ public class PaymentRequestListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		OrderRequestService service = new OrderRequestService();
-		List<OrderRequestDTO> orderRequestWPList = service.selectOrderRequestList("WP");
-		List<OrderRequestDTO> orderRequestCPList = service.selectOrderRequestList("CP");
+		List<OrderRequestDTO> orderRequestList = (List<OrderRequestDTO>)request.getAttribute("orderRequestList");
 		
-		request.setAttribute("orderRequestWPList", orderRequestWPList);
-		request.setAttribute("orderRequestCPList", orderRequestCPList);
+		for (OrderRequestDTO orderRequest : orderRequestList)
+		{
+			OrderRequestService service = new OrderRequestService();
+			service.insertOrderRequest(orderRequest);
+		}
 		
 //		메인용 경로
-//		RequestDispatcher dis = request.getRequestDispatcher("paymentRquestList.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("orderDone.jsp");
 		
 //		테스트용 경로
-		RequestDispatcher dis = request.getRequestDispatcher("orderRequest/paymentRquestList.jsp");
+//		RequestDispatcher dis = request.getRequestDispatcher("order/orderDone.jsp");
+		
 		dis.forward(request, response);
 	}
 
