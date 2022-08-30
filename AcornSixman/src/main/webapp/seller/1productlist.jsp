@@ -53,6 +53,7 @@
 				</form>
 			</td>
 		</tr>
+			<form id="delForm">
 <table border="1">
 <tr>
 	</tr>
@@ -91,6 +92,7 @@
 		}
 	})
 	</script>
+
 	<tr class="basketlist">
 	    <td colspan="2"><input type="checkbox" name="delCheck"  class="delCheck" value="<%= dto.getProductId()%>"></td>
 	
@@ -119,11 +121,12 @@
 			<%=ProductCategory%>
 		</td>
 		
-		  	        <td><button id="delForm" onclick="  if(confirm('삭제 하시겠습니까?')){
+		  	        <td><button onclick="  if(confirm('삭제 하시겠습니까?')){
 						location.href='seller/deleteProduct.jsp?ProductId=<%= dto.getProductId()%>'}
 						" >삭제</button></td> 
 		
 	</tr>
+	</form>
   <%} %>
   <tr>
 		 <td colspan="5"> 
