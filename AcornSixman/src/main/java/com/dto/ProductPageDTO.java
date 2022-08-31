@@ -5,7 +5,7 @@ import java.util.List;
 public class ProductPageDTO {
 	private List<ProductDTO_Temp> list;
 	private int curPage;    //현재 볼 페이지 번호 
-	private int perPage=2;  //한페이지에 보여질 목록 수 
+	private int perPage=10;  //한페이지에 보여질 목록 수 
 	private int totalCount;
 	public ProductPageDTO() {
 		super();

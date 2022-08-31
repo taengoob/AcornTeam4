@@ -64,6 +64,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  			<if test="searchName == 'Elec'">
 	      		and PRODUCT_CATEGORY like 'Elec' 
 			  </if>
+	  			<if test="searchName == 'Ukulele'">
+	      		and PRODUCT_CATEGORY like 'Ukulele' 
+			  </if>
     
     </select>
     
@@ -99,6 +102,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  </if>
 	  			<if test="searchName == 'Elec'">
 	      		and PRODUCT_CATEGORY like 'Elec' 
+			  </if>
+	  			<if test="searchName == 'Ukulele'">
+	      		and PRODUCT_CATEGORY like 'Ukulele' 
 			  </if>
     
 	</select>
