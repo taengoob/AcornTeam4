@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="com.dto.ProductPageDTO"%>
 <%@page import="com.service.ProductService"%>
 <%@page import="com.dto.ProductDTO_Temp"%>
@@ -10,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function chk(n) {
 		var lang= document.querySelectorAll(".delCheck");
@@ -42,13 +44,13 @@
 		<tr>
 			<td colspan="5">
 				<form action="ProductListServlet1">
-					<select name="searchName" onchange="this.form.submit()">
+					<select name="searchName" id="searchName" onchange="this.form.submit()">
 						<option >카테고리별 검색</option>
-						<option value="all">전체보기</option>
-						<option value="Acoustic">Acoustic</option>
-						<option value="Bass">Bass</option>
-						<option value="Classic">Classic</option>
-						<option value="Elec">Elec</option>
+						<option value="all" id="all" ${searchName == 'all' ? 'selected="selected"' : '' }>전체보기</option>
+						<option value="Acoustic" id="Acoustic" ${searchName == 'Acoustic' ? 'selected="selected"' : '' }>Acoustic</option>
+						<option value="Bass" id="Bass" ${searchName == 'Bass' ? 'selected="selected"' : '' }>Bass</option>
+						<option value="Classic" id="Classic" ${searchName == 'Classic' ? 'selected="selected"' : '' }>Classic</option>
+						<option value="Elec" id="Elec" ${searchName == 'Elec' ? 'selected="selected"' : '' }>Elec</option>
 					</select> 
 				</form>
 			</td>
@@ -80,12 +82,14 @@
 	  String ProductContent = dto.getProductContent();
 	  String ProductCategory = dto.getProductCategory();
 	  String previewUrl = dto.getPreviewUrl();
+	  Date productRegDate = dto.getProductRegDate();
+
+	  
 	 %> 
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
 		var x = $("#<%=ProductStock%>");
-		console.log(x)
 		if (x.text()<=5) {
 			x.css("color","red");
 			x.wrap("<span></span>").css("border","3px dotted red");
@@ -98,7 +102,6 @@
 	
 		<td colspan="2">
 		<%=productName%><br>
-		
 		<a href="ProductRetrieveServlet?productName=<%=productName%>" style="color: red;">  [상품 편집] </a>
 		
 		</td>

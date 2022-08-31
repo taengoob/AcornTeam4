@@ -42,7 +42,7 @@
 					<tr>
 						<td height="10"></td>
 					</tr>
-					<tr>
+					<%-- <tr>
 						<!-- request에서 데이터 얻은 후  모든 멤버변수를 변수에 저장  후 표에 출력해줌-->
 						<%
 						for(int i = 1; i <= products.size(); i++) {
@@ -93,7 +93,7 @@
 							%>
 					<%
 						}//end for
-						%>
+						%> --%>
 				</table>
 			</td>
 		</tr>
