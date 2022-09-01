@@ -25,6 +25,7 @@ public class BoardReplyAddServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String refContentId = request.getParameter("ContentId");//받아온 컨텐츠 아이디를 참조
 		String ReplyId = IDGenerator.getNewBoardContentId();
+		System.out.println("부모값 번호 Controller"+refContentId);
 		System.out.println("댓글번호"+ReplyId);
 		String UserId = request.getParameter("UserId");
 		String ReplyContent = request.getParameter("ReplyContent");

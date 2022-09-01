@@ -275,17 +275,21 @@
 		console.log("값 검정"+$("#reply"+ContentId).val());
 		if($("#reply"+ContentId).css('display') === 'block'){//대댓글인 경우
 			if(replyNextId==" "){//해당 댓글에 다른 대댓글이 없을경우
+				console.log("해당 댓글에 다른 대댓글이 없을경우 해당 댓글 아래에 대댓글 추가")
 				$("#reply"+ContentId).append(html);//해당 댓글 아래에 대댓글 추가
 			}else{//해당 댓글에 다른 대댓글이 있을경우
-				$("#reply"+replyNextId).append(html);//다른 대댓글들중 가장 나중에 작성한 댓글 아래에 추가
+				console.log("해당 댓글에 다른 대댓글이 있을경우 다른 대댓글들중 가장 나중에 작성한 댓글 아래에 추가")
+				$("#reply"+replyNextId).after(html);//다른 대댓글들중 가장 나중에 작성한 댓글 아래에 추가
 			}
 			$("#replyarea"+ContentId).val("");//텍스트 입력창 비우고
 			$("#replybox"+ContentId).css('display', "none");//텍스트 입력창 숨김
 		}else{//대댓글이 아닌경우
 			if(replyNextId==" "){//해당 게시들에 다른 댓글이 없을경우
+				console.log("대댓글x 해당 게시들에 다른 댓글이 없을경우 첫 댓글 추가")
 				$("#replybody").append(html);//첫 댓글 추가
 			}else{//해당 게시물에 다른 댓글이 있을경우
-				$("#reply"+replyNextId).append(html);//가장 나중에 작성한 댓글 아래에 추가
+				console.log("대댓글x 해당 게시물에 다른 댓글이 있을경우 가장 나중에 작성한 댓글 아래에 추가")
+				$("#reply"+replyNextId).after(html);//가장 나중에 작성한 댓글 아래에 추가
 			}
 			$("#replyarea").val("");//텍스트 입력창 비우고
 			$("#replyarea").focus();//텍스트 입력창 포커스
