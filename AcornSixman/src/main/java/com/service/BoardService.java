@@ -179,20 +179,15 @@ public class BoardService {
 		return n;
 	}
 
-	public List<BoardDTO> replySelect(String replyId, String refContentId) {
+	public BoardDTO replySelect(String replyId) {
 		SqlSession session = MySqlSessionFactory.getSession();
-		List<BoardDTO> list = new ArrayList<BoardDTO>();
 		BoardDTO dto = null;
 		try {
 			dto = dao.replySelect(session, replyId);
-			String boardReplyNextId = dao.replyNextId(session, replyId, refContentId);
-			System.out.println("다음 아이디는"+boardReplyNextId);
-			dto.setBoardRelpyNextId(boardReplyNextId);
-			list.add(dto);
 		}finally {
 			session.close();
 		}
-		return list;
+		return dto;
 	}
 
 	public Map<String, Object> replyList(String contentId) {
@@ -244,6 +239,18 @@ public class BoardService {
 			session.close();
 		}
 		return n;
+	}
+
+	public String replyNextId(String refContentId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		String s = null;
+		try {
+			s = dao.replyNextId(session, refContentId);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return s;
 	}
 
 }

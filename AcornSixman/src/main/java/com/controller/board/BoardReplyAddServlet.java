@@ -2,6 +2,7 @@ package com.controller.board;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -29,17 +30,20 @@ public class BoardReplyAddServlet extends HttpServlet {
 		String ReplyContent = request.getParameter("ReplyContent");
 		
 		BoardService service = new BoardService();
+
+		String replyNextId = service.replyNextId(refContentId);
 		int n = service.replyAdd(refContentId, ReplyId, UserId, ReplyContent);
-		List<BoardDTO> list = null;
-		if(n!=0) {
-			list = service.replySelect(ReplyId, refContentId);
-			//System.out.println(list);
-			String json = new Gson().toJson(list);
-			//System.out.println(json);
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out = response.getWriter();
-			out.print(json);
-		}
+		BoardDTO dto = service.replySelect(ReplyId);
+		dto.setBoardRelpyNextId(replyNextId);
+		
+		List<BoardDTO> list = new ArrayList<BoardDTO>();
+		list.add(dto);
+		String json = new Gson().toJson(list);
+		System.out.println(json);
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(json);
+		
 	
 	}
 

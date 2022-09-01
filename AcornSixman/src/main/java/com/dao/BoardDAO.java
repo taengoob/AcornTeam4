@@ -97,11 +97,8 @@ public class BoardDAO {
 		return n;
 	}
 
-	public String replyNextId(SqlSession session, String replyId, String refContentId) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("replyId", replyId);
-		map.put("refContentId", refContentId);
-		BoardDTO dto = session.selectOne("com.mapper.board.replyNextId", map);
+	public String replyNextId(SqlSession session, String refContentId) {
+		BoardDTO dto = session.selectOne("com.mapper.board.replyNextId", refContentId);
 		String s = " ";
 		if(dto!=null) {
 			s = dto.getBoardRelpyNextId();

@@ -423,7 +423,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SUBSTR(BOARD_CONTENT_ID,15,5) = SUBSTR(BOARD_REF_CONTENT_ID,15,5)
 	</select>
 	
-	<select id="replyNextId" parameterType="map" resultMap="test">
+	<select id="replyNextId" parameterType="String" resultMap="test">
 		SELECT
 			BOARD_CONTENT_ID BOARD_REPLY_NEXT_ID
 		FROM
@@ -436,8 +436,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              FROM 
             	BOARD_DETATIL
              WHERE 
-             	TO_NUMBER(SUBSTR(BOARD_CONTENT_ID,15,5)) &lt; TO_NUMBER(SUBSTR(#{replyId},15,5))
-             AND
 				BOARD_REF_CONTENT_ID = #{refContentId}
 			)
 	</select>
