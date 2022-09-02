@@ -16,6 +16,7 @@
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=East+Sea+Dokdo:400"
 	rel="stylesheet">
+<script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"
 	text="text/javascript"></script>
 <title>로그인</title>
@@ -56,7 +57,7 @@ a {
 <body>
 	<p class="main-img"></p>
 	<form action="loginServlet" method="post" id="mainform">
-		<p class="main-name">The SixMan</p>
+		<p class="main-name" id="title">The SixMan</p>
 		<div class="input-style">
 			<input type="text" placeholder="아이디" id="userid" name="userid"
 				class="form-control" style="width: 29%"> <input
@@ -70,15 +71,15 @@ a {
 				class="ll">|</a> <a href="FirstFindPW.jsp" class="password"
 				id="find-pw">비밀번호 찾기</a>
 		</div>
-		<a href="javascript:loginWithKakao();" class="kakao">카카오로 1초만에 로그인하기<img
-			src="member/img/kka.png" alt="카카오" class="kakao-img">
-		</a> <a href="#" class="naver">네이버로 1초만에 로그인하기<img src="member/img/nav.png"
-			alt="네이버" class="naver-img">
+		<a href="javascript:loginWithKakao();" class="kakao">카카오로 1초만에
+			로그인하기<img src="member/img/kka.png" alt="카카오" class="kakao-img">
+		</a> <a href="#" class="naver">네이버로 1초만에 로그인하기<img
+			src="member/img/nav.png" alt="네이버" class="naver-img">
 		</a>
 	</form>
 	<%
 	String mesg2 = (String) session.getAttribute("nologin");
-	if (mesg2 != null){
+	if (mesg2 != null) {
 	%>
 	<script type="text/javascript">
 	alert("로그인 정보를 다시 확인해주세요.");
@@ -120,10 +121,10 @@ a {
 		var childwin;
 		$("#submit").click(function() {
 			if ($("#userid").val().length == 0) {
-				alert("아이디 필수")
+				alert("아이디를 입력해주세요.")
 				event.preventDefault()
 			} else if ($("#passwd").val().length == 0) {
-				alert("비밀번호 필수")
+				alert("비밀번호를 입력해주세요.")
 				event.preventDefault()
 			}
 		})
@@ -131,7 +132,6 @@ a {
 	<%
 	request.setCharacterEncoding("utf-8");
 	String mesg1 = (String) session.getAttribute("userid");
-	
 	%>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -176,7 +176,18 @@ a {
 			//return false;
 		}
 	</script>
-
+	<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',()=>{	
+	new TypeIt('#title', {
+		
+		  speed: 150, 
+		  afterComplete: function (instance) {
+		    instance.destroy();
+		  }
+		}).go();
+	
+})
+</script>
 
 </body>
 </html>
