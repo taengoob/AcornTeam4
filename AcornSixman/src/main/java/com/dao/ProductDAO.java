@@ -71,5 +71,19 @@ public int deleteAll(SqlSession session, List<String> list) {
 		int n = session.delete("com.mapper.product.deleteByAllProdId", list);
 		return n;
 	}
+
+public ProductPageDTO select1(SqlSession session, HashMap<String, String> map, int curPage) {
+	ProductPageDTO pDTO = new ProductPageDTO();
+	int perPage = pDTO.getPerPage();   //한페이지 2개씩 
+	int offset = (curPage - 1) * perPage;
+	
+	List<ProductDTO_Temp> list =  session.selectList("com.mapper.product.searchSelect", map, new RowBounds(offset, perPage));
+	
+	pDTO.setCurPage(curPage);//현재 페이지번호
+	pDTO.setList(list);//페이지 에 해당 데이터
+	//pDTO.setTotalCount(totalCount(session,map));//전체 레코드 갯수 저장 
+	
+	return pDTO;
+}
 	
 }

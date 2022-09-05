@@ -7,10 +7,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function chk(n) {
@@ -35,6 +37,7 @@
 	 ProductPageDTO pDTO = (ProductPageDTO) request.getAttribute("pDTO");
 	 List<ProductDTO_Temp> list = pDTO.getList();
 	 String searchName = (String)request.getAttribute("searchName");
+	 String search = (String)request.getAttribute("search");
 	%> 
 	
 	
@@ -44,7 +47,9 @@
 		<tr>
 			<td colspan="5">
 				<form action="ProductListServlet1">
-					<select name="searchName" id="searchName" onchange="this.form.submit()">
+					<select name="searchName" id="searchName" 
+					onchange="this.form.submit()"
+					>
 						<option >카테고리별 검색</option>
 						<option value="all" id="all" ${searchName == 'all' ? 'selected="selected"' : '' }>전체보기</option>
 						<option value="Acoustic" id="Acoustic" ${searchName == 'Acoustic' ? 'selected="selected"' : '' }>Acoustic</option>
@@ -56,8 +61,16 @@
 				</form>
 			</td>
 		</tr>
+		<tr>
+			<td colspan="5">
+				<form action="ProductSearchServlet">
+					상품명 <input type="text" name="search"> 
+					<input type="submit" value="검색">
+				</form>
+			</td>
+		</tr>
 			<form id="delForm">
-<table border="1">
+<table border="1" class="table table-striped">
 <tr>
 	</tr>
  	<tr>
@@ -75,6 +88,7 @@
  	</tr>
  	<%
    for(ProductDTO_Temp dto: list){
+	   
 	  String ProductId = dto.getProductId();
 	  String productName = dto.getProductName();
 	  int ProductPrice = dto.getProductPrice();
@@ -141,13 +155,14 @@
 				int totalPage = totalCount/perPage;
 				if(totalCount%perPage!=0) totalPage++;
 		        for(int i=1; i<= totalPage; i++){
+		        	
 		          	if(i== curPage){
 		          		out.print(i+"&nbsp;");
 		          	}else{
 		          		out.print("<a href='ProductListServlet1?curPage="+i+"&searchName="+searchName+"'>"+i+"</a>&nbsp;");
 		          	}
 		        }//end for
-		   %>
+		   %> 
 		
 		  </td>
 		</tr>

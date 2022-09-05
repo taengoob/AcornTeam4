@@ -16,6 +16,7 @@
 	<hr>
 	 <jsp:include page="AddProduct.jsp" flush="true"></jsp:include><br>
 	<hr>
+	<jsp:include page="sidebar1.jsp" flush="true"></jsp:include><br>  
 	<jsp:include page="../common/bot.jsp"></jsp:include>
 	<hr>
 	<jsp:include page="../common/mesg.jsp"></jsp:include>

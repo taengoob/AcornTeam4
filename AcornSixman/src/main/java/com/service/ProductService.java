@@ -150,4 +150,24 @@ public class ProductService
 	      }
 	      return n;
 		}//end select
+
+	public ProductPageDTO select1(String search, int curPage, String sellerId) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("search", search);
+		map.put("sellerId", sellerId);
+		
+		ProductDAO dao = new   ProductDAO();
+		
+		 SqlSession session = MySqlSessionFactory.getSession();
+		 ProductPageDTO pDTO = null; 
+		 try {
+			 pDTO = dao.select1(session, map, curPage);
+	    	  
+//	      }catch(Exception e) {
+//	    	  e.printStackTrace();
+	      }finally {
+			session.close();
+	      }
+	      return pDTO;
+		}//end select
 }
