@@ -47,7 +47,7 @@ header.sticky {
 
 header.sticky #span1 {
 	color: black;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 #button-tag {

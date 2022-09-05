@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<html><head>
 <style type="text/css">
 @import
 	url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
@@ -34,8 +35,11 @@ h3 {
 	background-position: center;
 	text-align: center;
 }
+@keyframes
 
 </style>
+</head>
+<body>
 <div class="img-con">
 <div class="main-write">
 	<p class="main-name"><br>The SixMan</p>
@@ -46,3 +50,8 @@ h3 {
 	</h3>
 	</div>
 </div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

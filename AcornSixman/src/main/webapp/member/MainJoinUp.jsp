@@ -31,7 +31,7 @@
 	margin-left: 7%;
 }
 
-#checkResult, #result {
+#checkResult, #result #resultName {
 	color: blue;
 	font-size: 14px;
 }
@@ -39,17 +39,29 @@
 .addr-input {
 	margin-left: 17.2%;
 }
-.finish{
-text-align: right;
-margin-right: 5%;
-margin-top: 3%;	
-margin-bottom: 3%;
+
+.finish {
+	text-align: right;
+	margin-right: 5%;
+	margin-top: 3%;
+	margin-bottom: 3%;
 }
 
+#type {
+	height: 30px;
+	display: flex;
+	align-items: center;
+	font-family: 'Lobster', cursive;
+	font-size: 30px;
+	padding: 0 2rem;
+	font-weight: 600;
+	justify-content: center;
+	margin-top: 40px;
+}
 </style>
 </head>
 <body>
-
+	<span id="type"></span>
 	<form action="MemberAddServlet" class="form-inline" method="post"
 		id="mainform">
 		<div class="main-box">
@@ -83,7 +95,9 @@ margin-bottom: 3%;
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">이름</label>
 				<input type="text" id="name" name="name" class="form-control"
-					style="display: inline; width: 40%;">
+					placeholder="한글로 2-4자리" style="display: inline; width: 40%;">
+				&nbsp;&nbsp; <span id='resultName'></span>
+
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">이메일</label>
@@ -103,10 +117,10 @@ margin-bottom: 3%;
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">휴대폰
-					번호</label> <input type="text" placeholder="- 없이 입력하세요."
-					data-pattern="gdNum" id="phoneNumber" name="phoneNumber"
-					onkeyup="checkNumber(event)" class="form-control"
-					style="display: inline; width: 20%;">
+					번호</label> <input type="text" data-pattern="gdNum" id="phoneNumber"
+					name="phoneNumber" class="form-control"
+					placeholder="010으로 시작하는 11자리 숫자"
+					style="display: inline; width: 40%;">
 
 			</div>
 			<div class="form-group">
@@ -123,15 +137,16 @@ margin-bottom: 3%;
 						style="display: inline; width: 24.2%;" id="sample4_roadAddress"
 						placeholder="도로명주소">&nbsp;&nbsp;<input type="text"
 						name="addr2" id="sample4_jibunAddress" class="form-control"
-						style="display: inline; width: 24.4%; margin-left: 0.5%;" placeholder="지번주소">
-					<span id="guide" style="color: #999"> </span>
+						style="display: inline; width: 24.4%; margin-left: 0.5%;"
+						placeholder="지번주소"> <span id="guide" style="color: #999">
+					</span>
 				</div>
 			</div>
 			<div class="finish">
-				<button class="btn btn-outline-success" type="button" 
-				onclick="location.href='FirstJoinUpPage.jsp'" id="cancle">취소</button>
-				<button class="btn btn-outline-success"
-					type="submit" id="finishuser">회원가입</button>
+				<button class="btn btn-outline-success" type="button"
+					onclick="location.href='FirstJoinUpPage.jsp'" id="cancle">취소</button>
+				<button class="btn btn-outline-success" type="submit"
+					id="finishuser">회원가입</button>
 			</div>
 			<span class="addr-bottom-line"></span>
 		</div>
@@ -163,6 +178,8 @@ margin-bottom: 3%;
 					});//비밀번호 확인
 					$("#finishuser").click(
 							function() {
+								var regPhone = /^010-?[0-9]{4}-?[0-9]{4}$/;
+								var regName = /^[가-힣]{2,4}$/;
 								var id = $("#id").val();
 								var pw = $("#passwd").val();
 								var pw1 = $("#passwd1").val();
@@ -210,6 +227,21 @@ margin-bottom: 3%;
 									alert("아이디 중복체크를 눌러주세요");
 									event.preventDefault();
 								}
+								
+								else if (!regPhone.test(phoneNum)) {
+									console.log('입력된 값은 휴대전화번호입니다.');
+									alert("휴대폰 번호 형식이 잘못되었습니다.");
+									$("#resultName").text("");
+									event.preventDefault();
+									
+								} else if (!regName.test(name)){
+									console.log('입력된 값은 휴대전화번호입니다.');
+									alert("이름이 올바르지 않습니다.");
+									event.preventDefault();
+									$("#resultName").text("이름이 올바르지 않습니다");
+								}
+								
+								
 							})//비어있는 부분이 있는지 확인
 
 				})
@@ -228,16 +260,6 @@ margin-bottom: 3%;
 
 		});
 
-		function checkNumber(event) {
-			var phoneNum = document.getElementById("phoneNumber").value;
-			if (event.key >= 0 && event.key <= 9 || event.keyCode == 8) {
-				return true;
-			} else {
-				alert("숫자만 입력해야 합니다.");
-				phoneNumber.value = null;
-				return false;
-			}
-		}
 		$("#idCheck").on("click", function(event) {
 			$.ajax({
 				type : "GET",
@@ -365,6 +387,33 @@ margin-bottom: 3%;
 			//return false;
 		}
 	</script>
-
+	<script src="http://threejs.org/build/three.min.js"></script>
+	<script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
+	<script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+	<script type="text/javascript">
+new TypeIt('#type', {
+	  speed: 200,
+	  afterStep: (instance) => {
+		    instance.getElement().style.color = randomColor();
+		  },
+	  afterComplete: function (instance) {
+	   	   instance.destroy();
+	   },
+	}) 
+	  .type("The SixMan 기타 쇼핑몰 !!", {delay: 1000})
+	  .delete(10, {pause: 1000})
+	  .type(" 회원가입 하세요 !", {pause: 600})
+	  .go();
+	  
+	  
+		function randomColor() {
+	  var letters = '0123456789ABCDEF';
+	  var color = '#';
+	  for (var i = 0; i < 6; i++) {
+	    color += letters[Math.floor(Math.random() * 16)];
+	  }
+	  return color;
+	}
+</script>
 </body>
 </html>
