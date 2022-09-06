@@ -60,9 +60,28 @@ session.removeAttribute("logout");
 	<hr>
 	<jsp:include page="common/fieximage.jsp"></jsp:include> 
 	<hr>
+	<jsp:include page="common/fieximage2.jsp"></jsp:include> 
 	<jsp:include page="coupon/bannertest.html"></jsp:include>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	<hr>
 	<jsp:include page="common/mesg.jsp"></jsp:include>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	var mainText = document.querySelector("#picyou");
+	window.addEventListener('scroll',function(){
+		var value = window.scrollY
+		console.log("스크롤 y" , value)
+		
+		if (value > 1200) {
+			mainText.style.animation="slide 2s ease-out";
+		}
+		else{
+			mainText.style.animation="dis 2s ease-out";
+			
+		}
+		
+	})
+	</script>
 </body>
 </html>
