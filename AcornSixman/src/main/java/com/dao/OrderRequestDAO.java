@@ -31,4 +31,9 @@ public class OrderRequestDAO
 		return session.update("com.mapper.orderRequest.UpdateOrderStatus", map);
 	}
 
+	public int InsertDeliveryRequest(SqlSession session, String requestId)
+	{
+		return session.insert("com.mapper.orderRequest.insertDeliveryRequest", requestId);
+	}
+
 }

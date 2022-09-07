@@ -17,8 +17,21 @@
 
 		<script type="text/javascript">
 		
-			function onCompleteBtnClicked(btnId) {
-				location.href = "UpdateOrderRequestServlet?requestId=" + btnId + "&&status=CP";
+			function onCompleteBtnClicked(btn) {
+				const dataset = btn.dataset;
+				const requestType = dataset.requestType
+				const requestId = dataset.requestId;
+				const status = dataset.status;
+				location.href = "UpdateOrderRequestServlet?"
+						+ "requestId=" + requestId
+						+ "&&status=" + status
+						+ "&&requestType=" + requestType;
+			}
+			
+			function onStartDeliveryBtnClicked(btn) {
+				const dataset = btn.dataset;
+				const requestId = dataset.requestId;
+				location.href = "AddDeliveryRequestServlet?requestId=" + requestId;
 			}
 		
 		</script>
@@ -72,7 +85,11 @@
 								<td><%=userId%></td>
 								<td><%=requestDate%></td>
 								<td><%=updateDate%></td>
-								<td><button type="button" class="btn btn-primary" id="<%=requestId%>" onclick="onCompleteBtnClicked(this.id)">결제완료</button></td>
+								<td>
+									<button type="button" class="btn btn-primary" 
+									data-request-id="<%=requestId%>" data-status="CP" data-request-type="PAYMENT"
+									onclick="onCompleteBtnClicked(this)">결제완료</button>
+								</td>
 							</tr>
 						<%
 						}
@@ -96,6 +113,7 @@
 								<th scope="col">User ID</th>
 								<th scope="col">Request Date</th>
 								<th scope="col">Update Date</th>
+								<th scope="col">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -108,6 +126,7 @@
 							String userId = orderRequest.getUserId();
 							String requestDate = orderRequest.getRequestRegDate();
 							String updateDate = orderRequest.getRequestUpdateDate();
+							int count = orderRequest.getdeliveryCount();
 						%>
 							<tr>
 								<th scope="row"><%=i + 1%></th>
@@ -117,6 +136,19 @@
 								<td><%=userId%></td>
 								<td><%=requestDate%></td>
 								<td><%=updateDate%></td>
+								
+								<td>
+								<%
+								if (count == 0) {
+								%>
+									<button type="button" class="btn btn-primary" 
+									data-request-id="<%=requestId%>"
+									onclick="onStartDeliveryBtnClicked(this)">배송준비</button>
+								<%
+								}
+								%>
+								</td>
+								
 							</tr>
 						<%
 						}

@@ -10,6 +10,7 @@ public class OrderRequestDTO
 	private String requestType;
 	private String productName;
 	private String userId;
+	private int deliveryCount;
 	
 	public String getRequestId()
 	{
@@ -75,6 +76,14 @@ public class OrderRequestDTO
 	{
 		this.userId = userId;
 	}
+	public int getdeliveryCount()
+	{
+		return deliveryCount;
+	}
+	public void setdeliveryCount(int deliveryCount)
+	{
+		this.deliveryCount = deliveryCount;
+	}
 	
 	public OrderRequestDTO()
 	{
@@ -83,7 +92,7 @@ public class OrderRequestDTO
 	}
 	
 	public OrderRequestDTO(String requestId, String orderId, String orderStatus, String requestRegDate,
-			String requestUpdateDate, String requestType, String productName)
+			String requestUpdateDate, String requestType, String productName, int deliveryCount)
 	{
 		super();
 		this.requestId = requestId;
@@ -93,6 +102,7 @@ public class OrderRequestDTO
 		this.requestUpdateDate = requestUpdateDate;
 		this.requestType = requestType;
 		this.productName = productName;
+		this.deliveryCount = deliveryCount;
 	}
 	
 	@Override

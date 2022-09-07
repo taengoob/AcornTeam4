@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.OrderRequestType;
 import com.service.OrderRequestService;
 
 /**
@@ -33,13 +34,17 @@ public class UpdateOrderRequestServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
+		String requestType = request.getParameter("requestType");
 		String requestId = request.getParameter("requestId");
 		String status = request.getParameter("status");
 		
 		OrderRequestService service = new OrderRequestService();
 		service.UpdateOrderRequestStatus(requestId, status);
 		
-		response.sendRedirect("PaymentRequestListServlet");
+		if (requestType.equals(OrderRequestType.PAYMENT.toString()))
+			response.sendRedirect("PaymentRequestListServlet");
+		else if (requestType.equals(OrderRequestType.DELIVERY.toString()))
+			response.sendRedirect("DeliveryRequestListServlet");
 	}
 
 	/**

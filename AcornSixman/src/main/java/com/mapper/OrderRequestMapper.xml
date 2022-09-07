@@ -39,7 +39,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,REQUEST_TYPE        AS requestType
 			,PRODUCT_NAME        AS productName
 			,USER_ID			 AS userId
-		FROM ORDER_REQUEST
+			,(SELECT COUNT(*) FROM ORDER_REQUEST WHERE REQUEST_ID = 'DELIVERY' || ORDER_ID AND ORDER_ID = A.ORDER_ID) AS deliveryCount
+		FROM ORDER_REQUEST A
 		WHERE ORDER_STATUS = #{orderStatus}
 		ORDER BY REQUEST_ID
 	</select>
@@ -61,4 +62,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 			ORDER_ID = (SELECT ORDER_ID FROM ORDER_REQUEST WHERE REQUEST_ID = #{requestId})
 	</update>
+	
+	<insert id="insertDeliveryRequest" parameterType="String">
+		INSERT INTO ORDER_REQUEST
+		SELECT 
+			'DELIVERY' || ORDER_ID AS REQUEST_ID
+			,ORDER_ID
+			,'PD' AS ORDER_STATUS
+			,REQUEST_REG_DATE 
+			,FN_GET_KST_DATE() AS REQUEST_UPDATE_DATE
+			,'DELIVERY' AS REQUEST_TYPE
+			,PRODUCT_NAME
+			,USER_ID
+		FROM ORDER_REQUEST
+		WHERE 1=1
+			AND REQUEST_ID = #{requestId}
+	</insert>
+	
 </mapper>

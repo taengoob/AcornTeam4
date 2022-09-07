@@ -1,3 +1,5 @@
+<%@page import="com.dto.OrderRequestDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,10 +15,28 @@
 			crossorigin="anonymous"
 		/>
 
-		<script type="text/javascript"></script>
+		<script type="text/javascript">
+		
+			function onBtnClicked(btn) {
+				const dataset = btn.dataset;
+				const requestType = dataset.requestType
+				const requestId = dataset.requestId;
+				const status = dataset.status;
+				location.href = "UpdateOrderRequestServlet?"
+						+ "requestId=" + requestId
+						+ "&&status=" + status
+						+ "&&requestType=" + requestType;
+			}
+		
+		</script>
 
 		<title>배송시스템</title>
 	</head>
+<%
+	List<OrderRequestDTO> pdList = (List<OrderRequestDTO>)request.getAttribute("orderRequestPDList");
+	List<OrderRequestDTO> bdList = (List<OrderRequestDTO>)request.getAttribute("orderRequestBDList");
+	List<OrderRequestDTO> cdList = (List<OrderRequestDTO>)request.getAttribute("orderRequestCDList");
+%>
 	<body>
 		<!-- 컨텐츠 작성 -->
 		<hr size="0" />
@@ -42,36 +62,33 @@
 							</tr>
 						</thead>
 						<tbody>
+						<%
+						for(int i = 0; i < pdList.size(); i++) {
+							OrderRequestDTO orderRequest = pdList.get(i);
+							String requestId = orderRequest.getRequestId();
+							String orderId = orderRequest.getOrderId();
+							String productName = orderRequest.getProductName();
+							String userId = orderRequest.getUserId();
+							String requestDate = orderRequest.getRequestRegDate();
+							String updateDate = orderRequest.getRequestUpdateDate();
+						%>
 							<tr>
-								<th scope="row">1</th>
-								<td>PMOD22080202170400049</td>
-								<td>OD22080202170400049</td>
-								<td>Taylor 어쿠스틱기타 GS Mini</td>
-								<td>dg38</td>
-								<td>2022-08-02 14:17:04</td>
-								<td>2022-08-02 14:17:04</td>
-								<td><button type="button" class="btn btn-primary">배송시작</button></td>
+								<th scope="row"><%=i + 1%></th>
+								<td><%=requestId%></td>
+								<td><%=orderId%></td>
+								<td><%=productName%></td>
+								<td><%=userId%></td>
+								<td><%=requestDate%></td>
+								<td><%=updateDate%></td>
+								<td>
+									<button type="button" class="btn btn-primary" 
+									data-request-id="<%=requestId%>" data-status="BD" data-request-type="DELIVERY"
+									onclick="onBtnClicked(this)">배송시작</button>
+								</td>
 							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>PMOD22080202170400049</td>
-								<td>OD22080202170400049</td>
-								<td>Taylor 어쿠스틱기타 GS Mini</td>
-								<td>dg38</td>
-								<td>2022-08-02 14:17:04</td>
-								<td>2022-08-02 14:17:04</td>
-								<td><button type="button" class="btn btn-primary">배송시작</button></td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>PMOD22080202170400049</td>
-								<td>OD22080202170400049</td>
-								<td>Taylor 어쿠스틱기타 GS Mini</td>
-								<td>dg38</td>
-								<td>2022-08-02 14:17:04</td>
-								<td>2022-08-02 14:17:04</td>
-								<td><button type="button" class="btn btn-primary">배송시작</button></td>
-							</tr>
+						<%
+						}
+						%>
 						</tbody>
 					</table>
 
@@ -85,46 +102,43 @@
 						<thead>
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col">Reqeust ID</th>
+								<th scope="col">Request ID</th>
 								<th scope="col">Order ID</th>
 								<th scope="col">Product Name</th>
 								<th scope="col">User ID</th>
-								<th scope="col">Rquest Date</th>
+								<th scope="col">Request Date</th>
 								<th scope="col">Update Date</th>
 								<th scope="col">Action</th>
 							</tr>
 						</thead>
 						<tbody>
+						<%
+						for(int i = 0; i < bdList.size(); i++) {
+							OrderRequestDTO orderRequest = bdList.get(i);
+							String requestId = orderRequest.getRequestId();
+							String orderId = orderRequest.getOrderId();
+							String productName = orderRequest.getProductName();
+							String userId = orderRequest.getUserId();
+							String requestDate = orderRequest.getRequestRegDate();
+							String updateDate = orderRequest.getRequestUpdateDate();
+						%>
 							<tr>
-								<th scope="row">1</th>
-								<td>PMOD22080202170400049</td>
-								<td>OD22080202170400049</td>
-								<td>Taylor 어쿠스틱기타 GS Mini</td>
-								<td>dg38</td>
-								<td>2022-08-02 14:17:04</td>
-								<td>2022-08-02 14:17:04</td>
-								<td><button type="button" class="btn btn-primary">배송완료</button></td>
+								<th scope="row"><%=i + 1%></th>
+								<td><%=requestId%></td>
+								<td><%=orderId%></td>
+								<td><%=productName%></td>
+								<td><%=userId%></td>
+								<td><%=requestDate%></td>
+								<td><%=updateDate%></td>
+								<td>
+									<button type="button" class="btn btn-primary" 
+									data-request-id="<%=requestId%>" data-status="CD" data-request-type="DELIVERY"
+									onclick="onBtnClicked(this)">배송완료</button>
+								</td>
 							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>PMOD22080202170400049</td>
-								<td>OD22080202170400049</td>
-								<td>Taylor 어쿠스틱기타 GS Mini</td>
-								<td>dg38</td>
-								<td>2022-08-02 14:17:04</td>
-								<td>2022-08-02 14:17:04</td>
-								<td><button type="button" class="btn btn-primary">배송완료</button></td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>PMOD22080202170400049</td>
-								<td>OD22080202170400049</td>
-								<td>Taylor 어쿠스틱기타 GS Mini</td>
-								<td>dg38</td>
-								<td>2022-08-02 14:17:04</td>
-								<td>2022-08-02 14:17:04</td>
-								<td><button type="button" class="btn btn-primary">배송완료</button></td>
-							</tr>
+						<%
+						}
+						%>
 						</tbody>
 					</table>
 
@@ -138,42 +152,37 @@
 						<thead>
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col">Reqeust ID</th>
+								<th scope="col">Request ID</th>
 								<th scope="col">Order ID</th>
 								<th scope="col">Product Name</th>
 								<th scope="col">User ID</th>
-								<th scope="col">Rquest Date</th>
+								<th scope="col">Request Date</th>
 								<th scope="col">Update Date</th>
 							</tr>
 						</thead>
 						<tbody>
+						<%
+						for(int i = 0; i < cdList.size(); i++) {
+							OrderRequestDTO orderRequest = cdList.get(i);
+							String requestId = orderRequest.getRequestId();
+							String orderId = orderRequest.getOrderId();
+							String productName = orderRequest.getProductName();
+							String userId = orderRequest.getUserId();
+							String requestDate = orderRequest.getRequestRegDate();
+							String updateDate = orderRequest.getRequestUpdateDate();
+						%>
 							<tr>
-								<th scope="row">1</th>
-								<td>PMOD22080202170400049</td>
-								<td>OD22080202170400049</td>
-								<td>Taylor 어쿠스틱기타 GS Mini</td>
-								<td>dg38</td>
-								<td>2022-08-02 14:17:04</td>
-								<td>2022-08-02 14:17:04</td>
+								<th scope="row"><%=i + 1%></th>
+								<td><%=requestId%></td>
+								<td><%=orderId%></td>
+								<td><%=productName%></td>
+								<td><%=userId%></td>
+								<td><%=requestDate%></td>
+								<td><%=updateDate%></td>
 							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>PMOD22080202170400049</td>
-								<td>OD22080202170400049</td>
-								<td>Taylor 어쿠스틱기타 GS Mini</td>
-								<td>dg38</td>
-								<td>2022-08-02 14:17:04</td>
-								<td>2022-08-02 14:17:04</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>PMOD22080202170400049</td>
-								<td>OD22080202170400049</td>
-								<td>Taylor 어쿠스틱기타 GS Mini</td>
-								<td>dg38</td>
-								<td>2022-08-02 14:17:04</td>
-								<td>2022-08-02 14:17:04</td>
-							</tr>
+						<%
+						}
+						%>
 						</tbody>
 					</table>
 				</div>

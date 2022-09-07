@@ -78,4 +78,52 @@ public class OrderRequestService
 		}
 		return result;
 	}
+
+	public int UpdateOrderStatus(String requestId, String status)
+	{
+		int result = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("requestId", requestId);
+			map.put("status", status);
+			
+			result = dao.UpdateOrderStatus(session, map);
+			session.commit();
+		}
+		catch (Exception e)
+		{
+			session.rollback();
+			result = 0;
+			e.printStackTrace();
+		}
+		finally
+		{
+			session.close();
+		}
+		return result;
+	}
+	
+	public int InsertDeliveryRequest(String requestId)
+	{
+		int result = 0;
+		SqlSession session = MySqlSessionFactory.getSession();
+		try
+		{
+			result = dao.InsertDeliveryRequest(session, requestId);
+			session.commit();
+		}
+		catch (Exception e)
+		{
+			session.rollback();
+			result = 0;
+			e.printStackTrace();
+		}
+		finally
+		{
+			session.close();
+		}
+		return result;
+	}
 }
