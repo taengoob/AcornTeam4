@@ -50,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ORDER_REQUEST
 		SET
 			ORDER_STATUS = #{status}
+			REQUEST_UPDATE_DATE = FN_GET_KST_DATE()
 		WHERE
 			REQUEST_ID = #{requestId}
 	</update>
@@ -59,6 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ORDER_DETAIL
 		SET
 			ORDER_STATUS = #{status}
+			ORDER_UPDATE_DATE = FN_GET_KST_DATE()
 		WHERE
 			ORDER_ID = (SELECT ORDER_ID FROM ORDER_REQUEST WHERE REQUEST_ID = #{requestId})
 	</update>
