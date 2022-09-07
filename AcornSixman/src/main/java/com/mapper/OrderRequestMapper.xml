@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,(SELECT COUNT(*) FROM ORDER_REQUEST WHERE REQUEST_ID = 'DELIVERY' || ORDER_ID AND ORDER_ID = A.ORDER_ID) AS deliveryCount
 		FROM ORDER_REQUEST A
 		WHERE ORDER_STATUS = #{orderStatus}
-		ORDER BY REQUEST_ID
+		ORDER BY REQUEST_REG_DATE
 	</select>
 	
 	<update id="UpdateOrderRequestStatus" parameterType="java.util.HashMap">
@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ORDER_REQUEST
 		SET
 			ORDER_STATUS = #{status}
-			REQUEST_UPDATE_DATE = FN_GET_KST_DATE()
+			,REQUEST_UPDATE_DATE = FN_GET_KST_DATE()
 		WHERE
 			REQUEST_ID = #{requestId}
 	</update>
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ORDER_DETAIL
 		SET
 			ORDER_STATUS = #{status}
-			ORDER_UPDATE_DATE = FN_GET_KST_DATE()
+			,ORDER_UPDATE_DATE = FN_GET_KST_DATE()
 		WHERE
 			ORDER_ID = (SELECT ORDER_ID FROM ORDER_REQUEST WHERE REQUEST_ID = #{requestId})
 	</update>

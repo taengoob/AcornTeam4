@@ -68,7 +68,7 @@
 						</thead>
 						<tbody>
 						<%
-						for(int i = 0; i < wpList.size(); i++) {
+						for (int i = 0; i < wpList.size(); i++) {
 							OrderRequestDTO orderRequest = wpList.get(i);
 							String requestId = orderRequest.getRequestId();
 							String orderId = orderRequest.getOrderId();
@@ -119,7 +119,7 @@
 						<tbody>
 						<%
 						for(int i = 0; i < cpList.size(); i++) {
-							OrderRequestDTO orderRequest = wpList.get(i);
+							OrderRequestDTO orderRequest = cpList.get(i);
 							String requestId = orderRequest.getRequestId();
 							String orderId = orderRequest.getOrderId();
 							String productName = orderRequest.getProductName();
