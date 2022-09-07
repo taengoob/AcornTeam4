@@ -13,6 +13,44 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<style type="text/css">
+
+    .mydiv{
+    height: 78px;
+    overflow: auto;
+  }
+    .mydiv::-webkit-scrollbar {
+    width: 10px;
+  }
+  .mydiv::-webkit-scrollbar-thumb {
+    background-color:grey; 
+    border-radius: 10px;
+  }
+  .mydiv::-webkit-scrollbar-track {
+    background-color: #CCCCCC;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }   
+  
+    .productName{
+    height: 78px;
+    overflow: auto;
+  }
+    .productName::-webkit-scrollbar {
+    width: 10px;
+  }
+  .productName::-webkit-scrollbar-thumb {
+    background-color:grey; 
+    border-radius: 10px;
+  }
+  .productName::-webkit-scrollbar-track {
+    background-color: #CCCCCC;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }   
+  
+  
+</style>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function chk(n) {
@@ -40,8 +78,8 @@
 	 String search = (String)request.getAttribute("search");
 	%> 
 	
-	
 
+<div class="container">
 <h1>상품리스트</h1>
 <hr>
 		<tr>
@@ -70,6 +108,7 @@
 			</td>
 		</tr>
 			<form id="delForm">
+			
 <table border="1" class="table table-striped">
 <tr>
 	</tr>
@@ -116,9 +155,10 @@
 	    <td colspan="2"><input type="checkbox" name="delCheck"  class="delCheck" value="<%= dto.getProductId()%>"></td>
 	
 		<td colspan="2">
+		<div class="productName"> 
 		<%=productName%><br>
 		<a href="ProductRetrieveServlet?productName=<%=productName%>" style="color: red;">  [상품 편집] </a>
-		
+		</div>
 		</td>
 		<td colspan="4">
 			<img src="<%=previewUrl %>" width="78px" height="78px">
@@ -133,7 +173,7 @@
 			<%=ProductStock%>
 		</td>
 		<td colspan="2">
-			<%=ProductContent%>
+	   		<div class="mydiv"><%=ProductContent%> </div>  
 		</td>
 		<td colspan="2">
 			<%=ProductCategory%>
@@ -169,5 +209,6 @@
 </table>
 
 			<button id="deleteAllProduct" onclick="delAll()">선택 항목 삭제</button>
+			</div>
 </body>
 </html>
