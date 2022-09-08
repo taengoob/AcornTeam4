@@ -48,8 +48,22 @@
     border-radius: 10px;
     box-shadow: inset 0px 0px 5px white;
   }   
-  
-  
+  .container1 {
+  width: 75%;
+  margin: 0 auto;
+}
+.a {
+    width: 5%;
+  }
+.b {
+    width: 15%;
+  }
+.c {
+    width: 10%;
+  }
+.d {
+    width: 10%;
+  }
 </style>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -79,16 +93,34 @@
 	%> 
 	
 
-<div class="container">
+ <div class="container1"> 
 <h1>상품리스트</h1>
 <hr>
+
+
+
+ <div class="row">
+    <div class="col align-self-start">
+      One of three columns
+    </div>
+    <div class="col align-self-center">
+      One of three columns
+    </div>
+    <div class="col align-self-end">
+      One of three columns
+    </div>
+  </div>
+  
+  
+  
+  
 		<tr>
-			<td colspan="5">
+			<td >
 				<form action="ProductListServlet1">
+				카테고리
 					<select name="searchName" id="searchName" 
 					onchange="this.form.submit()"
 					>
-						<option >카테고리별 검색</option>
 						<option value="all" id="all" ${searchName == 'all' ? 'selected="selected"' : '' }>전체보기</option>
 						<option value="Acoustic" id="Acoustic" ${searchName == 'Acoustic' ? 'selected="selected"' : '' }>Acoustic</option>
 						<option value="Bass" id="Bass" ${searchName == 'Bass' ? 'selected="selected"' : '' }>Bass</option>
@@ -100,7 +132,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="5">
+			<td >
 				<form action="ProductSearchServlet">
 					상품명 <input type="text" name="search"> 
 					<input type="submit" value="검색">
@@ -109,20 +141,20 @@
 		</tr>
 			<form id="delForm">
 			
-<table border="1" class="table table-striped">
+<table  class="table table-striped">
 <tr>
 	</tr>
  	<tr>
  
-	  <th colspan="2"><input type="checkbox" name="delCheckAll" id="delCheckAll" onclick="chk(this)">전체선택 </th>
-  	  <th colspan="2">상품명</th>
-  	  <th colspan="4">상품이미지</th>
-  	  <th colspan="2">상품금액</th>
-  	  <th colspan="2">배송료</th>
-  	  <th colspan="2">재고</th>
-  	  <th colspan="2">상세설명</th>
-  	  <th colspan="2">분류</th>
-  	  <th colspan="2">삭제</th>
+	  <th class="a"><input type="checkbox" name="delCheckAll" id="delCheckAll" onclick="chk(this)"> </th>
+  	  <th class="b" >상품명</th>
+  	  <th class="c" >상품이미지</th>
+  	  <th class="d" >상품금액</th>
+  	  <th class="e" >배송료</th>
+  	  <th class="f" >재고</th>
+  	  <th class="g" >상세설명</th>
+  	  <th class="h">분류</th>
+  	  <th class="i" >삭제</th>
   	  
  	</tr>
  	<%
@@ -140,46 +172,74 @@
 
 	  
 	 %> 
-	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		var x = $("#<%=ProductStock%>");
+		
+		
+		var x = $("#<%=ProductId%>");
+		console.log(x);
 		if (x.text()<=5) {
 			x.css("color","red");
 			x.wrap("<span></span>").css("border","3px dotted red");
+		
 		}
+		
+		
 	})
-	</script>
+	</script> 
 
 	<tr class="basketlist">
-	    <td colspan="2"><input type="checkbox" name="delCheck"  class="delCheck" value="<%= dto.getProductId()%>"></td>
+	    <td class="a" ><input type="checkbox" name="delCheck"  class="delCheck" value="<%= dto.getProductId()%>"></td>
 	
-		<td colspan="2">
+		<td   class="b">
 		<div class="productName"> 
 		<%=productName%><br>
 		<a href="ProductRetrieveServlet?productName=<%=productName%>" style="color: red;">  [상품 편집] </a>
 		</div>
 		</td>
-		<td colspan="4">
+		<td class="c" >
 			<img src="<%=previewUrl %>" width="78px" height="78px">
 		</td>
-		<td colspan="2">
+		<td  class="d">
 			<%=ProductPrice%>
 		</td>	
-		<td colspan="2">
+		<td class="e" >
 			<%=ProductDeliveryPrice%>
 		</td>
-		<td colspan="2" id="<%=ProductStock%>">
+		
+		
+		 
+		
+		<%--  <td class="f" id="<%=ProductId%>">
 			<%=ProductStock%>
+		</td>  --%>
+		
+		
+		<!-- ////////////////// -->
+		<td class="f" id="<%=ProductId%>">
+		 
+		<button type="button" class="btn btn-primary position-relative">
+ 			  <%=ProductStock%>
+  		<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+   			 재고부족
+   		 <span class="visually-hidden">unread messages</span>
+  		</span>
+		</button>
 		</td>
-		<td colspan="2">
+		<!-- ///////////////// -->
+		
+		
+		
+		
+		<td class="g"  class="jb-th-1">
 	   		<div class="mydiv"><%=ProductContent%> </div>  
 		</td>
-		<td colspan="2">
+		<td class="h" >
 			<%=ProductCategory%>
 		</td>
 		
-		  	        <td><button onclick="  if(confirm('삭제 하시겠습니까?')){
+		  	        <td class="i"><button onclick="  if(confirm('삭제 하시겠습니까?')){
 						location.href='seller/deleteProduct.jsp?ProductId=<%= dto.getProductId()%>'}
 						" >삭제</button></td> 
 		
@@ -197,12 +257,13 @@
 		        for(int i=1; i<= totalPage; i++){
 		        	
 		          	if(i== curPage){
-		          		out.print(i+"&nbsp;");
-		          	}else{
-		          		out.print("<a href='ProductListServlet1?curPage="+i+"&searchName="+searchName+"'>"+i+"</a>&nbsp;");
-		          	}
-		        }//end for
-		   %> 
+		          		%>
+		          		<a href="ProductListServlet1?curPage=<%=i %>&searchName=<%=searchName %>"><%=i %></a>
+		          	<% }else{%>
+		          		<a href="ProductListServlet1?curPage=<%=i %>&searchName=<%=searchName %>"><%=i %></a> 
+		          	<% }%>
+		      <%  }//end for
+		  			 %> 
 		
 		  </td>
 		</tr>
