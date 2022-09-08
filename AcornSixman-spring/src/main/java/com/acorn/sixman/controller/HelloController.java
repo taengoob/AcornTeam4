@@ -18,7 +18,8 @@ public class HelloController {
     commonService service;
 
     @RequestMapping("/")
-    public String SayHello(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
+    public String SayHello(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model)
+    {
         List<String> list = service.testDBConnection();
         System.out.println(list);
         list.add(name);
