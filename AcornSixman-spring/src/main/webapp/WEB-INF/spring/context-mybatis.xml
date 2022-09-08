@@ -17,11 +17,11 @@
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 
 		<!-- 로컬 테스트용 경로 -->
-		<!-- <property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/TaengOOv/Desktop/WorkPlace/Acorn/Projects/Sixman/source/Wallet_AcornDB" name="url" /> -->
 		<property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/acorn/Desktop/taengoov/study/repos/Wallet_AcornDB" name="url" />
+		<!-- <property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/TaengOOv/Desktop/WorkPlace/Acorn/Projects/Sixman/source/Wallet_AcornDB" name="url" /> -->
 
 		<!-- 오라클 클라우드 웹서버용 경로 -->
-<!-- 		<property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=/opt/Wallet_AcornDB" name="url" /> -->
+		<!-- <property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=/opt/Wallet_AcornDB" name="url" /> -->
 
 		<property value="oracle.jdbc.driver.OracleDriver" name="driverClassName" />
 		<property value="sixman" name="username" />
