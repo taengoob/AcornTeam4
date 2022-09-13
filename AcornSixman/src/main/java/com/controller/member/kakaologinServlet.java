@@ -54,14 +54,14 @@ public class kakaologinServlet extends HttpServlet {
 		if (dto != null) {
 			session.setAttribute("login", dto);
 			response.sendRedirect("Mainservlet");
-			System.out.println("카카오 로그인");
+			System.out.println("sns 로그인");
 			
 		} else {
 			session.setAttribute("nameforkakao",accountName);
 			session.setAttribute("emailforkakao",accountEmailId);
 			session.setAttribute("domainforkakao",accountEmailDomain);
 			response.sendRedirect("kakaologin.jsp");
-			System.out.println("카카오 회원가입");
+			System.out.println("sns 회원가입");
 		}
 
 	}

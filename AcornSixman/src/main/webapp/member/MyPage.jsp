@@ -1,6 +1,14 @@
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+	<%
+	Map<String,Integer> status = (Map<String,Integer>) request.getAttribute("status");
+	int wp = status.get("wp");
+	int cp = status.get("cp");
+	int pd = status.get("pd");
+	int bd = status.get("bd");
+	int cd = status.get("cd");
+	%>
 	<section class="high-section">
 		<div class="order-strong-span-mom">
 		<a href="memberUpdate.jsp" class="update">*회원정보수정 페이지로 이동*</a><br>
@@ -10,31 +18,31 @@
 		<div class="order-item-container">
 			<div class="order-item1-container">
 				<div class="order-item1">
-					<p class="order-item1-span">0</p>
+					<p class="order-item1-span"><%=wp%></p>
 				</div>
 				<p class="order-item1-write">입금대기중</p>
 			</div>
 			<div class="order-item2-container">
 				<div class="order-item2">
-					<p class="order-item2-span">0</p>
+					<p class="order-item2-span"><%=cp%></p>
 				</div>
 				<p class="order-item2-write">결제완료</p>
 			</div>
 			<div class="order-item3-container">
 				<div class="order-item3">
-					<p class="order-item3-span">0</p>
+					<p class="order-item3-span"><%=pd%></p>
 				</div>
 				<p class="order-item3-write">배송준비중</p>
 			</div>
 			<div class="order-item4-container">
 				<div class="order-item4">
-					<p class="order-item4-span">0</p>
+					<p class="order-item4-span"><%=bd%></p>
 				</div>
 				<p class="order-item4-write">배송중</p>
 			</div>
 			<div class="order-item5-container">
 				<div class="order-item5">
-					<p class="order-item5-span">0</p>
+					<p class="order-item5-span"><%=cd%></p>
 				</div>
 				<p class="order-item5-write">배송완료</p>
 			</div>

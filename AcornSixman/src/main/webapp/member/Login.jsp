@@ -71,11 +71,11 @@ a {
 				class="ll">|</a> <a href="FirstFindPW.jsp" class="password"
 				id="find-pw">비밀번호 찾기</a>
 		</div>
-		<a href="javascript:loginWithKakao();" class="kakao">카카오로 1초만에
-			로그인하기<img src="member/img/kka.png" alt="카카오" class="kakao-img">
-		</a> <a href="#" class="naver">네이버로 1초만에 로그인하기<img
+		<div class="kakao"><a href="javascript:loginWithKakao();">
+		<img src="member/img/kakao.png" style="height: 50px; width: 250px;" ></a></div>
+		 <div class="naver" id="naver_id_login"><img
 			src="member/img/nav.png" alt="네이버" class="naver-img">
-		</a>
+		</div>
 	</form>
 	<%
 	String mesg2 = (String) session.getAttribute("nologin");
@@ -94,8 +94,7 @@ a {
     console.log(Kakao.isInitialized());
 	  function loginWithKakao() {
 		    Kakao.Auth.login({
-		      success: function(authObj) {
-		    	  
+		      success: function(authObj) {	    	  
 		    	  Kakao.API.request({
 		    		url:'/v2/user/me',
 		    		success: function (res) {
@@ -188,6 +187,17 @@ document.addEventListener('DOMContentLoaded',()=>{
 	
 })
 </script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
 
+	var naver_id_login = new naver_id_login("Cd7pBzZFkenqQfTi0_AL", "http://localhost:8088/AcornSixman/member/navercollback.jsp");
+	var state = naver_id_login.getUniqState();
+	naver_id_login.setButton("green",4,55);
+	naver_id_login.setDomain("http://localhost:8088/AcornSixman/Login.jsp");
+	naver_id_login.setState(state);
+	naver_id_login.setPopup();
+	naver_id_login.init_naver_id_login();
+</script>
 </body>
 </html>

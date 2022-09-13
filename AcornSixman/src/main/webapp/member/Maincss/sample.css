@@ -85,18 +85,10 @@ ul li {
 
 .kakao {
 	margin-top: 3%;
+	width : 17%;
 	background-color: #fee500;
 	color: #000;
 	font-weight: bold;
-	position: relative;
-}
-
-.facebook {
-	width: 17%;
-	background-color: #385599;
-	color: #fff;
-	font-weight: bold;
-	margin-top: 10px;
 	position: relative;
 }
 
@@ -107,6 +99,7 @@ ul li {
 	font-weight: bold;
 	margin-top: 10px;
 	position: relative;
+	text-align: center;
 }
 
 .kakao-img {
