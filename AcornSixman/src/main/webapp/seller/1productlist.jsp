@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+
 <style type="text/css">
 /* 상세설명 */
     .mydiv{
@@ -50,7 +50,7 @@
   }   
   /* 본문 */
   .container1 {
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -85,8 +85,8 @@ tr,th,td {
 .h {
     width: 10%;
   }
-.i {
-    width: 5%;
+#i {
+    width: 5.5%;
   }
   .aa img {
   transition: all 0.2s linear;
@@ -113,7 +113,7 @@ tr,th,td {
 </script>
 </head>
 <body>
-<link rel="stylesheet" href="css/bootstrap.min.css">
+
 	 <%
 	 
 	 ProductPageDTO pDTO = (ProductPageDTO) request.getAttribute("pDTO");
@@ -184,22 +184,7 @@ tr,th,td {
 
 	  
 	 %> 
-	 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-		
-		
-		var x = $("#<%=ProductId%>");
-		console.log(x);
-		if (x.text()<=5) {
-			x.css("color","red");
-			x.wrap("<span></span>").css("border","3px dotted red");
-		
-		}
-		
-		
-	})
-	</script> 
+	
 
 	<tr class="basketlist">
 	    <td class="a" ><input type="checkbox" name="delCheck"  class="delCheck" value="<%= dto.getProductId()%>"></td>
@@ -223,22 +208,22 @@ tr,th,td {
 		
 		 
 		
-		<%--  <td class="f" id="<%=ProductId%>">
+	<%--  <td class="f" id="<%=ProductId%>">
 			<%=ProductStock%>
 		</td>  --%>
 		
 		
 		<!-- ////////////////// -->
-		<td class="f" id="<%=ProductId%>">
+		  <td class="f" id="<%=ProductId%>">
 		 
-		<button type="button" class="btn btn-primary position-relative">
+		<button type="button" id="button_<%=ProductId%>" value="<%=ProductStock%>">
  			  <%=ProductStock%>
-  		<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-   			 재고부족
+  		<span  id="span_<%=ProductId%>">
+   			 
    		 <span class="visually-hidden">unread messages</span>
   		</span>
 		</button>
-		</td>
+		</td>  
 		<!-- ///////////////// -->
 		
 		
@@ -251,11 +236,33 @@ tr,th,td {
 			<%=ProductCategory%>
 		</td>
 		
-		  	        <td class="i"><button onclick="  if(confirm('삭제 하시겠습니까?')){
-						location.href='seller/deleteProduct.jsp?ProductId=<%= dto.getProductId()%>'}
-						" >삭제</button></td> 
+		  	        <td id="i" ><button onclick=" if(confirm('삭제 하시겠습니까?')){
+						location.href='seller/deleteProduct.jsp?ProductId=<%= dto.getProductId()%>'}"  class="btn btn-outline-danger">삭제</button></td> 
 		
 	</tr>
+	 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		
+		
+		var x = $("#button_<%=ProductId%>");
+		var y = $("#span_<%=ProductId%>");
+	
+		console.log("y.text",y.text());
+		console.log("x.text",x.val());
+		if (x.val()<=5) {
+			x.addClass('btn btn-primary position-relative');
+			y.addClass('position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger');
+			y.text("재고부족");
+		}else{
+			x.attr('disabled',true);
+			x.css('border',0);
+			x.css('color', 'black');
+		}
+		
+		
+	})
+	</script> 
 	</form>
   <%} %>
   </table>

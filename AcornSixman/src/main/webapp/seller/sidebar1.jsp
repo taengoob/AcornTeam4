@@ -103,14 +103,17 @@ li:first-child {
 text-align: center;
 height: 6.5em;
 }
+.aa{
+color: white;
+}
 </style>
 </head>
  <body>
       <ul>
          <li><a href="Mainservlet"><img src="member/img/LOGO2.png" height="100px" width="85px"></a></li>
-         <li><a href="#" onclick="return false"><%=username%>님 로그인 중입니다.</a></li>
-          <li><a href="ProductUploadFormServlet">제품 등록</a></li>  
-         <li><a href="ProductAddServlet">제품 등록</a></li>
+         <li><a class="aa" ><%=username%>님 로그인 중입니다.</a></li>
+          <li><a href="ProductUploadFormServlet#top">제품 등록</a></li>  
+         <!-- <li><a href="ProductAddServlet">제품 등록</a></li> -->
          <li><a href="ProductListServlet1#top">상품 목록</a></li>
          <li><a href="ProcessListServlet">주문처리현황</a></li>
       </ul>

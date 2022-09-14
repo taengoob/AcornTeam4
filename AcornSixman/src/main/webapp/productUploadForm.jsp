@@ -10,11 +10,12 @@
 <body>
 	<div class="menu-item">
 		<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
-		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
-	</div>
+		<%-- <jsp:include page="common/top.jsp" flush="true"></jsp:include> --%>
+	<!-- </div>
 	<div class="wide"></div>
-	<hr>
-	<jsp:include page="sellertemp/productUploadForm.jsp" flush="true"></jsp:include><br>
+	<hr> -->
+	<jsp:include page="sellertemp/productUploadForm2.jsp" flush="true"></jsp:include><br>
+	<jsp:include page="seller/sidebar1.jsp" flush="true"></jsp:include><br>  
 	<hr>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	<hr>
