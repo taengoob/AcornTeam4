@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <style type="text/css">
-
+/* 상세설명 */
     .mydiv{
     height: 78px;
     overflow: auto;
@@ -31,7 +31,7 @@
     border-radius: 10px;
     box-shadow: inset 0px 0px 5px white;
   }   
-  
+  /* 상품명 */
     .productName{
     height: 78px;
     overflow: auto;
@@ -48,12 +48,20 @@
     border-radius: 10px;
     box-shadow: inset 0px 0px 5px white;
   }   
+  /* 본문 */
   .container1 {
-  width: 75%;
+  width: 60%;
   margin: 0 auto;
 }
+
+tr,th,td {
+  text-align: center;
+  /* border : 1px solid black; */
+}
+
+
 .a {
-    width: 5%;
+    width: 1%;
   }
 .b {
     width: 15%;
@@ -63,7 +71,29 @@
   }
 .d {
     width: 10%;
+    
   }
+.e {
+    width: 10%;
+  }
+.f {
+    width: 10%;
+  }
+.g {
+    width: 15%;
+  }
+.h {
+    width: 10%;
+  }
+.i {
+    width: 5%;
+  }
+  .aa img {
+  transition: all 0.2s linear;
+}
+.aa:hover img {
+  transform: scale(1.8);
+}
 </style>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -93,27 +123,19 @@
 	%> 
 	
 
- <div class="container1"> 
+ <div class="container1" id="top"> 
 <h1>상품리스트</h1>
 <hr>
 
-
-
- <div class="row">
-    <div class="col align-self-start">
-      One of three columns
-    </div>
-    <div class="col align-self-center">
-      One of three columns
-    </div>
-    <div class="col align-self-end">
-      One of three columns
-    </div>
-  </div>
-  
-  
-  
-  
+		
+		<tr>
+			<td >
+				<form action="ProductSearchServlet">
+					상품명 <input type="text" name="search"> 
+					<input type="submit" value="검색">
+				</form>
+			</td>
+		</tr>
 		<tr>
 			<td >
 				<form action="ProductListServlet1">
@@ -131,19 +153,9 @@
 				</form>
 			</td>
 		</tr>
-		<tr>
-			<td >
-				<form action="ProductSearchServlet">
-					상품명 <input type="text" name="search"> 
-					<input type="submit" value="검색">
-				</form>
-			</td>
-		</tr>
 			<form id="delForm">
 			
-<table  class="table table-striped">
-<tr>
-	</tr>
+<table  class="table table-striped" >
  	<tr>
  
 	  <th class="a"><input type="checkbox" name="delCheckAll" id="delCheckAll" onclick="chk(this)"> </th>
@@ -199,7 +211,7 @@
 		</div>
 		</td>
 		<td class="c" >
-			<img src="<%=previewUrl %>" width="78px" height="78px">
+			<div class="aa"> <img src="<%=previewUrl %>" width="78px" height="78px"></div>
 		</td>
 		<td  class="d">
 			<%=ProductPrice%>
@@ -246,8 +258,9 @@
 	</tr>
 	</form>
   <%} %>
+  </table>
   <tr>
-		 <td colspan="5"> 
+		 <td> 
 		   <%
 		        int curPage = pDTO.getCurPage();
 		        int perPage = pDTO.getPerPage();
@@ -267,7 +280,6 @@
 		
 		  </td>
 		</tr>
-</table>
 
 			<button id="deleteAllProduct" onclick="delAll()">선택 항목 삭제</button>
 			</div>

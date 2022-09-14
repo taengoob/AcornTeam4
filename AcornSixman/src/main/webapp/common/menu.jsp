@@ -35,7 +35,7 @@ if (dto != null) {
 		width="30px" height="30px"></span>
 	<div class="menu-write-container">
 		<span class="top-login-write" style="margin-right: 1.7%"><%=username%>님 환영합니다.</span> <span
-			class="top-login-write" OnClick="location.href='logoutServlet'" style="margin-right: 1.3%" >로그아웃</span>
+			class="top-login-write" OnClick="location.href='logoutServlet'" style="margin-right: 1.3%">로그아웃</span>
 		<span class="top-login-write" OnClick="location.href='MyPageServlet'" style="margin-right: 1%">마이페이지</span>
 		<span class="top-login-write" OnClick="location.href='CartListServlet'" style="margin-right: 1.7%">장바구니</span>
 	</div>
@@ -47,9 +47,10 @@ if (dto != null) {
 		width="30px" height="30px"></span>
 	<div class="menu-write-container">
 		<span class="top-login-write" style="margin-right: 1.7%"><%=username%>님 환영합니다.</span> <span
-			class="top-login-write" OnClick="location.href='logoutServlet'" style="margin-right: 1.3%"  data-bs-toggle="modal" data-bs-target="#exampleModal">로그아웃</span>
+			class="top-login-write" OnClick="location.href='logoutServlet'" style="margin-right: 1.3%">로그아웃</span>
 		<span class="top-login-write" OnClick="location.href='MyPageServlet'" style="margin-right: 1%">마이페이지</span>
-		<span class="top-login-write" OnClick="location.href='UploadedListServlet'" style="margin-right: 1.7%">판매자메뉴</span>
+		<!-- <span class="top-login-write" OnClick="location.href='UploadedListServlet'" style="margin-right: 1.7%">판매자메뉴</span> -->
+		<span class="top-login-write" OnClick="location.href='ProductListServlet1#top'" style="margin-right: 1.7%">판매자메뉴</span>
 	</div>
 	<%
 	}

@@ -1,3 +1,4 @@
+<%@page import="com.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%
+MemberDTO dto = (MemberDTO) session.getAttribute("login");
+String username = dto.getAccountName();
+%>
  <link rel="stylesheet" href="style.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"> 
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -29,8 +34,10 @@ ul{
   position: fixed;
   top: 0;
   left: 0;
-  margin-left: -240px;
-  width: 240px;
+  /* 얼마나 나오고 얼마나 들어가는지 */
+  margin-left: -300px;
+  width: 300px;
+  /* 같이 움직여야함 */
   background: #1e1e1e;
   height: 100vh;
   overflow-y: auto;
@@ -53,6 +60,7 @@ ul li a{
   border-top: 1px solid rgba(255,255,255,.1);
   border-bottom: 1px solid black;
   border-left: 5px solid transparent;
+ /*  text-align: center; */
 }
 li a.contact{
   border-bottom: 1px solid rgba(0,0,0,.5);
@@ -67,7 +75,7 @@ section{
   transition: all .3s;
 }
 i{
-  position: absolute;
+   position: fixed;
   top :0px;
   left : 0px;
   margin: 20px 25px;
@@ -90,16 +98,22 @@ p{
 .slide_image{
   margin-left: 260px;
 }
+
+li:first-child {
+text-align: center;
+height: 6.5em;
+}
 </style>
 </head>
  <body>
       <ul>
-         <li><a href="ProductUploadFormServlet">제품 등록</a></li>
-         <li><a href="ProductAddServlet">제품 등록(수정중)</a></li>
-         <li><a href="ProductListServlet1">상품 목록</a></li>
+         <li><a href="Mainservlet"><img src="member/img/LOGO2.png" height="100px" width="85px"></a></li>
+         <li><a href="#" onclick="return false"><%=username%>님 로그인 중입니다.</a></li>
+          <li><a href="ProductUploadFormServlet">제품 등록</a></li>  
+         <li><a href="ProductAddServlet">제품 등록</a></li>
+         <li><a href="ProductListServlet1#top">상품 목록</a></li>
          <li><a href="ProcessListServlet">주문처리현황</a></li>
       </ul>
-       
          <i class="fas fa-bars"></i>
        
     <script>

@@ -16,6 +16,7 @@
 	<%--  <hr>
 	<jsp:include page="sellertemp/uploadedList.jsp" flush="true"></jsp:include><br>
 	<hr>  --%>
+	 <jsp:include page="seller/1productlist.jsp" flush="true"></jsp:include><br>
 	 <jsp:include page="seller/sidebar1.jsp" flush="true"></jsp:include><br>  
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	
