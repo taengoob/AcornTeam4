@@ -51,7 +51,7 @@
 	height: 30px;
 	display: flex;
 	align-items: center;
-	font-family: 'Lobster', cursive;
+	/* font-family: 'Lobster', cursive; */
 	font-size: 30px;
 	padding: 0 2rem;
 	font-weight: 600;
@@ -391,7 +391,7 @@
 	<script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
 	<script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
 	<script type="text/javascript">
-new TypeIt('#type', {
+	new TypeIt('#type', {
 	  speed: 200,
 	  afterStep: (instance) => {
 		    instance.getElement().style.color = randomColor();
@@ -412,6 +412,7 @@ new TypeIt('#type', {
 	  for (var i = 0; i < 6; i++) {
 	    color += letters[Math.floor(Math.random() * 16)];
 	  }
+	  console.log(color)
 	  return color;
 	}
 </script>

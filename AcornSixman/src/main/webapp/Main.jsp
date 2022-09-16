@@ -35,18 +35,26 @@ if (mesg != null) {
 session.removeAttribute("memberupdate");
 }
 %>
-<%
-if (logout != null){
-%>
-<script type="text/javascript">
-		alert("로그아웃 완료. 다음에 또 만나요 ~^^");
-</script>
-<%
-session.removeAttribute("logout");
-}
-%>
+
 </head>
+
 <body>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        로그아웃 완료. 다음에 또 만나요^^;;
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="location.href='logoutServlet'">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<div class="menu-item">
 		<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
 		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
@@ -63,7 +71,9 @@ session.removeAttribute("logout");
 	<jsp:include page="common/fieximage2.jsp"></jsp:include> 
 	<jsp:include page="coupon/bannertest.html"></jsp:include>
 	<jsp:include page="common/bot.jsp"></jsp:include>
+	
 	<hr>
+	
 	<jsp:include page="common/mesg.jsp"></jsp:include>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -83,5 +93,7 @@ session.removeAttribute("logout");
 		
 	})
 	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	 crossorigin="anonymous"></script>
 </body>
 </html>
