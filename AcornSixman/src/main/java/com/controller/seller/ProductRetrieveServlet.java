@@ -3,6 +3,7 @@ package com.controller.seller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,16 +30,11 @@ public class ProductRetrieveServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String productName= request.getParameter("productName");
+		String ProductId= request.getParameter("ProductId");
 		request.setCharacterEncoding("UTF-8");	
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out =response.getWriter();
-		out.println("<html><body>");
-		out.println("<h2>상품수정페이지</h2>");
-		out.println(productName+"연결됨");
-		out.println("</body></html>");
-
-		System.out.println(productName);
+		RequestDispatcher dis = request.getRequestDispatcher("seller/RetrieveProductInclude.jsp");
+		dis.forward(request, response);
 	}
 
 	/**

@@ -58,7 +58,8 @@ tr,th,td {
   text-align: center;
   /* border : 1px solid black; */
 }
-
+ /* 페이지 a태그 */
+  
 
 .a {
     width: 1%;
@@ -126,33 +127,35 @@ tr,th,td {
  <div class="container1" id="top"> 
 <h1>상품리스트</h1>
 <hr>
-
-		
-		<tr>
-			<td >
-				<form action="ProductSearchServlet">
-					상품명 <input type="text" name="search"> 
-					<input type="submit" value="검색">
-				</form>
-			</td>
-		</tr>
-		<tr>
-			<td >
-				<form action="ProductListServlet1">
-				카테고리
-					<select name="searchName" id="searchName" 
-					onchange="this.form.submit()"
-					>
-						<option value="all" id="all" ${searchName == 'all' ? 'selected="selected"' : '' }>전체보기</option>
+			<form action="ProductSearchServlet">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con" style="width:10%">제품명</label>
+				<input type="text" class="form-control" id="id" name="search"
+					placeholder="" style="display: inline; width: 20%;">&nbsp;&nbsp;
+					<!-- <input type="submit" value="검색"> -->
+					<button type="submit" class="btn btn-outline-primary">검색</button>
+			</div>
+			</form>
+ 			<br>
+	 <form action="ProductListServlet1">
+	 <div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con" style="width:10%">카테고리</label>
+				<select   class="form-select" style="display: inline; width: 20%;" name="searchName" id="searchName" 
+					onchange="this.form.submit()">
+					 
+					<option value="all" id="all" ${searchName == 'all' ? 'selected="selected"' : '' }>전체보기</option>
 						<option value="Acoustic" id="Acoustic" ${searchName == 'Acoustic' ? 'selected="selected"' : '' }>Acoustic</option>
 						<option value="Bass" id="Bass" ${searchName == 'Bass' ? 'selected="selected"' : '' }>Bass</option>
 						<option value="Classic" id="Classic" ${searchName == 'Classic' ? 'selected="selected"' : '' }>Classic</option>
 						<option value="Elec" id="Elec" ${searchName == 'Elec' ? 'selected="selected"' : '' }>Elec</option>
 						<option value="Ukulele" id="Ukulele" ${searchName == 'Ukulele' ? 'selected="selected"' : '' }>Ukulele</option>
-					</select> 
-				</form>
-			</td>
-		</tr>
+					 
+				</select>
+			</div>
+	</form>
+		<hr>
+		 
+		 
 			<form id="delForm">
 			
 <table  class="table table-striped" >
@@ -192,7 +195,7 @@ tr,th,td {
 		<td   class="b">
 		<div class="productName"> 
 		<%=productName%><br>
-		<a href="ProductRetrieveServlet?productName=<%=productName%>" style="color: red;">  [상품 편집] </a>
+		<a href="ProductRetrieveServlet?ProductId=<%=ProductId%>" style="color: red;">  [상품 편집] </a>
 		</div>
 		</td>
 		<td class="c" >
@@ -263,9 +266,11 @@ tr,th,td {
 		
 	})
 	</script> 
-	</form>
+	
   <%} %>
   </table>
+  </form>
+  
   <tr>
 		 <td> 
 		   <%
@@ -276,19 +281,23 @@ tr,th,td {
 				if(totalCount%perPage!=0) totalPage++;
 		        for(int i=1; i<= totalPage; i++){
 		        	
-		          	if(i== curPage){
+		        	 if(i== curPage){
 		          		%>
-		          		<a href="ProductListServlet1?curPage=<%=i %>&searchName=<%=searchName %>"><%=i %></a>
+		          		<%-- <a   href="ProductListServlet1?curPage=<%=i %>&searchName=<%=searchName %>"><%=i %></a> --%>
+		          		<button class="btn btn-outline-primary" onclick = "location.href ='ProductListServlet1?curPage=<%=i %>&searchName=<%=searchName %>'"><%=i %></button>
 		          	<% }else{%>
-		          		<a href="ProductListServlet1?curPage=<%=i %>&searchName=<%=searchName %>"><%=i %></a> 
+		          		<%-- <a   href="ProductListServlet1?curPage=<%=i %>&searchName=<%=searchName %>"><%=i %></a>  --%>
+		          		<button class="btn btn-outline-primary" onclick = "location.href ='ProductListServlet1?curPage=<%=i %>&searchName=<%=searchName %>'"><%=i %></button>
 		          	<% }%>
 		      <%  }//end for
-		  			 %> 
+		  			 %>   
+		          
 		
 		  </td>
 		</tr>
-
-			<button id="deleteAllProduct" onclick="delAll()">선택 항목 삭제</button>
+		<br>
+		<br>
+			<button id="deleteAllProduct" onclick="delAll()" class="btn btn-outline-danger">선택 항목 삭제</button>
 			</div>
 </body>
 </html>
