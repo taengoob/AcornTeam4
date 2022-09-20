@@ -111,11 +111,11 @@ color: white;
  <body>
       <ul>
          <li><a href="Mainservlet"><img src="member/img/LOGO2.png" height="100px" width="85px"></a></li>
-         <li><a class="aa" ><%=username%>님 로그인 중입니다.</a></li>
+         <li><a class="aa" ><%=username%>님 로그인 중</a></li>
           <li><a href="ProductUploadFormServlet#top">제품 등록</a></li>  
          <!-- <li><a href="ProductAddServlet">제품 등록</a></li> -->
          <li><a href="ProductListServlet1#top">상품 목록</a></li>
-         <li><a href="ProcessListServlet">주문처리현황</a></li>
+         <!-- <li><a href="ProcessListServlet">주문처리현황</a></li> -->
       </ul>
          <i class="fas fa-bars"></i>
        

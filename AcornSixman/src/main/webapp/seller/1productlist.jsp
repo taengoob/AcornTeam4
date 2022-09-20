@@ -253,7 +253,7 @@ tr,th,td {
 	
 		console.log("y.text",y.text());
 		console.log("x.text",x.val());
-		if (x.val()<=5) {
+		if (x.val()<=3) {
 			x.addClass('btn btn-primary position-relative');
 			y.addClass('position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger');
 			y.text("재고부족");
