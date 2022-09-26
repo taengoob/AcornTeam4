@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acorn.sixman.dao.OrderRequestDAO">
+	<insert id="insertOrderRequest" parameterType="java.util.HashMap">
+		INSERT INTO ORDER_REQUEST
+		(
+			REQUEST_ID
+			,ORDER_ID
+			,ORDER_STATUS
+			,REQUEST_REG_DATE
+			,REQUEST_UPDATE_DATE
+			,REQUEST_TYPE
+			,PRODUCT_NAME
+			,USER_ID
+		)
+		VALUES
+		(
+			#{requestId}
+			,#{orderId}
+			,#{orderStatus}
+			,FN_GET_KST_DATE()
+			,FN_GET_KST_DATE()
+			,#{requestType}
+			,#{productName}
+			,#{userId}
+		)
+	</insert>
+
+    <select id="selectOrderRequestList" parameterType="String" resultType="com.acorn.sixman.dto.OrderRequestDTO">
+		SELECT
+			REQUEST_ID           AS requestId  
+			,ORDER_ID            AS orderId    
+			,ORDER_STATUS        AS orderStatus
+			,TO_CHAR(REQUEST_REG_DATE, 'YYYYMMDD HH:MI:SS')    AS requestRegDate
+			,TO_CHAR(REQUEST_UPDATE_DATE, 'YYYYMMDD HH:MI:SS') AS requestUpdateDate
+			,REQUEST_TYPE        AS requestType
+			,PRODUCT_NAME        AS productName
+			,USER_ID			 AS userId
+			,(SELECT COUNT(*) FROM ORDER_REQUEST WHERE REQUEST_ID = 'DELIVERY' || ORDER_ID AND ORDER_ID = A.ORDER_ID) AS deliveryCount
+		FROM ORDER_REQUEST A
+		WHERE ORDER_STATUS = #{orderStatus}
+		ORDER BY REQUEST_REG_DATE
+	</select>
+
+    <update id="UpdateOrderRequestStatus" parameterType="java.util.HashMap">
+		UPDATE
+			ORDER_REQUEST
+		SET
+			ORDER_STATUS = #{status}
+			,REQUEST_UPDATE_DATE = FN_GET_KST_DATE()
+		WHERE
+			REQUEST_ID = #{requestId}
+	</update>
+	
+	<update id="UpdateOrderStatus" parameterType="java.util.HashMap">
+		UPDATE
+			ORDER_DETAIL
+		SET
+			ORDER_STATUS = #{status}
+			,ORDER_UPDATE_DATE = FN_GET_KST_DATE()
+		WHERE
+			ORDER_ID = (SELECT ORDER_ID FROM ORDER_REQUEST WHERE REQUEST_ID = #{requestId})
+	</update>
+	
+	<insert id="InsertDeliveryRequest" parameterType="String">
+		INSERT INTO ORDER_REQUEST
+		SELECT 
+			'DELIVERY' || ORDER_ID AS REQUEST_ID
+			,ORDER_ID
+			,'PD' AS ORDER_STATUS
+			,REQUEST_REG_DATE 
+			,FN_GET_KST_DATE() AS REQUEST_UPDATE_DATE
+			,'DELIVERY' AS REQUEST_TYPE
+			,PRODUCT_NAME
+			,USER_ID
+		FROM ORDER_REQUEST
+		WHERE 1=1
+			AND REQUEST_ID = #{requestId}
+	</insert>
+	
+</mapper>
