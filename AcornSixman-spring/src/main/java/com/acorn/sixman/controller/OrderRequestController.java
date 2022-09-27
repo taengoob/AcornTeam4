@@ -43,8 +43,8 @@ public class OrderRequestController {
 
     @RequestMapping("/addDelivery")
     public String AddDeliveryRequest(@RequestParam(name = "requestId", required = true) String requestId, Model model) {
-        service.InsertDeliveryRequest(requestId);
-        service.UpdateOrderStatus(requestId, "PD");
+        service.insertDeliveryRequest(requestId);
+        service.updateOrderStatus(requestId, "PD");
 
         return "redirect:paymentRequests";
         // return "forward:paymentRequests";
@@ -55,7 +55,7 @@ public class OrderRequestController {
             @RequestParam(name = "requestId", required = true) String requestId,
             @RequestParam(name = "status", required = true) String status, Model model) {
 
-        service.UpdateOrderRequestStatus(requestId, status);
+        service.updateOrderRequestStatus(requestId, status);
 
         String nextPage = "paymentRequests";
         if (requestType.equals(OrderRequestType.PAYMENT.toString()))

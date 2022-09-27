@@ -13,9 +13,9 @@ public interface OrderRequestDAO {
 
     List<OrderRequestDTO> selectOrderRequestList(String orderStatus);
 
-    int UpdateOrderRequestStatus(String requestId, String status);
+    int updateOrderRequestStatus(String requestId, String status);
 
-    int UpdateOrderStatus(String requestId, String status);
+    int updateOrderStatus(String requestId, String status);
 
-    int InsertDeliveryRequest(String requestId);
+    int insertDeliveryRequest(String requestId);
 }

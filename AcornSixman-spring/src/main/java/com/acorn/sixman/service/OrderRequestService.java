@@ -23,18 +23,18 @@ public class OrderRequestService implements OrderRequestDAO {
     }
 
     @Override
-    public int UpdateOrderRequestStatus(String requestId, String status) {
-        return dao.UpdateOrderRequestStatus(requestId, status);
+    public int updateOrderRequestStatus(String requestId, String status) {
+        return dao.updateOrderRequestStatus(requestId, status);
     }
 
     @Override
-    public int UpdateOrderStatus(String requestId, String status) {
-        return dao.UpdateOrderStatus(requestId, status);
+    public int updateOrderStatus(String requestId, String status) {
+        return dao.updateOrderStatus(requestId, status);
     }
 
     @Override
-    public int InsertDeliveryRequest(String requestId) {
-        return dao.InsertDeliveryRequest(requestId);
+    public int insertDeliveryRequest(String requestId) {
+        return dao.insertDeliveryRequest(requestId);
     }
 
 }

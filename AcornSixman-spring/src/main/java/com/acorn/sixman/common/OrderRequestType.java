@@ -1,7 +1,9 @@
 package com.acorn.sixman.common;
 
 public enum OrderRequestType {
-    PAYMENT(0, "Payment"), DELIVERY(1, "Delivery");
+    PAYMENT(0, "Payment")
+    ,DELIVERY(1, "Delivery")
+    ;
 
     int value;
     String desc;
