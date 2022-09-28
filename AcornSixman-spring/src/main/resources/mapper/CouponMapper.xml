@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acorn.sixman.dao.CouponDAO">
+
+	<insert id="couponAdd" parameterType="com.acorn.sixman.dto.CouponDTO">
+		insert into coupon_detail (coupon_id, coupon_user_id, coupon_dis_per,
+								   coupon_name, coupon_is_usable)
+		values (#{couponId}, #{couponuserId}, #{couponDisper}, 
+				#{couponName}, 'true')
+	</insert>
+
+	<select id="couponList" parameterType="String" resultType="com.acorn.sixman.dto.CouponDTO">
+		
+		select
+			coupon_id as couponId,
+			coupon_user_id as couponuserId,
+			coupon_gen_date as couponGendate,
+			coupon_use_date as couponUsedate,
+			coupon_dis_per as couponDisper,
+			coupon_name as couponName,
+			coupon_is_usable as couponIsusable
+		from coupon_detail
+		where coupon_user_id = #{userid2}
+		order by coupon_dis_per desc
+	</select>
+	
+</mapper>

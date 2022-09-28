@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.dto.BoardDTO" %>
-<%@page import="com.dto.BoardPageDTO" %>
-<%@page import="com.dto.MemberDTO" %>
+<%@page import="com.acorn.sixman.dto.BoardDTO" %>
+<%@page import="com.acorn.sixman.dto.BoardPageDTO" %>
+<%@page import="com.acorn.sixman.dto.MemberDTO" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <%
-	//페이징 처리
 	List<BoardDTO> flist = (List<BoardDTO>)request.getAttribute("flist");
 	BoardPageDTO bpDTO = (BoardPageDTO)request.getAttribute("bpDTO");
 	List<BoardDTO> slist = bpDTO.getList();
 	int curPage = bpDTO.getCurPage();
-
-	//로그인 인증
+	
+	String view = (String)request.getAttribute("view");
+	
 	String userId = "";
 	Object obj = session.getAttribute("login");
 	if (obj != null)
@@ -26,10 +26,9 @@
 	String Category = (String)request.getAttribute("Category");
 	String searchGroup = (String)request.getAttribute("searchGroup");
 	String searchValue = (String)request.getAttribute("searchValue");
-	
 %>
 <style type="text/css">
-	.page-link {/* 부트스트랩을 css파일에서 수정하려면 우선도 설정을 다시 해야함(해결법: https://think0wise.tistory.com/24 ) */
+	.page-link {
 	  color: #000; 
 	  background-color: #fff;
 	  border: 1px solid #ccc; 
@@ -50,9 +49,9 @@
 	  border-color: #ccc;
 	}
 </style>
-<div class="container" id="boardlistctn">
+<div class="container">
 	<div style="height: 50px;"></div>
-	<h1 class="text-center" >
+	<h1 class="text-center">
 	<%if(Category.equals("NOTICE")){%>
 		공지사항 게시판
 	<%}else if(Category.equals("NEWS")){%>
@@ -72,14 +71,12 @@
 	<a href="BoardListServlet?Category=SECONDHAND" class="btn btn-outline-dark">중고거래</a>
 	<a href="BoardListServlet?Category=QnA" class="btn btn-outline-dark">QnA</a>
 	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
-	<%if(Category.equals("BOARD")||Category.equals("SECONDHAND")){ %>
-	<a href="BoardListServlet?Category=<%=Category %>&view=img" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
-		<img src="upload/imgview5.png" width="40px;" height="40px;">
+	<a href="BoardListServlet?view=img" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
+		<img src="upload/imgview.png" width="40px;" height="40px;">
 	</a>
-	<a href="BoardListServlet?Category=<%=Category %>" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
-		<img src="upload/textview2.png" width="40px;" height="40px;">
+	<a href="BoardListServlet" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
+		<img src="upload/textview.png" width="40px;" height="40px;">
 	</a>
-	<%} %>
 	<div id="nTableTop"></div>
 	<div id="nTableBox">
 		<table class="table table-light table-hover text-center" id="nTable">
@@ -103,7 +100,6 @@
 				BoardDTO dto = flist.get(i);
 				String ContentId = dto.getBoardContentId();
 				String subCategory = dto.getBoardSubCategory();
-				if(subCategory.equals("bNOTICE"));
 				String Title = dto.getBoardTitle();
 				String UserId = dto.getBoardUserId();
 				if(UserId.equals("taengoov")){
@@ -121,53 +117,66 @@
 				<%if(PreviewImg!=null){%> 
 					<img src="upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
 				<%} %>
-					<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
+					<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>&view=img" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>
 				</td>
 				<td><%=UserId %></td>
-				<td><span class="elapsedTime" data-created-date="<%=RegDate %>"></span></td>
-				<td><%=HitCount %></td>
-				<%} %>
-			</tr>
-			<tr id="NoticeRow">
-			</tr>
-			<%for(int i=0;i<slist.size();i++){ 
-				BoardDTO dto = slist.get(i);
-				String ContentId = dto.getBoardContentId();
-				String subCategory = dto.getBoardSubCategory();
-				String Title = dto.getBoardTitle();
-				String UserId = dto.getBoardUserId();
-				if(UserId.equals("taengoov")){
-					UserId = "관리자";
-				}
-				String RegDate = dto.getBoardRegDate();
-				int HitCount = dto.getBoardHitCount();
-				String PreviewImg = dto.getBoardPreviewImg();
-				int ReplyCount = dto.getBoardReplyCount();
-			 %>
-			<tr>
-				<td scope="row"><%=ContentId %></td>
-				<td><%=subCategory %></td>
-				<td>
-				<%if(PreviewImg!=null){%> 
-					<img src="upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
-				<%} %>
-					<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
-						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
-					</a>
-					<a href="BoardDeleteServlet?ContentId=<%=ContentId %>" class="b admin">
-						<img src="upload/delete2.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
-					</a>
-				</td>
-				<td><%=UserId %></td>
-				<td><span class="elapsedTime" data-created-date="<%=RegDate %>"></span></td>
+				<td><%=RegDate %></td>
 				<td><%=HitCount %></td>
 			</tr>
 			<%} %>
-		</table>
+			<tr id="NoticeRow">
+			</tr>
+	    </table>
 	</div>
-	<div id="nTableBot"></div>
+    <div class="row" style="width: 100%;margin: auto;" >
+		<div class="w-100" style="height: 25px;"></div>
+		<%for(int i=0;i<slist.size();i++){ 
+			BoardDTO dto = slist.get(i);
+			String ContentId = dto.getBoardContentId();
+			String subCategory = dto.getBoardSubCategory();
+			String Title = dto.getBoardTitle();
+			String UserId = dto.getBoardUserId();
+			if(UserId.equals("taengoov")){
+				UserId = "관리자";
+			}
+			String RegDate = dto.getBoardRegDate();
+			int HitCount = dto.getBoardHitCount();
+			String PreviewImg = dto.getBoardPreviewImg();
+			int ReplyCount = dto.getBoardReplyCount();
+		%>
+		<div class="col-sm-3">
+			<div class="card">
+				<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>&view=img" style="margin: auto;">
+					<img class="card-img-top" id="previewimg"
+					<%if(PreviewImg!=null) {//대표 이미지 출력%>
+						src="<%=PreviewImg %>"
+					<%}else{//저장된 이미지가 없을 경우 noimage 출력 %>
+						src="upload/noimage.png"
+					<%} %>>
+				</a>
+				<ul class="list-group list-group-flush table-hover">
+					<li class="list-group-item">
+						<span style="font-weight: bold;"><%=Title %><span id="ReplyCount2">(<%=ReplyCount %>)</span></span>
+					</li>
+					<li class="list-group-item">
+						<span><%=UserId %></span>
+					</li>
+					<li class="list-group-item">
+						<span>•조회수 <%=HitCount %></span>
+						<span style="float: right">•<%=RegDate %></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+			<% if((i+1)%4==0 && i<11){%>
+				<div class="w-100" style="height: 30px;"></div>
+			<%}%>
+		<%} %>
+	<div class="w-100" style="height: 30px;"></div>
+	</div>
+	<div id="nTableBots"></div>
 	<div class="w-100" id="searchBox" style="height: 35px;">
 		<form action="BoardListServlet" method="get" id="searchForm">
 			<input type="hidden" name="Category" value="<%=Category%>">
@@ -192,7 +201,7 @@
 	<nav aria-label="Page navigation example">
 	  <ul class="pagination justify-content-center">
 	    <li class="page-item disabled">
-	      <a class="page-link link-dark" href="#">◀</a>
+	      <a class="page-link link-dark">◀</a>
 	    </li>
 	    <%  
 			int perPage = bpDTO.getPerPage();
@@ -202,81 +211,19 @@
 			for(int i=1; i<=totalPage;i++){
 				if(i==curPage){%>
 					<li class="page-item active">
-						<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i%>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>" class="page-link link-dark"><span id="curPage"><%=i %></span></a>
+						<a id="curPage" href="BoardListServlet?Category=<%=Category%>&curPage=<%=i %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&view=img" class="page-link link-dark"><%=i %></a>
 					</li>
 				<%}else{ %>
 					<li class="page-item">
-						<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>" class="page-link link-dark"><%=i %></a>
+						<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&view=img" class="page-link link-dark"><%=i %></a>
 					</li>
 				<%}%>
 	    <%
 	    	}
 	    %>
-	      <li class="page-item disabled"><a class="page-link link-dark" href="#">▶</a>
+	      <li class="page-item"><a class="page-link link-dark" href="#">▶</a>
 	    </li>
 	  </ul>
 	</nav>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>
-<script src="board/boardJS/boardList.js"></script>
-<script type="text/javascript">
-	
-	window.onload = function() {
-		function hideAdminElelments(isAdmin) {//나중에 메인 jsp에서 참조
-			if (isAdmin === false) {
-				//class 에 admin이 있는 요소들을 찾는다.
-				const elements = document.getElementsByClassName("admin");
-		
-				//class 에 admin이 있는 요소들을 순회하면서
-				for (const key in elements) {
-					if (Object.hasOwnProperty.call(elements, key)) {
-						const element = elements[key];
-						//안보이게 만든다.
-						element.style.display = "none";
-					}
-				}
-			}
-		}
-		
-		function getIsAdmin() {
-			if("taengoov"=="<%=userId%>"){
-				return true;
-			}else{
-				return false;
-			}
-		}
-	}
-	
-	$(".elapsedTime").each(function() {
-		 let elapsedTime = getElapsedTime($(this).attr("data-created-date"));
-		 $(this).text(elapsedTime);
-	});
-	// 작성일에 대한 문자열을 전달하면 경과시간을 적절한 단위로 반환하는 함수
-	function getElapsedTime(createdDateString) {
-		let now = moment();
-		let createdDate = moment(createdDateString, 'YYYY-MM-DD HH:mm:ss');
-		// 경과시간 정보
-		let duration = moment.duration(now.diff(createdDate));
-		// 경과시간에 대해 문자열로 표시할 단위 옵션
-		let durationOptions = [
-			{"dur" : duration.asDays(), "option" : "일 전"},
-			{"dur" : duration.asHours(), "option" : "시간 전"},
-			{"dur" : duration.asMinutes(), "option" : "분 전"},];
-		
-		// 반복문으로 duration의 값을 확인해 어떤 단위로 반환할지 결정한다.
-		// ex) 0.8년전이면 "8개월 전" 반환
-		for (let durOption of durationOptions) {
-			if (durOption.dur >= 1) {
-				if(durOption.option == '일 전'&& durOption.dur > 7){
-					return moment(createdDateString).format("YYYY-MM-DD");
-				}else{
-					return Math.round(durOption.dur) + durOption.option;
-				}
-			}
-		}
-		// 분 단위로 검사해도 1 이상이 아니면(반복문에서 함수가 종료되지 않으면) "방금 전" 반환
-		return "방금 전";
-	}
-	
-</script>
+<script src="board/boardJS/boardImageList.js"></script>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.dto.BoardDTO" %>
-<%@page import="com.dto.BoardPageDTO" %>
-<%@page import="com.dto.MemberDTO" %>
+<%@page import="com.acorn.sixman.dto.BoardDTO" %>
+<%@page import="com.acorn.sixman.dto.BoardPageDTO" %>
+<%@page import="com.acorn.sixman.dto.MemberDTO" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.ArrayList"%>

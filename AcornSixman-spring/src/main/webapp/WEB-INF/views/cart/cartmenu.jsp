@@ -71,15 +71,20 @@
 		console.log(chkedCartId);
 		$.ajax({
 				type: "get",
-				url: "CartDeleteServlet",
+				url: "cartDelete",
 				traditional : true,
 				data:{
 					chkedCartId: chkedCartId
 				},
 				dataType: "text",
 				success: function(data, status, xhr) {
-					alert(index+"건 삭제완료");
-					location.href="CartListServlet";
+					alert(data);
+					if(data=="성공"){
+						alert(index+"건 삭제완료");
+						location.href="cartList";
+					}else{
+						alert("장바구니 목록 삭제 실패");
+					}
 				},
 				error: function(xhr, status, error) {
 					console.log("ajax 비동기처리 실패 : "+error);

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mapper.board">
+<mapper namespace="com.acorn.sixman.dao.BoardDAO">
 	
-	<resultMap id="test" type="BoardDTO" >
+	<resultMap id="test" type="com.acorn.sixman.dto.BoardDTO" >
 		<result property="boardContentId" column="BOARD_CONTENT_ID"/>
 		<result property="boardCategory" column="BOARD_CATEGORY"/>
 		<result property="boardUserId" column="BOARD_USER_ID"/>
@@ -22,33 +22,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="boardRelpyNextId" column="BOARD_REPLY_NEXT_ID"/>
 	</resultMap>
 	
-	<select id="boardList" parameterType="String" resultMap="test">
+	<select id="boardList" parameterType="com.acorn.sixman.dto.BoardPageDTO" resultMap="test">
+		<![CDATA[
 		SELECT
-			SUBSTR(f.BOARD_CONTENT_ID,15,5) BOARD_CONTENT_ID, 
-			f.BOARD_CATEGORY, 
-			f.BOARD_USER_ID, 
-			f.BOARD_TITLE, 
-			f.BOARD_CONTENT, 
-			f.BOARD_REG_DATE, 
-			f.BOARD_UPDATE_DATE, 
-			f.BOARD_DEL_DATE, 
-			f.BOARD_HIT_COUNT,
-			f.BOARD_SUB_CATEGORY,
-			f.BOARD_PREVIEW_IMG,
-			(SELECT COUNT(*) FROM BOARD_DETATIL
-			START WITH BOARD_REF_CONTENT_ID= f.BOARD_CONTENT_ID
-			CONNECT BY PRIOR BOARD_CONTENT_ID = BOARD_REF_CONTENT_ID) BOARD_REPLY_COUNT
+			BOARD_CONTENT_ID, 
+			BOARD_CATEGORY, 
+			BOARD_USER_ID, 
+			BOARD_TITLE, 
+			BOARD_CONTENT, 
+			BOARD_REG_DATE, 
+			BOARD_UPDATE_DATE, 
+			BOARD_DEL_DATE, 
+			BOARD_HIT_COUNT,
+			BOARD_SUB_CATEGORY,
+			BOARD_PREVIEW_IMG,
+			BOARD_REPLY_COUNT
 		FROM
-			BOARD_DETATIL f, BOARD_DETATIL s
+			(
+			SELECT
+				ROWNUM rn,
+				SUBSTR(f.BOARD_CONTENT_ID,15,5) BOARD_CONTENT_ID, 
+				f.BOARD_CATEGORY, 
+				f.BOARD_USER_ID, 
+				f.BOARD_TITLE, 
+				f.BOARD_CONTENT, 
+				f.BOARD_REG_DATE, 
+				f.BOARD_UPDATE_DATE, 
+				f.BOARD_DEL_DATE, 
+				f.BOARD_HIT_COUNT,
+				f.BOARD_SUB_CATEGORY,
+				f.BOARD_PREVIEW_IMG,
+				(SELECT COUNT(*) FROM BOARD_DETATIL
+				START WITH BOARD_REF_CONTENT_ID= f.BOARD_CONTENT_ID
+				CONNECT BY PRIOR BOARD_CONTENT_ID = BOARD_REF_CONTENT_ID) BOARD_REPLY_COUNT
+			FROM
+				BOARD_DETATIL f, BOARD_DETATIL s
+			WHERE
+				f.BOARD_CONTENT_ID = s.BOARD_CONTENT_ID
+			AND
+				f.BOARD_CATEGORY = #{category}
+			AND
+				f.BOARD_SUB_CATEGORY = '공지사항'
+			AND
+				f.BOARD_DEL_DATE IS NULL
+			AND
+				ROWNUM <= 3
+			order by 2 ASC
+			)
 		WHERE
-			f.BOARD_CONTENT_ID = s.BOARD_CONTENT_ID
-		AND
-			f.BOARD_CATEGORY = #{category}
-		AND
-			f.BOARD_SUB_CATEGORY = '공지사항'
-		AND
-			f.BOARD_DEL_DATE IS NULL
-		order by 1 ASC
+			rn > 0
+		]]>
 	</select>
 	
 	<select id="boardInfo" parameterType="String" resultMap="test">
@@ -81,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SUBSTR(BOARD_CONTENT_ID,15,5) = #{ContentId}
 	</update>	
 	
-	<insert id="boardWrite" parameterType="BoardDTO">
+	<insert id="boardWrite" parameterType="com.acorn.sixman.dto.BoardDTO">
 		INSERT INTO BOARD_DETATIL
 			( 
 			BOARD_CONTENT_ID,
@@ -137,7 +160,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_CATEGORY = #{category}
 	</select>
 	
-	<update id="boardReWrite" parameterType="BoardDTO">
+	<update id="boardReWrite" parameterType="com.acorn.sixman.dto.BoardDTO">
 		UPDATE 
 			BOARD_DETATIL 
 		SET
@@ -310,51 +333,72 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_CATEGORY = #{category}
 	</select>
 	
-	<select id="boardPageList" parameterType="HashMap" resultMap="test">
+	<select id="boardPageList" parameterType="com.acorn.sixman.dto.BoardPageDTO" resultMap="test">
 		SELECT
-			SUBSTR(f.BOARD_CONTENT_ID,15,5) BOARD_CONTENT_ID, 
-			f.BOARD_CATEGORY, 
-			f.BOARD_USER_ID, 
-			f.BOARD_TITLE, 
-			f.BOARD_CONTENT, 
-			f.BOARD_REG_DATE, 
-			f.BOARD_UPDATE_DATE, 
-			f.BOARD_DEL_DATE, 
-			f.BOARD_HIT_COUNT,
-			f.BOARD_SUB_CATEGORY,
-			f.BOARD_PREVIEW_IMG,
-			(SELECT COUNT(*) FROM BOARD_DETATIL
-			START WITH BOARD_REF_CONTENT_ID= f.BOARD_CONTENT_ID
-			CONNECT BY PRIOR BOARD_CONTENT_ID = BOARD_REF_CONTENT_ID) BOARD_REPLY_COUNT
+			BOARD_CONTENT_ID, 
+			BOARD_CATEGORY, 
+			BOARD_USER_ID, 
+			BOARD_TITLE, 
+			BOARD_CONTENT, 
+			BOARD_REG_DATE, 
+			BOARD_UPDATE_DATE, 
+			BOARD_DEL_DATE, 
+			BOARD_HIT_COUNT,
+			BOARD_SUB_CATEGORY,
+			BOARD_PREVIEW_IMG,
+			BOARD_REPLY_COUNT
 		FROM
-			BOARD_DETATIL f, BOARD_DETATIL s
+			(
+			SELECT
+				ROWNUM rn,
+				SUBSTR(f.BOARD_CONTENT_ID,15,5) BOARD_CONTENT_ID, 
+				f.BOARD_CATEGORY, 
+				f.BOARD_USER_ID, 
+				f.BOARD_TITLE, 
+				f.BOARD_CONTENT, 
+				f.BOARD_REG_DATE, 
+				f.BOARD_UPDATE_DATE, 
+				f.BOARD_DEL_DATE, 
+				f.BOARD_HIT_COUNT,
+				f.BOARD_SUB_CATEGORY,
+				f.BOARD_PREVIEW_IMG,
+				(SELECT COUNT(*) FROM BOARD_DETATIL
+				START WITH BOARD_REF_CONTENT_ID= f.BOARD_CONTENT_ID
+				CONNECT BY PRIOR BOARD_CONTENT_ID = BOARD_REF_CONTENT_ID) BOARD_REPLY_COUNT
+			FROM
+				BOARD_DETATIL f, BOARD_DETATIL s
+			WHERE
+				f.BOARD_CONTENT_ID = s.BOARD_CONTENT_ID
+			<choose>
+				<when test="searchGroup=='Title'">
+				AND
+					UPPER(f.BOARD_TITLE) LIKE UPPER('%${searchValue}%')
+				</when>
+				<when test="searchGroup=='UserId'">
+				AND
+					UPPER(f.BOARD_USER_ID) LIKE UPPER('%${searchValue}%')
+				</when>
+				<when test="searchGroup=='Content'">
+				AND
+					UPPER(f.BOARD_CONTENT) LIKE UPPER('%${searchValue}%')
+				</when>
+				<when test="searchGroup=='Title,Content'">
+				AND
+					(UPPER(f.BOARD_TITLE) LIKE UPPER('%${searchValue}%')
+				OR
+					UPPER(f.BOARD_CONTENT) LIKE UPPER('%${searchValue}%'))
+				</when>
+			</choose>
+			AND
+				ROWNUM &lt; (#{curPage} * #{perPage} + 1)
+			AND
+				f.BOARD_CATEGORY = #{category}
+			AND
+				f.BOARD_DEL_DATE IS NULL
+			ORDER BY 2 DESC
+			)
 		WHERE
-			f.BOARD_CONTENT_ID = s.BOARD_CONTENT_ID
-		<choose>
-			<when test="searchGroup=='Title'">
-			AND
-				UPPER(f.BOARD_TITLE) LIKE UPPER('%${searchValue}%')
-			</when>
-			<when test="searchGroup=='UserId'">
-			AND
-				UPPER(f.BOARD_USER_ID) LIKE UPPER('%${searchValue}%')
-			</when>
-			<when test="searchGroup=='Content'">
-			AND
-				UPPER(f.BOARD_CONTENT) LIKE UPPER('%${searchValue}%')
-			</when>
-			<when test="searchGroup=='Title,Content'">
-			AND
-				(UPPER(f.BOARD_TITLE) LIKE UPPER('%${searchValue}%')
-			OR
-				UPPER(f.BOARD_CONTENT) LIKE UPPER('%${searchValue}%'))
-			</when>
-		</choose>
-		AND
-			f.BOARD_CATEGORY = #{category}
-		AND
-			f.BOARD_DEL_DATE IS NULL
-		ORDER BY 1 DESC
+			rn &gt; ((#{curPage}-1) * #{perPage})
 	</select>
 	
 	<insert id="replyAdd" parameterType="HashMap">

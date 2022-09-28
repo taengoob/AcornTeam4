@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.dto.CartDTO" %>
-<%@page import="com.dto.CouponDTO" %>
+<%@page import="com.acorn.sixman.dto.CartDTO" %>
+<%@page import="com.acorn.sixman.dto.CouponDTO" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat" %>
@@ -332,7 +332,7 @@
 			console.log(productPrice+"체크된 항목의 가격 출력");
 			$.ajax({
 				type: "get",
-				url: "CartUpdateServlet",
+				url: "cartUpdate",
 				data:{
 					productId: productId,
 					cartCount: cartCount

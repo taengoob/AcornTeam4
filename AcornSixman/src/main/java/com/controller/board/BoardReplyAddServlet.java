@@ -32,11 +32,13 @@ public class BoardReplyAddServlet extends HttpServlet {
 		
 		BoardService service = new BoardService();
 
-		String replyNextId = service.replyNextId(refContentId);
-		int n = service.replyAdd(refContentId, ReplyId, UserId, ReplyContent);
-		BoardDTO dto = service.replySelect(ReplyId);
-		dto.setBoardRelpyNextId(replyNextId);
 		
+		String replyNextId = service.replyNextId(refContentId);//어느 댓글 아래에 html이 추가되어야 하는지 추적
+		int n = service.replyAdd(refContentId, ReplyId, UserId, ReplyContent);//입력한 내용대로 댓글 작성
+		BoardDTO dto = service.replySelect(ReplyId);//db에 insert 후 생성된 댓글의 dto 값 
+		
+		
+		dto.setBoardRelpyNextId(replyNextId);
 		List<BoardDTO> list = new ArrayList<BoardDTO>();
 		list.add(dto);
 		String json = new Gson().toJson(list);
