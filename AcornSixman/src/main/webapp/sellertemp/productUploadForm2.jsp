@@ -124,7 +124,7 @@
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">재고</label>
-				<input type="text" id="name" name="productStock" class="form-control"
+				<input type="number" id="name" name="productStock" class="form-control"
 					  style="display: inline; width: 40%;">
 				&nbsp;&nbsp; <span id='resultName'></span>
 			</div>

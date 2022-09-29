@@ -170,4 +170,18 @@ public class ProductService
 	      }
 	      return pDTO;
 		}//end select
+
+	public ProductDTO_Temp productRetrieve(String productId) {
+		SqlSession session = MySqlSessionFactory.getSession();
+		ProductDTO_Temp list = null;
+		try {
+			ProductDAO dao = new ProductDAO();
+			 list = dao.productRetrieve(session, productId);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	} 
 }
