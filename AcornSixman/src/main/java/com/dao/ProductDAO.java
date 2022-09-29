@@ -85,5 +85,11 @@ public ProductPageDTO select1(SqlSession session, HashMap<String, String> map, i
 	
 	return pDTO;
 }
+
+public ProductDTO_Temp productRetrieve(SqlSession session, String productId) {
+	ProductDTO_Temp list = 
+			   session.selectOne("com.mapper.product.productRetrieve", productId);
+	   return list;
+}
 	
 }

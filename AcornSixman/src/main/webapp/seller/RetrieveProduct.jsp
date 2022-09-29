@@ -66,36 +66,48 @@
 </style>
 </head>
 <body>
-	 
+	 <%
+  ProductDTO_Temp dto = (ProductDTO_Temp)request.getAttribute("productRetrieve");
+	  String ProductName = dto.getProductName();
+	  int ProductPrice = dto.getProductPrice();
+	  int ProductDeliveryPrice = dto.getProductDeliveryPrice();
+	  String ProductModel = dto.getProductModel();
+	  String ProductMaker = dto.getProductMaker();
+	  String ProductMadein = dto.getProductMadein();
+	  int ProductStock = dto.getProductStock();
+	  String ProductSeller = dto.getProductSeller();
+	  String ProductContent = dto.getProductContent();
+	  String ProductCategory = dto.getProductCategory();
+	  String previewUrl = dto.getPreviewUrl();
+  
+%>    
 	 
 	 <h1 id="top">상품 수정</h1>
-	<form action="ProductUploadServlet" class="form-inline" method="post" enctype="multipart/form-data" id="imageForm">
+	<form action="ProductUpdateServlet" method="get">
 		<div class="main-box">
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">제품명</label>
-				<input type="text" class="form-control" id="id" name="productName"
-					placeholder="" style="display: inline; width: 40%;">&nbsp;&nbsp; 
+				<input type="text" class="form-control" id="id" name="ProductName"
+					placeholder="" style="display: inline; width: 40%;" value="<%=ProductName %>"> 
 			</div>
- 
-
+			 
 
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">가격</label> 
-					<input type="number" id="passwd1" name="productPrice"
-					class="form-control" style="display: inline; width: 40%;">
-				&nbsp;&nbsp;  
+					<input type="number" id="passwd1" name="ProductPrice"
+					class="form-control" style="display: inline; width: 40%;" value="<%=ProductPrice%>">
+				 
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">배송비</label>
-				<input type="number" id="name" name="deliveryPrice" class="form-control"
-					  style="display: inline; width: 40%;">
-				&nbsp;&nbsp;  
+				<input type="number" id="name" name="ProductDeliveryPrice" class="form-control"
+					  style="display: inline; width: 40%;" value="<%=ProductDeliveryPrice%>">
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">재고</label>
-				<input type="text" id="name" name="productStock" class="form-control"
-					  style="display: inline; width: 40%;">
-				&nbsp;&nbsp;  
+				<input type="text" id="name" name="ProductStock" class="form-control"
+					  style="display: inline; width: 40%;" value="<%=ProductStock%>">
+				 
 			</div>
 			<div class="finish">
 				<button class="btn btn-outline-success" type="reset"
