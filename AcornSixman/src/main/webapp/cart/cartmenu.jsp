@@ -15,7 +15,15 @@
   		border-top-right-radius: 10px;
  		margin: auto;
 	}
-
+	#deletebtn{
+		border: 1px solid grey;
+		height: 35px;
+		width: 110px;
+		font-weight: bold;
+		color: grey;
+		margin-bottom: 20px;
+		float: right;
+	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -96,8 +104,7 @@
 	<div align="left" style="width: 600px; float: left; margin-top: 4px">
 		<input type="checkbox" checked="checked" id="checkAbtn">&nbsp;전체선택
 	</div>
-	<div align="right">
 		<button id="deletebtn">x 선택 삭제</button>
-	</div>
 </div>
+<br>
 </div>

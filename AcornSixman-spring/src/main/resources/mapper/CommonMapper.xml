@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.acorn.sixman.dao.commonDAO">
+<mapper namespace="com.acorn.sixman.dao.CommonDAO">
 
 	<select id="testDBConnection" resultType="String">
 		SELECT ACCOUNT_ID
@@ -14,4 +14,194 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM DUAL
 	</select>
 	
+	<select id="getNewProductId" resultType="String">
+		SELECT 'PD' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_PRODUCT.NEXTVAL, 5, '0') AS PRODUCT_ID
+		FROM DUAL
+	</select>
+	
+	<select id="getNewOrderId" resultType="String">
+		SELECT 'OD' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_ORDER.NEXTVAL, 5, '0') AS ORDER_ID
+		FROM DUAL
+	</select>
+	
+	<select id="getNewCouponId" resultType="String">
+		SELECT 'CP' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_COUPON.NEXTVAL, 5, '0') AS COUPON_ID
+		FROM DUAL
+	</select>
+	
+	<select id="getNewImageId" resultType="String">
+		SELECT 'IMG' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_IMAGE.NEXTVAL, 5, '0') AS IMAGE_ID
+		FROM DUAL
+	</select>
+	
+	<select id="getNewCartId" resultType="String">
+		SELECT 'CT' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_CART.NEXTVAL, 5, '0') AS CART_ID
+		FROM DUAL
+	</select>
+	
+	<select id="getNewBoardContentId" resultType="String">
+		SELECT 'BD' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_BOARD_CONTENT.NEXTVAL, 5, '0') AS BOARD_CONTENT_ID
+		FROM DUAL
+	</select>
+	
+	<select id="getNewBoardFileId" resultType="String">
+		SELECT 'BF' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_BOARD_FILE.NEXTVAL, 5, '0') AS BOARD_FILE_ID
+		FROM DUAL
+	</select>
+	
+	<select id="getNewBoardReplyId" resultType="String">
+		SELECT 'BR' || TO_CHAR(CURRENT_DATE, 'YYMMDDHHMISS') || LPAD(SEQ_BOARD_REPLY.NEXTVAL, 5, '0') AS BOARD_CONTENT_ID
+		FROM DUAL
+	</select>
+	
+	<insert id="uploadImageFile" parameterType="java.util.HashMap">
+		INSERT INTO PRODUCT_IMAGE
+		(
+			IMAGE_ID
+			,IMAGE_PRODUCT_ID
+			,IMAGE_DATA
+			,IMAGE_REG_DATE
+		)
+		VALUES
+		(
+			#{IMAGE_ID}
+			,#{PRODUCT_ID}
+			,#{IMAGE_DATA}
+			,CURRENT_DATE
+		)
+	</insert>
+	
+	<select id="selectCategories" resultType="com.acorn.sixman.dto.CategoryDTO">
+		SELECT CATEGORY_ID 		AS categoryId
+			  ,CATEGORY_NAME	AS categoryName
+			  ,CATEGORY_DESC	AS categoryDesc
+		FROM PRODUCT_GUITAR_CATEGORY
+		ORDER BY CATEGORY_SEQ
+	</select>
+	
+	<select id="selectCategoriesExceptAll" resultType="com.acorn.sixman.dto.CategoryDTO">
+		SELECT CATEGORY_ID 		AS categoryId
+			  ,CATEGORY_NAME	AS categoryName
+			  ,CATEGORY_DESC	AS categoryDesc
+		FROM PRODUCT_GUITAR_CATEGORY
+		WHERE 1=1
+			AND CATEGORY_ID != 'All'
+		ORDER BY CATEGORY_SEQ
+	</select>
+	
+	<!-- <select id="selectImagesByProductId" resultType="com.acorn.sixman.dto.ImageDTO" parameterType="String">
+		SELECT * FROM PRODUCT_IMAGE
+		WHERE 1=1
+			AND IMAGE_PRODUCT_ID = #{PRODUCT_ID}
+	</select> -->
+	
+	<insert id="insertProduct" parameterType="java.util.HashMap">
+		INSERT INTO PRODUCT_DETAIL
+		(
+			PRODUCT_ID
+			,PRODUCT_NAME
+			,PRODUCT_PRICE
+			,PRODUCT_DELIVERY_PRICE
+			,PRODUCT_MODEL
+			,PRODUCT_MAKER
+			,PRODUCT_MADEIN
+			,PRODUCT_STOCK
+			,PRODUCT_SELLER
+			,PRODUCT_REG_DATE
+			,PRODUCT_PREVIEW
+			,PRODUCT_CONTENT
+			,PRODUCT_CATEGORY
+		)
+		VALUES
+		(
+			#{productId}
+			,#{productName}
+			,#{productPrice}
+			,#{deliveryPrice}
+			,#{productModel}
+			,#{productMaker}
+			,#{productMadein}
+			,#{productStock}
+			,#{productSeller}
+			,CURRENT_DATE
+			,#{previewImage}
+			,#{productContent}
+			,#{productCategory}
+		)
+	</insert>
+	
+	<!-- <select id="selectProductAll" resultType="com.acorn.sixman.dto.ProductDTO_Temp" parameterType="String">
+		SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL
+	</select>
+	
+	<select id="selectProductByProductId" resultType="com.acorn.sixman.dto.ProductDTO_Temp" parameterType="String">
+		SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL
+		WHERE 1=1
+			AND PRODUCT_ID = #{productId}
+	</select>
+	
+	<select id="selectProductByOption" resultType="com.acorn.sixman.dto.ProductDTO_Temp" parameterType="java.util.HashMap">
+		SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL
+		WHERE 1=1
+		<if test='category != null and category != "" and category != "All"'>
+			AND PRODUCT_CATEGORY = #{category}
+		</if>
+		<if test='searchStr != null and searchStr != ""'>
+			AND
+			(
+					LOWER(PRODUCT_NAME) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(PRODUCT_MODEL) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(PRODUCT_MAKER) LIKE '%' || LOWER(#{searchStr}) || '%'
+			)
+		</if>
+	</select>
+	
+	<select id="testLogin" resultType="com.acorn.sixman.MemberDTO">
+		select *
+		from user_account
+		where ACCOUNT_ID = 'taengoov'
+	</select> -->
+
 </mapper>

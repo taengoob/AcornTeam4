@@ -9,16 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.acorn.sixman.service.commonService;
+import com.acorn.sixman.service.CommonService;
 
 @Controller
 public class HelloController {
 
     @Autowired
-    commonService service;
+    CommonService service;
 
     @RequestMapping("/")
-    public String SayHello(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
+    public String SayHello(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
+            Model model) {
         List<String> list = service.testDBConnection();
         System.out.println(list);
         list.add(name);
@@ -28,8 +29,8 @@ public class HelloController {
     }
 
     @RequestMapping("/hello")
-    public String SayHello2(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model)
-    {
+    public String SayHello2(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
+            Model model) {
         List<String> list = new ArrayList<>();
         list.add(name);
         model.addAttribute("nameList", list);

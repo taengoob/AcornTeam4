@@ -13,6 +13,7 @@
 			MemberDTO user = (MemberDTO)obj;
 			userId = user.getAccountId();
 		}
+		String MainCategory = (String)request.getAttribute("Category");
 		
 		int boardCount = (int)request.getAttribute("boardCount");
 		int boardStart = (int)request.getAttribute("boardStart");
@@ -25,6 +26,8 @@
 			Category = "공지사항";
 		}else if(Category.equals("GENERAL")){
 			Category = "잡담";
+		}else if(Category.equals("SECONDHAND")){
+			Category = "중고거래";
 		}
 		String wUserId = bdto.getBoardUserId();
 		if(wUserId.equals("taengoov")){
@@ -48,13 +51,13 @@
 <div class="container">
 <div style="height: 50px;"></div>
 <h1 class="text-center" >
-<%if(Category.equals("NOTICE")){%>
+<%if(MainCategory.equals("NOTICE")){%>
 	공지사항 게시판
-<%}else if(Category.equals("NEWS")){%>
+<%}else if(MainCategory.equals("NEWS")){%>
 	최신소식 게시판
-<%}else if(Category.equals("BOARD")){%>
+<%}else if(MainCategory.equals("BOARD")){%>
 	회원 게시판
-<%}else if(Category.equals("SECONDHAND")){%>
+<%}else if(MainCategory.equals("SECONDHAND")){%>
 	중고거래 게시판
 <%}else{%>
 	Q&A 게시판

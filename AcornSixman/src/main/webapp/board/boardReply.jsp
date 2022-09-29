@@ -43,7 +43,8 @@
 			<div class="row" id="reply" style="width: 100%;">
 				<div style="height: 20px; width: 100%; margin: auto; border-top: 2px solid grey;"></div>
 				<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px; margin-top: 10px;"></div>
-				<div class="col-sm-2" id="replyWriteId<%=xxx.getBoardRealContentId()%>" style="height: 79px; width: 120px; text-align: center; line-height: 60px;"><%=xxx.getBoardUserId() %></div>
+				<div class="col-sm-2" id="replyWriteId<%=xxx.getBoardRealContentId()%>" 
+				style="height: 79px; width: 120px; text-align: center; line-height: 60px;"><%=xxx.getBoardUserId() %></div>
 				<div class="col-sm-6" id="replyContent<%=xxx.getBoardRealContentId()%>" style="width: 780px;">
 					<%if(xxx.getBoardDelDate()==null){%><%=xxx.getBoardContent()%><%}else{%> 삭제된 댓글입니다. <%}%>
 				</div>
@@ -54,7 +55,7 @@
 				 data-xxx="<%=xxx.getBoardRealContentId()%>" data-update="update">수정</button>
 				<button class="btn btn-outline-secondary btn-sm" id="replybtn3" onclick="showReplyArea(this)"
 				 data-xxx="<%=xxx.getBoardRealContentId()%>" data-width1="70" data-width2="710">답글</button>
-				<span style="float: right;"><br><%=xxx.getBoardRegDate() %></span>
+				<span style="float: right;"><br><span class="elapsedTime" data-created-date="<%=xxx.getBoardRegDate() %>"></span></span>
 				</div>
 			</div>
 			<div style="height: 20px; width: 100%; margin: auto;"></div>
@@ -72,7 +73,8 @@
 					<img src="upload/reply2.png" width="50px;" height="50px;" style="margin-left: 25px;">
 				</div>
 				<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left:30px;  margin-top: 10px;"></div>
-				<div class="col-sm-2" id="replyWriteId<%=yyy.getBoardRealContentId()%>" style="height: 79px; width: 120px; text-align: center; line-height: 79px;"><%=yyy.getBoardUserId() %></div>
+				<div class="col-sm-2" id="replyWriteId<%=yyy.getBoardRealContentId()%>" 
+				style="height: 79px; width: 120px; text-align: center; line-height: 79px;"><%=yyy.getBoardUserId() %></div>
 				<div class="col-sm-6" id="replyContent<%=yyy.getBoardRealContentId()%>" style="width: 710px;">
 					<%if(yyy.getBoardDelDate()==null){%><%=yyy.getBoardContent()%><%}else{%> 삭제된 댓글입니다. <%}%>
 				</div>
@@ -83,7 +85,7 @@
 				 data-xxx="<%=yyy.getBoardRealContentId()%>" data-update="update">수정</button>
 				<button class="btn btn-outline-secondary btn-sm" id="replybtn3" onclick="showReplyArea(this)"
 				 data-xxx="<%=yyy.getBoardRealContentId()%>" data-width1="140" data-width2="640">답글</button>
-				<span style="float: right;"><br><%=yyy.getBoardRegDate() %></span>
+				<span style="float: right;"><br><span class="elapsedTime" data-created-date="<%=yyy.getBoardRegDate() %>"></span></span>
 				</div>
 			</div>
 			<div style="height: 20px; width: 100%; margin: auto;"></div>
@@ -101,7 +103,8 @@
 				<img src="upload/reply2.png" width="50px;" height="50px;" style="margin-left: 95px;">
 			</div>
 			<div class="col-sm-2" style="height: 60px; width: 60px; background-color: pink; margin-left: 30px; margin-top: 10px;"></div>
-			<div class="col-sm-2" id="replyWriteId<%=zzz.getBoardRealContentId()%>" style="height: 79px; width: 120px; text-align: center; line-height: 79px;"><%=zzz.getBoardUserId()%></div>
+			<div class="col-sm-2" id="replyWriteId<%=zzz.getBoardRealContentId()%>" 
+			style="height: 79px; width: 120px; text-align: center; line-height: 79px;"><%=zzz.getBoardUserId()%></div>
 			<div class="col-sm-6" id="replyContent<%=zzz.getBoardRealContentId()%>" style="width: 640px;">
 				<%if(zzz.getBoardDelDate()==null){%><%=zzz.getBoardContent()%><%}else{%> 삭제된 댓글입니다. <%}%>
 			</div>
@@ -110,9 +113,7 @@
 				 data-xxx="<%=zzz.getBoardRealContentId()%>">삭제</button>
 				<button class="btn btn-outline-secondary btn-sm" id="replybtn2" onclick="showReplyArea(this)"
 				 data-xxx="<%=zzz.getBoardRealContentId()%>" data-update="update">수정</button>
-			<%-- <button class="btn btn-outline-secondary btn-sm" id="replybtn3"
-			 data-xxx="<%=zzz.getBoardRealContentId()%>" data-width1="140" data-width2="640">답글</button> --%>
-			<span style="float: right;"><br><%=zzz.getBoardRegDate() %></span>
+			<div style="clear: right; margin: 60px -30px 0px 120px;" class="elapsedTime" data-created-date="<%=zzz.getBoardRegDate() %>"></div>
 			</div>
 		</div>
 		<div style="height: 20px; width: 100%; margin: auto;"></div>
@@ -146,6 +147,8 @@
 <div class="container" style="height: 0px;"></div>
 <script src="board/boardJS/boardReply.js"></script>
 <script type="text/javascript">
+	
+
 	function replyUpdate(e) {
 		var ContentId = $(e).attr("data-xxx");
 		var ReplyContent = $("#replyarea"+ContentId).val();
@@ -204,16 +207,16 @@
 	}
 	
 	function replyAdd(e) {//댓글 추가
-		var ContentId = $(e).attr("data-xxx");
+		var ContentId = $(e).attr("data-xxx");//참조할 댓글의 고유ID, 다른 댓글이 없을경우 게시판 ID를 참조
 		if(ContentId=='undefined'||ContentId==null){ContentId = $("#RealContentId").val();}
-		var width1 = $(e).attr("data-width1");
-		var width2 = $(e).attr("data-width2");
+		var width1 = $(e).attr("data-width1");//원댓글의 html 사이즈1
+		var width2 = $(e).attr("data-width2");//원댓글의 html 사이즈2
 		console.log("게시글아이디: "+ContentId+"너비: "+width1, width2);
-		var UserId = $("#replyUserId").text();
-		var ReplyContent = $("#replyarea"+ContentId).val();
-		if(!ReplyContent){ReplyContent=$("#replyarea").val();}
+		var UserId = $("#replyUserId").text();//작성자ID
+		var ReplyContent = $("#replyarea"+ContentId).val();//댓글내용, 대댓글일 경우 답글버튼 클릭시 생성된 textarea의 value값을 가져옴
+		if(!ReplyContent){ReplyContent=$("#replyarea").val();}//댓글내용, 다른 댓글이 없을경우 기본 댓글 textarea의 value값을 가져옴
 		console.log("아이디: "+UserId+"아이디의 길이:"+UserId.length);
-		if(UserId!="로그인이 필요합니다."){
+		if(UserId!="로그인이 필요합니다."){//로그인 체크
 			$.ajax({
 				type: "post",
 				url: "BoardReplyAddServlet",
@@ -223,9 +226,10 @@
 					ReplyContent: ReplyContent
 				},
 				dataType: "text",
-				success: function(data, status, xhr) {
+				success: function(data, status, xhr) {//비동기 처리에 성공할 경우 Servlet에서 댓글의 정보를 List 에서 Json 형식으로 변환해서 받아옴
 					console.log("성공"+JSON.parse(data));
-					showHtml(JSON.parse(data), ContentId, width1, width2);
+					showHtml(JSON.parse(data), ContentId, width1, width2);//받아온 Json data를 이용해서 동적으로 html 생성
+					monetJS();//댓글 작성시간 변환 함수작동
 				},
 				error: function(xhr, status, error) {
 					
@@ -262,17 +266,15 @@
 				if(width1==" "){width1="0";}
 				html +='<button class="btn btn-outline-secondary btn-sm" id="replybtn3" onclick="showReplyArea(this)"' 
 					 + ' data-xxx="'+ele.boardRealContentId+'" data-width1="'+(parseInt(width1)+70)+'" data-width2="'+(parseInt(width2)-70)+'">답글</button>'
-					 + '<span style="float: right;"><br>'+ele.boardRegDate+'</span></div>'	
+					 + '<span style="float: right;"><br><span class="elapsedTime" data-created-date="'+ele.boardRegDate+'"></span></div>'	
 					 + '</div><div style="height: 20px; width: 100%; margin: auto;"></div>'	
 					 + '<div id="reply'+ele.boardRealContentId+'"></div>';
 			}else{ 
-				html += '<span style="float: right;"><br>'+ele.boardRegDate+'</span></div>'	
+				html += '<div style="clear: right; margin: 60px -30px 0px 120px;" class="elapsedTime" data-created-date="'+ele.boardRegDate+'"></div>'	
 				     + '</div><div style="height: 20px; width: 100%; margin: auto;"></div>'
 					 + '</div><div id="reply'+ele.boardRealContentId+'"></div>';	
 			}	
 		})
-		console.log("다음 아이디"+replyNextId);
-		console.log("값 검정"+$("#reply"+ContentId).val());
 		if($("#reply"+ContentId).css('display') === 'block'){//대댓글인 경우
 			if(replyNextId==" "){//해당 댓글에 다른 대댓글이 없을경우
 				console.log("해당 댓글에 다른 대댓글이 없을경우 해당 댓글 아래에 대댓글 추가")
@@ -325,6 +327,8 @@
 			html += '<button id="replyAddBtn" class="btn btn-outline-secondary" onclick=" replyAdd(this)" data-width1="'+width1+'" data-width2="'+width2+'" data-xxx="'+ContentId+'">등록</button>';
 		}
 			html += '</div><div class="w-900" style="height: 30px;"></div></div>';
+			
+			console.log("Userid : "+UserId+" WirteID : "+replyWriteId);
 		if(Update!=null&&UserId!=replyWriteId){//수정 버튼을 클릭했는데 로그인한 계정과 작성자가 맞지않는 경우
 			alert("수정권한이 없습니다.");
 		}else{
@@ -338,6 +342,39 @@
 				$("#replyarea"+ContentId).focus();
 			}
 		}
+	}
+	
+	function monetJS() {
+		$(".elapsedTime").each(function() {
+			 let elapsedTime = getElapsedTime($(this).attr("data-created-date"));
+			 $(this).text(elapsedTime);
+		});
+	}
+	// 작성일에 대한 문자열을 전달하면 경과시간을 적절한 단위로 반환하는 함수
+	function getElapsedTime(createdDateString) {
+		let now = moment();
+		let createdDate = moment(createdDateString, 'YYYY-MM-DD HH:mm:ss');
+		// 경과시간 정보
+		let duration = moment.duration(now.diff(createdDate));
+		// 경과시간에 대해 문자열로 표시할 단위 옵션
+		let durationOptions = [
+			{"dur" : duration.asDays(), "option" : "일 전"},
+			{"dur" : duration.asHours(), "option" : "시간 전"},
+			{"dur" : duration.asMinutes(), "option" : "분 전"},];
+		
+		// 반복문으로 duration의 값을 확인해 어떤 단위로 반환할지 결정한다.
+		// ex) 0.8년전이면 "8개월 전" 반환
+		for (let durOption of durationOptions) {
+			if (durOption.dur >= 1) {
+				if(durOption.option == '일 전'&& durOption.dur > 7){
+					return moment(createdDateString).format("YYYY-MM-DD");
+				}else{
+					return Math.round(durOption.dur) + durOption.option;
+				}
+			}
+		}
+		// 분 단위로 검사해도 1 이상이 아니면(반복문에서 함수가 종료되지 않으면) "방금 전" 반환
+		return "방금 전";
 	}
 	
 </script>

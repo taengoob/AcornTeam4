@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acorn.sixman.dao.CartDAO">
+
+	<select id="cartSearch" parameterType="hashmap" resultType="int">
+		select count(*) from user_cart
+		where cart_userid=#{userId}
+		and cart_productid=#{productId}
+	</select>
+	
+	<insert id="cartAdd" parameterType="hashmap">
+		insert into user_cart (cart_userid, cart_productid, cart_count, cart_id)
+		values (#{userId}, #{productId}, #{cartCount}, #{cartId})
+	</insert>
+	
+	<update id="cartUpdate"  parameterType="hashmap">
+		update user_cart set cart_count=cart_count+#{cartCount}
+		where cart_userid=#{userId}
+		and cart_productid=#{productId}
+	</update>
+	
+	<update id="cartUpdate2"  parameterType="hashmap">
+		update user_cart set cart_count= to_number(#{cartCount})
+		where cart_userid=#{userId}
+		and cart_productid=#{productId}
+	</update>
+	
+	<select id="cartList" parameterType="String" resultType="com.acorn.sixman.dto.CartDTO">
+		select DISTINCT
+			cart_id as cartId, 
+			cart_userid as cartuserId, 
+			cart_count as cartCount, 
+			product_id as productId, 
+			product_name as productName, 
+			product_price as productPrice,
+			product_delivery_price as productDeliveryPrice, 
+			product_model as productModel,
+			product_maker as productMaker, 
+			product_preview as productPreview,
+			product_category as productCategory
+		from user_cart 
+		join product_detail on (cart_productid = product_id)
+		where cart_userid = #{userId}
+	</select>
+	
+	<delete id="cartDelete" parameterType="String">
+		delete from user_cart
+		where cart_id=#{cartId}
+	</delete>
+	
+</mapper>

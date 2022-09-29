@@ -20,6 +20,7 @@
 		border-top-left-radius: 10px;
   		border-top-right-radius: 10px;
  		margin: auto;
+ 		margin-top: 10px;
 	}
 	.tabaleboxout{
 		width: 100%;
@@ -187,7 +188,10 @@
 	.tablebot{
 		height: 50px;
 	}	
-	
+	.cpnSelect{
+		width: 90px;
+		height: 24px;
+	}
 </style>
 
 <div class="boxtop"></div>
@@ -230,7 +234,7 @@
 			<input type="number" id="amt<%=productId %>" class="cartCount" style="width:90px; text-align: right;" value="<%=cartCount%>" 
 			data-xxx="<%=productId%>" data-yyy="<%=productPrice %>"><br>
 			쿠폰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<select class="cpnSelect" id="cpnSelect<%=productId%>" data-productId="<%=productId%>" style="width:98px; height:20px; font-size:7px; text-align: right">
+			<select class="cpnSelect" id="cpnSelect<%=productId%>" data-productId="<%=productId%>" style="width:90px; height:24px; font-size:7px; text-align: right">
 				<option selected="selected" value="0">없음</option>
 			<%for(int j=0; j<couponList.size();j++){
 				CouponDTO cpdto = couponList.get(j);

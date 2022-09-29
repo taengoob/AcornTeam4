@@ -126,7 +126,7 @@
 					</a>
 				</td>
 				<td><%=UserId %></td>
-				<td><%=RegDate %></td>
+				<td><span class="elapsedTime" data-created-date="<%=RegDate %>"></span></td>
 				<td><%=HitCount %></td>
 				<%} %>
 			</tr>
@@ -161,7 +161,7 @@
 					</a>
 				</td>
 				<td><%=UserId %></td>
-				<td><%=RegDate %></td>
+				<td><span class="elapsedTime" data-created-date="<%=RegDate %>"></span></td>
 				<td><%=HitCount %></td>
 			</tr>
 			<%} %>
@@ -217,7 +217,66 @@
 	  </ul>
 	</nav>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>
 <script src="board/boardJS/boardList.js"></script>
 <script type="text/javascript">
-
+	
+	window.onload = function() {
+		function hideAdminElelments(isAdmin) {//나중에 메인 jsp에서 참조
+			if (isAdmin === false) {
+				//class 에 admin이 있는 요소들을 찾는다.
+				const elements = document.getElementsByClassName("admin");
+		
+				//class 에 admin이 있는 요소들을 순회하면서
+				for (const key in elements) {
+					if (Object.hasOwnProperty.call(elements, key)) {
+						const element = elements[key];
+						//안보이게 만든다.
+						element.style.display = "none";
+					}
+				}
+			}
+		}
+		
+		function getIsAdmin() {
+			if("taengoov"=="<%=userId%>"){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	
+	$(".elapsedTime").each(function() {
+		 let elapsedTime = getElapsedTime($(this).attr("data-created-date"));
+		 $(this).text(elapsedTime);
+	});
+	// 작성일에 대한 문자열을 전달하면 경과시간을 적절한 단위로 반환하는 함수
+	function getElapsedTime(createdDateString) {
+		let now = moment();
+		let createdDate = moment(createdDateString, 'YYYY-MM-DD HH:mm:ss');
+		// 경과시간 정보
+		let duration = moment.duration(now.diff(createdDate));
+		// 경과시간에 대해 문자열로 표시할 단위 옵션
+		let durationOptions = [
+			{"dur" : duration.asDays(), "option" : "일 전"},
+			{"dur" : duration.asHours(), "option" : "시간 전"},
+			{"dur" : duration.asMinutes(), "option" : "분 전"},];
+		
+		// 반복문으로 duration의 값을 확인해 어떤 단위로 반환할지 결정한다.
+		// ex) 0.8년전이면 "8개월 전" 반환
+		for (let durOption of durationOptions) {
+			if (durOption.dur >= 1) {
+				if(durOption.option == '일 전'&& durOption.dur > 7){
+					return moment(createdDateString).format("YYYY-MM-DD");
+				}else{
+					return Math.round(durOption.dur) + durOption.option;
+				}
+			}
+		}
+		// 분 단위로 검사해도 1 이상이 아니면(반복문에서 함수가 종료되지 않으면) "방금 전" 반환
+		return "방금 전";
+	}
+	
 </script>

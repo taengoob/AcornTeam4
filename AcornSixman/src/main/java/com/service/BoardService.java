@@ -194,15 +194,15 @@ public class BoardService {
 		SqlSession session = MySqlSessionFactory.getSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			List<BoardDTO> list = dao.replyList(session, contentId);
-			int replyCount = dao.replyCount(session, contentId);
+			List<BoardDTO> list = dao.replyList(session, contentId);//해당 게시물에 달린 댓글목록
+			int replyCount = dao.replyCount(session, contentId);//해당 게시물의 총 댓글갯수
 			map.put("list", list);
 			map.put("replyCount", replyCount);
-			for (int i = 0; i < list.size(); i++) {
+			for (int i = 0; i < list.size(); i++) {//1차적으로 구한 댓글들을 참조하고 있는 댓글목록
 				BoardDTO xxx = list.get(i);
 				List<BoardDTO> list2 = dao.replyList(session, xxx.getBoardContentId());
 				if(list2!=null) {map.put("list"+i, list2);}
-				for (int j = 0; j < list2.size(); j++) {
+				for (int j = 0; j < list2.size(); j++) {//2차적으로 구한 댓글들을 참고하고 있는 댓글목록
 					BoardDTO yyy = list2.get(j);
 					List<BoardDTO> list3 = dao.replyList(session, yyy.getBoardContentId());
 					if(list3!=null) {map.put("list"+i+j, list3);}
