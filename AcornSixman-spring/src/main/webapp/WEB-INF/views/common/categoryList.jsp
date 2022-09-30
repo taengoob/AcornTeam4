@@ -1,4 +1,4 @@
-<%-- <%@page import="com.dto.ProductDTO_Temp"%>
+<%@page import="com.acorn.sixman.dto.ProductDTO_Temp"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -91,4 +91,4 @@
 			<tr>
 				<td height="10">
 			</tr>
-		</table> --%>
+		</table>

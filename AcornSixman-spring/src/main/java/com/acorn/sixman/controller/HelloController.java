@@ -17,16 +17,16 @@ public class HelloController {
     @Autowired
     CommonService service;
 
-    @RequestMapping("/")
-    public String SayHello(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
-            Model model) {
-        List<String> list = service.testDBConnection();
-        System.out.println(list);
-        list.add(name);
-        model.addAttribute("nameList", list);
-        model.addAttribute("currentTime", service.selectDbTime());
-        return "home";
-    }
+//    @RequestMapping("/")
+//    public String SayHello(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
+//            Model model) {
+//        List<String> list = service.testDBConnection();
+//        System.out.println(list);
+//        list.add(name);
+//        model.addAttribute("nameList", list);
+//        model.addAttribute("currentTime", service.selectDbTime());
+//        return "home";
+//    }
 
     @RequestMapping("/hello")
     public String SayHello2(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
