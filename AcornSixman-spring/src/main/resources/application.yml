@@ -1,6 +1,10 @@
 server:
     port: 8088
-
+    servlet:
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force:  true
 spring:
     mvc:
         view:
@@ -24,6 +28,8 @@ mybatis:
         map-underscore-to-camel-case: true
 
     mapper-locations: /mapper/*Mapper.xml
+
+
 # server.port=8088
 
 # spring.mvc.view.prefix=/WEB-INF/views/
