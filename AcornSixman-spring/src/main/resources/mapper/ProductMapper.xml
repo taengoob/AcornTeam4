@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acorn.sixman.dao.ProductDAO">
+
+	<select id="selectImagesByProductId" resultType="com.acorn.sixman.dto.ImageDTO" parameterType="String">
+		SELECT * FROM PRODUCT_IMAGE
+		WHERE 1=1
+			AND IMAGE_PRODUCT_ID = #{PRODUCT_ID}
+	</select>
+	
+	<insert id="insertProduct" parameterType="java.util.HashMap">
+		INSERT INTO PRODUCT_DETAIL
+		(
+			PRODUCT_ID
+			,PRODUCT_NAME
+			,PRODUCT_PRICE
+			,PRODUCT_DELIVERY_PRICE
+			,PRODUCT_MODEL
+			,PRODUCT_MAKER
+			,PRODUCT_MADEIN
+			,PRODUCT_STOCK
+			,PRODUCT_SELLER
+			,PRODUCT_REG_DATE
+			,PRODUCT_PREVIEW
+			,PRODUCT_CONTENT
+			,PRODUCT_CATEGORY
+		)
+		VALUES
+		(
+			#{productId}
+			,#{productName}
+			,#{productPrice}
+			,#{deliveryPrice}
+			,#{productModel}
+			,#{productMaker}
+			,#{productMadein}
+			,#{productStock}
+			,#{productSeller}
+			,CURRENT_DATE
+			,#{previewImage}
+			,#{productContent}
+			,#{productCategory}
+		)
+	</insert>
+	<select id="totalCount" resultType="int" parameterType="hashmap">
+      select count(*)
+      from PRODUCT_DETAIL
+      where PRODUCT_SELLER = #{sellerId}
+    
+			<if test="searchName == 'all'">
+	      		  
+			  </if>
+	  			<if test="searchName == 'Acoustic'">
+	      		 and PRODUCT_CATEGORY like 'Acoustic' 
+			  </if>
+	  			<if test="searchName == 'Bass'">
+	      		and PRODUCT_CATEGORY like 'Bass' 
+			  </if>
+	  			<if test="searchName == 'Classic'">
+	      		and PRODUCT_CATEGORY like 'Classic' 
+			  </if>
+	  			<if test="searchName == 'Elec'">
+	      		and PRODUCT_CATEGORY like 'Elec' 
+			  </if>
+	  			<if test="searchName == 'Ukulele'">
+	      		and PRODUCT_CATEGORY like 'Ukulele' 
+			  </if>
+    
+    </select>
+    
+	<select id="selectProductAll" resultType="com.acorn.sixman.dto.ProductDTO_Temp" parameterType="hashmap">
+		SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL
+		where PRODUCT_SELLER = #{sellerId}
+		
+			<if test="searchName == 'all'">
+	      		  
+			  </if>
+	  			<if test="searchName == 'Acoustic'">
+	      		and PRODUCT_CATEGORY like 'Acoustic' 
+			  </if>
+	  			<if test="searchName == 'Bass'">
+	      		and PRODUCT_CATEGORY like 'Bass' 
+			  </if>
+	  			<if test="searchName == 'Classic'">
+	      		and PRODUCT_CATEGORY like 'Classic' 
+			  </if>
+	  			<if test="searchName == 'Elec'">
+	      		and PRODUCT_CATEGORY like 'Elec' 
+			  </if>
+	  			<if test="searchName == 'Ukulele'">
+	      		and PRODUCT_CATEGORY like 'Ukulele' 
+			  </if>
+    
+	</select>
+	<select id="searchSelect" resultType="com.acorn.sixman.dto.ProductDTO_Temp" parameterType="hashmap">
+		SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL
+		where PRODUCT_SELLER = #{sellerId}
+		
+	      		and upper(PRODUCT_NAME) like upper('%'||#{search}||'%')
+    
+	</select>
+	
+	<select id="selectProductByProductId" resultType="com.acorn.sixman.dto.ProductDTO_Temp" parameterType="String">
+		SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL
+		WHERE 1=1
+			AND PRODUCT_ID = #{productId}
+	</select>
+	
+	<select id="selectProductByOption" resultType="com.acorn.sixman.dto.ProductDTO_Temp" parameterType="java.util.HashMap">
+		SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL A INNER JOIN PRODUCT_GUITAR_CATEGORY B
+		ON A.PRODUCT_CATEGORY = B.CATEGORY_ID
+		WHERE 1=1
+		<if test='category1 != null and category1 != "" and category1 != "All"'>
+			AND PRODUCT_CATEGORY = #{category1}
+ 		</if>
+ 		<if test='searchStr != null and searchStr != ""'>
+			AND
+			(
+					LOWER(PRODUCT_NAME) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(PRODUCT_MODEL) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(PRODUCT_MAKER) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(PRODUCT_CONTENT) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(B.CATEGORY_NAME) LIKE '%' || LOWER(#{searchStr}) || '%'
+				 OR LOWER(B.CATEGORY_DESC) LIKE '%' || LOWER(#{searchStr}) || '%'
+			)
+ 		</if>
+ 		<if test='category2 != null and category2 != "" and category2 != "All"'>
+			OR PRODUCT_CATEGORY = #{category2}
+ 		</if>
+	</select>
+	<select id="goodsRetrieve" resultType="com.acorn.sixman.dto.ProductDTO_Temp" parameterType="string">
+	SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL WHERE PRODUCT_CATEGORY =#{category}
+	</select>
+	
+	<select id="selectProductBySellerId" resultType="com.acorn.sixman.dto.ProductDTO_Temp" parameterType="String">
+		SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL
+		WHERE 1=1
+			AND PRODUCT_SELLER = #{sellerId}
+	</select>
+	<delete id="deleteByProductid" parameterType="string">
+	 delete 
+	 from PRODUCT_DETAIL
+	 where PRODUCT_ID = #{PRODUCT_ID}
+	</delete>
+	     <delete id="deleteByAllProdId" parameterType="arraylist">
+    delete from PRODUCT_DETAIL 
+    where PRODUCT_ID IN
+    <foreach item="item"  collection="list" open="("
+    separator="," close=")">
+    #{item}    
+      </foreach>
+  </delete>
+  <select id="productRetrieve" parameterType="string" resultType="com.acorn.sixman.dto.ProductDTO_Temp">
+       SELECT
+			PRODUCT_ID              AS productId
+			,PRODUCT_NAME           AS productName
+			,PRODUCT_PRICE          AS productPrice
+			,PRODUCT_DELIVERY_PRICE	AS productDeliveryPrice
+			,PRODUCT_MODEL          AS productModel
+			,PRODUCT_MAKER          AS productMaker
+			,PRODUCT_MADEIN         AS productMadein
+			,PRODUCT_STOCK          AS productStock
+			,PRODUCT_SELLER         AS productSeller
+			,PRODUCT_REG_DATE       AS productRegDate
+			,PRODUCT_PREVIEW        AS productPreview
+			,PRODUCT_CONTENT        AS productContent
+			,PRODUCT_CATEGORY       AS productCategory
+		FROM PRODUCT_DETAIL
+       where PRODUCT_ID = #{PRODUCT_ID}
+	</select>
+	
+</mapper>

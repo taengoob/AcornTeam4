@@ -6,14 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.acorn.sixman.dao.OrderDAO;
+import com.acorn.sixman.dao.ProductDAO;
 import com.acorn.sixman.dto.OrderDTO;
 import com.acorn.sixman.dto.PayMethodDTO;
+import com.acorn.sixman.dto.ProductDTO_Temp;
 
 @Service
 public class OrderService implements OrderDAO {
 
     @Autowired
     OrderDAO dao;
+
+    @Autowired
+    ProductDAO pDao;
 
     @Override
     public int insertOrder(OrderDTO order) {
@@ -22,7 +27,12 @@ public class OrderService implements OrderDAO {
 
     @Override
     public List<OrderDTO> selectOrderByUserId(String userId) {
-        return dao.selectOrderByUserId(userId);
+        List<OrderDTO> list = dao.selectOrderByUserId(userId);
+        for (OrderDTO orderDTO : list) {
+            ProductDTO_Temp product = pDao.selectProductByProductId(orderDTO.getOrderProductId());
+            orderDTO.setProduct(product);
+        }
+        return list;
     }
 
     @Override
@@ -37,7 +47,10 @@ public class OrderService implements OrderDAO {
 
     @Override
     public OrderDTO selectOrderByOrderId(String orderId) {
-        return dao.selectOrderByOrderId(orderId);
+        OrderDTO order = dao.selectOrderByOrderId(orderId);
+        ProductDTO_Temp product = pDao.selectProductByProductId(order.getOrderProductId());
+        order.setProduct(product);
+        return order;
     }
 
 }
