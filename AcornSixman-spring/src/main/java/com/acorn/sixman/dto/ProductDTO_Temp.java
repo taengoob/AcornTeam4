@@ -1,6 +1,5 @@
 package com.acorn.sixman.dto;
 
-import java.util.Arrays;
 import java.util.Date;
 
 import org.apache.tomcat.util.codec.binary.Base64;

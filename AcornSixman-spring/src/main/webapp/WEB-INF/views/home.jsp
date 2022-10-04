@@ -13,7 +13,8 @@
 			<div>Hello <c:out value="${name}" /></div>
 		</c:forEach>
 		<div><c:out value="${currentTime}" /></div>
-		
+		<br>
+		<a href="/">홈으로</a>
 		<%-- <div>Hello <%=request.getAttribute("name")%></div>
 		sun.boot.class.path : <%= System.getProperty("sun.boot.class.path") %>
 		<br>

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mapper.order">
-
-	<insert id="insertOrder" parameterType="java.util.HashMap">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acorn.sixman.dao.OrderDAO">
+	
+	<insert id="insertOrder" parameterType="com.acorn.sixman.dto.OrderDTO">
 		INSERT INTO ORDER_DETAIL
 		(
 			ORDER_ID
@@ -45,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
-	<select id="selectOrderByUserId" resultType="com.dto.OrderDTO" parameterType="String">
+	<select id="selectOrderByUserId" resultType="com.acorn.sixman.dto.OrderDTO" parameterType="String">
 		SELECT
 			ORDER_ID                  AS orderId
 			,ORDER_PRODUCT_ID          AS orderProductId
@@ -72,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY ORDER_ID
 	</select>
 	
-	<select id="selectPayMethodList" resultType="com.dto.PayMethodDTO">
+	<select id="selectPayMethodList" resultType="com.acorn.sixman.dto.PayMethodDTO">
 		SELECT
 			PAY_METHOD_ID		AS payMethodId
 			,PAY_METHOD_NAME    AS payMethodName
@@ -90,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</select>
 	
-	<select id="selectOrderByOrderId" resultType="com.dto.OrderDTO" parameterType="String">
+	<select id="selectOrderByOrderId" resultType="com.acorn.sixman.dto.OrderDTO" parameterType="String">
 		SELECT
 			ORDER_ID                  AS orderId
 			,ORDER_PRODUCT_ID          AS orderProductId
@@ -119,7 +117,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			AND A.ORDER_PAY_METHOD = C.PAY_METHOD_ID
 	</select>
 	
-	<select id="processList" parameterType="String" resultType="com.dto.ProcessListDTO">
+	<!-- <select id="processList" parameterType="String" resultType="com.acorn.sixman.dto.ProcessListDTO">
 		select 
 			ORDER_ID                  AS orderId
 			,ORDER_PRODUCT_ID          AS orderProductId
@@ -153,5 +151,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from ORDER_DETAIL 
 		join product_detail on (ORDER_PRODUCT_ID = product_id)
 		where ORDER_SELLER_ID = #{sellerId}
-	</select>
+	</select> -->
+	
 </mapper>

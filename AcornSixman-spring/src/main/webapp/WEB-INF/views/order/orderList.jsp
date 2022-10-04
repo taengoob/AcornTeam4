@@ -27,6 +27,7 @@
 				for (OrderDTO order : orderList)
 				{
 					ProductDTO_Temp product = order.getProduct();
+					if (product == null) continue;
 					String image = product.getPreviewUrl();
 					String name = product.getProductName();
 					String model = product.getProductModel();
@@ -45,14 +46,14 @@
 						<td colspan="2">
 							<div class="selectbox"></div>
 							<div>
-								<a href="OrderDetailServlet?orderId=<%= orderId %>">
+								<a href="orderDetail?orderId=<%= orderId %>">
 									<img src="<%= image %>" width="78px" height="78px">
 								</a>
 							</div>
 						</td>
 						<td colspan="4">
 							<div style="text-align: left;">
-								<a href="OrderDetailServlet?orderId=<%= orderId %>">
+								<a href="orderDetail?orderId=<%= orderId %>">
 									<%= name %>
 								</a>
 							</div>
