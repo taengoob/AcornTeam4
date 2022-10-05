@@ -38,18 +38,11 @@ public class OrderDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		String userId = "";
 		Object dto = request.getSession().getAttribute("login");
-		if (dto != null)
-		{
-			MemberDTO user = (MemberDTO)dto;
-			userId = user.getAccountId();
-		}
-		else
+		if (dto == null)
 		{
 			CommonService service = new CommonService();
 			MemberDTO user = service.testLogin();
-			userId = user.getAccountId();
 			request.getSession().setAttribute("login", user);
 		}
 		

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class OrderController {
 	CommonService commonService;
 
 	@RequestMapping("/orderList")
-	public String OrderList(HttpSession session, Model model) {
+	public String orderList(HttpSession session, Model model) {
 
 		String userId = "taengoov";
 
@@ -74,9 +73,8 @@ public class OrderController {
 	}
 
 	@RequestMapping("/orderDetail")
-	public String orderDetail(@RequestParam(name = "orderId", required = true) String orderId, HttpSession session,
-			Model model) {
-
+	public String orderDetail(@RequestParam(name = "orderId", required = true) String orderId, HttpSession session, Model model)
+	{
 		Object dto = session.getAttribute("login");
 		if (dto == null) {
 			MemberDTO user = commonService.testLogin();
@@ -91,5 +89,15 @@ public class OrderController {
 
 		// 테스트용 경로
 		return "order/orderDetail";
+	}
+	
+	public String addOrderForm()
+	{
+	    return "";
+	}
+	
+	public String addOrder()
+	{
+	    return "";
 	}
 }

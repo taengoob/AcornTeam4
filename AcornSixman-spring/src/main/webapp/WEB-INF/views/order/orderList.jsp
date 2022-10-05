@@ -1,5 +1,4 @@
 <%@page import="com.acorn.sixman.dto.ProductDTO_Temp"%>
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="com.acorn.sixman.dto.OrderDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

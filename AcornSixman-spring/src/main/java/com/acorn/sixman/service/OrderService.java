@@ -2,6 +2,7 @@ package com.acorn.sixman.service;
 
 import java.util.List;
 
+//import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,25 @@ public class OrderService implements OrderDAO {
     @Autowired
     ProductDAO pDao;
 
+//    @Autowired
+//    TransactionTemplate transaction;
+//    
+//    @Override
+//    public int insertOrder(OrderDTO order) {
+//        int result = 0;
+//        try {
+//            result = transaction.execute((status) -> dao.insertOrder(order));
+//        } catch (Exception e) {
+//            result = -1;
+//        }
+//        return result;
+//    }
+    
     @Override
     public int insertOrder(OrderDTO order) {
         return dao.insertOrder(order);
     }
-
+    
     @Override
     public List<OrderDTO> selectOrderByUserId(String userId) {
         List<OrderDTO> list = dao.selectOrderByUserId(userId);
