@@ -213,7 +213,7 @@
 
 		<tr> 
 			<td class="td_default">
-				 <input type="checkbox" name="same" id="checkBoxSame"> 배송지가 동일할 경우 선택하세요.
+				<input type="checkbox" name="same" id="checkBoxSame"> 배송지가 동일할 경우 선택하세요.
 			</td>
 		</tr>
 <!--  배송지 정보 시작-->

@@ -4,6 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.acorn.sixman.dao.CommonDAO">
 
+	<select id="testLogin" resultType="com.acorn.sixman.dto.MemberDTO">
+		select *
+		from user_account
+		where ACCOUNT_ID = 'taengoov'
+	</select>
+
 	<select id="testDBConnection" resultType="String">
 		SELECT ACCOUNT_ID
 		FROM USER_ACCOUNT

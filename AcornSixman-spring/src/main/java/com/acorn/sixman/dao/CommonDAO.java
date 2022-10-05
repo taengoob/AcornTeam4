@@ -6,9 +6,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.acorn.sixman.dto.CategoryDTO;
+import com.acorn.sixman.dto.MemberDTO;
 
 @Mapper
 public interface CommonDAO {
+    MemberDTO testLogin();
+
     List<String> testDBConnection();
 
     String selectDbTime();

@@ -4,16 +4,23 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.acorn.sixman.dao.CommonDAO;
 import com.acorn.sixman.dto.CategoryDTO;
+import com.acorn.sixman.dto.MemberDTO;
 
+@Primary
 @Service
 public class CommonService implements CommonDAO {
 
     @Autowired
     CommonDAO dao;
+
+    public MemberDTO testLogin() {
+        return dao.testLogin();
+    }
 
     @Override
     public List<String> testDBConnection() {
