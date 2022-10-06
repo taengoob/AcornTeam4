@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acorn.sixman.dao.MemberDAO">
+	<insert id="memberAdd" parameterType="com.acorn.sixman.dto.MemberDTO">
+		insert into user_account
+		(ACCOUNT_ID,
+		ACCOUNT_PASSWD,
+		ACCOUNT_NAME,
+		ACCOUNT_ADDRESS_NUMBER,
+		ACCOUNT_ADDRESS_LOAD,
+		ACCOUNT_PHONE,
+		ACCOUNT_EMAIL_ID,
+		ACCOUNT_EMAIL_DOMAIN,
+		ACCOUNT_IS_SELLER,
+		ACCOUNT_JOIN_DATE)
+		values
+		(#{accountId},
+		#{accountPasswd},
+		#{accountName},
+		#{accountAddressNumber},
+		#{accountAddressLoad},
+		#{accountPhone},
+		#{accountEmailId},
+		#{accountEmailDomain},
+		#{accountIsSeller},sysdate)
+	</insert>
+	<select id="idCheck" parameterType="string" resultType="int">
+		select
+		count(*)
+		from user_account
+		where ACCOUNT_ID = #{userid}
+	</select>
+	<select id="Login" resultType="com.acorn.sixman.dto.MemberDTO"
+		parameterType="hashmap">
+		select *
+		from user_account
+		where ACCOUNT_ID = #{userid}
+		and ACCOUNT_PASSWD =
+		#{passwd}
+	</select>
+		<select id="Loginforkakao" resultType="com.acorn.sixman.dto.MemberDTO"
+		parameterType="hashmap">
+		select *
+		from user_account
+		where ACCOUNT_NAME = #{accountName}
+		and ACCOUNT_EMAIL_ID =
+		#{accountEmailId} and ACCOUNT_EMAIL_DOMAIN =#{accountEmailDomain}
+	</select>
+	<update id="update" parameterType="com.acorn.sixman.dto.MemberDTO">
+		update user_account set
+		ACCOUNT_PASSWD = #{accountPasswd},
+		ACCOUNT_NAME = #{accountName},
+		ACCOUNT_ADDRESS_NUMBER = #{accountAddressNumber},
+		ACCOUNT_ADDRESS_LOAD
+		= #{accountAddressLoad},
+		ACCOUNT_PHONE = #{accountPhone},
+		ACCOUNT_EMAIL_ID = #{accountEmailId},
+		ACCOUNT_EMAIL_DOMAIN =
+		#{accountEmailDomain}
+		where ACCOUNT_ID = #{accountId}
+	</update>
+	<select id="findid" parameterType="hashmap"
+		resultType="com.acorn.sixman.dto.MemberDTO">
+		select
+		ACCOUNT_ID
+		from user_account
+		where ACCOUNT_NAME =
+		#{accountName} and ACCOUNT_EMAIL_ID = #{accountEmailId} and
+		ACCOUNT_EMAIL_DOMAIN =
+		#{accountEmailDomain}
+	</select>
+	<select id="findidforphone" parameterType="hashmap"
+		resultType="com.acorn.sixman.dto.MemberDTO">
+		select
+		ACCOUNT_ID
+		from user_account
+		where ACCOUNT_NAME =
+		#{accountName} and
+		ACCOUNT_PHONE = #{accountPhone}
+	</select>
+	<select id="findid2" parameterType="hashmap"
+		resultType="com.acorn.sixman.dto.MemberDTO">
+		select
+		*
+		from user_account
+		where ACCOUNT_ID =
+		#{accountId} and
+		ACCOUNT_EMAIL_ID = #{accountEmailId} and
+		ACCOUNT_EMAIL_DOMAIN =
+		#{accountEmailDomain}
+	</select>
+	<update id="changePW" parameterType="hashmap">
+		update user_account set
+		ACCOUNT_PASSWD = #{accountPasswd}
+		where ACCOUNT_ID = #{accountId}
+	</update>
+	<select id="findpwforphone" parameterType="hashmap"
+		resultType="com.acorn.sixman.dto.MemberDTO">
+		select
+		*
+		from user_account
+		where ACCOUNT_ID =
+		#{accountId} and
+		ACCOUNT_PHONE =
+		#{accountPhone} 
+	</select>
+</mapper>

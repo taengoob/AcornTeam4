@@ -50,7 +50,7 @@ session.removeAttribute("memberupdate");
         로그아웃 완료. 다음에 또 만나요^^;;
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="location.href='logoutServlet'">확인</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='logout'">확인</button>
       </div>
     </div>
   </div>

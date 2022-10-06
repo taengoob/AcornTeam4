@@ -9,7 +9,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
+<link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
 <title>index</title>
 <style>
 * {
@@ -76,9 +76,13 @@ keyframes login { 0%{
 
 
 
+
+
 %
 {
 transform
+
+
 
 
 
@@ -92,7 +96,11 @@ transform
 
 
 
+
+
 rotate
+
+
 
 
 
@@ -104,9 +112,15 @@ rotate
 
 
 
+
+
 360deg
 
+
+
 )
+
+
 
 
 
@@ -176,11 +190,11 @@ rotate
 				회원가입이 <span class="write1-span">완료</span> 되었습니다.
 			</p>
 			<p class="write2">
-				<span class="write2-span" id="name"></span>님의 회원가입을 축하합니다.<br>알차고
-				실속있는 서비스로 찾아뵙겠습니다.
+				<span class="write2-span" id="name"></span>님의 회원가입을 축하합니다.<br>
+				알차고 실속있는 서비스로 찾아뵙겠습니다.
 			</p>
-			<span class="span-line"></span> <a href="#" class="home" style="text-decoration: none;">홈으로</a> <a
-				href="LoginUIservlet" class="login" style="text-decoration: none;">로그인</a>
+			<span class="span-line"></span> <a href="Mainservlet" class="home">홈으로</a>
+			<a href="LoginUIservlet" class="login">로그인</a>
 		</div>
 	</div>
 	<%
