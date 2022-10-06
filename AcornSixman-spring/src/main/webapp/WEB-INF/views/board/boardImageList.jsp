@@ -9,7 +9,8 @@
 <%
 	List<BoardDTO> flist = (List<BoardDTO>)request.getAttribute("flist");
 	BoardPageDTO bpDTO = (BoardPageDTO)request.getAttribute("bpDTO");
-	List<BoardDTO> slist = bpDTO.getList();
+	List<BoardDTO> slist = new ArrayList<BoardDTO>();
+// 	List<BoardDTO> slist = bpDTO.getList();
 	int curPage = bpDTO.getCurPage();
 	
 	String view = (String)request.getAttribute("view");
