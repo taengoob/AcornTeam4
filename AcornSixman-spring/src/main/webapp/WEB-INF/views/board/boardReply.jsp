@@ -145,7 +145,6 @@
 	</div>
 </div>
 <div class="container" style="height: 0px;"></div>
-<script src="board/boardJS/boardReply.js"></script>
 <script type="text/javascript">
 	
 

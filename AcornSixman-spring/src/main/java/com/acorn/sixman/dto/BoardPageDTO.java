@@ -8,6 +8,11 @@ public class BoardPageDTO {
 	private String searchGroup;
 	private String searchValue;
 	private String category;
+	private int boardStart;
+	private int boardEnd;
+	private String view;
+	private String Move;
+	private String ContentId;
 	
 	public BoardPageDTO() {
 		this.curPage = 1;
@@ -16,7 +21,7 @@ public class BoardPageDTO {
 	}
 
 	public BoardPageDTO(int curPage, int perPage, int totalCount, String searchGroup, String searchValue,
-			String category) {
+			String category, int boardStart, int boardEnd, String view, String move, String contentId) {
 		super();
 		this.curPage = curPage;
 		this.perPage = perPage;
@@ -24,6 +29,11 @@ public class BoardPageDTO {
 		this.searchGroup = searchGroup;
 		this.searchValue = searchValue;
 		this.category = category;
+		this.boardStart = boardStart;
+		this.boardEnd = boardEnd;
+		this.view = view;
+		Move = move;
+		ContentId = contentId;
 	}
 
 	public int getCurPage() {
@@ -74,10 +84,52 @@ public class BoardPageDTO {
 		this.category = category;
 	}
 
+	public int getBoardStart() {
+		return boardStart;
+	}
+
+	public void setBoardStart(int boardStart) {
+		this.boardStart = boardStart;
+	}
+
+	public int getBoardEnd() {
+		return boardEnd;
+	}
+
+	public void setBoardEnd(int boardEnd) {
+		this.boardEnd = boardEnd;
+	}
+
+	public String getView() {
+		return view;
+	}
+
+	public void setView(String view) {
+		this.view = view;
+	}
+
+	public String getMove() {
+		return Move;
+	}
+
+	public void setMove(String move) {
+		Move = move;
+	}
+
+	public String getContentId() {
+		return ContentId;
+	}
+
+	public void setContentId(String contentId) {
+		ContentId = contentId;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardPageDTO [curPage=" + curPage + ", perPage=" + perPage + ", totalCount=" + totalCount
-				+ ", searchGroup=" + searchGroup + ", searchValue=" + searchValue + ", category=" + category + "]";
+				+ ", searchGroup=" + searchGroup + ", searchValue=" + searchValue + ", category=" + category
+				+ ", boardStart=" + boardStart + ", boardEnd=" + boardEnd + ", view=" + view + ", Move=" + Move
+				+ ", ContentId=" + ContentId + "]";
 	}
-	
+
 }

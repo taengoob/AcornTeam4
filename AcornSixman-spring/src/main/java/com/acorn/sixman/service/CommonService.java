@@ -59,6 +59,7 @@ public class CommonService implements CommonDAO {
 
     @Override
     public String getNewBoardContentId() {
+        System.out.println("게시글 번호 생성 : "+dao);
         return dao.getNewBoardContentId();
     }
 

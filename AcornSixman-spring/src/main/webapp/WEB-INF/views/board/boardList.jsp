@@ -121,7 +121,7 @@
 				<%if(PreviewImg!=null){%> 
 					<img src="upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
 				<%} %>
-					<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
+					<a href="boardInfo?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>
 				</td>
@@ -153,10 +153,10 @@
 				<%if(PreviewImg!=null){%> 
 					<img src="upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
 				<%} %>
-					<a href="BoardInfoServlet?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
+					<a href="boardInfo?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>
-					<a href="BoardDeleteServlet?ContentId=<%=ContentId %>" class="b admin">
+					<a href="boardDelete?ContentId=<%=ContentId %>" class="b admin">
 						<img src="upload/delete2.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
 					</a>
 				</td>
@@ -184,7 +184,7 @@
 			</select>
 		</form>
 		<%if("taengoov".equals(userId)||Category.equals("BOARD")||Category.equals("SECONDHAND")||Category.equals("QnA")) {%>
-		<a href="BoardWriteUIServlet?Category=<%=Category %>" class="btn btn-secondary" id="writeGoBtn">글쓰기</a>
+		<a href="boardWrite?Category=<%=Category %>" class="btn btn-secondary" id="writeGoBtn">글쓰기</a>
 		<%} %>
 	</div>
 </div>
@@ -202,11 +202,11 @@
 			for(int i=1; i<=totalPage;i++){
 				if(i==curPage){%>
 					<li class="page-item active">
-						<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i%>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>" class="page-link link-dark"><span id="curPage"><%=i %></span></a>
+						<a href="boardList?Category=<%=Category%>&curPage=<%=i%>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>" class="page-link link-dark"><span id="curPage"><%=i %></span></a>
 					</li>
 				<%}else{ %>
 					<li class="page-item">
-						<a href="BoardListServlet?Category=<%=Category%>&curPage=<%=i %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>" class="page-link link-dark"><%=i %></a>
+						<a href="boardList?Category=<%=Category%>&curPage=<%=i %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>" class="page-link link-dark"><%=i %></a>
 					</li>
 				<%}%>
 	    <%

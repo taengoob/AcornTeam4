@@ -22,6 +22,31 @@
 		String Content = bdto.getBoardContent();
 	
 %>
+<style type="text/css">
+	#writeBox{
+		width: 90%;
+		margin: auto;
+	}
+	#writeBoxOut{
+		background-color: #f8f9fa;
+		border: 1px solid grey;
+	}
+	#writeTB{
+		border: none;
+	}
+	#content{
+		height: 800px;
+		resize: none;
+		border: none;
+		background-color: white;
+	}
+	#nTableTop, #nTableBot{
+		height: 20px;
+	}
+	#Category, #subCategory,#title{
+		padding-left: 10px;
+	}	
+</style>
 <div class="container">
 	<div style="height: 50px;"></div>
 	<h1 class="text-center" >회원게시판</h1>
@@ -33,7 +58,7 @@
 	<a href="BoardListServlet?Category=QnA" class="btn btn-outline-dark">QnA</a>
 	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
 	<div id="nTableTop"></div>
-	<form action="BoardReWriteServlet" id="writeForm" method="post">	
+	<form action="boardReWrite" id="writeForm" method="post">	
 		<input type="hidden" name="ContentId" value="<%=ContentId%>">
 		<div class="w-100" id="writeBoxOut">
 			<div id="writeBox">
@@ -114,13 +139,13 @@
 			</div>
 		</div>
 		<div id="nTableBot"></div>
-		<a href="BoardListServlet" class="btn btn-outline-dark">작성취소</a>
-		<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark">임시저장</a>
+		<a href="boardList" class="btn btn-outline-dark">작성취소</a>
+		<a href="boardList" class="btn btn-outline-dark">임시저장</a>
 		<a id="writeBtn" onclick="writeChk()" class="btn btn-secondary" style="float: right;">작성완료</a>
 	</form>
 </div>
 <br>
-<script type="text/javascript" src="smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="static/smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 
 </script>
@@ -130,7 +155,7 @@
 	nhn.husky.EZCreator.createInIFrame({
 	 oAppRef: oEditors,
 	 elPlaceHolder: "content",//textarea ID 입력
-	 sSkinURI: "smarteditor2/SmartEditor2Skin.html",
+	 sSkinURI: "static/smarteditor2/SmartEditor2Skin.html",
 	 fCreator: "createSEditor2"
 	});
 

@@ -127,7 +127,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 	</insert>
 	
-	<select id="boardCount" resultType="int">
+	<select id="boardCount" parameterType="com.acorn.sixman.dto.BoardPageDTO" resultType="int">
 		SELECT 
 			COUNT(*) 
 		FROM
@@ -184,7 +184,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SUBSTR(BOARD_CONTENT_ID,15,5) = #{ContentId}
 	</update>
 	
-	<select id="boardMove" parameterType="HashMap" resultMap="test">
+	<select id="boardMove" parameterType="com.acorn.sixman.dto.BoardPageDTO" resultMap="test">
 		SELECT  
 			SUBSTR(BOARD_CONTENT_ID,15,5) BOARD_CONTENT_ID, 
 			BOARD_CATEGORY, 
@@ -267,7 +267,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             )
 	</select>
 	
-	<select id="boardEnd" parameterType="HashMap" resultType="int">
+	<select id="boardEnd" parameterType="com.acorn.sixman.dto.BoardPageDTO" resultType="int">
 		SELECT  
 			MAX(TO_NUMBER(SUBSTR(BOARD_CONTENT_ID,15,5)))  BOARD_CONTENT_ID
 		FROM
@@ -300,7 +300,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			BOARD_CATEGORY = #{category}
 	</select>
 	
-	<select id="boardStart" parameterType="HashMap" resultType="int">
+	<select id="boardStart" parameterType="com.acorn.sixman.dto.BoardPageDTO" resultType="int">
 		SELECT  
 			MIN(TO_NUMBER(SUBSTR(BOARD_CONTENT_ID,15,5)))  BOARD_CONTENT_ID
 		FROM

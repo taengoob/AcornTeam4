@@ -110,17 +110,15 @@
 <br>
 <script type="text/javascript" src="smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
-
 </script>
 <script type="text/javascript">
 
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
-	 oAppRef: oEditors,
-	 elPlaceHolder: "content",//textarea ID 입력
-	 sSkinURI: "smarteditor2/SmartEditor2Skin.html",
-	 fCreator: "createSEditor2"
-	 
+		oAppRef: oEditors,
+		elPlaceHolder: "content",//textarea ID 입력
+		sSkinURI: "smarteditor2/SmartEditor2Skin.html",
+		fCreator: "createSEditor2"
 	});
 
 	

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.acorn.sixman.dto.MemberDTO" %>
 <%@page import="com.acorn.sixman.dto.BoardDTO" %>
+<%@page import="com.acorn.sixman.dto.BoardPageDTO" %>
+<%@page import="com.acorn.sixman.dto.MemberDTO" %>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -13,11 +14,6 @@
 			MemberDTO user = (MemberDTO)obj;
 			userId = user.getAccountId();
 		}
-		String MainCategory = (String)request.getAttribute("Category");
-		
-		int boardCount = (int)request.getAttribute("boardCount");
-		int boardStart = (int)request.getAttribute("boardStart");
-		int boardEnd = (int)request.getAttribute("boardEnd");
 
 		BoardDTO bdto = (BoardDTO)request.getAttribute("bdto");
 		String ContentId = bdto.getBoardContentId();
@@ -44,9 +40,15 @@
 		int HitCount = bdto.getBoardHitCount();
 		String RealContentId = bdto.getBoardRealContentId();
 		
-		String searchGroup = (String)request.getAttribute("searchGroup");
-		String searchValue = (String)request.getAttribute("searchValue");
-		String view = (String)request.getAttribute("view");
+		BoardPageDTO bpDTO = (BoardPageDTO)request.getAttribute("bpDTO");
+		String MainCategory = bpDTO.getCategory();
+		String searchGroup = bpDTO.getSearchGroup();
+		String searchValue = bpDTO.getSearchValue();
+		String view = "";
+		
+		int boardCount = bpDTO.getTotalCount();
+		int boardStart = bpDTO.getBoardStart();
+		int boardEnd = bpDTO.getBoardEnd();
 %>
 <div class="container">
 <div style="height: 50px;"></div>
@@ -64,7 +66,7 @@
 <%} %>
 </h1>
 <div style="height: 50px;"></div>
-<a href="BoardListServlet?Category=<%=Category %>" class="btn btn-outline-dark">목록보기</a>
+<a href="boardList?Category=<%=Category %>" class="btn btn-outline-dark">목록보기</a>
 <a href="#" onclick="reWrite()" class="btn btn-secondary " style="float: right;">글수정</a>
 <div id="nTableTop"></div>
 <div id="nTableBox">
@@ -115,7 +117,7 @@
 		console.log(writer);
 		if(writer=="<%=userId%>"||"taengoov"=="<%=userId%>"){
 			if(window.confirm("정말 게시글을 수정하시겠습니까?")){
-				var href = "BoardWriteUIServlet?ContentId="+"<%=ContentId%>";
+				var href = "boardReWrite?ContentId="+"<%=ContentId%>";
 				location.href = href;
 			}else{
 				alert("수정이 취소되었습니다.");
@@ -134,8 +136,9 @@
 		var view = document.getElementById("view").value;
 		if(view==null){view="";}
 		var Move = "Next";
+		alert("contentid : "+ContentId+" boardEnd : <%=boardEnd%>");
 		if(parseInt(ContentId)<<%=boardEnd%>){
-			href = "BoardInfoServlet?Category="+Category+"&curPage="+curPage+"&searchValue="+searchValue
+			href = "boardInfo?Category="+Category+"&curPage="+curPage+"&searchValue="+searchValue
 				 + "&searchGroup="+searchGroup+"&ContentId="+ContentId+"&view="+view+"&Move="+Move;
 			location.href = href;
 		}else{
@@ -153,7 +156,7 @@
 		if(view==null){view="";}
 		var Move = "Prev";
 		if(parseInt(ContentId)><%=boardStart%>){
-			href = "BoardInfoServlet?Category="+Category+"&curPage="+curPage+"&searchValue="+searchValue
+			href = "boardInfo?Category="+Category+"&curPage="+curPage+"&searchValue="+searchValue
 				 + "&searchGroup="+searchGroup+"&ContentId="+ContentId+"&view="+view+"&Move="+Move;
 		location.href = href;
 		}else{
@@ -166,7 +169,7 @@
 		var ContentId = document.getElementById("ContentId").value;
 		if(writer=="<%=userId%>"||"taengoov"=="<%=userId%>"){
 			if(window.confirm("정말 게시글을 삭제하시겠습니까?")){
-				href = "BoardDeleteServlet?ContentId="+ContentId;
+				href = "boardDelete?ContentId="+ContentId;
 				location.href = href;
 			}else{
 				alert("삭제가 취소되었습니다.");
