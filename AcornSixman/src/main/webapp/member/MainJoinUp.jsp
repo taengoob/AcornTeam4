@@ -19,7 +19,7 @@
 	margin-top: 3%;
 	margin-left: 10%;
 }
-
+	
 #id-con {
 	background-color: #aaaaaa;
 	padding: 6px;
@@ -38,7 +38,7 @@
 
 .addr-input {
 	margin-left: 17.2%;
-}
+}	
 
 .finish {
 	text-align: right;
@@ -235,7 +235,7 @@
 									event.preventDefault();
 									
 								} else if (!regName.test(name)){
-									console.log('입력된 값은 휴대전화번호입니다.');
+									console.log('입력된 값은 이름입니다.');
 									alert("이름이 올바르지 않습니다.");
 									event.preventDefault();
 									$("#resultName").text("이름이 올바르지 않습니다");

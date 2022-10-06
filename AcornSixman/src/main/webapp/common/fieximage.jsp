@@ -35,7 +35,6 @@ h3 {
 	background-position: center;
 	text-align: center;
 }
-@keyframes
 
 </style>
 </head>
