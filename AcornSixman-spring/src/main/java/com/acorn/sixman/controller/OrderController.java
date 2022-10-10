@@ -222,44 +222,4 @@ public class OrderController {
 		// Order Request 추가 서블릿으로 forward
 		return "forward:addOrderRequest";
 	}
-
-	@RequestMapping("/orderAddForm")
-	public String orderAdd(@RequestParam(name = "jsonStr", required = true) String jsonStr, HttpSession session,
-			Model model) {
-		System.out.println(jsonStr);
-
-		JSONArray jsonArray = null;
-		JSONParser parser = new JSONParser();
-		try {
-			jsonArray = (JSONArray) parser.parse(jsonStr);
-			List<ProductDTO_Temp> orderInfoList = new ArrayList<ProductDTO_Temp>();
-			for (Object obj : jsonArray) {
-				JSONObject json = (JSONObject) obj;
-				if (json != null) {
-					int amount = Integer.parseInt(json.get("amount").toString());
-					String productId = (String) json.get("productId");
-
-					ProductDTO_Temp product = productService.selectProductByProductId(productId);
-					product.setOrderAmount(amount);
-
-					System.out.println("product 확인 : " + product);
-
-					orderInfoList.add(product);
-				}
-			}
-			// 셋 어트리뷰트
-
-			model.addAttribute("orderInfoList", orderInfoList);
-			System.out.println("orderInfoList : " + orderInfoList);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			// response.getWriter().append(e.toString());
-		}
-
-		List<PayMethodDTO> payMethodList = service.selectPayMethodList();
-		model.addAttribute("payMethodList", payMethodList);
-		System.out.println("payMethodList : " + payMethodList);
-		return "addOrderFrom";
-	}
 }
