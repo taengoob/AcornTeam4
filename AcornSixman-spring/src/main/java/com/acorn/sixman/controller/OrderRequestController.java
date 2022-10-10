@@ -25,7 +25,7 @@ public class OrderRequestController {
         model.addAttribute("orderRequestWPList", orderRequestWPList);
         model.addAttribute("orderRequestCPList", orderRequestCPList);
 
-        return "/orderRequest/paymentRquestList";
+        return "orderRequest/paymentRquestList";
     }
 
     @RequestMapping("/deliveryRequests")
@@ -38,7 +38,7 @@ public class OrderRequestController {
         model.addAttribute("orderRequestBDList", orderRequestBDList);
         model.addAttribute("orderRequestCDList", orderRequestCDList);
 
-        return "/orderRequest/deliveryRequestList";
+        return "orderRequest/deliveryRequestList";
     }
 
     @RequestMapping("/addDelivery")
@@ -64,5 +64,20 @@ public class OrderRequestController {
             nextPage = "deliveryRequests";
 
         return "redirect:" + nextPage;
+    }
+
+    @RequestMapping("addOrderRequest")
+    public String AddOrderRequest(Model model) {
+        List<OrderRequestDTO> orderRequestList = (List<OrderRequestDTO>) model.getAttribute("orderRequestList");
+        for (OrderRequestDTO orderRequest : orderRequestList) {
+            OrderRequestService service = new OrderRequestService();
+            service.insertOrderRequest(orderRequest);
+        }
+
+        // 메인용 경로
+        // return "orderDone";
+
+        // 테스트용 경로
+        return "order/orderDone";
     }
 }

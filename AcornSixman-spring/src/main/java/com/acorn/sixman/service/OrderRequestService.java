@@ -13,8 +13,8 @@ public class OrderRequestService implements OrderRequestDAO {
     private OrderRequestDAO dao;
 
     @Override
-    public int insertOrderRequest() {
-        return dao.insertOrderRequest();
+    public int insertOrderRequest(OrderRequestDTO orderRequst) {
+        return dao.insertOrderRequest(orderRequst);
     }
 
     @Override

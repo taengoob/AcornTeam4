@@ -9,7 +9,7 @@ import com.acorn.sixman.dto.OrderRequestDTO;
 @Mapper
 public interface OrderRequestDAO {
 
-    int insertOrderRequest();
+    int insertOrderRequest(OrderRequestDTO orderRequst);
 
     List<OrderRequestDTO> selectOrderRequestList(String orderStatus);
 

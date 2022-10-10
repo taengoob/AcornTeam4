@@ -21,25 +21,36 @@ public class OrderService implements OrderDAO {
     @Autowired
     ProductDAO pDao;
 
-//    @Autowired
-//    TransactionTemplate transaction;
-//    
-//    @Override
-//    public int insertOrder(OrderDTO order) {
-//        int result = 0;
-//        try {
-//            result = transaction.execute((status) -> dao.insertOrder(order));
-//        } catch (Exception e) {
-//            result = -1;
-//        }
-//        return result;
-//    }
-    
+    // @Autowired
+    // TransactionTemplate transaction;
+    //
+    // @Override
+    // public int insertOrder(OrderDTO order) {
+    // int result = 0;
+    // try {
+    // result = transaction.execute((status) -> dao.insertOrder(order));
+    // } catch (Exception e) {
+    // result = -1;
+    // }
+    // return result;
+    // }
+
     @Override
     public int insertOrder(OrderDTO order) {
         return dao.insertOrder(order);
     }
-    
+
+    public int insertOrder(OrderDTO order, String cartId) {
+        int result = insertOrder(order);
+        if (result > 0)
+            deleteCart(cartId);
+        return result;
+    }
+
+    public int deleteCart(String cartId) {
+        return dao.deleteCart(cartId);
+    }
+
     @Override
     public List<OrderDTO> selectOrderByUserId(String userId) {
         List<OrderDTO> list = dao.selectOrderByUserId(userId);

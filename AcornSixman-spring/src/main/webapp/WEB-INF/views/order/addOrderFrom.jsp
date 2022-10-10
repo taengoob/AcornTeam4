@@ -63,7 +63,7 @@
 </script>
 
 
-<form name="myForm" method="get" action="AddOrderServlet" onsubmit="onSumbitClicked()">
+<form name="myForm" method="get" action="addOrder" onsubmit="onSumbitClicked()">
 	<input id="hiddenInput" name="jsonStr" value="" type="hidden">
 	
 	<table width="80%" cellspacing="0" cellpadding="0">
