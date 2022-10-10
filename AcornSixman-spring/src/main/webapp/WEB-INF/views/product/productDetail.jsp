@@ -237,6 +237,9 @@
 	            </div>
 	        </section>
 	        <hr>
+	        <br>
+	        <br>
+	        <br>
 	<center><img src="static/img/<%= productId %>.jpg"></center>
 	        
 	        <footer>

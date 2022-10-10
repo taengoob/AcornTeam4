@@ -23,8 +23,6 @@ public class ProductController {
 	@RequestMapping("/productDetail")
 	public String productDetail(@RequestParam(name = "productId", required = false, defaultValue = "") String productId, Model model) {
 		
-		
-		
 		ProductDTO_Temp product = service.selectProductByProductId(productId);
 		List<ImageDTO> images = service.selectImagesByProductId(productId);
 		
@@ -37,6 +35,8 @@ public class ProductController {
 		//테스트용 경로
 		return "product/productDetail";
 	}
+	
+
 	
 	@RequestMapping("/productList")
 	public String productList(@RequestParam HashMap<String, String> map, Model model) {
