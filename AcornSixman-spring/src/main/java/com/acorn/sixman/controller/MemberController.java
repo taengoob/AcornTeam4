@@ -1,12 +1,9 @@
 package com.acorn.sixman.controller;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,16 +18,16 @@ public class MemberController {
 
   @RequestMapping("/MainJoinUp")
   public String MainJoinUp() {
-    return "member/MainJoinUp";
+    return "MainJoinUp";
   }
 
   @RequestMapping("/MemberAdd") // 회원 정보 db 저장
-  public String MemberAdd(MemberDTO dto, Model model) {
+  public String MemberAdd(MemberDTO dto, HttpSession session) {
     System.out.println(dto);
     String m = "";
     int list = service.memberAdd(dto);
     if (list == 1) {
-      model.addAttribute("mesg", dto.getAccountId());
+      session.setAttribute("mesg", dto.getAccountId());
       m = "finish";
     } else {
       System.out.println("에러떴어요~ 회원가입 에러~");
@@ -38,7 +35,7 @@ public class MemberController {
     return m;
   }
 
-  @RequestMapping("//MemberIdCheck")//회원가입 시 아이디 체크
+  @RequestMapping("/MemberIdCheck") // 회원가입 시 아이디 체크
   @ResponseBody
   public String MemberIdCheck(@RequestParam("userid") String userid) {
     System.out.println("체크 서블릿");
@@ -49,5 +46,35 @@ public class MemberController {
     }
     return mesg;
   }
+
+  @RequestMapping("/MemberUpdate") // 회원가입 수정
+  public String MemberUpdate(MemberDTO dto, HttpSession session) {
+    MemberDTO gDTO = (MemberDTO) session.getAttribute("login");
+    String mesg = "";
+    if (gDTO != null) {
+      int list = service.update(dto);
+      System.out.println("업데이트 된 갯수" + list);
+      if (list == 1) {
+        session.setAttribute("memberupdate", "회원정보가 수정되었습니다.");
+        mesg = "redirect:/";
+      } 
+    }else {
+      mesg = "redirect:/LoginUI";
+    }
+    return mesg;
+  }
+  @RequestMapping("/MyPage")
+  public String MyPage(HttpSession session){
+    MemberDTO gDTO = (MemberDTO) session.getAttribute("login");
+    String mesg = "";
+    if(gDTO != null){
+      mesg = "redirect:/OrderList";
+    }else{
+      mesg = "redirect:/LoginUI";
+    }
+    return mesg;
+  }
+
   
+
 }

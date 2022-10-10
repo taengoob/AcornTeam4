@@ -67,7 +67,7 @@
 		<div class="main-box">
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">아이디</label>
-				<input type="text" class="form-control" id="id" name="id"
+				<input type="text" class="form-control" id="id" name="accountId"
 					placeholder="" style="display: inline; width: 40%;">&nbsp;&nbsp;
 				<button class="btn btn-outline-secondary" id="idCheck"
 					name="idCheck" type="button" style="margin-bottom: 4.5px;">
@@ -81,7 +81,7 @@
 
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">비밀번호</label>
-				<input type="password" id="passwd" name="passwd"
+				<input type="password" id="passwd" name="accountPasswd"
 					class="form-control" style="display: inline; width: 40%;">
 			</div>
 
@@ -94,17 +94,17 @@
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">이름</label>
-				<input type="text" id="name" name="name" class="form-control"
+				<input type="text" id="name" name="accountName" class="form-control"
 					placeholder="한글로 2-4자리" style="display: inline; width: 40%;">
 				&nbsp;&nbsp; <span id='resultName'></span>
 
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">이메일</label>
-				<input type="text" name="email01" id="email01" class="form-control"
+				<input type="text" name="accountEmailId" id="email01" class="form-control"
 					style="display: inline; width: 20%;" placeholder="이메일을 입력하세요"><span
 					class="input-group-text" style="width: 6%; display: inline;">@</span><input
-					type="text" name="email02" id="email02" class="form-control"
+					type="text" name="accountEmailDomain" id="email02" class="form-control"
 					style="display: inline; width: 16.6%;">&nbsp;&nbsp;<select
 					id="sel" class="form-select" style="display: inline; width: 10%;">
 					<option value="self" selected="selected">직접입력</option>
@@ -118,14 +118,14 @@
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">휴대폰
 					번호</label> <input type="text" data-pattern="gdNum" id="phoneNumber"
-					name="phoneNumber" class="form-control"
+					name="accountPhone" class="form-control"
 					placeholder="010으로 시작하는 11자리 숫자"
 					style="display: inline; width: 40%;">
 
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">
-					주소</label> <input type="text" name="post" id="sample4_postcode"
+					주소</label> <input type="text" name="accountAddressLoad" id="sample4_postcode"
 					class="form-control" style="display: inline; width: 20%;"
 					placeholder="우편번호">&nbsp;&nbsp;
 				<button onclick="sample4_execDaumPostcode()" id="idCheck2"
@@ -133,7 +133,7 @@
 					style="margin-bottom: 4.5px;">우편주소 찾기</button>
 				<br>
 				<div class="addr-input">
-					<input type="text" name="addr1" class="form-control"
+					<input type="text" name="accountAddressNumber" class="form-control"
 						style="display: inline; width: 24.2%;" id="sample4_roadAddress"
 						placeholder="도로명주소">&nbsp;&nbsp;<input type="text"
 						name="addr2" id="sample4_jibunAddress" class="form-control"

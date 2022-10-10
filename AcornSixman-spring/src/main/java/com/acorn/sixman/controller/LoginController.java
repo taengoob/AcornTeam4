@@ -27,7 +27,6 @@ public class LoginController {
 
     @RequestMapping("/login")
     public String login(@RequestParam HashMap<String, String> map, HttpSession session, Model model) {
-        System.out.println(map + " 맵 입니다 =====1=123!@#!@#!@#!@#!@#!@#!@#!#");
         MemberDTO dto = service.Login(map);
         String mes = "";
         if (dto != null) {
