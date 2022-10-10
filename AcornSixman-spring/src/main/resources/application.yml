@@ -15,7 +15,7 @@ spring:
         
     datasource:
         #로컬테스트용 경로
-        url: jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://eclipce/teamp/workspace/AcornTeam4/Wallet_AcornDB
+        url: jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://eclipse/jsp_stu2/workspace/Acorn/Wallet_AcornDB
         # url: jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/TaengOOv/Desktop/WorkPlace/Acorn/Projects/Sixman/source/Wallet_AcornDB
         
         #오라클 클라우드 웹서버용 경로

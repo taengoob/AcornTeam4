@@ -69,7 +69,7 @@ session.removeAttribute("memberupdate");
 	<jsp:include page="common/fieximage.jsp"></jsp:include> 
 	<hr>
 	<jsp:include page="common/fieximage2.jsp"></jsp:include> 
-	<jsp:include page="coupon/bannertest.html"></jsp:include>
+	<%-- <jsp:include page="coupon/bannertest.html"></jsp:include> --%>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	
 	<hr>
