@@ -16,7 +16,6 @@ margin-left: 5%;
 margin-right: 5%;
 }
 </style>
-
 <div class="carousel">
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
@@ -28,22 +27,22 @@ margin-right: 5%;
   <div class="carousel-inner">
   <div class="img-thumbnail">
     <div class="carousel-item active">
-      <img  id="img1" src="image/banner_1.png" class="d-block w-100" alt="...">
+      <img  id="img1" src="static/img/banner_1.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>
     <div class="carousel-item">
-      <img id="img1" src="image/banner_2.png" class="d-block w-100" alt="...">
+      <img id="img1" src="static/img/banner_2.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>
     <div class="carousel-item">
-      <img id="img1" src="image/banner_3.png" class="d-block w-100" alt="...">
+      <img id="img1" src="static/img/banner_3.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block"> 
       </div>
     </div>
     <div class="carousel-item">
-      <img id="img1" src="image/banner_4.png" class="d-block w-100" alt="...">
+      <img id="img1" src="static/img/banner_4.png" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>

@@ -103,7 +103,7 @@ text-align: right;
 			</div>
 		</div>
 		<br> <br> <br> <span class="span-line"></span> <div class="menu-link"> <a
-			href="Mainservlet" class="btn btn-outline-success">홈으로</a>
+			href="/" class="btn btn-outline-success">홈으로</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUI"
 			class="btn btn-outline-success">로그인</a></div>
 

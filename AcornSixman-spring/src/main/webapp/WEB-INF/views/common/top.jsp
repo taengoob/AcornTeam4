@@ -86,7 +86,7 @@ text-align: center;
 
 <body>
 	<div class="logo-image">
-		<a href="Mainservlet"> <img src="member/img/LOGO2.png"
+		<a href="Mainservlet"> <img src="static/img/LOGO2.png"
 			height="70px" width="110px">
 		</a>
 	</div>
@@ -206,7 +206,7 @@ text-align: center;
 					if (dtolo.getAccountIsSeller().equals("False")) {
 					%>
 					<span class="top-login" OnClick="location.href='CartListServlet'"
-						style="margin-right: 2.8%"><img src="image/cart3.png"
+						style="margin-right: 2.8%"><img src="static/image/cart3.png"
 						width="30px" height="30px"></span>
 
 					<%
@@ -214,7 +214,7 @@ text-align: center;
 					%>
 					<span class="top-login"
 						OnClick="location.href='UploadedListServlet'"
-						style="margin-right: 3.5%"><img src="image/set.png"
+						style="margin-right: 3.5%"><img src="static/image/set.png"
 						width="30px" height="30px"></span>
 					<%
 					}
@@ -225,10 +225,10 @@ text-align: center;
 				%>
 				<div class="menu-container-top">
 					<span class="top-login" OnClick="location.href='LoginUIservlet'"
-						style="margin-right: 2.5%"><img src="image/LoginIcon.png"
+						style="margin-right: 2.5%"><img src="static/image/LoginIcon.png"
 						width="30px" height="30px"></span> <span class="top-login"
 						OnClick="location.href='MainJoinUpServlet'"
-						style="margin-left: 5%"><img src="image/JoinupIcon.png"
+						style="margin-left: 5%"><img src="static/image/JoinupIcon.png"
 						width="30px" height="30px"></span>
 				</div>
 				<%

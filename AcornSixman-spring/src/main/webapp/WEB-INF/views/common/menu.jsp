@@ -67,13 +67,13 @@ if (dto != null) {
 	<span class="top-login" 
 		style="margin-right: 2.5%" OnClick="location.href='LoginUI'"><img src="image/LoginIcon.png"
 		width="30px" height="30px"></span> <span class="top-login"
-		OnClick="location.href='MainJoinUp'" style="margin-right: 2%"><img
-		src="image/JoinupIcon.png" width="30px" height="30px"></span>
+		OnClick="location.href='/MainJoinUp'" style="margin-right: 2%"><img
+		src="static/image/JoinupIcon.png" width="30px" height="30px"></span>
 
 	<div class="menu-write-container">
 		<span class="top-login-write" OnClick="location.href='LoginUI'"
 			style="margin-right: 0.7%">로그인</span> <span class="top-login-write"
-			OnClick="location.href='MainJoinUp'" style="margin-right: 1%">회원가입</span>
+			OnClick="location.href='/MainJoinUp'" style="margin-right: 1%">회원가입</span>
 	</div>
 	<hr>
 </div>

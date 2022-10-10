@@ -15,7 +15,7 @@ public interface MemberDAO {
 
 	int idCheck(String id);
 
-	int update(MemberDTO dto2);
+	int update(MemberDTO dto);
 
 	MemberDTO findid(HashMap<String, String> map);
 

@@ -56,7 +56,7 @@ public class MemberUpdateServlet extends HttpServlet {
 			System.out.println("업데이트 된 갯수" + list);
 			if (list == 1) {
 				session.setAttribute("memberupdate", "회원정보가 수정되었습니다.");
-				response.sendRedirect("Mainservlet");
+				response.sendRedirect("Mainserv	let");
 			}
 		} else {
 			response.sendRedirect("LoginUIServlet");

@@ -98,11 +98,11 @@ ul li {
 		<h1 class="main-write">휴대폰번호로 비밀번호 찾기</h1>
 		<span class="high-line"></span>
 		<div class="main-box">
-			<form action="FindPhonePWServlet" method="post" id="mainform">
+			<form action="FindPhonePW" method="post" id="mainform">
 				<br>
 				<div class="login-input">
 					<input type="text" class="form-control" style="width: 40%;"
-						id="name" name="name" placeholder="아이디를 입력하세요">&nbsp;&nbsp;
+						id="name" name="accountId" placeholder="아이디를 입력하세요">&nbsp;&nbsp;
 					<span class="name-result"></span>
 
 					<section class="call-number-container">
@@ -111,7 +111,7 @@ ul li {
 						</p>
 						<input type="text" placeholder="- 없이 입력하세요." data-pattern="gdNum"
 							style="width: 40%;" class="form-control" id="phoneNumber"
-							name="phoneNumber" onkeyup="checkNumber(event)">
+							name="accountPhone" onkeyup="checkNumber(event)">
 
 					</section>
 					<span class="phone-result"></span>
@@ -122,7 +122,7 @@ ul li {
 					확인</button>
 				<br> <br> <span class="span-line"></span>
 				<div class="menu-link">
-					<a href="Mainservlet" class="btn btn-outline-success">홈으로</a>
+					<a href="/" class="btn btn-outline-success">홈으로</a>
 					
 				</div>
 			</form>

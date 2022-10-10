@@ -77,9 +77,12 @@ public class BoardController {
 	@RequestMapping(value =  "/boardWrite", method = RequestMethod.POST)
 	public String boardWrite(BoardDTO dto, Model model) {
 	    System.out.println("boardWrite 작성중 : "+dto);
-	    dto.setBoardContentId(IDGenerator.getNewBoardContentId());
+	    IDGenerator ig = new IDGenerator();
+	    String boardcontentId = ig.getNewBoardContentId();
+	    System.out.println("contentid 생성중 : "+boardcontentId);
+	    dto.setBoardContentId(boardcontentId);
         int n = service.boardWrite(dto);
-	    return "";
+	    return "boardList";
 	}
 	
 	@RequestMapping(value =  "/boardReWrite", method = RequestMethod.GET)

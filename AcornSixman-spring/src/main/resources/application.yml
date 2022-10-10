@@ -1,5 +1,5 @@
 server:
-    port: 8088
+    port: 8079
     servlet:
         encoding:
             charset: UTF-8
@@ -10,10 +10,12 @@ spring:
         view:
             prefix: /WEB-INF/views/
             suffix: .jsp
-
+            
+        static-path-pattern: /static/**
+        
     datasource:
         #로컬테스트용 경로
-        url: jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/acorn/Desktop/taengoov/study/repos/Wallet_AcornDB
+        url: jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://eclipce/teamp/workspace/AcornTeam4/Wallet_AcornDB
         # url: jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/TaengOOv/Desktop/WorkPlace/Acorn/Projects/Sixman/source/Wallet_AcornDB
         
         #오라클 클라우드 웹서버용 경로

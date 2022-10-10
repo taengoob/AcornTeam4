@@ -103,18 +103,18 @@ ul li {
 		<h1 class="main-write">이메일로 비밀번호 변경</h1>
 		<span class="high-line"></span>
 		<div class="main-box">
-			<form action="FindUserpwServlet" method="post" id="mainform">
+			<form action="FindUserpw" method="post" id="mainform">
 				<br>
 				<div class="login-input">
 					<div class="mb-3">
-						<input type="text" class="form-control" id="name" name="name"
+						<input type="text" class="form-control" id="name" name="accountId"
 							placeholder="아이디를 입력하세요"> <span class="name-result"></span>
 					</div>
 					 <br> <br>
-					<input type="text" class="form-control" name="email01" id="email01"
+					<input type="text" class="form-control" name="accountEmailId" id="email01"
 						placeholder="이메일을 입력하세요" style="width: 30%; display: inline;">
 					<span class="input-group-text" style="width: 6%; display: inline;">@</span>
-					<input type="text" name="email02" id="email02" class="form-control"
+					<input type="text" name="accountEmailDomain" id="email02" class="form-control"
 						style="width: 30%; display: inline;">&nbsp;&nbsp; <select
 						id="sel" class="form-select" aria-label="Default select example"
 						style="width: 22%; display: inline; cursor: pointer;">
@@ -133,7 +133,7 @@ ul li {
 					확인</button>
 				<br> <br> <span class="span-line"></span>
 				<div class="menu-link">
-					<a href="Main" class="btn btn-outline-success">홈으로</a>
+					<a href="/" class="btn btn-outline-success">홈으로</a>
 				
 				</div>
 			</form>

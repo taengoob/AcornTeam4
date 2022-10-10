@@ -101,19 +101,19 @@ ul li {
 		<h1 class="main-write">아이디찾기</h1>
 		<span class="high-line"></span>
 		<div class="main-box">
-			<form action="FindUseridServlet" method="post" id="mainform">
+			<form action="FindUserid" method="post" id="mainform">
 
 				<br>
 				<div class="login-input">
 					<div class="mb-3">
-						<input type="text" class="form-control" id="name" name="name"
+						<input type="text" class="form-control" id="name" name="accountName"
 							placeholder="이름">
 					</div>
 					&nbsp;&nbsp; <span class="name-result"></span> <br> <br>
-					<input type="text" class="form-control" name="email01" id="email01"
+					<input type="text" class="form-control" name="accountEmailId" id="email01"
 						placeholder="이메일을 입력하세요" style="width: 30%; display: inline;">
 						 <span class="input-group-text" style="width: 6%; display: inline;">@</span>
-					<input type="text" name="email02" id="email02"
+					<input type="text" name="accountEmailDomain" id="email02"
 						class="form-control" style="width: 30%; display: inline;">&nbsp;&nbsp;
 					<select id="sel" class="form-select"
 						aria-label="Default select example"
@@ -133,8 +133,8 @@ ul li {
 					찾기</button>
 				<br> <br> <span class="span-line"></span>
 				<div class="menu-link">
-					<a href="Main" class="btn btn-outline-success">홈으로</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUI"
+					<a href="/" class="btn btn-outline-success">홈으로</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="/LoginUI"
 						class="btn btn-outline-success">로그인</a>
 				</div>
 			</form>
