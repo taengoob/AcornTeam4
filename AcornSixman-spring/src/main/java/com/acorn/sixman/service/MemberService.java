@@ -60,6 +60,12 @@ public class MemberService {
 
 		return list;
 	}
+	public int changePW(HashMap<String, String> map) {
+	
+		int dto = 0;
+		dto = dao.changePW (map);
+		return dto;
+	}
 
 	public MemberDTO findid2(HashMap<String, String> map) {
 

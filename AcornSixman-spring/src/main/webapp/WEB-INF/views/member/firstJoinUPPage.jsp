@@ -13,15 +13,15 @@
 <body>
 	<div class="main-container">
 	
-		<a href="MainJoinUp.jsp" class="main-link-item">쇼핑몰 회원가입</a>
+		<a href="/MainJoinUp" class="main-link-item">쇼핑몰 회원가입</a>
 		<p class="main-line"></p>
 		<p class="naver-login">
-			<span class="naver-box"><img src="member/img/nav.png"
+			<span class="naver-box"><img src="static/img/nav.png"
 				alt="네이버" class="naver-img"></span><span class="naver-item">네이버
 				아이디 회원가입</span>
 		</p>
 		<p class="kakao-login">
-			<span class="kakao-box"> <img src="member/img/kka.png"
+			<span class="kakao-box"> <img src="static/img/kka.png"
 				alt="카카오" class="kakao-img"></span><span class="kakao-item" onclick="location.href='javascript:loginWithKakao();'"
 				id="kakao">카카오로 1초만에 로그인하기</span>
 		</p>

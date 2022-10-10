@@ -22,7 +22,7 @@ public class LoginController {
 
     @RequestMapping("/LoginUI")
     public String LoginUI() {
-        return "member/Login";
+        return "Login";
     }
 
     @RequestMapping("/login")

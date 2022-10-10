@@ -66,19 +66,21 @@ a {
 		</div>
 		<button class="btn btn-primary" type="submit" id="submit">로그인</button>
 		<div class="iph">
-			<a href="MainJoinUpServlet" class="heiwon">회원가입</a> <a
-				href="FirstFindID.jsp" class="id" id="find-id">아이디 찾기</a> <a
-				class="ll">|</a> <a href="FirstFindPW.jsp" class="password"
+			<a href="/MainJoinUp" class="heiwon">회원가입</a> <a
+				href="/FirstFindID" class="id" id="find-id">아이디 찾기</a> <a
+				class="ll">|</a> <a href="/FirstFindPW" class="password"
 				id="find-pw">비밀번호 찾기</a>
 		</div>
 		<div class="kakao"><a href="javascript:loginWithKakao();">
-		<img src="member/img/kakao.png" style="height: 50px; width: 250px;" ></a></div>
+		<img src="static/img/kakao.png" style="height: 50px; width: 250px;" ></a></div>
 		 <div class="naver" id="naver_id_login"><img
-			src="member/img/nav.png" alt="네이버" class="naver-img">
+			src="static/img/nav.png" alt="네이버" class="naver-img">
 		</div>
 	</form>
 	<%
 	String mesg2 = (String) session.getAttribute("nologin");
+	String mesg1 = (String) session.getAttribute("userid");
+	
 	if (mesg2 != null) {
 	%>
 	<script type="text/javascript">
@@ -101,7 +103,7 @@ a {
 						console.log(res);
 						var email = res.kakao_account.email;
 						var name = res.properties.nickname;
-						location.href='kakaologinServlet?email='+ email +'&name='+name;
+						location.href='/kakaologin?email='+ email +'&name='+name;
 					}
 		    	 }) 
 		        console.log(authObj)
@@ -128,17 +130,15 @@ a {
 			}
 		})
 	</script>
-	<%
-	request.setCharacterEncoding("utf-8");
-	String mesg1 = (String) session.getAttribute("userid");
-	%>
+			
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 	<script type="text/javascript">
+	
 		window.onload = function() {
-
+	
 			//테스트 버튼
 			//document.getElementById("testButton").onclick = onTestButtonCliked;
 

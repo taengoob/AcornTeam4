@@ -14,10 +14,10 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<link href="member/Maincss/FirstJoinUp.css" rel="stylesheet"
+<link href="static/css/FirstJoinUp.css" rel="stylesheet"
 	type="text/css" />
-<link rel="stylesheet" type="text/css"
-	href="member/Maincss/include.css?after">
+	<link rel="stylesheet" type="text/css"
+	href="static/css/include.css?after">
 <style type="text/css">
 </style>
 

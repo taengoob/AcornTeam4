@@ -97,14 +97,14 @@ text-align: right;
 			<br>
 			<div class="d-grid gap-2 col-6 mx-auto" id="button">
 				<button type="button" class="btn btn-outline-primary"
-					onclick="location.href='findid.jsp'">이메일로 아이디찾기</button>
+					onclick="location.href='/findid'">이메일로 아이디찾기</button>
 				<button type="button" class="btn btn-outline-primary"
-					onclick="location.href='FindIDforPhone.jsp'">휴대폰 번호로 아이디찾기</button>
+					onclick="location.href='/FindIDforPhone'">휴대폰 번호로 아이디찾기</button>
 			</div>
 		</div>
 		<br> <br> <br> <span class="span-line"></span> <div class="menu-link"> <a
 			href="/" class="btn btn-outline-success">홈으로</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUI"
+		&nbsp;&nbsp;&nbsp;&nbsp;<a href="/LoginUI"
 			class="btn btn-outline-success">로그인</a></div>
 
 	</div>

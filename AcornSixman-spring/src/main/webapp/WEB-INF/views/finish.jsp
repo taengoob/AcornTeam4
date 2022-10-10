@@ -9,7 +9,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
+	<link rel="stylesheet" type="text/css"
+	href="static/css/include.css?after">
 <title>index</title>
 <style>
 * {
@@ -64,70 +65,7 @@ ul li {
 	animation: login 2s 1 forwards;
 }
 
-@
-keyframes login { 0%{
-	transform: rotate(0deg);
-}
 
-100
-
-
-
-
-
-
-
-
-%
-{
-transform
-
-
-
-
-
-
-
-
-:
-
-
-
-
-
-
-
-
-rotate
-
-
-
-
-
-
-(
-
-
-
-
-
-
-
-
-360deg
-
-
-
-)
-
-
-
-
-
-
-;
-}
-}
 .write1 {
 	margin-top: 2%;
 	font-size: 17px;
@@ -193,8 +131,8 @@ rotate
 				<span class="write2-span" id="name"></span>님의 회원가입을 축하합니다.<br>
 				알차고 실속있는 서비스로 찾아뵙겠습니다.
 			</p>
-			<span class="span-line"></span> <a href="Mainservlet" class="home">홈으로</a>
-			<a href="LoginUIservlet" class="login">로그인</a>
+			<span class="span-line"></span> <a href="/" class="home">홈으로</a>
+			<a href="/LoginUI" class="login">로그인</a>
 		</div>
 	</div>
 	<%

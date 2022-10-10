@@ -96,14 +96,14 @@ text-align: right;
 			<br>
 			<div class="d-grid gap-2 col-6 mx-auto" id="button">
 				<button type="button" class="btn btn-outline-primary"
-					onclick="location.href='findipw.jsp'">이메일로 비밀번호 변경</button>
+					onclick="location.href='/findipw'">이메일로 비밀번호 변경</button>
 				<button type="button" class="btn btn-outline-primary"
-					onclick="location.href='FindPWforPhone.jsp'">휴대폰 번호로 비밀번호 변경</button>
+					onclick="location.href='/FindPWforPhone'">휴대폰 번호로 비밀번호 변경</button>
 			</div>
 		</div>
 		<br> <br> <br> <span class="span-line"></span> <div class="menu-link"> <a
 			href="/" class="btn btn-outline-success">홈으로</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUI"
+		&nbsp;&nbsp;&nbsp;&nbsp;<a href="/LoginUI"
 			class="btn btn-outline-success">로그인</a></div>
 
 	</div>

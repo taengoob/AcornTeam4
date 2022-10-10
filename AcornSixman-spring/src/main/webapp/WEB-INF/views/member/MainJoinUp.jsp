@@ -31,7 +31,7 @@
 	margin-left: 7%;
 }
 
-#checkResult, #result #resultName {
+#checkResult, #result , x#resultName {
 	color: blue;
 	font-size: 14px;
 }
@@ -62,7 +62,7 @@
 </head>
 <body>
 	<span id="type"></span>
-	<form action="MemberAdd" class="form-inline" method="post"
+	<form action="/MemberAdd" class="form-inline" method="post"
 		id="mainform">
 		<div class="main-box">
 			<div class="form-group">
@@ -76,7 +76,7 @@
 					type="hidden" id="idc" name="idc"> <input type="radio"
 					value="사용자" id="consumer" name="sel">사용자 &nbsp;&nbsp; <input
 					type="radio" value="판매자" id="seller" name="sel">판매자 <input
-					type="hidden" id="seller_YN" name="seller_YN">
+					type="hidden" id="seller_YN" name="accountIsSeller">
 			</div>
 
 			<div class="form-group">
@@ -95,7 +95,7 @@
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">이름</label>
 				<input type="text" id="name" name="accountName" class="form-control"
-					placeholder="한글로 2-4자리" style="display: inline; width: 40%;">
+					placeholder="한글로 최대 4글자 ex)홍길동" style="display: inline; width: 40%;">
 				&nbsp;&nbsp; <span id='resultName'></span>
 
 			</div>
@@ -119,7 +119,7 @@
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">휴대폰
 					번호</label> <input type="text" data-pattern="gdNum" id="phoneNumber"
 					name="accountPhone" class="form-control"
-					placeholder="010으로 시작하는 11자리 숫자"
+					placeholder=" -없이 작성하세요 ex)01012345678"
 					style="display: inline; width: 40%;">
 
 			</div>

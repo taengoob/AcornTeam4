@@ -105,14 +105,14 @@ String dto = (String) session.getAttribute("useridpw");
 		<h1 class="main-write">비밀번호변경</h1>
 		<span class="high-line"></span>
 		<div class="main-box">
-			<form action="ChangePasswd" method="post" id="mainform">
+			<form action="/ChangePasswd" method="post" id="mainform">
 
 				<br>
 				<div class="login-input">
 					<div class="mb-3">
-					<input type="hidden" id="userid" name="userid" value="<%=dto%>">
+					<input type="hidden" id="userid" name="accountId" value="<%=dto%>">
 						<input type="password" class="form-control" id="passwd1"
-							name="passwd1" placeholder="새 비밀번호"> <span
+							name="accountPasswd" placeholder="새 비밀번호"> <span
 							class="passwd1-result"></span>
 					</div>
 					&nbsp;&nbsp; <span class="name-result"></span> <br> <input
@@ -126,8 +126,8 @@ String dto = (String) session.getAttribute("useridpw");
 				비밀번호 변경</button>
 				<br> <br> <span class="span-line"></span>
 				<div class="menu-link">
-					<a href="Mainservlet" class="btn btn-outline-success">홈으로</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUIservlet"
+					<a href="/" class="btn btn-outline-success">홈으로</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="/LoginUI"
 						class="btn btn-outline-success">로그인</a>
 				</div>
 			</form>

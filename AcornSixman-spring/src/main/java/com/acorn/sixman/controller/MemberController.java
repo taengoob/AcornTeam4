@@ -1,5 +1,7 @@
 package com.acorn.sixman.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,10 @@ public class MemberController {
   @RequestMapping("/MainJoinUp")
   public String MainJoinUp() {
     return "MainJoinUp";
+  }
+  @RequestMapping("/FirstJoinUpPage")
+  public String FirstJoinUpPage(){
+    return "FirstJoinUpPage";
   }
 
   @RequestMapping("/MemberAdd") // 회원 정보 db 저장
@@ -74,7 +80,18 @@ public class MemberController {
     }
     return mesg;
   }
-
+@RequestMapping("/ChangePasswd")
+public String ChangePasswd(@RequestParam HashMap<String, String> map, HttpSession session){
+  int list = service.changePW(map);
+  String mesg = "";
+  String mesg1 = "";
+		if (list != 0) {
+			mesg = "비밀번호가 변경되었습니다.";
+			session.setAttribute("changepw", mesg);
+			mesg1 = "redirect:/LoginUI";
+		}
+    return mesg1;
+}
   
 
 }

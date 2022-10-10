@@ -17,6 +17,32 @@ public class FindController {
     @Autowired
     MemberService service;
 
+    @RequestMapping("/FirstFindID")
+    public String FirstFindID(){
+        return "FirstFindID";
+    }
+    @RequestMapping("/FirstFindPW")
+    public String FirstFindPW(){
+        return "FirstFindPW";
+    }
+    @RequestMapping("/findid")
+    public String findid(){
+        return "findid";
+    }
+    @RequestMapping("/FindIDforPhone")
+    public String FindIDforPhone(){
+        return "FindIDforPhone";
+    }
+    @RequestMapping("/findipw")
+    public String findipw(){
+        return "findipw";
+    }
+    @RequestMapping("/FindPWforPhone")
+    public String FindPWforPhone(){
+        return "FindPWforPhone";
+    }
+    
+
     @RequestMapping("/FindUserid")
     public String FindUserid(@RequestParam HashMap<String, String> map, HttpSession session) {
         MemberDTO dto = service.findid(map);

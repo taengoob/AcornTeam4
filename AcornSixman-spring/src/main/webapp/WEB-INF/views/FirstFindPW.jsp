@@ -16,7 +16,8 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 <link href="member/Maincss/sample.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
+<link rel="stylesheet" type="text/css"
+	href="static/css/include.css?after">
 <title>Insert title here</title>
 <%
 String findid =(String) session.getAttribute("findid");
