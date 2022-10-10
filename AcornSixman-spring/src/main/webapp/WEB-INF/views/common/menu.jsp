@@ -53,7 +53,7 @@ if (dto != null) {
 			class="top-login-write" style="margin-right: 1.3%" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-id="#exampleModal">로그아웃</span>
 		<span class="top-login-write" OnClick="location.href='/MyPage'" style="margin-right: 1%">마이페이지</span>
 		<!-- <span class="top-login-write" OnClick="location.href='UploadedList'" style="margin-right: 1.7%">판매자메뉴</span> -->
-		<span class="top-login-write" OnClick="location.href='ProductListservlet1#top'" style="margin-right: 1.7%">판매자메뉴</span>
+		<span class="top-login-write" OnClick="location.href='ProductList1_teamp#top'" style="margin-right: 1.7%">판매자메뉴</span>
 	</div>
 	<%
 	}
