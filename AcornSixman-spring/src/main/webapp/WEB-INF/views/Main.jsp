@@ -64,17 +64,17 @@ session.removeAttribute("memberupdate");
 	<hr>
 	<jsp:include page="common/banner.jsp"></jsp:include>
 	<hr>
-	<jsp:include page="common1/youtube1.jsp"></jsp:include> 
+	<jsp:include page="common/youtube.jsp"></jsp:include> 
 	<hr>
-	<jsp:include page="common1/fieximage1.jsp"></jsp:include> 
+	<jsp:include page="common/fieximage.jsp"></jsp:include> 
 	<hr>
-	<jsp:include page="common1/fieximage3.jsp"></jsp:include> 
-	<jsp:include page="common1/menu1.jsp"></jsp:include>
-	<jsp:include page="common1/bot1.jsp"></jsp:include>
+	<jsp:include page="common/fieximage2.jsp"></jsp:include> 
+	<jsp:include page="coupon/bannertest.html"></jsp:include>
+	<jsp:include page="common/bot.jsp"></jsp:include>
 	
 	<hr>
 	
-	<jsp:include page="common1/mesg1.jsp"></jsp:include>
+	<jsp:include page="common/mesg.jsp"></jsp:include>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">

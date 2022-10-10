@@ -3,7 +3,7 @@
 <table border="1" id="mesg">
 	<tr>
 		<td>
-			<a href="" hidden=""><img src="image/mesg.png" width="110px" height="200px"></img></a>
+			<a href="" hidden=""><img src="static/img/mesg.png" width="110px" height="200px"></img></a>
 		</td>
 	</tr>
 </table>

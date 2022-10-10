@@ -22,7 +22,7 @@ if (dto != null) {
 <div class="menu-container" >
 
 	<span class="top-login"data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-id="#exampleModal"
-		style="margin-right: 4%"><img src="image/logout.png"
+		style="margin-right: 4%"><img src="static/img/logout.png"
 		width="30px" height="30px" style="margin-right: -0.5%;"></span> <span class="top-login"
 		OnClick="location.href='MyPage'" style="margin-right: 4.2%"><img
 		src="image/mypage.png" width="30px" height="30px"></span>
@@ -34,7 +34,7 @@ if (dto != null) {
 	if (dto.getAccountIsSeller().equals("False")) {
 	%>
 	<span class="top-login" OnClick="location.href='CartList'"
-		style="margin-right: 2.8%"><img src="image/cart3.png"
+		style="margin-right: 2.8%"><img src="static/img/cart3.png"
 		width="30px" height="30px"></span>
 	<div class="menu-write-container">
 		<span class="top-login-write" style="margin-right: 1.7%"><%=username%>님 환영합니다.</span> <span
@@ -46,7 +46,7 @@ if (dto != null) {
 	} else {
 	%>
 	<span class="top-login" OnClick="location.href='UploadedList'"
-		style="margin-right: 3.5%"><img src="image/set.png"
+		style="margin-right: 3.5%"><img src="static/img/set.png"
 		width="30px" height="30px"></span>
 	<div class="menu-write-container">
 		<span class="top-login-write" style="margin-right: 1.7%"><%=username%>님 환영합니다.</span> <span
@@ -68,7 +68,7 @@ if (dto != null) {
 		style="margin-right: 2.5%" OnClick="location.href='LoginUI'"><img src="image/LoginIcon.png"
 		width="30px" height="30px"></span> <span class="top-login"
 		OnClick="location.href='/MainJoinUp'" style="margin-right: 2%"><img
-		src="static/image/JoinupIcon.png" width="30px" height="30px"></span>
+		src="static/img/JoinupIcon.png" width="30px" height="30px"></span>
 
 	<div class="menu-write-container">
 		<span class="top-login-write" OnClick="location.href='LoginUI'"

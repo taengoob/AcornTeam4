@@ -16,7 +16,7 @@
 	color: white;
 	background-position: center;
 	text-align: center;
-	background-image:  url("image/centerimage.jpg");
+	background-image:  url("static/img/centerimage.jpg");
 	opacity: 90%;
 }
 #picyou{

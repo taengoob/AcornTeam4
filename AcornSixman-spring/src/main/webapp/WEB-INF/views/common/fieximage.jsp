@@ -27,7 +27,7 @@ h3 {
 	bottom: 0;
 	left: 0;
 	height : 500px;
-	background-image: url("image/gitterimg.jpg");
+	background-image: url("static/img/gitterimg.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 800px;
 	background-attachment: fixed;
@@ -35,7 +35,6 @@ h3 {
 	background-position: center;
 	text-align: center;
 }
-@keyframes
 
 </style>
 </head>
