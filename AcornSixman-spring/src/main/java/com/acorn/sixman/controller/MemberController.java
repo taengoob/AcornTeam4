@@ -74,7 +74,7 @@ public class MemberController {
     MemberDTO gDTO = (MemberDTO) session.getAttribute("login");
     String mesg = "";
     if(gDTO != null){
-      mesg = "redirect:/OrderList";
+      mesg = "redirect:/orderList";
     }else{
       mesg = "redirect:/LoginUI";
     }
