@@ -237,7 +237,7 @@
 	            </div>
 	        </section>
 	        <hr>
-	<center><img src="product/<%= productId %>.jpg"></center>
+	<center><img src="static/img/<%= productId %>.jpg"></center>
 	        
 	        <footer>
 	        </footer>
