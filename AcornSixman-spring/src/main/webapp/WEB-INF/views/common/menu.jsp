@@ -24,7 +24,7 @@ if (dto != null) {
 	<span class="top-login"data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-id="#exampleModal"
 		style="margin-right: 4%"><img src="static/img/logout.png"
 		width="30px" height="30px" style="margin-right: -0.5%;"></span> <span class="top-login"
-		OnClick="location.href='MyPage'" style="margin-right: 4.2%"><img
+		OnClick="location.href='/MyPage'" style="margin-right: 4.2%"><img
 		src="static/img/mypage.png" width="30px" height="30px"></span>
 
 	<!-- <span

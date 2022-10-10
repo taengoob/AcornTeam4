@@ -32,6 +32,10 @@ public interface BoardDAO {
     int boardWrite(BoardDTO dto);
 
     int boardDelete(String ContentId);
+
+    int increaseHitCount(String contentId);
+
+    int boardReWrite(BoardDTO dto);
 	
 	
 	

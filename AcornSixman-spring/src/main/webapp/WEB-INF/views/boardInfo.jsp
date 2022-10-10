@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.acorn.sixman.dto.BoardPageDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
-<link rel="stylesheet" type="text/css" href="board/boardCSS/boardInfo.css">
-<link rel="stylesheet" type="text/css" href="board/boardCSS/boardList.css">
+<link rel="stylesheet" type="text/css" href="static/css/include.css">
 <title>게시글 상세보기</title>
 </head>
 <body>
@@ -21,8 +20,8 @@
 	<jsp:include page="board/boardReply.jsp"></jsp:include>
 	<div style="height: 300px;"></div>
 <%
-	String view = (String)request.getAttribute("view");
-	if(view==null||view.equals("null")||view.equals("")){
+	BoardPageDTO bpDTO = (BoardPageDTO)request.getAttribute("bpDTO");
+	if(bpDTO.getView()==null){
 %>
 	<jsp:include page="board/boardList.jsp"></jsp:include>
 <%

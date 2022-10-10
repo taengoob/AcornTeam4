@@ -50,6 +50,45 @@
 		int boardStart = bpDTO.getBoardStart();
 		int boardEnd = bpDTO.getBoardEnd();
 %>
+<style type="text/css">
+	.page-link {
+	  color: #000; 
+	  background-color: #fff;
+	  border: 1px solid #ccc; 
+	}
+	
+	.page-item.active .page-link {
+	 z-index: 1;
+	 color: #555;
+	 font-weight:bold;
+	 background-color: #f1f1f1;
+	 border-color: #ccc;
+	 
+	}
+	.page-link:focus, .page-link:hover {
+	  color: #000;
+	  background-color: #fafafa; 
+	  border-color: #ccc;
+	}
+	#nTableBox{
+		border-top: 2px solid black;
+		border-bottom: 2px solid black;
+	}
+	#nTable{
+		padding: 0px;
+		margin: 0px;
+	}
+	#nTableTop, #nTableBot{
+		height: 20px;
+	}
+	#nTr{
+		border-bottom: 1px solid black;
+	}
+	#ContentBox{
+		padding: 50px 50px 50px 50px;
+	}
+	
+</style>
 <div class="container">
 <div style="height: 50px;"></div>
 <h1 class="text-center" >

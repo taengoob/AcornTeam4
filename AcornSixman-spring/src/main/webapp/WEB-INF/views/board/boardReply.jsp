@@ -22,6 +22,29 @@
 	int replyCount = (int)map.get("replyCount");
 
 %>
+<style type="text/css">
+	#replyarea{
+		height: 160px;
+		resize: none;
+		padding: 40px 50px 40px 50px;
+		position: relative;
+	}
+	#replylabel{
+		font-size: 25px;
+		font-weight: bold;
+	}
+	#replyAddBtn,#replyUpdateBtn{
+		position: absolute;
+		right: 20px;
+		top: 110px;
+
+	}
+	#replybtn1,#replybtn2,#replybtn3{
+		float: right;
+		margin-left: 8px;
+	}
+	
+</style>
 <div class="container" style="height: 30px;"></div>
 <div class="container" id="replyBox">
 	<div class="w-100" style="height: 20px;"></div>

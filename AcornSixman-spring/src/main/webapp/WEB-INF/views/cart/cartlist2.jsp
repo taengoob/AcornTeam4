@@ -444,7 +444,7 @@
 		
 		document.getElementById("hiddenInput").value = jsonStr;
 		var btnForm = document.getElementById("btnForm");
-		btnForm.action = "orderAddForm";
+		btnForm.action = "addOrderForm";
 		btnForm.submit();
 	}
 	

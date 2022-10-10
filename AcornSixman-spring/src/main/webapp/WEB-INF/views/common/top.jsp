@@ -115,69 +115,69 @@ text-align: center;
 		<div class="navbar1">
 <span onclick="location.href='/'" id="main-span">The SixMan</span>
 			<button type="button" class="btn btn-link" id="button-tag"
-				onclick="location.href='ProductListServlet?category=<%=id0%>'">
+				onclick="location.href='/productList?category=<%=id0%>'">
 				<span id="span1">전체 상품</span>
 			</button>
 			<div class="dropdown1" style="display: inline-block;">
 				|
 				<button type="button" class="btn btn-link" id="button-tag"
-					onclick="location.href='ProductListServlet?category=<%=id%>*<%=id2%>'">
+					onclick="location.href='/productList?category=<%=id%>*<%=id2%>'">
 					<span id="span1">일렉기타 & 베이스</span>
 				</button>
 				<ul class="dropdown-menu" role="menu"
 					aria-labelledby="dropdownMenuDivider">
 
 					<li><a class="dropdown-item"
-						href="ProductListServlet?category=<%=id%>"><%=id%></a></li>
+						href="/productList?category=<%=id%>"><%=id%></a></li>
 					<li><a class="dropdown-item"
-						href="ProductListServlet?category=<%=id2%>"><%=id2%></a></li>
+						href="/productList?category=<%=id2%>"><%=id2%></a></li>
 					<li role="presentation" class="divider"></li>
 				</ul>
 				|
 			</div>
 			<div class="dropdown1" style="display: inline-block;">
 				<button type="button" class="btn btn-link" id="button-tag"
-					onclick="location.href='ProductListServlet?category=<%=id3%>*<%=id4%>'">
+					onclick="location.href='/productList?category=<%=id3%>*<%=id4%>'">
 					<span id="span1">어쿠스틱기타 & 클래식기타</span>
 				</button>
 				<ul class="dropdown-menu" role="menu"
 					aria-labelledby="dropdownMenuDivider">
 
 					<li><a class="dropdown-item"
-						href="ProductListServlet?category=<%=id3%>"><%=id3%></a></li>
+						href="/productList?category=<%=id3%>"><%=id3%></a></li>
 					<li><a class="dropdown-item"
-						href="ProductListServlet?category=<%=id4%>"><%=id4%></a></li>
+						href="/productList?category=<%=id4%>"><%=id4%></a></li>
 					<li role="presentation" class="divider"></li>
 				</ul>
 				|
 			</div>
 
 			<button type="button" class="btn btn-link" id="button-tag"
-				onclick="location.href='ProductListServlet?category=<%=id5%>'">
+				onclick="location.href='/productList?category=<%=id5%>'">
 				<span id="span1">우쿠렐레</span>
 			</button>
 			<div class="dropdown1" style="display: inline-block;">
 				|
 				<button type="button" class="btn btn-link" id="button-tag"
-					onclick="location.href='BoardListServlet'">
+					onclick="location.href='boardList'">
 					<span id="span1">게시판</span>
 				</button>
 				<ul class="dropdown-menu" role="menu"
 					aria-labelledby="dropdownMenuDivider">
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=NOTICE"><span id="span1">공지사항</span></a>
+						<a class="dropdown-item" href="boardList?Category=NOTICE"><span id="span1">공지사항</span></a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=NEWS"><span id="span1">최신소식</span></a>
+						<a class="dropdown-item" href="boardList?Category=NEWS"><span id="span1">최신소식</span></a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=BOARD"><span id="span1">회원게시판</span></a>
+						<a class="dropdown-item" href="boardList?Category=BOARD"><span id="span1">회원게시판</span></a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=SECONDHAND"><span id="span1">중고거래</span></a>
+						<a class="dropdown-item" href="boardList?Category=SECONDHAND"><span id="span1">중고거래</span></a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=QnA"><span id="span1">Q&A</span></a>
+						<a class="dropdown-item" href="boardList?Category=QnA"><span id="span1">Q&A</span></a>
 					</li>
 					<li role="presentation" class="divider"></li>
 				</ul>

@@ -29,7 +29,74 @@
 	
 %>
 <style type="text/css">
-	.page-link {/* 부트스트랩을 css파일에서 수정하려면 우선도 설정을 다시 해야함(해결법: https://think0wise.tistory.com/24 ) */
+	.	
+	#nTableBox{
+		border-top: 2px solid black;
+		border-bottom: 2px solid grey;
+	}
+	#nTable{
+		padding: 0px;
+		margin: 0px;
+	}
+	#nTableTop, #nTableBot{
+		height: 20px;
+	}
+	#nTr{
+		border-bottom: 1px solid black;
+	}
+	#NoticeRow{
+		border-top: 1px solid grey;
+		border-bottom: 1px solid grey;
+	}
+	#previewimg{
+		width: 253px;
+		height: 191px;
+		object-fit: cover;
+	}
+	#ReplyCount{
+		font-size: 14px;
+		color: #92B8B1;
+	}
+	#ReplyCount2{
+		font-size: 18px;
+		color: #92B8B1;
+	}
+	#searchValue{
+		position: relative;
+		width: 180px;
+		height: 35px;
+		float: left;
+		padding-left: 20px;
+		padding-right: 35px;
+	}
+	#searchBtn{
+		position: absolute;
+		float: left;
+		height: 33px;
+		width: 30px;
+		padding: 6px 2px 2px 2px;
+		margin-left: -30px;
+		margin-top: 1px;
+		font-size: 12px;
+		text-align-last: center;
+		border: none;
+	}
+	#searchGroup{
+		width: 110px;
+		height: 35px;
+		float: left;
+		padding: 2px 25px 2px 5px;
+		margin-left: 10px;
+		font-size: 15px;
+		text-align-last: center;
+		color: grey;
+	}
+	#writeGoBtn{
+		float: right;
+		height: 35px;
+		width: 80px;
+	}
+	.page-link {
 	  color: #000; 
 	  background-color: #fff;
 	  border: 1px solid #ccc; 
@@ -66,18 +133,18 @@
 	<%} %>
 	</h1>
 	<div style="height: 50px;"></div>
-	<a href="BoardListServlet?Category=BOARD" class="btn btn-outline-dark">일반게시판</a>
-	<a href="BoardListServlet?Category=NOTICE" class="btn btn-outline-dark">공지사항</a>
-	<a href="BoardListServlet?Category=NEWS" class="btn btn-outline-dark">최신소식</a>
-	<a href="BoardListServlet?Category=SECONDHAND" class="btn btn-outline-dark">중고거래</a>
-	<a href="BoardListServlet?Category=QnA" class="btn btn-outline-dark">QnA</a>
-	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
+	<a href="boardList?Category=BOARD" class="btn btn-outline-dark">일반게시판</a>
+	<a href="boardList?Category=NOTICE" class="btn btn-outline-dark">공지사항</a>
+	<a href="boardList?Category=NEWS" class="btn btn-outline-dark">최신소식</a>
+	<a href="boardList?Category=SECONDHAND" class="btn btn-outline-dark">중고거래</a>
+	<a href="boardList?Category=QnA" class="btn btn-outline-dark">QnA</a>
+	<a href="boardList?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
 	<%if(Category.equals("BOARD")||Category.equals("SECONDHAND")){ %>
-	<a href="BoardListServlet?Category=<%=Category %>&view=img" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
-		<img src="upload/imgview5.png" width="40px;" height="40px;">
+	<a href="boardList?Category=<%=Category %>&view=img" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
+		<img src="static/upload/imgview5.png" width="40px;" height="40px;">
 	</a>
-	<a href="BoardListServlet?Category=<%=Category %>" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
-		<img src="upload/textview2.png" width="40px;" height="40px;">
+	<a href="boardList?Category=<%=Category %>" style="position: relative; bottom: -5px; float: right; padding-right: 20px;">
+		<img src="static/upload/textview2.png" width="40px;" height="40px;">
 	</a>
 	<%} %>
 	<div id="nTableTop"></div>
@@ -119,7 +186,7 @@
 				<td><%=subCategory %></td>
 				<td>
 				<%if(PreviewImg!=null){%> 
-					<img src="upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
+					<img src="static/upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
 				<%} %>
 					<a href="boardInfo?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
@@ -151,14 +218,14 @@
 				<td><%=subCategory %></td>
 				<td>
 				<%if(PreviewImg!=null){%> 
-					<img src="upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
+					<img src="static/upload/imgO.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
 				<%} %>
 					<a href="boardInfo?Category=<%=Category%>&curPage=<%=curPage %>&searchValue=<%=searchValue%>&searchGroup=<%=searchGroup%>&ContentId=<%=ContentId %>" class="link-dark text-decoration-none">
 						<%=Title %><span id="ReplyCount">(<%=ReplyCount %>)</span>
 					</a>
-					<a href="boardDelete?ContentId=<%=ContentId %>" class="b admin">
-						<img src="upload/delete2.png" width="20px;" height="20px;" style="margin-bottom: 5px;">
-					</a>
+					<%-- <a href="boardDelete?ContentId=<%=ContentId %>" class="admin">
+						<img src="static/upload/delete2.png"  class="admin" width="20px;" height="20px;" style="margin-bottom: 5px;">
+					</a> --%>
 				</td>
 				<td><%=UserId %></td>
 				<td><span class="elapsedTime" data-created-date="<%=RegDate %>"></span></td>
@@ -174,7 +241,7 @@
 			<input class="form-control" name="searchValue" id="searchValue" type="text" 
 			<%if(searchValue!=""){%>value="<%=searchValue%>"<%} %>	placeholder="게시판 내 검색">
 			<a href="#" class="btn btn-outline-secondary" id="searchBtn" onclick="searchGo()">
-				<img id="searchIcon" src="upload/search.png" width="20px;" height="20px;">
+				<img id="searchIcon" src="static/upload/search.png" width="20px;" height="20px;">
 			</a>
 			<select class="form-select" name="searchGroup" id="searchGroup">
 				<option value="Title" <%if("Title".equals(searchGroup)){%> selected <%}%>>제목</option>
@@ -219,7 +286,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>
-<script src="board/boardJS/boardList.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	
 	window.onload = function() {

@@ -59,7 +59,7 @@
 	<a href="BoardListServlet?category=NOTICE" class="btn btn-outline-dark admin">휴지통</a>
 	<div id="nTableTop"></div>
 	<form action="boardReWrite" id="writeForm" method="post">	
-		<input type="hidden" name="ContentId" value="<%=ContentId%>">
+		<input type="hidden" name="boardContentId" value="<%=ContentId%>">
 		<div class="w-100" id="writeBoxOut">
 			<div id="writeBox">
 				<table class="table table-light table-borderless text-center" id="writeTB">
@@ -76,7 +76,7 @@
 					</tr>
 					<tr>
 						<td colspan="1" align="center">
-							<select name="category" id="Category" style="width: 100%;" onchange="changeCategory()">
+							<select name="boardCategory" id="Category" style="width: 100%;" onchange="changeCategory()">
 							<%if("taengoov".equals(userId)){//운영자일 경우 게시글 수정시 게시판 변경 가능 %>
 								<option class="option admin" value="NOTICE" <%if("NOTICE".equals(Category)){%> selected="selected" <%} %>>공지사항 게시판</option>
 								<option class="option admin" value="NEWS" <%if("NEWS".equals(Category)){%> selected="selected" <%} %>>최신소식 게시판</option>
@@ -93,7 +93,7 @@
 							</select>
 						</td>
 						<td colspan="1" align="center">
-							<select name="subcategory" id="subCategory" style="width: 100%;">
+							<select name="boardSubCategory" id="subCategory" style="width: 100%;">
 							<%if("NOTICE".equals(Category)){%>
 								<option value="공지사항" <%if("공지사항".equals(subCategory)){%> selected="selected" <%} %>>공지사항</option>
 								<option value="이벤트" <%if("이벤트".equals(subCategory)){%> selected="selected" <%} %>>이벤트</option>
@@ -121,7 +121,7 @@
 					</tr>
 					<tr>
 						<td colspan="3" align="center">
-							<input type="text" name="title" id="title" placeholder="글 제목" style="width: 100%;" value="<%=Title %>">
+							<input type="text" name="boardTitle" id="title" placeholder="글 제목" style="width: 100%;" value="<%=Title %>">
 						</td>
 					</tr>
 					<tr>
@@ -131,7 +131,7 @@
 					</tr>
 					<tr>
 						<td colspan="4" style="border: 1px solid grey;">
-							<textarea class="form-control" name="content" id="content" placeholder="글 내용" 
+							<textarea class="form-control" name="boardContent" id="content" placeholder="글 내용" 
 							 maxlength="2048"><%=Content %></textarea>
 						</td>
 					</tr>

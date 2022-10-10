@@ -8,11 +8,15 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,16 +24,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.acorn.sixman.common.IDGenerator;
 import com.acorn.sixman.dto.BoardDTO;
 import com.acorn.sixman.dto.BoardPageDTO;
+import com.acorn.sixman.dto.MemberDTO;
 import com.acorn.sixman.service.BoardServcie;
+import com.acorn.sixman.service.CommonService;
 
 @Controller
 public class BoardController {
 	
 	@Autowired
 	BoardServcie service;
+	
+	@Autowired
+    CommonService commonService;
+	
+	@Autowired
+	ResourceLoader resourceLoader;
 	
 	@RequestMapping("/boardList")
 	public String boardList(BoardPageDTO bpdto, Model model) {
@@ -40,17 +51,21 @@ public class BoardController {
 		model.addAttribute("flist", flist);
 		model.addAttribute("slist", slist);
 		model.addAttribute("bpDTO", bpdto);
+		System.out.println("slsit : "+slist);
         return "boardMain";
     }
 	
 	@RequestMapping("/boardInfo")
 	public String boardInfo(BoardPageDTO bpdto, Model model) {
+	    service.increaseHitCount(bpdto.getContentId());//조회수 증가
+	    
 		BoardDTO bdto = null;
 		if(bpdto.getMove()!=null) { 
 			bdto = service.boardMove(bpdto);
 		}else {
 			bdto = service.boardInfo(bpdto.getContentId());
 		}
+		
 		model.addAttribute("bdto", bdto);
 		
 		Map<String, Object> map = service.replyList(bpdto.getContentId());
@@ -75,14 +90,53 @@ public class BoardController {
         return "boardWrite";
     }
 	@RequestMapping(value =  "/boardWrite", method = RequestMethod.POST)
-	public String boardWrite(BoardDTO dto, Model model) {
+	public String boardWrite(BoardDTO dto, HttpSession session,Model model) {
 	    System.out.println("boardWrite 작성중 : "+dto);
-	    IDGenerator ig = new IDGenerator();
-	    String boardcontentId = ig.getNewBoardContentId();
+	    
+	    Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
+        Matcher matcher = pattern.matcher(dto.getBoardContent());
+        
+        String[] imgs = new String[10];//이미지 최대 10개 저장
+        int index = 0;
+        while(matcher.find()){ 
+             imgs[index] = matcher.group(1);//img 태그의 src 값만 추출
+             index++;
+        }
+        if(imgs[0]==null) {
+            imgs[0]="";
+        }
+        dto.setBoardPreviewImg(imgs[0]);
+	    
+	    MemberDTO login = (MemberDTO) session.getAttribute("login");
+	    String boardcontentId = commonService.getNewBoardContentId();
 	    System.out.println("contentid 생성중 : "+boardcontentId);
 	    dto.setBoardContentId(boardcontentId);
+	    dto.setBoardUserId(login.getAccountId());
         int n = service.boardWrite(dto);
-	    return "boardList";
+	    return "redirect:boardList";
+	}
+	@RequestMapping(value =  "/boardReWrite", method = RequestMethod.POST)
+	public String boardReWrite(BoardDTO dto, HttpSession session,Model model) {
+	    System.out.println("boardReWrite 작성중 : "+dto);
+	    
+	    Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
+        Matcher matcher = pattern.matcher(dto.getBoardContent());
+        
+        String[] imgs = new String[10];//이미지 최대 10개 저장
+        int index = 0;
+        while(matcher.find()){ 
+             imgs[index] = matcher.group(1);//img 태그의 src 값만 추출
+             index++;
+        }
+        if(imgs[0]==null) {
+            imgs[0]="";
+        }
+        dto.setBoardPreviewImg(imgs[0]);
+        
+	    MemberDTO login = (MemberDTO) session.getAttribute("login");
+	    dto.setBoardUserId(login.getAccountId());
+	    int n = service.boardReWrite(dto);
+	    return "redirect:boardList";
 	}
 	
 	@RequestMapping(value =  "/boardReWrite", method = RequestMethod.GET)
@@ -117,11 +171,22 @@ public class BoardController {
             String defaultPath = session.getServletContext().getRealPath("/");
             
             //파일 기본경로 _ 상세경로 (서버에 저장)
-            //서버 저장위치 (업로드 이미지를 바로 읽어올수 있음)
-            //10.07 현재 SpringBoot 에서의 resources 접근 방법 모름
-            String path = defaultPath + "static/upload" + File.separator;
+            //서버 저장위치 (업로드 이미지를 바로 읽어올수 있음
+            
+            System.out.println("resourceLoader : "+resourceLoader);
+            
+            Resource resource = resourceLoader.getResource("classpath:static/upload/");
+           
+            System.out.println("resource : "+resource);
+            System.out.println("resources 경로 : "+resource.getURI().getPath());
+            
+            String path = resource.getURI().getPath();
+            
             System.out.println("path : "+path);
             //String path2 = "C://Users
+            
+//            ClassPathResource res = new ClassPathResource("static/upload/ww.jpg");
+//            System.out.println("res : "+res.getURI().getPath());
     
 
             

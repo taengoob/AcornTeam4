@@ -62,7 +62,7 @@ String domain = (String) session.getAttribute("domainforkakao");
 			<div class="form-group">
 			
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">아이디</label>
-				<input type="text" class="form-control" id="id" name="id"
+				<input type="text" class="form-control" id="id" name="accountId"
 					placeholder="" style="display: inline; width: 40%;">&nbsp;&nbsp;
 				<button class="btn btn-outline-secondary" id="idCheck"
 					name="idCheck" type="button" style="margin-bottom: 4.5px;">
@@ -71,12 +71,12 @@ String domain = (String) session.getAttribute("domainforkakao");
 					type="hidden" id="idc" name="idc"> <input type="radio"
 					value="사용자" id="consumer" name="sel">사용자 &nbsp;&nbsp; <input
 					type="radio" value="판매자" id="seller" name="sel">판매자 <input
-					type="hidden" id="seller_YN" name="seller_YN">
+					type="hidden" id="seller_YN" name="accountIsSeller">
 			</div>
 
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">비밀번호</label>
-				<input type="password" id="passwd" name="passwd"
+				<input type="password" id="passwd" name="accountPasswd"
 					class="form-control" style="display: inline; width: 40%;">
 			</div>
 
@@ -89,29 +89,29 @@ String domain = (String) session.getAttribute("domainforkakao");
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">이름</label>
-				<input type="text" id="name" name="name" class="form-control" readonly="readonly"
+				<input type="text" id="name" name="accountName" class="form-control" readonly="readonly"
 					style="display: inline; width: 40%;" value="<%=name%>" >
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">이메일</label>
-				<input type="text" name="email01" id="email01" class="form-control" value="<%=email%>"
+				<input type="text" name="accountEmailId" id="email01" class="form-control" value="<%=email%>"
 				readonly="readonly"	style="display: inline; width: 20%;"><span
 					class="input-group-text" style="width: 6%; display: inline;">@</span><input
-					type="text" name="email02" id="email02" class="form-control" readonly="readonly"	
+					type="text" name="accountEmailDomain" id="email02" class="form-control" readonly="readonly"	
 				 value="<%=domain%>"
 					style="display: inline; width: 16.6%;">
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">휴대폰
 					번호</label> <input type="text" placeholder="- 없이 입력하세요."
-					data-pattern="gdNum" id="phoneNumber" name="phoneNumber"
+					data-pattern="gdNum" id="phoneNumber" name="accountPhone"
 					onkeyup="checkNumber(event)" class="form-control"
 					style="display: inline; width: 20%;">
 
 			</div>
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label" id="id-con">
-					주소</label> <input type="text" name="post" id="sample4_postcode"
+					주소</label> <input type="text" name="accountAddressNumber" id="sample4_postcode"
 					class="form-control" style="display: inline; width: 20%;"
 					placeholder="우편번호">&nbsp;&nbsp;
 				<button onclick="sample4_execDaumPostcode()" id="idCheck2"
@@ -119,7 +119,7 @@ String domain = (String) session.getAttribute("domainforkakao");
 					style="margin-bottom: 4.5px;">우편주소 찾기</button>
 				<br>
 				<div class="addr-input">
-					<input type="text" name="addr1" class="form-control"
+					<input type="text" name="accountAddressNumber" class="form-control"
 						style="display: inline; width: 24.2%;" id="sample4_roadAddress"
 						placeholder="도로명주소">&nbsp;&nbsp;<input type="text"
 						name="addr2" id="sample4_jibunAddress" class="form-control"

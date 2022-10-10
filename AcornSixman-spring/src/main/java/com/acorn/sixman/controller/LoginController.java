@@ -48,11 +48,44 @@ public class LoginController {
         if (dto != null) {
             session.setAttribute("logout", "로그아웃임다");
             session.removeAttribute("login");
-            mes = "/";
+            mes = "redirect:/";
         } else {
-            mes = "LoginUi";
+            mes = "redirect:/LoginUi";
         }
         return mes;
+    }
+    @RequestMapping("/navercollback")
+    public String navercollback(){
+        return "member/navercollback";
+    }
+    @RequestMapping("/kakaologin")
+    public String kakaologin(@RequestParam String name, @RequestParam String email, HttpSession session){
+        String accountName = name;
+        String accountEmailId1 = email;
+        String email1 = accountEmailId1;
+		String tempEmail[] = email1.split("@");
+		String accountEmailId = tempEmail[0];
+		String accountEmailDomain = tempEmail[1];
+        String mesg = "";
+        HashMap<String, String> kakao = new HashMap<String, String>();
+        kakao.put("accountName", accountName);
+		kakao.put("accountEmailId", accountEmailId);
+		kakao.put("accountEmailDomain", accountEmailDomain);
+        MemberDTO dto = service.Loginforkakao(kakao);
+        if(dto != null){
+            session.setAttribute("login", dto);
+            mesg = "redirect:/";
+            System.out.println("sns 로그인");
+
+        }else{
+            session.setAttribute("nameforkakao",accountName);
+			session.setAttribute("emailforkakao",accountEmailId);
+			session.setAttribute("domainforkakao",accountEmailDomain);
+            mesg = "redirect:/kakaologin";
+			System.out.println("sns 회원가입");
+        }
+        return mesg;
+
     }
 
 }

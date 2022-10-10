@@ -50,7 +50,7 @@ session.removeAttribute("memberupdate");
         로그아웃 완료. 다음에 또 만나요^^;;
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="location.href='logout'">확인</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/logout'">확인</button>
       </div>
     </div>
   </div>
@@ -69,7 +69,6 @@ session.removeAttribute("memberupdate");
 	<jsp:include page="common/fieximage.jsp"></jsp:include> 
 	<hr>
 	<jsp:include page="common/fieximage2.jsp"></jsp:include> 
-	<%-- <jsp:include page="coupon/bannertest.html"></jsp:include> --%>
 	<jsp:include page="common/bot.jsp"></jsp:include>
 	
 	<hr>
