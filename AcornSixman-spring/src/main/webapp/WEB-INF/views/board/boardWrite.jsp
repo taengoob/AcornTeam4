@@ -69,7 +69,7 @@
 					</tr>
 					<tr>
 						<td colspan="1" align="center">
-							<select name="category" id="Category" style="width: 100%;" onchange="changeCategory()">
+							<select name="boardCategory" id="Category" style="width: 100%;" onchange="changeCategory()">
 								<option value="" disabled>게시판 선택</option>
 								<option class="option admin" value="NOTICE" <%if("NOTICE".equals(Category)){%> selected="selected" <%} %>>공지사항 게시판</option>
 								<option class="option admin" value="NEWS" <%if("NEWS".equals(Category)){%> selected="selected" <%} %>>최신소식 게시판</option>
@@ -79,7 +79,7 @@
 							</select>
 						</td>
 						<td colspan="1" align="center">
-							<select name="subcategory" id="subCategory" style="width: 100%;">
+							<select name="boardSubCategory" id="subCategory" style="width: 100%;">
 								 <option value="" disabled selected>글유형 선택</option>
 							<%if("NOTICE".equals(Category)){%>
 								<option>공지사항</option>
@@ -109,7 +109,7 @@
 					</tr>
 					<tr>
 						<td colspan="3" align="center">
-							<input type="text" name="title" id="title" placeholder="글 제목" style="width: 100%;">
+							<input type="text" name="boardTitle" id="title" placeholder="글 제목" style="width: 100%;">
 						</td>
 					</tr>
 					<tr>
@@ -119,7 +119,7 @@
 					</tr>
 					<tr>
 						<td colspan="4" style="border: 1px solid grey;">
-							<textarea class="form-control" name="content" id="content" placeholder="글 내용" 
+							<textarea class="form-control" name="boardContent" id="content" placeholder="글 내용" 
 							 maxlength="2048"></textarea>
 						</td>
 					</tr>
