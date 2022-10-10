@@ -12,7 +12,7 @@ public class BoardDTO {
 	private String boardDelDate;
 	private int boardHitCount;
 	private String boardSubCategory;
-	private String boardPreviewImg;
+	private String boardPreviewImg = "";
 	private String boardRefContentId;
 	private String boardRealContentId;
 	private int boardReplyCount;

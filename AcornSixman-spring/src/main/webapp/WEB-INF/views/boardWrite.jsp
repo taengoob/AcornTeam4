@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="member/Maincss/include.css">
+<link rel="stylesheet" type="text/css" href="static/css/include.css">
 <style type="text/css">
 
 </style>

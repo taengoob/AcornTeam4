@@ -159,25 +159,25 @@ text-align: center;
 			<div class="dropdown1" style="display: inline-block;">
 				|
 				<button type="button" class="btn btn-link" id="button-tag"
-					onclick="location.href='BoardListServlet'">
+					onclick="location.href='boardList'">
 					<span id="span1">게시판</span>
 				</button>
 				<ul class="dropdown-menu" role="menu"
 					aria-labelledby="dropdownMenuDivider">
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=NOTICE"><span id="span1">공지사항</span></a>
+						<a class="dropdown-item" href="boardList?Category=NOTICE"><span id="span1">공지사항</span></a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=NEWS"><span id="span1">최신소식</span></a>
+						<a class="dropdown-item" href="boardList?Category=NEWS"><span id="span1">최신소식</span></a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=BOARD"><span id="span1">회원게시판</span></a>
+						<a class="dropdown-item" href="boardList?Category=BOARD"><span id="span1">회원게시판</span></a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=SECONDHAND"><span id="span1">중고거래</span></a>
+						<a class="dropdown-item" href="boardList?Category=SECONDHAND"><span id="span1">중고거래</span></a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="BoardListServlet?Category=QnA"><span id="span1">Q&A</span></a>
+						<a class="dropdown-item" href="boardList?Category=QnA"><span id="span1">Q&A</span></a>
 					</li>
 					<li role="presentation" class="divider"></li>
 				</ul>

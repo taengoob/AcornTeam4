@@ -136,9 +136,6 @@
 <script type="text/javascript" src="static/smarteditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 
-</script>
-<script type="text/javascript">
-
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
 	 oAppRef: oEditors,

@@ -45,6 +45,9 @@ public class BoardPageDTO {
 	}
 
 	public int getPerPage() {
+	    if(this.view!=null) {
+	        this.perPage=12;
+	    }
 		return perPage;
 	}
 

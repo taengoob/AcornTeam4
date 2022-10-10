@@ -71,5 +71,13 @@ public class BoardServcie {
         return dao.boardDelete(ContentId);
     }
 
+    public int increaseHitCount(String ContentId) {
+        return dao.increaseHitCount(ContentId);
+    }
+
+    public int boardReWrite(BoardDTO dto) {
+        return dao.boardReWrite(dto);
+    }
+
 
 }

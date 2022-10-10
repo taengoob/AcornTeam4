@@ -118,8 +118,7 @@ public class OrderController {
 					int amount = Integer.parseInt(json.get("amount").toString());
 					String productId = (String) json.get("productId");
 
-					ProductService service = new ProductService();
-					ProductDTO_Temp product = service.selectProductByProductId(productId);
+					ProductDTO_Temp product = productService.selectProductByProductId(productId);
 					product.setOrderAmount(amount);
 
 					orderInfoList.add(product);
@@ -132,7 +131,6 @@ public class OrderController {
 			e.printStackTrace();
 		}
 
-		OrderService service = new OrderService();
 		List<PayMethodDTO> payMethodList = service.selectPayMethodList();
 		model.addAttribute("payMethodList", payMethodList);
 
