@@ -86,7 +86,7 @@ text-align: center;
 
 <body>
 	<div class="logo-image">
-		<a href="Mainservlet"> <img src="static/img/LOGO2.png"
+		<a href="/main"> <img src="static/img/LOGO2.png"
 			height="70px" width="110px">
 		</a>
 	</div>

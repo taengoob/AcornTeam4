@@ -127,7 +127,7 @@
 		</div>
 		<div id="botTable2">
 			<div class="botTable1font0">공지사항</div>
-			<div class="botTable1font4"><a href="BoardListServlet">회원게시판</a></div>
+			<div class="botTable1font4"><a href="/boardList">회원게시판</a></div>
 			<div class="botTable1font4">이벤트</div>
 			<div class="botTable1font4">포토리뷰</div>
 			<div class="botTable1font4">상품 1:1문의</div>
@@ -135,9 +135,9 @@
 		</div>
 		<div id="botTable3">
 			<div class="botTable1font0">즐겨찾는메뉴</div>
-			<div class="botTable1font4"><a href="OrderListServlet">마이페이지</a></div>
-			<div class="botTable1font4"><a href="CartListServlet">장바구니</a></div>
-			<div class="botTable1font4"><a href="OrderListServlet#order-two">주문조회</a></div>
+			<div class="botTable1font4"><a href="/orderList">마이페이지</a></div>
+			<div class="botTable1font4"><a href="/cartList">장바구니</a></div>
+			<div class="botTable1font4"><a href="/orderList#order-two">주문조회</a></div>
 		</div>
 		<div id="bot1boxbot"></div>
 	</div>
