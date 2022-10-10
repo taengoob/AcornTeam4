@@ -4,6 +4,8 @@ package com.acorn.sixman.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +21,9 @@ public class MainController {
 	
 	
 	@RequestMapping("/")
-	public String main(Model model) {
+	public String main(HttpSession session) {
 		List<CategoryDTO> dto=service.selectCategories();
-		model.addAttribute("Guitar", dto);
+		session.setAttribute("Guitar", dto);
 		return "Main";
 	}
 }

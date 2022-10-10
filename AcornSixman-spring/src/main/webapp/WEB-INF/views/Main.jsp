@@ -19,8 +19,8 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style type="text/css">
 </style>
-<!-- <link rel="stylesheet" type="text/css"
-	href="member/Maincss/include.css?after"> 에러발생 404-->
+<link rel="stylesheet" type="text/css"
+	href="static/css/include.css?after">
 
 <%
 request.setCharacterEncoding("utf-8");
@@ -56,13 +56,13 @@ session.removeAttribute("memberupdate");
   </div>
 </div>
 	<div class="menu-item">
-		<jsp:include page="common1/menu1.jsp" flush="true"></jsp:include><br>
-		<jsp:include page="common1/top1.jsp" flush="true"></jsp:include>
+		<jsp:include page="common/menu.jsp" flush="true"></jsp:include><br>
+		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
 	</div>
 	<div class="wide"></div>
 	<jsp:include page="common/search.jsp"></jsp:include>
 	<hr>
-	<jsp:include page="common1/banner1.jsp"></jsp:include>
+	<jsp:include page="common/banner.jsp"></jsp:include>
 	<hr>
 	<jsp:include page="common1/youtube1.jsp"></jsp:include> 
 	<hr>
