@@ -40,7 +40,7 @@ if (dto != null) {
 		<span class="top-login-write" style="margin-right: 1.7%"><%=username%>님 환영합니다.</span> <span
 			class="top-login-write" style="margin-right: 1.3%" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-id="#exampleModal">로그아웃</span>
 		<span class="top-login-write" OnClick="location.href='/MyPage'" style="margin-right: 1%">마이페이지</span>
-		<span class="top-login-write" OnClick="location.href='CartListservlet'" style="margin-right: 1.7%">장바구니</span>
+		<span class="top-login-write" OnClick="location.href='/cartList'" style="margin-right: 1.7%">장바구니</span>
 	</div>
 	<%
 	} else {
