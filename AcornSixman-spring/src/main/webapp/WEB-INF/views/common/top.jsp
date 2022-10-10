@@ -86,7 +86,7 @@ text-align: center;
 
 <body>
 	<div class="logo-image">
-		<a href="/main"> <img src="static/img/LOGO2.png"
+		<a href="/"> <img src="static/img/LOGO2.png"
 			height="70px" width="110px">
 		</a>
 	</div>
@@ -113,7 +113,7 @@ text-align: center;
 	<header>
 
 		<div class="navbar1">
-<span onclick="location.href='Mainservlet'" id="main-span">The SixMan</span>
+<span onclick="location.href='/'" id="main-span">The SixMan</span>
 			<button type="button" class="btn btn-link" id="button-tag"
 				onclick="location.href='ProductListServlet?category=<%=id0%>'">
 				<span id="span1">전체 상품</span>
@@ -193,10 +193,10 @@ text-align: center;
 				<div class="menu-container-top">
 
 					<span class="top-login" OnClick="location.href='logoutServlet'"
-						style="margin-right: 4%"><img src="image/logout.png"
+						style="margin-right: 4%"><img src="static/img/logout.png"
 						width="30px" height="30px" style="margin-right: -0.5%;"></span> <span
 						class="top-login" OnClick="location.href='MyPageServlet'"
-						style="margin-right: 4.2%"><img src="image/mypage.png"
+						style="margin-right: 4.2%"><img src="static/img/mypage.png"
 						width="30px" height="30px"></span>
 
 					<!-- <span
@@ -205,16 +205,16 @@ text-align: center;
 					<%
 					if (dtolo.getAccountIsSeller().equals("False")) {
 					%>
-					<span class="top-login" OnClick="location.href='CartListServlet'"
-						style="margin-right: 2.8%"><img src="static/image/cart3.png"
+					<span class="top-login" OnClick="location.href='/cartList'"
+						style="margin-right: 2.8%"><img src="static/img/cart3.png"
 						width="30px" height="30px"></span>
 
 					<%
 					} else {
 					%>
 					<span class="top-login"
-						OnClick="location.href='UploadedListServlet'"
-						style="margin-right: 3.5%"><img src="static/image/set.png"
+						OnClick="location.href='/UploadedList'"
+						style="margin-right: 3.5%"><img src="static/img/set.png"
 						width="30px" height="30px"></span>
 					<%
 					}
@@ -224,11 +224,11 @@ text-align: center;
 				} else {
 				%>
 				<div class="menu-container-top">
-					<span class="top-login" OnClick="location.href='LoginUIservlet'"
-						style="margin-right: 2.5%"><img src="static/image/LoginIcon.png"
+					<span class="top-login" OnClick="location.href='/LoginUI'"
+						style="margin-right: 2.5%"><img src="static/img/LoginIcon.png"
 						width="30px" height="30px"></span> <span class="top-login"
-						OnClick="location.href='MainJoinUpServlet'"
-						style="margin-left: 5%"><img src="static/image/JoinupIcon.png"
+						OnClick="location.href='/MainJoinUp'"
+						style="margin-left: 5%"><img src="static/img/JoinupIcon.png"
 						width="30px" height="30px"></span>
 				</div>
 				<%
