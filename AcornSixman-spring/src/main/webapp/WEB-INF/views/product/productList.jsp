@@ -10,7 +10,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>Document</title>
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	    <link href="product/product.css" rel="stylesheet" type="text/css" >
+	    <link href="static/css/product.css" rel="stylesheet" type="text/css" >
 
 	</head>
 	
@@ -48,7 +48,7 @@
 	                                    </div>
 	                                    <div class="item_info" >
 	                                        <div class="name_box">
-	                                        	<a href="ProductDetailServlet?productId=<%=productId%>">
+	                                        	<a href="productDetail?productId=<%=productId%>">
 	                                        		<b class="item_name"><%=productName%></b>
 	                                        	</a>
 	                                        </div>

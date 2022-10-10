@@ -46,7 +46,6 @@ public class ProductController {
 		category1 = category1 == null ? "" : category1;
 		searchStr = searchStr == null ? "" : searchStr;
 		
-		ProductService service = new ProductService();
 		HashMap<String, String> searchOption = new HashMap<String, String>();
 		if (category1.contains("*")==false) {
 		searchOption.put("category1", category1);
