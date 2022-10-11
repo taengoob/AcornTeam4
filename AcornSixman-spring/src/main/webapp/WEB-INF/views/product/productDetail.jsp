@@ -98,7 +98,7 @@
 			
 			document.getElementById("hiddenInput").value = orderListJsonStr;
 			const btnForm = document.getElementById("btnForm");
-			btnForm.action = "AddOrderFormServlet";
+			btnForm.action = "addOrderForm";
 			btnForm.submit();
 			
 // 			console.log(orderList);
@@ -109,11 +109,14 @@
 		function onCartAddBtnClicked() {
 			
 			const productId = "<%= productId %>";
-			const url = "CartAddServlet?"
+			const url = "cartAdd?"
 						+"productId=" + productId
 						+"&&cartCount=" + qty;
 			console.log(url);
-			location.href = url;
+
+			fetch(url);
+
+			location.href = "productDetail?productId=" + productId;
 		}
 			
 			//view의 src 변경

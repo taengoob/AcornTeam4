@@ -1,46 +1,48 @@
 package com.acorn.sixman.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.acorn.sixman.service.CommonService;
 
+@Component
 public class IDGenerator {
     @Autowired
-    private static CommonService service;
+    private CommonService service;
 
-    public static String getNewProductId() {
+    public String getNewProductId() {
         return service.getNewProductId();
     }
 
-    public static String getNewOrderId() {
+    public String getNewOrderId() {
         return service.getNewOrderId();
     }
 
-    public static String getNewCouponId() {
+    public String getNewCouponId() {
         return service.getNewCouponId();
     }
 
-    public static String getNewImageId() {
+    public String getNewImageId() {
         return service.getNewImageId();
     }
 
-    public static String getNewCartId() {
+    public String getNewCartId() {
         return service.getNewCartId();
     }
 
-    public static String getNewBoardContentId() {
+    public String getNewBoardContentId() {
         return service.getNewBoardContentId();
     }
 
-    public static String getNewBoardFileId() {
+    public String getNewBoardFileId() {
         return service.getNewBoardFileId();
     }
 
-    public static String getNewBoardReplyId() {
+    public String getNewBoardReplyId() {
         return service.getNewBoardReplyId();
     }
 
-    public static String getNewOrderRequestId(String orderId, OrderRequestType type) {
+    public String getNewOrderRequestId(String orderId, OrderRequestType type) {
         return type.toString() + orderId;
     }
 }

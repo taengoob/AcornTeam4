@@ -268,21 +268,21 @@
 		<div class="totalpriceCell2"><span id="totalPrice"></span>원</div>
 	</div>
 	<div class="totalpriceBox2">
-		<img src="cart/plus.png" width="20px;" height="20px;">
+		<img src="static/img/plus.png" width="20px;" height="20px;">
 	</div>
 	<div class="totalpriceBox1">
 		<div class="totalpriceCell1">총 배송비</div>
 		<div class="totalpriceCell2"><span id="totalDelPrice">0</span>원</div>
 	</div>
 	<div class="totalpriceBox2">
-		<img src="cart/plus.png" width="20px;" height="20px;">
+		<img src="static/img/plus.png" width="20px;" height="20px;">
 	</div>
 	<div class="totalpriceBox1">
 		<div class="totalpriceCell1">할인예상금액</div>
 		<div class="totalpriceCell2"><span id="totalDisperPrice">0</span>원</div>
 	</div>
 	<div class="totalpriceBox2">
-		<img src="cart/equal.png" width="20px;" height="20px;">
+		<img src="static/img/equal.png" width="20px;" height="20px;">
 	</div>
 	<div class="totalpriceBox3">
 		<div class="totalpriceCell3">총 주문금액</div>

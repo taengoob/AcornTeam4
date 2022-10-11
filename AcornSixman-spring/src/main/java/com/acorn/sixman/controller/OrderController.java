@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.acorn.sixman.service.CommonService;
 import com.acorn.sixman.service.OrderService;
@@ -38,6 +38,9 @@ public class OrderController {
 
 	@Autowired
 	ProductService productService;
+
+	@Autowired
+	IDGenerator generator;
 
 	@RequestMapping("/orderList")
 	public String orderList(HttpSession session, Model model) {
@@ -80,10 +83,10 @@ public class OrderController {
 		model.addAttribute("orderList", orderList);
 
 		// 메인용 경로
-		// return "myPage";
+		return "myPage";
 
 		// 테스트용 경로
-		return "order/orderList";
+		// return "order/orderList";
 	}
 
 	@RequestMapping("/orderDetail")
@@ -99,10 +102,10 @@ public class OrderController {
 		model.addAttribute("order", order);
 
 		// 메인용 경로
-		// return "orderDetail";
+		return "orderDetail";
 
 		// 테스트용 경로
-		return "order/orderDetail";
+		// return "order/orderDetail";
 	}
 
 	@RequestMapping("/addOrderForm")
@@ -135,14 +138,14 @@ public class OrderController {
 		model.addAttribute("payMethodList", payMethodList);
 
 		// 메인연결용 경로
-		// return "addOrderFrom";
+		return "addOrderForm";
 
 		// 테스트용 경로
-		return "order/addOrderFrom";
+		// return "order/addOrderFrom";
 	}
 
 	@RequestMapping("/addOrder")
-	public String addOrder(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+	public String addOrder(@RequestParam Map<String, String> map, HttpSession session, RedirectAttributes attributes) {
 		String userId = "";
 		Object dto = session.getAttribute("login");
 		if (dto != null) {
@@ -157,12 +160,15 @@ public class OrderController {
 		String payMethodDesc = map.get("payMethodDesc");
 		String jsonStr = map.get("jsonStr");
 
+		for (String	key : map.keySet()) {
+			attributes.addFlashAttribute(key, map.get(key));
+		}
+
 		System.out.println(jsonStr);
 		JSONArray jsonArray = null;
 		JSONParser parser = new JSONParser();
 		try {
 			jsonArray = (JSONArray) parser.parse(jsonStr);
-			ProductService prodService = new ProductService();
 			List<ProductDTO_Temp> orderInfoList = new ArrayList<ProductDTO_Temp>();
 			List<OrderRequestDTO> orderRequestList = new ArrayList<OrderRequestDTO>();
 			for (Object obj : jsonArray) {
@@ -171,7 +177,7 @@ public class OrderController {
 					String cartId = (String) json.get("cartId");
 					String productId = (String) json.get("productId");
 					int amount = Integer.parseInt(json.get("amount").toString());
-					ProductDTO_Temp product = prodService.selectProductByProductId(productId);
+					ProductDTO_Temp product = productService.selectProductByProductId(productId);
 					product.setOrderAmount(amount);
 
 					int pPrice = product.getProductPrice();
@@ -180,7 +186,7 @@ public class OrderController {
 					String sellerId = product.getProductSeller();
 
 					OrderDTO order = new OrderDTO();
-					order.setOrderId(IDGenerator.getNewOrderId());
+					order.setOrderId(generator.getNewOrderId());
 					order.setOrderProductId(productId);
 					order.setOrderUserId(userId);
 					order.setOrderSellerId(sellerId);
@@ -202,8 +208,7 @@ public class OrderController {
 						orderRequest.setOrderId(order.getOrderId());
 						orderRequest.setOrderStatus("WP");
 						orderRequest.setProductName(product.getProductName());
-						orderRequest.setRequestId(
-								IDGenerator.getNewOrderRequestId(order.getOrderId(), OrderRequestType.PAYMENT));
+						orderRequest.setRequestId(generator.getNewOrderRequestId(order.getOrderId(), OrderRequestType.PAYMENT));
 						orderRequest.setRequestType(OrderRequestType.PAYMENT.toString());
 						orderRequest.setUserId(userId);
 						orderRequestList.add(orderRequest);
@@ -211,13 +216,13 @@ public class OrderController {
 				}
 			}
 
-			model.addAttribute("orderInfoList", orderInfoList);
-			model.addAttribute("orderRequestList", orderRequestList);
+			attributes.addFlashAttribute("orderInfoList", orderInfoList);
+			attributes.addFlashAttribute("orderRequestList", orderRequestList);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		// Order Request 추가 서블릿으로 forward
-		return "forward:addOrderRequest";
+		return "redirect:addOrderRequest";
 	}
 }

@@ -116,6 +116,11 @@
 			AND A.ORDER_STATUS = B.ORDER_STATUS_ID
 			AND A.ORDER_PAY_METHOD = C.PAY_METHOD_ID
 	</select>
+
+	<delete id="deleteCart" parameterType="String">
+		DELETE FROM USER_CART
+		WHERE CART_ID = #{cartId}
+	</delete>
 	
 	<!-- <select id="processList" parameterType="String" resultType="com.acorn.sixman.dto.ProcessListDTO">
 		select 

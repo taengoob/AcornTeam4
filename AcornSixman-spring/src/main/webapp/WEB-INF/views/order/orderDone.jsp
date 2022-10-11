@@ -15,11 +15,11 @@
 // 	주문 대상 제품 정보
 	List<ProductDTO_Temp> orderInfoList = (List<ProductDTO_Temp>)request.getAttribute("orderInfoList");
 
-	String recvName = request.getParameter("name");
-	String recvAddrRoad = request.getParameter("addr1");
-	String recvAddrNumber = request.getParameter("addr2");
-	String recvPhone = request.getParameter("phoneNumber");
-	String payMethod = request.getParameter("payMethodDesc");
+	String recvName = (String)request.getAttribute("name");
+	String recvAddrRoad = (String)request.getAttribute("addr1");
+	String recvAddrNumber = (String)request.getAttribute("addr2");
+	String recvPhone = (String)request.getAttribute("phoneNumber");
+	String payMethod = (String)request.getAttribute("payMethodDesc");
 	
 //	오더 정보 List의 json 포맷
 
@@ -264,8 +264,8 @@
 	
 		<tr>
 			<td class="td_default" align="center">
-				<a href="MyPageServlet"><button >마이페이지로</button></a>
-				<a href="CartListServlet"><button >장바구니로</button></a>
+				<a href="MyPage"><button >마이페이지로</button></a>
+				<a href="cartList"><button >장바구니로</button></a>
 			</td>
 		</tr>
 	</table>

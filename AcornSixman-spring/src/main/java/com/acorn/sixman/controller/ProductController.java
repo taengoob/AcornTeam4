@@ -30,13 +30,11 @@ public class ProductController {
 		model.addAttribute("images", images);
 
 		//메인용 경로
-		//return "productDetail";
+		return "productDetail";
 		
 		//테스트용 경로
-		return "product/productDetail";
+		// return "product/productDetail";
 	}
-	
-
 	
 	@RequestMapping("/productList")
 	public String productList(@RequestParam HashMap<String, String> map, Model model) {
@@ -48,27 +46,27 @@ public class ProductController {
 		
 		HashMap<String, String> searchOption = new HashMap<String, String>();
 		if (category1.contains("*")==false) {
-		searchOption.put("category1", category1);
-		searchOption.put("searchStr", searchStr);
-		List<ProductDTO_Temp> list = service.selectProductByOption(searchOption);
-		model.addAttribute("list", list);
-		}else {
-			    String[] words=category1.split("\\*");
+			searchOption.put("category1", category1);
+			searchOption.put("searchStr", searchStr);
+			List<ProductDTO_Temp> list = service.selectProductByOption(searchOption);
+			model.addAttribute("list", list);
+		} else {
+			String[] words=category1.split("\\*");
 
-			    for(String s:words){
-			      System.out.println(s);
-			    }
-			   category1 = words[0];
-			    String category2 = words[1];
-			    searchOption.put("category1", category1);
-			    searchOption.put("category2", category2);
-			    List<ProductDTO_Temp> list = service.selectProductByOption(searchOption);
-			    model.addAttribute("list", list);
+			for(String s:words) {
+				System.out.println(s);
+			}
+			category1 = words[0];
+			String category2 = words[1];
+			searchOption.put("category1", category1);
+			searchOption.put("category2", category2);
+			List<ProductDTO_Temp> list = service.selectProductByOption(searchOption);
+			model.addAttribute("list", list);
 		}
 		//메인용 경로
-		//return "productDetail";
+		return "productList";
 		
 		//테스트용 경로
-		return "product/productList";
+		// return "product/productList";
 	}
 }
