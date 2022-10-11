@@ -46,7 +46,7 @@
                                     			<img src="<%=productImage%>" alt="photo">
 	                                    	</a>
 	                                    </div>
-	                                    <div class="item_info" >
+	                                    <div class="item_info" style="height: 300px; width: 100%;">
 	                                        <div class="name_box">
 	                                        	<a href="productDetail?productId=<%=productId%>">
 	                                        		<b class="item_name"><%=productName%></b>
