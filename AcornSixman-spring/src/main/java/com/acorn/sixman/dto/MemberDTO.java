@@ -27,7 +27,7 @@ public class MemberDTO {
 		this.accountPhone = accountPhone;
 		this.accountAddressNumber = accountAddressNumber;
 		this.accountIsSeller = accountIsSeller;
-		this.accountJoinDate = accountJoinDate;
+		// this.accountJoinDate = accountJoinDate;
 		this.accountAddressLoad = accountAddressLoad;
 		this.accountEmailDomain = accountEmailDomain;
 	}

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 public class CartDTO {
-	
+
 	private String cartId;
 	private String cartuserId;
 	private int cartCount;
@@ -18,11 +18,9 @@ public class CartDTO {
 	private byte[] productPreview;
 	private String previewUrl;
 	private String productCategory;
-	
-	
+
 	public CartDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CartDTO(String cartId, String cartuserId, int cartCount, String productId, String productName,
@@ -136,7 +134,6 @@ public class CartDTO {
 		this.productCategory = productCategory;
 	}
 
-
 	@Override
 	public String toString() {
 		return "CartDTO [cartId=" + cartId + ", cartuserId=" + cartuserId + ", cartCount=" + cartCount + ", productId="
@@ -145,7 +142,5 @@ public class CartDTO {
 				+ ", productMaker=" + productMaker + ", productPreview=" + Arrays.toString(productPreview)
 				+ ", previewUrl=" + previewUrl + ", productCategory=" + productCategory + "]";
 	}
-
-	
 
 }

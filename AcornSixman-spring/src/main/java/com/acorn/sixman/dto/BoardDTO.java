@@ -1,7 +1,7 @@
 package com.acorn.sixman.dto;
 
 public class BoardDTO {
-	
+
 	private String boardContentId;
 	private String boardCategory;
 	private String boardUserId;
@@ -17,10 +17,9 @@ public class BoardDTO {
 	private String boardRealContentId;
 	private int boardReplyCount;
 	private String boardRelpyNextId;
-	
+
 	public BoardDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public BoardDTO(String boardContentId, String boardCategory, String boardUserId, String boardTitle,
@@ -175,6 +174,5 @@ public class BoardDTO {
 				+ boardRealContentId + ", boardReplyCount=" + boardReplyCount + ", boardRelpyNextId=" + boardRelpyNextId
 				+ "]";
 	}
-	
-	
+
 }

@@ -1,6 +1,5 @@
 package com.acorn.sixman.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -18,7 +17,7 @@ public interface BoardDAO {
 	int boardCount(BoardPageDTO bpdto);
 
 	int boardStart(BoardPageDTO bpdto);
-	
+
 	int boardEnd(BoardPageDTO bpdto);
 
 	BoardDTO boardMove(BoardPageDTO bpdto);
@@ -29,14 +28,12 @@ public interface BoardDAO {
 
 	int replyCount(String ContentId);
 
-    int boardWrite(BoardDTO dto);
+	int boardWrite(BoardDTO dto);
 
-    int boardDelete(String ContentId);
+	int boardDelete(String ContentId);
 
-    int increaseHitCount(String contentId);
+	int increaseHitCount(String contentId);
 
-    int boardReWrite(BoardDTO dto);
-	
-	
-	
+	int boardReWrite(BoardDTO dto);
+
 }

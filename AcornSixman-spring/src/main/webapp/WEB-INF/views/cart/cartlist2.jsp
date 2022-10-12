@@ -431,10 +431,11 @@
 		var cartList = new Array();
 		var chkedProduct = $("input:checkbox[name=chkProduct]:checked");
 		$.each(chkedProduct, function(i, ele) {
+			var cartId = $(ele).attr("data-www");
 			var productId = $(ele).attr("data-productId");
 			var cartCount = $("#amt"+productId).val();
 			var data = new Object();
-			data.cartId = "";
+			data.cartId = cartId;
 			data.productId = productId;
 			data.amount = parseInt(cartCount);
 			cartList.push(data);

@@ -1,7 +1,7 @@
 package com.acorn.sixman.dto;
 
 public class CouponDTO {
-	
+
 	private String couponId;
 	private String couponuserId;
 	private String couponGendate;
@@ -9,10 +9,9 @@ public class CouponDTO {
 	private double couponDisper;
 	private String couponName;
 	private boolean couponIsusable;
-	
+
 	public CouponDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CouponDTO(String couponId, String couponuserId, String couponGendate, String couponUsedate,
@@ -89,6 +88,5 @@ public class CouponDTO {
 				+ ", couponUsedate=" + couponUsedate + ", couponDisper=" + couponDisper + ", couponName=" + couponName
 				+ ", couponIsusable=" + couponIsusable + "]";
 	}
-	
-	
+
 }
