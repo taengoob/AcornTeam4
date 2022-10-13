@@ -53,7 +53,7 @@ MemberDTO dto = (MemberDTO) session.getAttribute("login");
 </style>
 </head>
 <body>
-	<form action="MemberUpdateServlet" method="post" id="mainform">
+	<form action="MemberUpdate" method="post" id="mainform">
 		<div class="main-box">
 
 			<input type="hidden" value="<%=dto.getAccountIsSeller()%>"
@@ -127,7 +127,7 @@ MemberDTO dto = (MemberDTO) session.getAttribute("login");
 			</div>
 			<div class="finish">
 				<button class="btn btn-outline-success" type="button"
-					onclick="location.href='myPage'" id="cancle">취소</button>
+					onclick="location.href='myPage.jsp'" id="cancle">취소</button>
 				<button class="btn btn-outline-success" type="submit"
 					id="finishuser">회원정보 수정</button>
 			</div>

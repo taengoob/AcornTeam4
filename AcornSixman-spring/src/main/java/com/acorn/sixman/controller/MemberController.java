@@ -22,6 +22,10 @@ public class MemberController {
   public String MainJoinUp() {
     return "MainJoinUp";
   }
+  @RequestMapping("/memberUpdatePage")
+  public String memberUpdatePage() {
+    return "memberUpdate";
+  }
   @RequestMapping("/FirstJoinUpPage")
   public String FirstJoinUpPage(){
     return "FirstJoinUpPage";
