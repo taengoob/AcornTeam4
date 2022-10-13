@@ -11,17 +11,17 @@
 
 	<!-- @Mapper가 붙은 인터페이스의 객체를 빈 등록한다. -->
 	<!-- DAO 객체들 -->
-	<mybatis:scan base-package="com.acorn.sixman.dao" annotation="org.apache.ibatis.annotations.Mapper"/>
+	<mybatis:scan base-package="com.acorn.sixman" annotation="org.apache.ibatis.annotations.Mapper"/>
 
 	<!-- jdbc 설정 -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 
 		<!-- 로컬 테스트용 경로 -->
 		<!-- <property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/acorn/Desktop/taengoov/study/repos/Wallet_AcornDB" name="url" /> -->
-<!-- 		<property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/TaengOOv/Desktop/WorkPlace/Acorn/Projects/Sixman/source/Wallet_AcornDB" name="url" /> -->
+		<!-- <property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=C://Users/TaengOOv/Desktop/WorkPlace/Acorn/Projects/Sixman/source/Wallet_AcornDB" name="url" /> -->
 
 		<!-- 오라클 클라우드 웹서버용 경로 -->
-		<property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=/opt/Wallet_AcornDB" name="url" />
+		<property value="jdbc:oracle:thin:@acorndb_high?TNS_ADMIN=/home/ubuntu/Wallet_AcornDB" name="url" />
 
 		<property value="oracle.jdbc.driver.OracleDriver" name="driverClassName" />
 		<property value="sixman" name="username" />

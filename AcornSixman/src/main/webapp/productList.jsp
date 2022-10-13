@@ -15,12 +15,12 @@
 		<jsp:include page="common/top.jsp" flush="true"></jsp:include>
 	</div>
 	<div class="wide"></div>
-	<jsp:include page="common/search.jsp"></jsp:include>
+	<jsp:include page="common/search.jsp" flush="true"></jsp:include>
 	<hr>
 	<jsp:include page="product/productList.jsp" flush="true"></jsp:include><br>
 	<hr>
-	<jsp:include page="common/bot.jsp"></jsp:include>
+	<jsp:include page="common/bot.jsp" flush="true"></jsp:include>
 	<hr>
-	<jsp:include page="common/mesg.jsp"></jsp:include>
+	<jsp:include page="common/mesg.jsp" flush="true"></jsp:include>
 </body>
 </html>

@@ -179,8 +179,8 @@ input[type=checkbox] {
 	</div>
 	<div class="wide"></div>
 	<jsp:include page="member/MyPage.jsp" flush="true"></jsp:include>
-	<jsp:include page="order/orderList.jsp"></jsp:include>
-	<jsp:include page="common/bot.jsp"></jsp:include>
+	<jsp:include page="order/orderList.jsp" flush="true"></jsp:include>
+	<jsp:include page="common/bot.jsp" flush="true"></jsp:include>
 	
 </body>
 </html>

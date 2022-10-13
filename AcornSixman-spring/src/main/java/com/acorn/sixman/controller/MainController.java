@@ -1,7 +1,5 @@
 package com.acorn.sixman.controller;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,19 +22,17 @@ public class MainController {
 	CommonService service;
 	@Autowired
 	ProductService service2;
-	
-	
+
 	@RequestMapping("/")
-	public String main(HttpSession session, HttpServletRequest request, Model model,HashMap<String, String> searchOption) {
-		List<CategoryDTO> dto=service.selectCategories();
-		session.setAttribute("Guitar", dto);
-		List<ProductDTO_Temp> list = service2.selectProductByOption(searchOption);
-		model.addAttribute("list", list);
+	public String main(HttpSession session, HttpServletRequest request, Model model,
+			HashMap<String, String> searchOption) {
 		return "redirect:main";
 	}
+
 	@RequestMapping("/main")
-	public String main2(HttpSession session, HttpServletRequest request, Model model,HashMap<String, String> searchOption) {
-		List<CategoryDTO> dto=service.selectCategories();
+	public String main2(HttpSession session, HttpServletRequest request, Model model,
+			HashMap<String, String> searchOption) {
+		List<CategoryDTO> dto = service.selectCategories();
 		session.setAttribute("Guitar", dto);
 		List<ProductDTO_Temp> list = service2.selectProductByOption(searchOption);
 		model.addAttribute("list", list);

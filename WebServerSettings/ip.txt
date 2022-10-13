@@ -1,3 +1,12 @@
 146.56.133.110
 ubuntu
 qwer1234
+
+톰캣 홈
+http://www.acornsixman.ga/
+
+서블릿 버전
+http://www.acornsixman.ga/AcornSixman/Mainservlet
+
+스프링 버전
+http://www.acornsixman.ga/Sixman-Spring
