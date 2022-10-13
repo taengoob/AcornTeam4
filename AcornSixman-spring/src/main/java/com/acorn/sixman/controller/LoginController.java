@@ -2,9 +2,7 @@ package com.acorn.sixman.controller;
 
 import java.util.HashMap;
 
-
 import javax.servlet.http.HttpSession;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,11 +28,11 @@ public class LoginController {
         MemberDTO dto = service.Login(map);
         String mes = "";
         if (dto != null) {
-            mes = "redirect:/";
+            mes = "redirect:main";
             session.setAttribute("login", dto);
             session.setMaxInactiveInterval(60 * 60);
         } else {
-            mes = "redirect:/LoginUI";
+            mes = "redirect:LoginUI";
             session.setAttribute("nologin", "로그인 정보를 확인해 주세요");
 
         }
@@ -48,41 +46,43 @@ public class LoginController {
         if (dto != null) {
             session.setAttribute("logout", "로그아웃임다");
             session.removeAttribute("login");
-            mes = "redirect:/";
+            mes = "redirect:main";
         } else {
-            mes = "redirect:/LoginUi";
+            mes = "redirect:LoginUI";
         }
         return mes;
     }
+
     @RequestMapping("/navercollback")
-    public String navercollback(){
+    public String navercollback() {
         return "member/navercollback";
     }
+
     @RequestMapping("/kakaologin")
-    public String kakaologin(@RequestParam String name, @RequestParam String email, HttpSession session){
+    public String kakaologin(@RequestParam String name, @RequestParam String email, HttpSession session) {
         String accountName = name;
         String accountEmailId1 = email;
         String email1 = accountEmailId1;
-		String tempEmail[] = email1.split("@");
-		String accountEmailId = tempEmail[0];
-		String accountEmailDomain = tempEmail[1];
+        String tempEmail[] = email1.split("@");
+        String accountEmailId = tempEmail[0];
+        String accountEmailDomain = tempEmail[1];
         String mesg = "";
         HashMap<String, String> kakao = new HashMap<String, String>();
         kakao.put("accountName", accountName);
-		kakao.put("accountEmailId", accountEmailId);
-		kakao.put("accountEmailDomain", accountEmailDomain);
+        kakao.put("accountEmailId", accountEmailId);
+        kakao.put("accountEmailDomain", accountEmailDomain);
         MemberDTO dto = service.Loginforkakao(kakao);
-        if(dto != null){
+        if (dto != null) {
             session.setAttribute("login", dto);
-            mesg = "redirect:/";
+            mesg = "redirect:main";
             System.out.println("sns 로그인");
 
-        }else{
-            session.setAttribute("nameforkakao",accountName);
-			session.setAttribute("emailforkakao",accountEmailId);
-			session.setAttribute("domainforkakao",accountEmailDomain);
-            mesg = "redirect:/kakaologin";
-			System.out.println("sns 회원가입");
+        } else {
+            session.setAttribute("nameforkakao", accountName);
+            session.setAttribute("emailforkakao", accountEmailId);
+            session.setAttribute("domainforkakao", accountEmailDomain);
+            mesg = "redirect:kakaologin";
+            System.out.println("sns 회원가입");
         }
         return mesg;
 

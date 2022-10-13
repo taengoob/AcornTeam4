@@ -22,12 +22,14 @@ public class MemberController {
   public String MainJoinUp() {
     return "MainJoinUp";
   }
+
   @RequestMapping("/memberUpdatePage")
   public String memberUpdatePage() {
     return "memberUpdate";
   }
+
   @RequestMapping("/FirstJoinUpPage")
-  public String FirstJoinUpPage(){
+  public String FirstJoinUpPage() {
     return "FirstJoinUpPage";
   }
 
@@ -66,36 +68,37 @@ public class MemberController {
       System.out.println("업데이트 된 갯수" + list);
       if (list == 1) {
         session.setAttribute("memberupdate", "회원정보가 수정되었습니다.");
-        mesg = "redirect:/";
-      } 
-    }else {
-      mesg = "redirect:/LoginUI";
+        mesg = "redirect:main";
+      }
+    } else {
+      mesg = "redirect:LoginUI";
     }
     return mesg;
   }
+
   @RequestMapping("/MyPage")
-  public String MyPage(HttpSession session){
+  public String MyPage(HttpSession session) {
     MemberDTO gDTO = (MemberDTO) session.getAttribute("login");
     String mesg = "";
-    if(gDTO != null){
-      mesg = "redirect:/orderList";
-    }else{
-      mesg = "redirect:/LoginUI";
+    if (gDTO != null) {
+      mesg = "redirect:orderList";
+    } else {
+      mesg = "redirect:LoginUI";
     }
     return mesg;
   }
-@RequestMapping("/ChangePasswd")
-public String ChangePasswd(@RequestParam HashMap<String, String> map, HttpSession session){
-  int list = service.changePW(map);
-  String mesg = "";
-  String mesg1 = "";
-		if (list != 0) {
-			mesg = "비밀번호가 변경되었습니다.";
-			session.setAttribute("changepw", mesg);
-			mesg1 = "redirect:/LoginUI";
-		}
+
+  @RequestMapping("/ChangePasswd")
+  public String ChangePasswd(@RequestParam HashMap<String, String> map, HttpSession session) {
+    int list = service.changePW(map);
+    String mesg = "";
+    String mesg1 = "";
+    if (list != 0) {
+      mesg = "비밀번호가 변경되었습니다.";
+      session.setAttribute("changepw", mesg);
+      mesg1 = "redirect:LoginUI";
+    }
     return mesg1;
-}
-  
+  }
 
 }

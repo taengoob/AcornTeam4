@@ -113,7 +113,7 @@ text-align: center;
 	<header>
 
 		<div class="navbar1">
-<span onclick="location.href=''" id="main-span">The SixMan</span>
+<span onclick="location.href='main'" id="main-span">The SixMan</span>
 			<button type="button" class="btn btn-link" id="button-tag"
 				onclick="location.href='productList?category=<%=id0%>'">
 				<span id="span1">전체 상품</span>
@@ -195,7 +195,7 @@ text-align: center;
 					<span class="top-login" OnClick="location.href='logoutServlet'"
 						style="margin-right: 4%"><img src="static/img/logout.png"
 						width="30px" height="30px" style="margin-right: -0.5%;"></span> <span
-						class="top-login" OnClick="location.href='MyPageServlet'"
+						class="top-login" OnClick="location.href='MyPage'"
 						style="margin-right: 4.2%"><img src="static/img/mypage.png"
 						width="30px" height="30px"></span>
 

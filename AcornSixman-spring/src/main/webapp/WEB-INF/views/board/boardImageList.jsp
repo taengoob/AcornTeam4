@@ -245,7 +245,7 @@
 	</div>
 	<div id="nTableBots"></div>
 	<div class="w-100" id="searchBox" style="height: 35px;">
-		<form action="BoardListServlet" method="get" id="searchForm">
+		<form action="boardList" method="get" id="searchForm">
 			<input type="hidden" name="Category" value="<%=Category%>">
 			<input class="form-control" name="searchValue" id="searchValue" type="text" 
 			<%if(searchValue!=""){%>value="<%=searchValue%>"<%} %>	placeholder="게시판 내 검색">
