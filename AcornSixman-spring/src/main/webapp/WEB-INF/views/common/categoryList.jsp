@@ -11,8 +11,8 @@
 					<table align="center" width="710" cellspacing="0" cellpadding="0" border="0">
 						<tr>
 							<td>
-								<a href="ImageUploadFormServlet">등록</a>&nbsp;
-								<a href="../CartListServlet">장바구니</a>
+								<a href="ImageUploadForm">등록</a>&nbsp;
+								<a href="../CartList">장바구니</a>
 						</td></tr>
 						<tr>
 							<td colspan="10">
@@ -37,7 +37,7 @@
 								<table style='padding:15px'>
 									<tr>
 										<td>
-											<a href="ProductDetailServlet?productId=<%= product.getProductId() %>"><!-- 이미지링크 --> 
+											<a href="ProductDetail?productId=<%= product.getProductId() %>"><!-- 이미지링크 --> 
 												<img src="<%= product.getPreviewUrl() %>" border="0" align="middle" width="200">
 											</a>
 										</td>
@@ -47,7 +47,7 @@
 									</tr>
 									<tr>
 										<td class= "td_default" align ="center">
-											<a class= "a_black" href="ProductDetailServlet?productId=<%= product.getProductId() %>">
+											<a class= "a_black" href="ProductDetail?productId=<%= product.getProductId() %>">
 												<%= product.getProductName() %>
 											</a><br>
 											<font color="gray">

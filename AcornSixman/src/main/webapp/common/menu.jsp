@@ -45,7 +45,7 @@ if (dto != null) {
 	<%
 	} else {
 	%>
-	<span class="top-login" OnClick="location.href='UploadedListServlet'"
+	<span class="top-login" OnClick="location.href='ProductListServlet1#top'"
 		style="margin-right: 3.5%"><img src="image/set.png"
 		width="30px" height="30px"></span>
 	<div class="menu-write-container">
