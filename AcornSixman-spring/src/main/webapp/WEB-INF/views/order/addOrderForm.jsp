@@ -29,7 +29,12 @@
 	String jsonStr = request.getParameter("jsonStr");
 	
 %>
-
+<style>
+	.form-control{
+		margin-top: 5px;
+		width: 30%;
+	}
+</style>
 <script>
 
 	window.onload = function () {
@@ -167,7 +172,7 @@
 							이 름
 						</td>
 						<td height="35" class="td_default">
-							<input class="input_default" type="text" id="mname" size="20"
+							<input class="form-control" type="text" id="mname" size="20"
 								maxlength="20" value="<%= userName %>"></input>
 						</td>
 					</tr>
@@ -177,7 +182,7 @@
 <!-- 							우편번호 -->
 <!-- 						</td> -->
 <!-- 						<td height="35" class="td_default"> -->
-<!-- 							<input class="input_default" type="text" id="mpost" size="6" -->
+<!-- 							<input class="form-control" type="text" id="mpost" size="6" -->
 <!-- 								maxlength="6" value="" readonly> -->
 							
 <!-- 						</td> -->
@@ -188,9 +193,9 @@
 							주 소
 						</td>
 						<td height="35" class="td_default">
-							<input class="input_default" type="text" id="maddress1" size="35"
+							<input class="form-control" type="text" id="maddress1" size="35"
 								maxlength="200" value="<%= addrR %>" readonly></input><br>
-							<input class="input_default" type="text" id="maddress2" size="35"
+							<input class="form-control" type="text" id="maddress2" size="35"
 								maxlength="200" value="<%= addrN %>" readonly></input>
 						</td>
 					</tr>
@@ -200,7 +205,7 @@
 							휴대전화
 						</td>
 						<td height="35" class="td_default">
-							<input class="input_default" type="text" id="mphone" size="15"
+							<input class="form-control" type="text" id="mphone" size="15"
 								maxlength="15" value="<%= phone %>"></input>
 							
 						</td>
@@ -233,7 +238,7 @@
 							이 름
 						</td>
 						<td height="35" class="td_default">
-							<input class="input_default" type="text" id="recvName"
+							<input class="form-control" type="text" id="recvName"
 								name="name" size="20" maxlength="20" value=""></input>
 						</td>
 					</tr>
@@ -245,9 +250,9 @@
 						<td height="35" class="td_default">
 						<!-- 다음주소 시작-->
 							<input type="hidden" name="post" id="sample4_postcode" placeholder="우편번호" >
-							<input type="text" name="addr1" size="35" maxlength="200" id="sample4_roadAddress" placeholder="도로명주소">
-							<input type="button" onclick="sample4_execDaumPostcode()" value="주소 찾기"><br>
-							<input type="text" name="addr2" size="35" maxlength="200" id="sample4_jibunAddress" placeholder="지번주소">
+							<input type="text" name="addr1" size="35" class="form-control" maxlength="200" id="sample4_roadAddress" placeholder="도로명주소">
+							<input type="text" name="addr2" size="35" maxlength="200" class="form-control" id="sample4_jibunAddress" placeholder="지번주소">
+							<input type="button" onclick="sample4_execDaumPostcode()" class="btn btn-light" value="주소 찾기"><br>
 							<span id="guide" style="color:#999"></span>
 							<br>
 						<!-- 다음주소 끝 -->
@@ -260,7 +265,7 @@
 							휴대전화
 						</td>
 						<td height="35" class="td_default">
-							<input class="input_default" type="text" id="recvPhone"
+							<input class="form-control" type="text" id="recvPhone"
 								name="phoneNumber" size="15" maxlength="15" value=""></input>
 						
 						</td>
@@ -316,8 +321,8 @@
 	
 		<tr>
 			<td class="td_default" align="center">
-				<input type='button' value='취소' onclick="javascript:history.back()">	
-				<input type='submit' value='결제하기'>
+				<input type='button' class="btn btn-outline-success" value='취소' onclick="javascript:history.back()">	
+				<input type='submit' class="btn btn-outline-success" value='결제하기'>
 			</td>
 		</tr>
 	</table>

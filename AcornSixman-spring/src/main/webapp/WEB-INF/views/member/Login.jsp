@@ -56,7 +56,7 @@ a {
 
 <body>
 	<p class="main-img"></p>
-	<form action="../login" method="post" id="mainform">
+	<form action="login" method="post" id="mainform">
 		<p class="main-name" id="title">The SixMan</p>
 		<div class="input-style">
 			<input type="text" placeholder="아이디" id="userid" name="userid"
@@ -66,9 +66,9 @@ a {
 		</div>
 		<button class="btn btn-primary" type="submit" id="submit">로그인</button>
 		<div class="iph">
-			<a href="/MainJoinUp" class="heiwon">회원가입</a> <a
-				href="/FirstFindID" class="id" id="find-id">아이디 찾기</a> <a
-				class="ll">|</a> <a href="/FirstFindPW" class="password"
+			<a href="MainJoinUp" class="heiwon">회원가입</a> <a
+				href="FirstFindID" class="id" id="find-id">아이디 찾기</a> <a
+				class="ll">|</a> <a href="FirstFindPW" class="password"
 				id="find-pw">비밀번호 찾기</a>
 		</div>
 		<div class="kakao"><a href="javascript:loginWithKakao();">

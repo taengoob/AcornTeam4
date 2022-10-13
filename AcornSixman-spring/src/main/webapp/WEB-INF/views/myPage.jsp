@@ -50,11 +50,6 @@
 	border-color: #f4f4f4;
 }
 
-.tabletop {
-	width: 100%;
-	height: 50px;
-}
-
 .tablebot {
 	height: 60px;
 	width: 100%;

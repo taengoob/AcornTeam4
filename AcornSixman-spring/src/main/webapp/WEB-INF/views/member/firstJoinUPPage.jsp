@@ -13,7 +13,7 @@
 <body>
 	<div class="main-container">
 	
-		<a href="/MainJoinUp" class="main-link-item">쇼핑몰 회원가입</a>
+		<a href="MainJoinUp" class="main-link-item">쇼핑몰 회원가입</a>
 		<p class="main-line"></p>
 		<p class="naver-login">
 			<span class="naver-box"><img src="static/img/nav.png"

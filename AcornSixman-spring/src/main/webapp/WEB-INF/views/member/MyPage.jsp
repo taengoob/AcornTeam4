@@ -11,7 +11,7 @@
 	%>
 	<section class="high-section">
 		<div class="order-strong-span-mom">
-		<a href="memberUpdate.jsp" class="update">*회원정보수정 페이지로 이동*</a><br>
+		<a href="MemberUpdate" class="update">*회원정보수정 페이지로 이동*</a><br>
 			<strong class="order-strong">주문내역</strong>&nbsp; <span
 				class="order-span">(최근 6개월,배송상품 기준)</span>
 		</div>
@@ -57,16 +57,7 @@
 			</p>
 		</div>
 
-		<strong class="order-one">진행 중인 주문</strong> <span
-			class="order-one-item">최근 30일 내에 진행중인 주문정보입니다.</span>
-		<div class="order-one-write">
-			<p class="order-one-write-item1">입금대기중</p><p class="order-one-write-item2">결제완료</p><p class="order-one-write-item3">준비중인 상품</p><p class="order-one-write-item4">배송중인 상품</p><p class="order-one-write-item5">배송완료</p>
-			<p class="order-one-write-item1-1"></p>
-			<p class="order-one-write-item2-1"></p>
-			<p class="order-one-write-item3-1"></p>
-			<p class="order-one-write-item4-1"></p>
-			<p class="order-one-write-item5-1"></p>
-		</div>
+	
 		<strong class="order-two" id="order-two">최근 주문 정보</strong> <span
 			class="order-two-item">최근 30일 내에 주문하신 내역입니다.</span>
 		<div class="order-two-write">
@@ -75,6 +66,5 @@
 			<p class="order-two-write-item3">상품금액/수량</p>
 			<p class="order-two-write-item4">주문상태</p>
 			<p class="order-two-write-item5">확인/리뷰</p>
-			
 		</div>
 	</section>

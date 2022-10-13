@@ -122,7 +122,7 @@ ul li {
 					확인</button>
 				<br> <br> <span class="span-line"></span>
 				<div class="menu-link">
-					<a href="/" class="btn btn-outline-success">홈으로</a>
+					<a href="" class="btn btn-outline-success">홈으로</a>
 					
 				</div>
 			</form>

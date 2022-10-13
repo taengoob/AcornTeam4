@@ -62,7 +62,7 @@
 </head>
 <body>
 	<span id="type"></span>
-	<form action="/MemberAdd" class="form-inline" method="post"
+	<form action="MemberAdd" class="form-inline" method="post"
 		id="mainform">
 		<div class="main-box">
 			<div class="form-group">
@@ -144,7 +144,7 @@
 			</div>
 			<div class="finish">
 				<button class="btn btn-outline-success" type="button"
-					onclick="location.href='FirstJoinUpPage.jsp'" id="cancle">취소</button>
+					onclick="location.href='FirstJoinUpPage'" id="cancle">취소</button>
 				<button class="btn btn-outline-success" type="submit"
 					id="finishuser">회원가입</button>
 			</div>

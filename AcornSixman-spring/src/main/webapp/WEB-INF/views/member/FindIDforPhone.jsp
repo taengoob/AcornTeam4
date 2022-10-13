@@ -122,8 +122,8 @@ ul li {
 					찾기</button>
 				<br> <br> <span class="span-line"></span>
 				<div class="menu-link">
-					<a href="/" class="btn btn-outline-success">홈으로</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;<a href="/LoginUI"
+					<a href="" class="btn btn-outline-success">홈으로</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="LoginUI"
 						class="btn btn-outline-success">로그인</a>
 				</div>
 			</form>

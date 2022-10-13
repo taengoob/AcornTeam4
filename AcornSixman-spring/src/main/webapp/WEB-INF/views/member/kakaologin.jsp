@@ -56,7 +56,7 @@ String name = (String) session.getAttribute("nameforkakao");
 String email = (String) session.getAttribute("emailforkakao");
 String domain = (String) session.getAttribute("domainforkakao");
 %>
-<form action="MemberAddServlet" class="form-inline" method="post"
+<form action="MemberAdd" class="form-inline" method="post"
 		id="mainform">
 		<div class="main-box">
 			<div class="form-group">
