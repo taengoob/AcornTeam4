@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.acorn.sixman.common.OrderRequestType;
 import com.acorn.sixman.dto.OrderRequestDTO;
 import com.acorn.sixman.service.OrderRequestService;
+import com.acorn.sixman.service.OrderService;
 
 @Controller
 public class OrderRequestController {
     @Autowired
     OrderRequestService service;
+
+    @Autowired
+    OrderService orderService;
 
     @RequestMapping("/paymentRequests")
     public String PaymentRequests(Model model) {
@@ -56,6 +60,7 @@ public class OrderRequestController {
             @RequestParam(name = "status", required = true) String status, Model model) {
 
         service.updateOrderRequestStatus(requestId, status);
+        service.updateOrderStatus(requestId, status);
 
         String nextPage = "paymentRequests";
         if (requestType.equals(OrderRequestType.PAYMENT.toString()))

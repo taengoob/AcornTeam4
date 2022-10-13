@@ -39,9 +39,6 @@ public class ProductListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		
 		String category1 = request.getParameter("category");
 		String searchStr = request.getParameter("searchStr");
 		ProductService service = new ProductService();

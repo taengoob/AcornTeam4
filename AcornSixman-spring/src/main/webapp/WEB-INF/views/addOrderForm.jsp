@@ -39,7 +39,9 @@
       <jsp:include page="common/top.jsp" flush="true"></jsp:include>
     </div>
     <div class="wide"></div>
-    <jsp:include page="order/addOrderForm.jsp"></jsp:include>
+    <div style="text-align: center">
+      <jsp:include page="order/addOrderForm.jsp"></jsp:include>
+    </div>
     <jsp:include page="common/bot.jsp"></jsp:include>
 
     <hr />
