@@ -1,0 +1,1 @@
+1. src/main/resources/static -> src/main/webapp/static 으로 카피
