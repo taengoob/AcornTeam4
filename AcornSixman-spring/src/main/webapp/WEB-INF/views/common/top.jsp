@@ -86,7 +86,7 @@ text-align: center;
 
 <body>
 	<div class="logo-image">
-		<a href="/"> <img src="static/img/LOGO2.png"
+		<a href=""> <img src="static/img/LOGO2.png"
 			height="70px" width="110px">
 		</a>
 	</div>
@@ -113,47 +113,47 @@ text-align: center;
 	<header>
 
 		<div class="navbar1">
-<span onclick="location.href='/'" id="main-span">The SixMan</span>
+<span onclick="location.href=''" id="main-span">The SixMan</span>
 			<button type="button" class="btn btn-link" id="button-tag"
-				onclick="location.href='/productList?category=<%=id0%>'">
+				onclick="location.href='productList?category=<%=id0%>'">
 				<span id="span1">전체 상품</span>
 			</button>
 			<div class="dropdown1" style="display: inline-block;">
 				|
 				<button type="button" class="btn btn-link" id="button-tag"
-					onclick="location.href='/productList?category=<%=id%>*<%=id2%>'">
+					onclick="location.href='productList?category=<%=id%>*<%=id2%>'">
 					<span id="span1">일렉기타 & 베이스</span>
 				</button>
 				<ul class="dropdown-menu" role="menu"
 					aria-labelledby="dropdownMenuDivider">
 
 					<li><a class="dropdown-item"
-						href="/productList?category=<%=id%>"><%=id%></a></li>
+						href="productList?category=<%=id%>"><%=id%></a></li>
 					<li><a class="dropdown-item"
-						href="/productList?category=<%=id2%>"><%=id2%></a></li>
+						href="productList?category=<%=id2%>"><%=id2%></a></li>
 					<li role="presentation" class="divider"></li>
 				</ul>
 				|
 			</div>
 			<div class="dropdown1" style="display: inline-block;">
 				<button type="button" class="btn btn-link" id="button-tag"
-					onclick="location.href='/productList?category=<%=id3%>*<%=id4%>'">
+					onclick="location.href='productList?category=<%=id3%>*<%=id4%>'">
 					<span id="span1">어쿠스틱기타 & 클래식기타</span>
 				</button>
 				<ul class="dropdown-menu" role="menu"
 					aria-labelledby="dropdownMenuDivider">
 
 					<li><a class="dropdown-item"
-						href="/productList?category=<%=id3%>"><%=id3%></a></li>
+						href="productList?category=<%=id3%>"><%=id3%></a></li>
 					<li><a class="dropdown-item"
-						href="/productList?category=<%=id4%>"><%=id4%></a></li>
+						href="productList?category=<%=id4%>"><%=id4%></a></li>
 					<li role="presentation" class="divider"></li>
 				</ul>
 				|
 			</div>
 
 			<button type="button" class="btn btn-link" id="button-tag"
-				onclick="location.href='/productList?category=<%=id5%>'">
+				onclick="location.href='productList?category=<%=id5%>'">
 				<span id="span1">우쿠렐레</span>
 			</button>
 			<div class="dropdown1" style="display: inline-block;">
@@ -205,7 +205,7 @@ text-align: center;
 					<%
 					if (dtolo.getAccountIsSeller().equals("False")) {
 					%>
-					<span class="top-login" OnClick="location.href='/cartList'"
+					<span class="top-login" OnClick="location.href='cartList'"
 						style="margin-right: 2.8%"><img src="static/img/cart3.png"
 						width="30px" height="30px"></span>
 
@@ -213,7 +213,7 @@ text-align: center;
 					} else {
 					%>
 					<span class="top-login"
-						OnClick="location.href='/UploadedList'"
+						OnClick="location.href='UploadedList'"
 						style="margin-right: 3.5%"><img src="static/img/set.png"
 						width="30px" height="30px"></span>
 					<%
@@ -224,10 +224,10 @@ text-align: center;
 				} else {
 				%>
 				<div class="menu-container-top">
-					<span class="top-login" OnClick="location.href='/LoginUI'"
+					<span class="top-login" OnClick="location.href='LoginUI'"
 						style="margin-right: 2.5%"><img src="static/img/LoginIcon.png"
 						width="30px" height="30px"></span> <span class="top-login"
-						OnClick="location.href='/MainJoinUp'"
+						OnClick="location.href='MainJoinUp'"
 						style="margin-left: 5%"><img src="static/img/JoinupIcon.png"
 						width="30px" height="30px"></span>
 				</div>
