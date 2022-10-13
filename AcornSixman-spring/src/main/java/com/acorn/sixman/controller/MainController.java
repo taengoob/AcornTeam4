@@ -32,6 +32,14 @@ public class MainController {
 		session.setAttribute("Guitar", dto);
 		List<ProductDTO_Temp> list = service2.selectProductByOption(searchOption);
 		model.addAttribute("list", list);
+		return "redirect:main";
+	}
+	@RequestMapping("/main")
+	public String main2(HttpSession session, HttpServletRequest request, Model model,HashMap<String, String> searchOption) {
+		List<CategoryDTO> dto=service.selectCategories();
+		session.setAttribute("Guitar", dto);
+		List<ProductDTO_Temp> list = service2.selectProductByOption(searchOption);
+		model.addAttribute("list", list);
 		return "Main";
 	}
 }
