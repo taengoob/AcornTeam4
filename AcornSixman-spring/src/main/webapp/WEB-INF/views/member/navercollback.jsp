@@ -24,7 +24,7 @@
 			},
 			success: function(data, status, xhr) {
 				
-				window.opener.location.href='../';
+				window.opener.location.href='main';
 				window.close();
 				    
 			},
