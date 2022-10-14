@@ -81,7 +81,7 @@ public class LoginController {
             session.setAttribute("nameforkakao", accountName);
             session.setAttribute("emailforkakao", accountEmailId);
             session.setAttribute("domainforkakao", accountEmailDomain);
-            mesg = "redirect:kakaologin";
+            mesg = "kakaologin";
             System.out.println("sns 회원가입");
         }
         return mesg;

@@ -48,7 +48,7 @@
 						console.log(res);
 						var email = res.kakao_account.email;
 						var name = res.properties.nickname;
-						location.href='kakaologinServlet?email='+ email +'&name='+name;
+						location.href='kakaologin?email='+ email +'&name='+name;
 					}
 		    	 }) 
 		        console.log(authObj)
@@ -58,6 +58,18 @@
 		      },
 		    })
 		  }
+		</script>
+		<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+		
+			var naver_id_login = new naver_id_login("Cd7pBzZFkenqQfTi0_AL", "http://www.acornsixman.ga/Sixman-Spring/navercollback");
+			var state = naver_id_login.getUniqState();
+			naver_id_login.setButton("green",4,55);
+			naver_id_login.setDomain("http://www.acornsixman.ga/Sixman-Spring/LoginUI");
+			naver_id_login.setState(state);
+			naver_id_login.setPopup();
+			naver_id_login.init_naver_id_login();
 		</script>
 	
 </body>

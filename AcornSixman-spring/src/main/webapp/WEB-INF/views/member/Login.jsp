@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 	var naver_id_login = new naver_id_login("Cd7pBzZFkenqQfTi0_AL", "http://www.acornsixman.ga/Sixman-Spring/navercollback");
 	var state = naver_id_login.getUniqState();
 	naver_id_login.setButton("green",4,55);
-	naver_id_login.setDomain("http://127.0.0.1:8087/LoginUI");
+	naver_id_login.setDomain("http://www.acornsixman.ga/Sixman-Spring/LoginUI");
 	naver_id_login.setState(state);
 	naver_id_login.setPopup();
 	naver_id_login.init_naver_id_login();
