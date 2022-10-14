@@ -16,8 +16,8 @@
 		<a href="MainJoinUp" class="main-link-item">쇼핑몰 회원가입</a>
 		<p class="main-line"></p>
 		<p class="naver-login">
-			<span class="naver-box"><img src="static/img/nav.png"
-				alt="네이버" class="naver-img"></span><span class="naver-item">네이버
+			<span class="naver-box"><img src="static/img/nav.png" id="naver_id_login"
+				alt="네이버" class="naver-img"></span><span class="naver-item" id="naver_id_login">네이버
 				아이디 회원가입</span>
 		</p>
 		<p class="kakao-login">
