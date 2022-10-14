@@ -103,7 +103,7 @@ a {
 						console.log(res);
 						var email = res.kakao_account.email;
 						var name = res.properties.nickname;
-						location.href='/kakaologin?email='+ email +'&name='+name;
+						location.href='kakaologin?email='+ email +'&name='+name;
 					}
 		    	 }) 
 		        console.log(authObj)
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 
-	var naver_id_login = new naver_id_login("Cd7pBzZFkenqQfTi0_AL", "http://127.0.0.1:8087/navercollback");
+	var naver_id_login = new naver_id_login("Cd7pBzZFkenqQfTi0_AL", "http://www.acornsixman.ga/Sixman-Spring/navercollback");
 	var state = naver_id_login.getUniqState();
 	naver_id_login.setButton("green",4,55);
 	naver_id_login.setDomain("http://127.0.0.1:8087/LoginUI");
