@@ -24,7 +24,7 @@
 
 </style>
 <div id="searchbox">
-<form  action="search" class="row g-2" id="searchform">
+<form  action="productList" class="row g-2" id="searchform">
 	<div class="col-3"></div>
   <div class="col-auto">
 	<select class="form-select" aria-label="Default select example" name="category">
