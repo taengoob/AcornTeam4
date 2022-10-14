@@ -14,7 +14,7 @@
 	  var email = naver_id_login.getProfileData('email');
 		var name =  naver_id_login.getProfileData('name');
 	  $.ajax({
-			url:"../kakaologin",
+			url:"kakaologin",
 			type:"post",
 			dataType:"text",
 			data:{
