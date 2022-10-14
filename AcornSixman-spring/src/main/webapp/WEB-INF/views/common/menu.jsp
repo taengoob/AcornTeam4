@@ -50,6 +50,5 @@
 		<span class="top-login-write" OnClick="location.href='LoginUI'" style="margin-right: 0.7%">로그인</span>
 		<span class="top-login-write" OnClick="location.href='FirstJoinUpPage'" style="margin-right: 1%">회원가입</span>
 	</div>
-	<hr />
 </div>
 <% } %>

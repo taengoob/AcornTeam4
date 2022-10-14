@@ -35,23 +35,18 @@
       </div>
     </div>
     <div class="menu-item">
-      <jsp:include page="common/menu.jsp" flush="true"></jsp:include><br />
+      <jsp:include page="common/menu.jsp" flush="true"></jsp:include><br/>
       <jsp:include page="common/top.jsp" flush="true"></jsp:include>
     </div>
     <div class="wide"></div>
     <jsp:include page="common/search.jsp"></jsp:include>
-    <hr />
     <jsp:include page="common/banner.jsp"></jsp:include>
-    <hr />
     <jsp:include page="common/youtube.jsp"></jsp:include>
-    <hr />
     <jsp:include page="common/fieximage.jsp"></jsp:include>
-    <hr />
+    <br>
     <jsp:include page="common/fieximage2.jsp"></jsp:include>
     <jsp:include page="product/productList.jsp"></jsp:include>
     <jsp:include page="common/bot.jsp"></jsp:include>
-
-    <hr />
 
     <jsp:include page="common/mesg.jsp"></jsp:include>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

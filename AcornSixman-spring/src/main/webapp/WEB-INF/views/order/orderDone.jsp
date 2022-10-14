@@ -138,7 +138,7 @@
 							이 름
 						</td>
 						<td height="35" class="td_default">
-							<input class="input_default" type="text" id="mname" size="20"
+							<input class="form-control" type="text" id="mname" size="20"
 								maxlength="20" value="<%= userName %>" readonly></input>
 						</td>
 					</tr>
@@ -148,7 +148,7 @@
 <!-- 							우편번호 -->
 <!-- 						</td> -->
 <!-- 						<td height="35" class="td_default"> -->
-<!-- 							<input class="input_default" type="text" id="mpost" size="6" -->
+<!-- 							<input class="form-control" type="text" id="mpost" size="6" -->
 <!-- 								maxlength="6" value="" readonly> -->
 							
 <!-- 						</td> -->
@@ -159,9 +159,9 @@
 							주 소
 						</td>
 						<td height="35" class="td_default">
-							<input class="input_default" type="text" id="maddress1" size="35"
+							<input class="form-control" type="text" id="maddress1" size="35"
 								maxlength="200" value="<%= addrR %>" readonly></input><br>
-							<input class="input_default" type="text" id="maddress2" size="35"
+							<input class="form-control" type="text" id="maddress2" size="35"
 								maxlength="200" value="<%= addrN %>" readonly></input>
 						</td>
 					</tr>
@@ -171,7 +171,7 @@
 							휴대전화
 						</td>
 						<td height="35" class="td_default">
-							<input class="input_default" type="text" id="mphone" size="15"
+							<input class="form-control" type="text" id="mphone" size="15"
 								maxlength="15" value="<%= phone %>" readonly></input>
 							
 						</td>
@@ -198,7 +198,7 @@
 							이 름
 						</td>
 						<td height="35" class="td_default">
-							<input class="input_default" type="text" id="recvName"
+							<input class="form-control" type="text" id="recvName"
 								name="name" size="20" maxlength="20" value="<%= recvName %>" readonly></input>
 						</td>
 					</tr>
@@ -209,8 +209,8 @@
 						</td>
 						<td height="35" class="td_default">
 						<!-- 다음주소 시작-->
-							<input type="text" name="addr1" size="35" maxlength="200" value="<%= recvAddrRoad %>" readonly><br>
-							<input type="text" name="addr2" size="35" maxlength="200" value="<%= recvAddrNumber %>" readonly>
+							<input type="text" class="form-control" name="addr1" size="35" maxlength="200" value="<%= recvAddrRoad %>" readonly><br>
+							<input type="text" class="form-control"name="addr2" size="35" maxlength="200" value="<%= recvAddrNumber %>" readonly>
 							<span id="guide" style="color:#999"></span>
 							<br>
 						<!-- 다음주소 끝 -->
@@ -223,7 +223,7 @@
 							휴대전화
 						</td>
 						<td height="35" class="td_default">
-							<input class="input_default" type="text" id="recvPhone"
+							<input class="form-control" type="text" id="recvPhone"
 								name="phoneNumber" size="15" maxlength="15" value="<%= recvPhone %>" readonly></input>
 						
 						</td>
@@ -264,8 +264,8 @@
 	
 		<tr>
 			<td class="td_default" align="center">
-				<a href="MyPage"><button >마이페이지로</button></a>
-				<a href="cartList"><button >장바구니로</button></a>
+				<button onclick="location.href='MyPage'" class="btn btn-outline-success">마이페이지로</button>
+				<button onclick="location.href='cartList'" class="btn btn-outline-success">장바구니로</button>
 			</td>
 		</tr>
 	</table>
