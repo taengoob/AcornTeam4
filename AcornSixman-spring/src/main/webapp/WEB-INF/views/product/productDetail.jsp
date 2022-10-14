@@ -138,7 +138,7 @@
 	                            	double opacity = images.indexOf(image) == 0 ? 1 : 0.3;
 	                            %>
 	                            	<li class="photo_list_sm">
-	                            		<a href="#"><img class="img_sm" src="<%= image.getImage_url() %>" style="opacity: <%= opacity %>;" alt="photo"></a>
+	                            		<img class="img_sm" src="<%= image.getImage_url() %>" style="opacity: <%= opacity %>; cursor: pointer;" alt="photo">
 	                            	</li>
 	                            <%
 	                            }
